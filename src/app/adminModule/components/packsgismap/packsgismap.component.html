@@ -1,0 +1,42 @@
+<div class="app-content content">
+  <div class="content-overlay"></div>
+  <div class="content-wrapper">
+    <div class="content-header row">
+      <div class="content-header-left col-md-6 col-12">
+        <h3 class="content-header-title mb-0">PACS Geo Tagging MAP</h3>
+        <div class="row breadcrumbs-top">
+          <div class="breadcrumb-wrapper col-12">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item">
+                <a class="custom-cursor" routerLink="/admin">Menu</a>
+              </li>
+              <li class="breadcrumb-item active">
+                <a class="custom-cursor" routerLink="/admin/Pacsgeotaggingmap">PACS Geo Tagging MAP</a>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+    <style>
+      .map-container {
+    position: relative;
+    padding-bottom: 100%;
+    height:100%;
+
+}
+
+.map-container iframe, .map-container object, .map-container embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    margin:0px;
+}
+    </style>
+    <div class="map-container">
+      <iframe width="100%" height="100%" src="https://cooperation.ap.gov.in/GM/Home/gismap" frameborder="0" allowfullscreen></iframe>
+      
+    </div>
+  </div>

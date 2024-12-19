@@ -1,0 +1,245 @@
+
+
+
+<nav class="navbar navbar-expand-lg navbar-dark blue-green-gradient">
+  <!-- Navbar brand -->
+  <!-- <a class="navbar-brand d-flex align-items-center" style="cursor: pointer">
+    <img
+      class="brand-logo"
+      src="https://apddcf.ap.gov.in/cdn/img/ap-logo.png"
+      style="width: 50px"
+    />
+    <h5 class="brand-text text-white mb-0 font-weight-normal ml-1">
+      Andhra Pradesh Cooperation Departments
+    </h5>
+  </a> -->
+
+  <a class="navbar-brand d-flex align-items-center">
+    <img
+      class="brand-logo"
+      src="assets/img/cbn-pic.jpg"
+      style="width: 100%"
+    />
+    
+    <div class="text-center">
+      <h6 class="brand-text text-white mb-0 font-weight-normal ml-1">
+        Sri N. Chandrababu Naidu
+      </h6>
+      <p class="text-white" style="font-size: 12px; margin-bottom: 0">
+        Hon’ble Chief Minister, <br />
+        Andhra Pradesh
+      </p>
+      
+        <!-- <h5 class="text-white">
+           <br />
+          Andhra Pradesh
+        </h5> -->
+       
+    </div>
+  </a>
+
+
+</nav>
+
+
+<!-- class="menu-navbar navbar navbar-expand-lg   py-md-0"style="color: #1b1d1f;background-color:white; !important;text-align: right;"   -->
+  
+<nav
+  class="menu-navbar navbar navbar-expand-lg py-md-0" style="color: #1b1d1f;background-color:white !important;"
+>
+  <a class="navbar-brand d-md-none d-block" style="cursor: pointer">MENU</a>
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarSupportedContent-333"
+    aria-controls="navbarSupportedContent-333"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+  <span class="feather icon-menu menucolor"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
+    <ul
+      class="nav navbar-nav"
+      id="main-menu-navigation"
+      data-menu="menu-navigation"
+    >
+      <li class="dropdown nav-item" data-menu="dropdown">
+        <a class="nav-link custom-cursor"
+          ><i class="feather icon-home menucolor"></i
+          ><span data-i18n="Dashboard" class="menucolor">Dashboard</span></a
+        >
+      </li>
+
+      
+
+      <li
+        class="dropdown nav-item"
+        data-menu="dropdown"
+        routerLinkActive="active"
+      >
+        <a
+
+
+
+        
+          class="dropdown-toggle nav-link custom-cursor menucolor"
+          data-toggle="dropdown"
+          ><i class="feather icon-file-text menucolor" ></i
+          ><span data-i18n="Pages"  class="menucolor">MENU</span></a
+        >
+        <ul class="dropdown-menu">
+          <li
+            data-menu=""
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
+           
+          <a
+                class="dropdown-item custom-cursor"
+                data-i18n=""
+                data-toggle="dropdown"
+                routerLink="CalibrationDeviceDetails"
+                >Device Received Status</a
+              >
+              <a
+                class="dropdown-item custom-cursor"
+                data-i18n=""
+                data-toggle="dropdown"
+                routerLink="CalibrationRegistration"
+                > Calibration Registration</a
+              >
+              <a
+                class="dropdown-item custom-cursor"
+                data-i18n=""
+                data-toggle="dropdown"
+                routerLink="Internetcalibrationins"
+                > Internet Details</a
+              >
+            <!-- <a
+              class="dropdown-item custom-cursor"
+              data-i18n=""
+              data-toggle="dropdown"
+              routerLink="AprDmtCalibration"
+              >Calibration Details Verification</a
+            > -->
+             
+          </li>
+        </ul>
+      </li>
+
+
+
+      <li class="dropdown nav-item"
+      data-menu="dropdown"
+      routerLinkActive="active">
+
+      <a
+      class="dropdown-toggle nav-link custom-cursor"
+      data-toggle="dropdown"
+      ><i class="feather icon-file-text"></i
+      ><span data-i18n="Pages">REPORTS</span></a
+    >
+    <ul class="dropdown-menu">
+      <li
+        data-menu=""
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: true }" 
+      >
+      </li>
+      <a class="dropdown-item custom-cursor" routerLink="DistrictWiseAbstractReport">PACS Computerization Abstract Report</a>
+      </ul>
+      </li>
+      
+    </ul>
+  
+      <!-- Links -->
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item text-right">
+          <a
+            class="navbar-brand d-flex align-items-center"
+            style="cursor: pointer"
+          >
+            
+          </a>
+        </li>
+  
+  
+  
+  
+  
+        <li class="dropdown dropdown-user nav-item">
+          <a
+            class="
+              dropdown-toggle
+              nav-link
+              dropdown-user-link
+              custom-cursor
+            "
+            data-toggle="dropdown"
+          >
+            <div class="avatar">
+              <img
+                src="assets/images/ico/apple-icon-120.png"
+                alt="avatar"
+              /><i></i>
+            </div>
+            <span class="user-name menucolor"  >{{userName}}</span>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right">
+            <a class="dropdown-item custom-cursor"
+              ><i class="feather icon-user"  class="menucolor"></i> Profile</a
+            >
+            <a
+              class="dropdown-item custom-cursor"
+              (click)="btnForgetPassword()"
+            >
+              <i class="feather icon-lock"  class="menucolor"></i> Forget Password</a
+            >
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item custom-cursor" (click)="btnLogout()"
+              ><i class="feather icon-power"  class="menucolor"></i> Logout</a
+            >
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item text-center custom-cursor">
+              <span  class="menucolor"
+                >Last logged in: <br />
+                <b class="text-danger menucolor">{{ lastLoginTime }}</b></span
+              >
+            </a>
+          </div>
+        </li>
+  
+  
+      </ul>
+    </div>
+    <!-- Collapsible content -->
+</nav>  
+ 
+
+
+<body
+class="horizontal-layout horizontal-menu 2-columns"
+data-open="hover"
+data-menu="horizontal-menu"
+data-col="2-columns"
+>
+ 
+ 
+
+
+<router-outlet></router-outlet>
+
+<footer class="footer footer-static footer-light navbar-shadow">
+  <p class="clearfix blue-grey lighten-2 text-sm-center mb-0 px-2">
+    <span class="float-md-left d-block d-md-inline-block text-white"
+      >Copyright &copy; 2021 All rights reserved.</span
+    ><span class="float-md-right d-none d-lg-block text-white"
+      >Andhra Pradesh Co-Operative Societies
+      </span>
+  </p>
+</footer>
+</body>
+
+

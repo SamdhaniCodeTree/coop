@@ -1,0 +1,172 @@
+<div class="app-content content">
+    <div class="content-overlay"></div>
+    <div class="content-wrapper">
+      <div class="content-header row">
+        <div class="content-header-left col-md-6 col-12">
+          <h3 class="content-header-title mb-0">Pacs Master</h3>
+          <div class="row breadcrumbs-top">
+            <div class="breadcrumb-wrapper col-12">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                  <a class="custom-cursor" routerLink="/admin">Menu</a>
+                </li>
+                <li class="breadcrumb-item active">
+                  <a
+                    class="custom-cursor"
+                    routerLink="/admin/Pacsmaster"
+                    >Pacs Master</a
+                  >
+                </li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="content-body">
+        <section id="basic-form-layouts">
+          <div class="row match-height">
+            <div class="col-md-12 row">
+              <div class="col-md-3"></div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="divisionId"
+                    >DISTRICT <span class="text-danger">*</span></label
+                  >
+            
+                  <select
+                    id="divisionId"
+                    name="divisionId"
+                    class="form-control"
+                    [(ngModel)]="districtId"
+                  >
+                  <option value="">--Select District--</option>
+                    <option value="502">ANANTHAPUR</option>
+                    <option value="503">CHITTOOR</option>
+                    <option value="505">EAST GODAVARI</option>
+                    <option value="506">GUNTUR</option>
+                    <option value="510">KRISHNA</option>
+                    <option value="511">KURNOOL</option>
+                    <option value="517">PRAKASAM</option>
+                    <option value="515">SPSR NELLORE</option>
+                    <option value="519">SRIKAKULAM</option>
+                    <option value="520">VISAKHAPATNAM</option>
+                    <option value="521">VIZIANAGARAM</option>
+                    <option value="523">WEST GODAVARI</option>
+                    <option value="504">YSR KADAPA</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-2">
+                
+                 <br>
+                  
+                  <button
+                  type="button"
+                  class="btn btn-success btn-sm mt-3"
+                  (click)="packslist()"
+                >
+                  <i
+                    class="fa fa-arrow-right mr-2"
+                    aria-hidden="true"
+                  ></i>
+                  Get
+                </button>
+              </div>
+              <div class="col-md-4">
+                <button
+      type="button"
+      class="btn btn-sm btn-success pull-right"
+      (click)="btnExcelDownload()"
+    >
+      <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+      DOWNLOAD EXCEL
+    </button>
+              </div>
+            </div>
+            <div class="col-md-12">
+
+              <div class="card">
+                <div class="card-header"></div>
+                <div class="card-content collapse show">
+                  <div class="card-body">
+                    <div class="form">
+                      <div class="form-body">
+                        <h4 class="form-section">
+                          <i class="feather icon-map-pin"></i>Pacs Master
+                        </h4>
+                         
+                        <div class="form-group">
+                         
+                          <div
+                          class="col-md-12 table-responsive"
+                          [hidden]="packsmasterlist.length < 1"
+                        >
+                          <table
+                            class="table table-bordered"
+                            datatable
+                            [dtOptions]="dtOptions"
+                            [dtTrigger]="dtTrigger"
+                          >
+                            <thead class="thead-dark">
+                               
+                              <tr>
+                                <th>S.No.</th>
+                                <th>DELETE</th>
+                                <th>DISTRICT NAME</th>
+                                 
+                                <th>DIVISION NAME</th>
+                                 
+                                <th>MANDAL NAME</th>
+                                
+                                <th>PACS NAME</th>
+                                
+                                <th>RBK NAME</th>
+                                
+                                <th>VILLAGE NAME</th>
+                               
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr *ngFor="let obj of packsmasterlist; let i = index">
+                                <td>{{ i + 1 }}</td>
+                                <td>
+                                  <a
+                                    *ngIf="obj.UNIQUE_ID !== 0"
+                                    style="cursor: pointer; text-decoration: underline"
+                                    class="text-primary"
+                                    (click)="btnupdatepassword(obj)"
+                                    ><b>Delete</b></a
+                                  >
+                                   
+                                </td>
+                                <td>{{ obj.DISTRICT_NAME }}({{ obj.DISTRICT_CODE }})</td>
+                                 
+                                <td>{{ obj.DIVISION_NAME }}({{ obj.DIVISION_CODE }})</td>
+                                 
+                                <td>{{ obj.MANDAL_NAME }}({{ obj.MANDAL_CODE }})</td>
+                                 
+                                <td>{{ obj.PACS_NAME }}</td>
+                                 
+                                <td>{{ obj.RBK_NAME }}({{ obj.RBK_CODE }})</td>
+                               
+                                <td>{{ obj.VILLAGE_NAME }}({{ obj.VILLAGE_CODE }})</td>
+                               
+                              </tr>
+                            </tbody>
+                           
+                          </table>
+                        </div>
+                          
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- // Basic form layout section end -->
+      </div>
+    </div>
+  </div>

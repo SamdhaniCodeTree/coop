@@ -1,0 +1,21 @@
+.background{
+    /* background-image: linear-gradient(270deg,#42481f,#a0a21d,#006f93,#18ac94,#233a2c);
+    border-radius: 8px; */
+    background-image: linear-gradient(66deg,#5e6b12,#006f93,#18ac94,#233a2c);
+    border-radius: 9px;
+}
+.backgrnd{
+    border-radius: 9px;
+}
+.table-margin{
+    margin-top: -14px;
+}
+
+.textcolor{
+    color: rgb(35, 189, 35);
+     font-weight: bold;
+}
+.table-container {
+    overflow-x: auto;
+}
+

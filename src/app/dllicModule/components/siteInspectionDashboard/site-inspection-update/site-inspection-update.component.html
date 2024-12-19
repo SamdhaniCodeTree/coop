@@ -1,0 +1,572 @@
+<div class="app-content content">
+  <div class="content-overlay"></div>
+  <div class="content-wrapper">
+    <div class="content-header row">
+      <div class="content-header-left col-md-6 col-12">
+        <h3 class="content-header-title mb-0">Site Inspection Update</h3>
+        <div class="row breadcrumbs-top">
+          <div class="breadcrumb-wrapper col-12">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item">
+                <a class="custom-cursor" routerLink="/dllic">Menu</a>
+              </li>
+              <li class="breadcrumb-item active">
+                <a
+                  class="custom-cursor"
+                  routerLink="/dllic/siteInspectionUpdate"
+                >
+                  Site Inspection Update</a
+                >
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="content-body">
+      <!-- Basic form layout section start -->
+      <section id="basic-form-layouts">
+        <div class="row match-height">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header"></div>
+              <div class="card-content collapse show">
+                <div class="card-body">
+                  <div class="form">
+                    <div class="form-body">
+                      <div>
+                        <div class="row">
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <label>District Name :</label>
+                              <h6 class="text-success">
+                                {{ inspectionDetailsList.districtName }}
+                              </h6>
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <label>Division Name :</label>
+                              <h6 class="text-success">
+                                {{ inspectionDetailsList.divisionName }}
+                              </h6>
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <label>Mandal Name :</label>
+                              <h6 class="text-success">
+                                {{ inspectionDetailsList.mandalName }}
+                              </h6>
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <label>PACS Name :</label>
+                              <h6 class="text-success">
+                                {{ inspectionDetailsList.pacsName }}
+                              </h6>
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <label>Village Name :</label>
+                              <h6 class="text-success">
+                                {{ inspectionDetailsList.villageName }}
+                              </h6>
+                            </div>
+                          </div>
+                        </div>
+
+                        <h4 class="form-section">
+                          <i class="feather icon-map-pin"></i> Boundaries and
+                          Survey Details
+                        </h4>
+                        <div class="row">
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <label>Allotment Proceedings :</label>
+                              <h6 class="text-success">
+                                {{ inspectionDetailsList.allotmentProceedings }}
+                              </h6>
+                            </div>
+                          </div>
+
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <label>Survey No :</label>
+                              <h6 class="text-success">
+                                {{ inspectionDetailsList.SurveyNo }}
+                              </h6>
+                            </div>
+                          </div>
+
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <label>Extent :</label>
+                              <h6 class="text-success">
+                                {{ inspectionDetailsList.extent }}
+                              </h6>
+                            </div>
+                          </div>
+
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <label>South :</label>
+                              <h6 class="text-success">
+                                {{ inspectionDetailsList.south }}
+                              </h6>
+                            </div>
+                          </div>
+
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <label>North :</label>
+                              <h6 class="text-success">
+                                {{ inspectionDetailsList.north }}
+                              </h6>
+                            </div>
+                          </div>
+
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <label>East :</label>
+                              <h6 class="text-success">
+                                {{ inspectionDetailsList.east }}
+                              </h6>
+                            </div>
+                          </div>
+
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <label>West :</label>
+                              <h6 class="text-success">
+                                {{ inspectionDetailsList.west }}
+                              </h6>
+                            </div>
+                          </div>
+                        </div>
+
+                        <h4 class="form-section">
+                          <i class="feather icon-map-pin"></i> Inspection
+                          Details
+                        </h4>
+
+                        <div class="row">
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <label for="leaseAgreementRegistered"
+                                >Lease Agreement Registered<span
+                                  class="text-danger"
+                                  >*</span
+                                ></label
+                              >
+
+                              <h5
+                                *ngIf="
+                                  siteInspectionReq.leaseAgreementRegistered ===
+                                  'Yes'
+                                "
+                                class="text-success"
+                              >
+                                YES
+                              </h5>
+                              <h5
+                                *ngIf="
+                                  siteInspectionReq.leaseAgreementRegistered ===
+                                  'No'
+                                "
+                                class="text-danger"
+                              >
+                                NO
+                              </h5>
+                            </div>
+                          </div>
+
+                          <div
+                            class="col-md-4"
+                            *ngIf="
+                              siteInspectionReq.leaseAgreementRegistered ===
+                              'Yes'
+                            "
+                          >
+                            <div class="form-group">
+                              <label for="leaseAgreementPhoto"
+                                >Lease Agreement<span class="text-danger"
+                                  >*</span
+                                ></label
+                              >
+                              <br />
+                              <button
+                                id="leaseAgreementPhoto"
+                                type="button"
+                                class="btn btn-secondary"
+                                (click)="
+                                  viewPhoto(
+                                    siteInspectionReq.leaseAgreementPhoto
+                                  )
+                                "
+                              >
+                                VIEW PHOTO
+                              </button>
+                            </div>
+                          </div>
+
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <label for="inspectionDate"
+                                >Inspection Date<span class="text-danger"
+                                  >*</span
+                                >
+                              </label>
+                              <h5 class="text-success">
+                                {{ siteInspectionReq.inspectionDate }}
+                              </h5>
+                            </div>
+                          </div>
+
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <label for="capacityOfGoDown"
+                                >Capacity Of Godown To Be Constructed<span
+                                  class="text-danger"
+                                  >*</span
+                                ></label
+                              >
+                              <h5 class="text-success">
+                                {{ siteInspectionReq.capacityOfGoDown }}
+                              </h5>
+                            </div>
+                          </div>
+
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <label for="siteInspectionPhotoUpload"
+                                >Site Inspection Photo<span class="text-danger"
+                                  >*</span
+                                ></label
+                              >
+                              <br />
+                              <button
+                                id="siteInspectionPhotoUpload"
+                                type="button"
+                                class="btn btn-secondary"
+                                (click)="
+                                  viewPhoto(
+                                    siteInspectionReq.siteInspectionPhotoUpload
+                                  )
+                                "
+                              >
+                                VIEW PHOTO
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+
+                        <h4 class="form-section">
+                          <i class="feather icon-map-pin"></i> Status of land
+                        </h4>
+
+                        <div class="row">
+                          <div
+                            class="col-md-12"
+                            *ngIf="submittedQuestionsList.length > 0"
+                          >
+                            <div class="row mb-1">
+                              <div class="col-md-6">
+                                <h4 class="text-info">Question</h4>
+                              </div>
+                              <div class="col-md-2">
+                                <h4 class="text-center text-info">Answer</h4>
+                              </div>
+                              <div class="col-md-4">
+                                <h4 class="text-center text-info">
+                                  File Upload/Reason
+                                </h4>
+                              </div>
+                            </div>
+                            <div
+                              class="row mb-3"
+                              *ngFor="
+                                let obj of submittedQuestionsList;
+                                let i = index
+                              "
+                            >
+                              <div class="col-md-6">
+                                <div class="form-group">
+                                  <lable class="form-control-label"
+                                    >{{ i + 1 }}.{{ obj.QUESTION_NAME }}</lable
+                                  >
+                                </div>
+                              </div>
+                              <div class="col-md-2" align="center">
+                                <h6
+                                  class="text-success"
+                                  *ngIf="obj.QUESTION_APPROVAL === 'Yes'"
+                                >
+                                  Yes
+                                </h6>
+                                <h6
+                                  class="text-danger"
+                                  *ngIf="obj.QUESTION_APPROVAL === 'No'"
+                                >
+                                  No
+                                </h6>
+                              </div>
+                              <div
+                                class="col-md-4"
+                                *ngIf="obj.QUESTION_APPROVAL === 'Yes'"
+                                align="center"
+                              >
+                                <button
+                                  id="questionPhoto{{ obj.questionId }}"
+                                  type="button"
+                                  class="btn btn-secondary"
+                                  (click)="viewPhoto(obj.PHOTO_UPLOAD)"
+                                >
+                                  VIEW PHOTO
+                                </button>
+                              </div>
+                              <div
+                                class="col-md-4"
+                                *ngIf="obj.QUESTION_APPROVAL === 'No'"
+                                align="center"
+                              >
+                                <h6 class="text-info">{{ obj.REMARKS }}</h6>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <h4 class="form-section">
+                          <i class="feather icon-map-pin"></i> Suitability of
+                          land construction
+                        </h4>
+                        <div class="row">
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <label for="mllicApproval"
+                                >Recommendation of mandal level inspection
+                                committe
+                                <span class="text-danger">*</span></label
+                              >
+                              <h5
+                                *ngIf="
+                                  siteInspectionReq.mllicApproval ===
+                                  'MLLIC Recommended for Construction'
+                                "
+                                class="text-success"
+                              >
+                                {{ siteInspectionReq.mllicApproval }}
+                              </h5>
+                              <h5
+                                *ngIf="
+                                  siteInspectionReq.mllicApproval !==
+                                  'MLLIC Recommended for Construction'
+                                "
+                                class="text-danger"
+                              >
+                                {{ siteInspectionReq.mllicApproval }}
+                              </h5>
+                            </div>
+                          </div>
+
+                          <div
+                            class="col-md-4"
+                            *ngIf="
+                              siteInspectionReq.mllicApproval !==
+                              'MLLIC Recommended for Construction'
+                            "
+                          >
+                            <div class="form-group">
+                              <label for="mllicRemarks"
+                                >Remarks<span class="text-danger"
+                                  >*</span
+                                ></label
+                              >
+                              <p class="text-success">
+                                {{ siteInspectionReq.mllicRemarks }}
+                              </p>
+                            </div>
+                          </div>
+
+                          <div
+                            class="col-md-4"
+                            *ngIf="
+                              siteInspectionReq.mllicApproval ===
+                              'MLLIC Recommended for Construction'
+                            "
+                          >
+                            <div class="form-group">
+                              <label for="siteReadyForConstruction"
+                                >Site ready for contruction
+                                <span class="text-danger">*</span></label
+                              >
+                              <h5
+                                *ngIf="
+                                  siteInspectionReq.siteReadyForConstruction ===
+                                  'Yes'
+                                "
+                                class="text-success"
+                              >
+                                Yes
+                              </h5>
+                              <h5
+                                *ngIf="
+                                  siteInspectionReq.siteReadyForConstruction !==
+                                  'Yes'
+                                "
+                                class="text-danger"
+                              >
+                                No
+                              </h5>
+                            </div>
+                          </div>
+
+                          <div
+                            class="col-md-4"
+                            *ngIf="
+                              siteInspectionReq.siteReadyForConstruction === 'Yes'
+                            "
+                          >
+                            <div class="form-group">
+                              <label for="nregaTakenWork"
+                                >Works to be taken up under MGNREGA for making
+                                the site ready for contruction
+                                <span class="text-danger">*</span></label
+                              >
+                              <h5
+                                *ngIf="siteInspectionReq.nregaTakenWork === 'Yes'"
+                                class="text-success"
+                              >
+                                Yes
+                              </h5>
+                              <h5
+                                *ngIf="siteInspectionReq.nregaTakenWork !== 'Yes'"
+                                class="text-danger"
+                              >
+                                No
+                              </h5>
+                            </div>
+                          </div>
+
+                          <div
+                            class="col-md-4"
+                            *ngIf="siteInspectionReq.nregaTakenWork === 'Yes'"
+                          >
+                            <div class="form-group">
+                              <label for="nregaWorks"
+                                >Works to be taken up under MGNREGA
+                                <span class="text-danger">*</span></label
+                              >
+                              <h5 class="text-success">
+                                {{ siteInspectionReq.nregaWorks }}
+                              </h5>
+                            </div>
+                          </div>
+
+                          <div
+                            class="col-md-4"
+                            *ngIf="siteInspectionReq.nregaWorks === 'Others'"
+                          >
+                            <div class="form-group">
+                              <label for="nregaOthersRemarks"
+                                >Remarks<span class="text-danger"
+                                  >*</span
+                                ></label
+                              >
+                              <p class="text-success">
+                                {{ siteInspectionReq.nregaOthersRemarks }}
+                              </p>
+                            </div>
+                          </div>
+
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <label for="siteInspectionReportPhotoUpload"
+                                >Site inspection report<span class="text-danger"
+                                  >*</span
+                                ></label
+                              >
+                              <br />
+                              <button
+                                id="siteInspectionReportPhotoUpload"
+                                type="button"
+                                class="btn btn-secondary"
+                                (click)="
+                                  viewPDF(
+                                    siteInspectionReq.siteInspectionReportUpload
+                                  )
+                                "
+                              >
+                                VIEW REPORT
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <h4 class="form-section">
+                        <i class="feather icon-map-pin"></i> Approval
+                      </h4>
+
+                      <div class="row">
+                        <div class="col-md-4">
+                          <div class="form-group">
+                            <label for="dllicApproval">
+                              Approval<span class="text-danger">*</span></label
+                            >
+                            <select
+                              id="dllicApproval"
+                              class="form-control"
+                              [(ngModel)]="dllicApproval"
+                            >
+                              <option value="">
+                                -- SELECT RECOMMENDATION --
+                              </option>
+                              <option value="1">Yes</option>
+                              <option value="2">No</option>
+                            </select>
+                          </div>
+                        </div>
+
+                        <div class="col-md-4">
+                          <div class="form-group">
+                            <label for="dllicRemarks">
+                              Remarks<span class="text-danger">*</span></label
+                            >
+                            <input
+                              id="dllicRemarks"
+                              type="text"
+                              class="form-control"
+                              maxlength="50"
+                              autocomplete="off"
+                              placeholder="Enter Reason"
+                              [(ngModel)]="dllicRemarks"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-md-12 pt-4" align="center">
+                          <button
+                            type="submit"
+                            class="btn btn-primary"
+                            (click)="btnSubmit()"
+                          >
+                            <i class="fa fa-check-square-o"></i> Submit
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- // Basic form layout section end -->
+    </div>
+  </div>
+</div>

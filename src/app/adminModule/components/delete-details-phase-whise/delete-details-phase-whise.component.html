@@ -1,0 +1,390 @@
+ 
+<div class="app-content content">
+    <div class="content-overlay"></div>
+      <div class="content-wrapper">
+        <div class="content-header row">
+            <div class="content-header-left col-md-6 col-12">
+              <h3 class="content-header-title mb-0">Module Wise Details Delete</h3>
+              <div class="row breadcrumbs-top">
+                <div class="breadcrumb-wrapper col-12">
+                  <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                      <!-- <a class="custom-cursor" routerLink="/dlco">Menu</a> -->
+                    </li>
+                    
+                  </ol>
+                </div>
+              </div>
+            </div>
+          </div>
+    
+          <div class="content-body">
+            <section id="basic-form-layouts" style="padding: 0px !important;">
+                <div class="row match-height">
+                  <div class="col-md-12">
+                    <div class="content-body">
+                        <div class="card-content collapse show" *ngIf="Viewdetails">
+                            <div class="card-body">
+                              <div class="form">
+                                <div class="form-body"><button
+                                  type="button"
+                                  class="btn btn-sm btn-success pull-right"
+                                  (click)="btnAddDetails()"
+                                >
+                                  <i class="fa fa-add mr-2" aria-hidden="true"></i>
+                                  Add Data
+                                </button>
+                                  <h4 class="form-section">
+                                    <i class="feather icon-user"></i>Module Wise Details Delete
+                                  </h4>
+            
+                                  <div class="col-md-12">
+                                    
+                                    
+                                  </div>
+                                  
+                                  <div class="row">
+                                      
+                                      <div
+                                        class="col-md-12 table-responsive"
+                                        [hidden]="stateDetailsMasterdata.length < 1"
+                                      >
+          
+          
+                                      
+          
+                                        <table 
+                                          class="table table-bordered row-border hover" 
+                                        >
+                                          <thead class="thead-dark">
+                                            <tr>
+                                                <th rowspan="2">S.No.</th>
+                                              <th colspan="2">District</th>
+                                              <th colspan="2">Mandal</th>
+                                              <th colspan="2">Packs</th>
+                                              <th colspan="2">RBK</th>
+                                              <th colspan="2">Division</th>
+                                              <th colspan="2">Village</th>
+                                              <th rowspan="2">Phase</th>
+                                              <th rowspan="2">Action</th>
+                                            </tr>
+                                            <tr>
+                                              
+                                              <th>Code </th>
+                                              <th>Name </th>
+                                              <th>Code </th>
+                                              <th>Name </th>
+                                              <th>Code </th>
+                                              <th>Name </th>
+                                              <th>Code </th>
+                                              <th>Name </th>
+                                              <th>Code </th>
+                                              <th>Name </th>
+                                              <th>Code </th>
+                                              <th>Name </th>
+                                              
+                                                </tr>
+                                          </thead>
+                                          <tbody>
+                                          <tr *ngFor="let obj of stateDetailsMasterdata; let i = index">
+                                            <td>{{ i + 1 }}</td>
+                                            <td>{{ obj.DIST_CODE }}</td>
+                                            <td>{{ obj.DIST_NAME }}</td>
+                                            <td>      {{ obj.MANDAL_CODE }}    </td>
+                                            <td>{{ obj.MANDAL_NAME }}</td>
+                                            <td>{{ obj.PACS_CODE }}</td>
+                                            <td>{{ obj.PACS_NAME }}</td>
+                                            <td>{{ obj.RBK_CODE }}</td>
+                                            <td>{{ obj.RBK_NAME }}</td>
+                                            <td>{{ obj.DIVISION_CODE }}</td>
+                                            <td>{{ obj.DIVISION_NAME }}</td>
+                                            <td>{{ obj.VILLAGE_CODE }} </td>
+                                            <td>{{ obj.VILLAGE_NAME }} </td>
+                                            <td>{{ obj.PHASE }}</td>
+                                            <td><i class="fa fa-trash" style="color: red; font-size: 20px;" title="Remove Record" (click)="btnmastrsremove(obj)"></i></td>
+                                             
+                                          </tr>
+                                        </tbody>
+                                           
+                                        </table>
+                                      </div>
+                                    
+                                      <div
+                                        class="col-md-12 table-responsive"
+                                        [hidden]="stateDetailsMasterdata?.length > 0"
+                                      >
+                                        <h6 class="text-center">No Data Available</h6>
+                                      </div>
+                                    </div>
+          
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        <!-- // Basic form layout section end -->
+                      </div>
+                    <div class="card">
+                      <div class="card-content collapse show" *ngIf="AddDetails">
+                        <div class="card-body">
+                            <div class="form">
+                                <div class="form-body">
+                                 <!--  <button
+                                  type="button"
+                                  class="btn btn-sm btn-info pull-right"
+                                  (click)="btnViewDetails()"
+                                >
+                                  <i class="fa fa-add mr-2" aria-hidden="true"></i>
+                                  Back
+                                </button> -->
+                                    <h4 class="form-section heading-div">
+                                        <i class="feather icon-map-pin"></i>&nbsp;<b>Module Wise Details Delete
+                                        </b>
+                                      </h4>
+                                      <div class="col-md-12">
+                                        
+                                        
+                                      </div>
+                                      <div class="row">
+
+                                        <div class="col-md-3">
+                                          <div class="form-group">
+                                            <label for="districtId">SELECT MODULE TYPE <span style="color: red">*</span></label>
+                                            <select id="details"
+                                            class="form-control"   
+                                            [(ngModel)]="Regdetails.ModuleType">
+                                             
+                                            <option value="">Select Module Type </option>
+                                            
+                                            <option value="9">MPFC Land Allocation </option>
+                                            <option value="999">Masters Details </option> 
+                                            <option value="99">Site Inspection </option>
+                                                                                       
+                                             </select>
+                                          </div>
+                                        </div>
+                                        <div class="col-md-3" *ngIf="Regdetails.ModuleType=='9'">
+                                          <div class="form-group">
+                                            <label> SELECT PHASE :</label>
+                                            <select id="details"
+                                              class="form-control"
+                                              [(ngModel)]="Regdetails.Phase">
+                                               
+                                              <option value="" disabled> -- Select Phase --</option>
+                                              
+                                              <option value="2">Phase - II</option>
+                                              <option value="3">Phase - III</option>
+                                               
+                                               </select>
+                                          </div>
+                                        </div>
+
+                                        <div class="col-md-3" *ngIf="Regdetails.ModuleType=='99'">
+                                          <div class="form-group">
+                                            <label> INSPECTION TYPE :</label>
+                                            <select id="details"
+                                              class="form-control"
+                                              [(ngModel)]="Regdetails.Phase">
+                                               
+                                              <option value="" disabled>-- Select Inspection Type --</option>
+                                              
+                                              <option value="1">Inspection Status	</option>
+                                              <option value="2">Foundation Status	</option>
+                                              <option value="3">Structure Status	</option>
+                                              <option value="4">Finishing Status</option>
+                                               
+                                               </select>
+                                          </div>
+                                        </div>
+
+
+                                        <div class="col-md-3" *ngIf="Regdetails.ModuleType=='9' || Regdetails.ModuleType=='999'">
+                                          <div class="form-group">
+                                            <label for="districtId">SELECT DISTRICT <span style="color: red">*</span></label>
+                                            <select 
+                                              class="form-control"
+                                              [(ngModel)]="Regdetails.DistrictCode"
+                                              (change)="districtChange(Regdetails.DistrictCode)"
+                                            >
+                                              <option value="">-- SELECT DISTRICT --</option>
+                                              <option
+                                                value="{{ obj.DIST_CODE }}"
+                                                *ngFor="let obj of M_DistList">
+                                                {{ obj.DIST_NAME }}
+                                              </option>
+                                            </select>
+                                          </div>
+                                        </div>
+                                        <div class="col-md-3" *ngIf="Regdetails.ModuleType=='9' || Regdetails.ModuleType=='999'">
+                                          <div class="form-group">
+                                            <label for="mandalId">SELECT DIVISION <span style="color: red">*</span></label>
+                                            <select
+                                              id="mandalId"
+                                              class="form-control"
+                                              [(ngModel)]="Regdetails.DivisionCode"
+                                              (change)="ondivisionChange(Regdetails.DivisionCode)"
+                                            >
+                                              <option value="">-- Select Division --</option>
+                                              <option
+                                                value="{{ obj.DIVISION_CODE }}"
+                                                *ngFor="let obj of Divsionlist"
+                                              >
+                                                {{ obj.DIVISION_NAME }}
+                                              </option>
+                                            </select>
+                                          </div>
+                                        </div>
+                                        <div class="col-md-3" *ngIf="Regdetails.ModuleType=='9' || Regdetails.ModuleType=='999'">
+                                          <div class="form-group">
+                                            <label for="mandalId">SELECT MANDAL <span style="color: red">*</span></label>
+                                            <select
+                                              id="mandalId"
+                                              class="form-control"
+                                              [(ngModel)]="Regdetails.MandalCode"
+                                              (change)="onMandalChange()"
+                                            >
+                                              <option value="">-- SELECT MANDAL --</option>
+                                              <option
+                                                value="{{ obj.MANDAL_CODE }}"
+                                                *ngFor="let obj of mandalList"
+                                              >
+                                                {{ obj.MANDAL_NAME }}
+                                              </option>
+                                            </select>
+                                          </div>
+                                        </div>
+
+                                        <div class="col-md-3" *ngIf="Regdetails.ModuleType=='9' || Regdetails.ModuleType=='999'">
+                                          <div class="form-group">
+                                            <label for="PACSId"
+                                              > SELECT PACS
+                                              <span style="color: red">*</span></label
+                                            >
+                                            <select
+                                              id="PACSId" 
+                                              class="form-control" (change)="onpacsChange()"
+                                              [(ngModel)]="Regdetails.PackCode" >
+                                              <option value="">-- SELECT PACS --</option>
+                                              <option
+                                                value="{{ obj.PACS_CODE }}"
+                                                *ngFor="let obj of packsList"
+                                              >
+                                                {{ obj.PACS_NAME }}
+                                              </option>
+                                            </select>
+                                          </div>
+                                        </div>
+                                  
+                                        <div class="col-md-3" *ngIf="Regdetails.ModuleType=='9' || Regdetails.ModuleType=='999'">
+                                          <div class="form-group">
+                                            <label for="rbkId">SELECT RBK <span style="color: red">*</span></label>
+                                            <select
+                                              id="rbkId"
+                                              class="form-control"
+                                              [(ngModel)]="Regdetails.RbkCode"
+                                              (change)="onRbkChange()"
+                                            >
+                                              <option value="">-- SELECT RBK --</option>
+                                              <option value="{{ obj.RBKCODE }}" *ngFor="let obj of rbkList">
+                                                {{ obj.RGK_NAME }}
+                                              </option>
+                                            </select>
+                                          </div>
+                                        </div>
+                                     
+                                  </div>
+                                  <hr>
+    
+                                  <div class="row">
+                                      
+                                    <div
+                                      class="col-md-12 table-responsive"
+                                      [hidden]="MPFCDetailsList.length < 1"
+                                    >
+        
+        
+                                    
+        
+                                      <table 
+                                        class="table table-bordered row-border hover" 
+                                      >
+                                        <thead class="thead-dark">
+                                          <tr>
+                                              <th *ngIf="Regdetails.ModuleType=='9' || Regdetails.ModuleType=='999'">S.No.</th>
+                                              <th *ngIf="Regdetails.ModuleType=='999'">District Name</th>
+                                              <th *ngIf="Regdetails.ModuleType=='999'">Mandal Name</th>
+                                            <th *ngIf="Regdetails.ModuleType=='9'">Village Name</th>
+                                            <th *ngIf="Regdetails.ModuleType=='9'">Survey No</th>
+                                            <th *ngIf="Regdetails.ModuleType=='9' || Regdetails.ModuleType=='999'">Packs Name</th>
+                                            <th *ngIf="Regdetails.ModuleType=='9' || Regdetails.ModuleType=='999'">RBK Name</th>
+                                            <th *ngIf="Regdetails.ModuleType=='9'">Land Handover Name</th>
+                                            <th *ngIf="Regdetails.ModuleType=='9'">Land Handover Mobile No</th>
+                                            <th *ngIf="Regdetails.ModuleType=='9'">Land Handover Status</th>
+                                             
+                                            <th *ngIf="Regdetails.ModuleType=='9' || Regdetails.ModuleType=='999'">Phase</th>
+                                            <th *ngIf="Regdetails.ModuleType=='9' || Regdetails.ModuleType=='999'">Action</th>
+                                          </tr>
+                                           
+                                        </thead>
+                                        <tbody>
+                                        <tr *ngFor="let obj of MPFCDetailsList; let i = index">
+                                          <td *ngIf="Regdetails.ModuleType=='9' || Regdetails.ModuleType=='999'">{{ i + 1 }}</td>
+                                          <td *ngIf="Regdetails.ModuleType=='999'">{{ obj.DISTRICT_NAME }}</td>
+                                          <td *ngIf="Regdetails.ModuleType=='999'">{{ obj.MANDAL_NAME }}</td>
+                                          <td *ngIf="Regdetails.ModuleType=='9'">{{ obj.VILLAGE_NAME }}</td>
+                                          <td *ngIf="Regdetails.ModuleType=='9'">{{ obj.SURVEY_NUMBER }}</td>
+                                          <td *ngIf="Regdetails.ModuleType=='9' || Regdetails.ModuleType=='999'">      {{ obj.PACS_NAME }}    </td>
+                                          <td *ngIf="Regdetails.ModuleType=='9' || Regdetails.ModuleType=='999'">      {{ obj.RBK_NAME }}    </td>
+                                          <td *ngIf="Regdetails.ModuleType=='9'">{{ obj.LAND_HANDOVER_BY_NAME }}</td>
+                                          <td *ngIf="Regdetails.ModuleType=='9'">{{ obj.LAND_HANDOVER_BY_MOB_NO }}</td>
+                                          <td *ngIf="Regdetails.ModuleType=='9'">{{ obj.LAND_ALLOTMENT_STATUS }}</td>
+                                          
+                                          <td *ngIf="Regdetails.ModuleType=='9' || Regdetails.ModuleType=='999'">{{ obj.PHASE }}</td>
+                                          <td *ngIf="Regdetails.ModuleType=='9' || Regdetails.ModuleType=='999'"><i class="fa fa-trash" style="color: red; font-size: 20px;" title="Remove Record" (click)="btnmastrsremove(obj)"></i></td>
+                                           
+                                        </tr>
+                                      </tbody>
+                                         
+                                      </table>
+                                    </div>
+                                  
+                                    <div
+                                      class="col-md-12 table-responsive"
+                                      [hidden]="MPFCDetailsList?.length > 0"
+                                    >
+                                      <h6 class="text-center">No Data Available</h6>
+                                    </div>
+                                  </div>
+                                  <!-- <div class="col-md-12 row">
+                                    <div class="col-md-5"></div>
+                                    <div class="col-md-2"> 
+                                        <button type="button"  (click)="btnmastrsSub('1')" class="btn btn-success" >Add Details</button>
+                                    </div>
+                                    <div class="col-md-5"></div>
+                                  </div> -->
+                                </div>
+                                
+    
+                               
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </section>
+    
+             
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        </div>
+      </div>
+    </div>
+    
+

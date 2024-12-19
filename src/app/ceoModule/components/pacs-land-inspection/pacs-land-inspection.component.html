@@ -1,0 +1,198 @@
+<div class="app-content content">
+  <div class="content-overlay"></div>
+  <div class="content-wrapper">
+    <div class="content-header row">
+      <div class="content-header-left col-md-6 col-12">
+        <h3 class="content-header-title mb-0">PACS Land Inspection</h3>
+        <div class="row breadcrumbs-top">
+          <div class="breadcrumb-wrapper col-12">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item">
+                <a class="custom-cursor" routerLink="/ceo">Menu</a>
+              </li>
+              <li class="breadcrumb-item active">
+                <a class="custom-cursor" routerLink="/ceo/pacsLandInspection"
+                  >PACS Land Inspection</a
+                >
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="content-body">
+      <!-- Basic form layout section start -->
+      <section id="basic-form-layouts">
+        <div class="row match-height">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <!--<h4 class="card-title" id="basic-layout-form">Input Fields</h4>
+                   <a class="heading-elements-toggle"
+                    ><i class="fa fa-ellipsis-v font-medium-3"></i
+                  ></a>
+                  <div class="heading-elements">
+                    <ul class="list-inline mb-0">
+                      <li>
+                        <a data-action="collapse"
+                          ><i class="feather icon-minus"></i
+                        ></a>
+                      </li>
+                      <li>
+                        <a data-action="reload"
+                          ><i class="feather icon-rotate-cw"></i
+                        ></a>
+                      </li>
+                      <li>
+                        <a data-action="expand"
+                          ><i class="feather icon-maximize"></i
+                        ></a>
+                      </li>
+                      <li>
+                        <a data-action="close"><i class="feather icon-x"></i></a>
+                      </li>
+                    </ul>
+                  </div> -->
+              </div>
+              <div class="card-content collapse show">
+                <div class="card-body">
+                  <div class="form">
+                    <div class="form-body">
+                      <h4 class="form-section">
+                        <i class="feather icon-user"></i> PACS Land Inspection
+                      </h4>
+                      <div class="row">
+                        <div class="col-md-4">
+                          <div class="form-group">
+                            <label for="villageId"
+                              >Village <span class="text-danger">*</span></label
+                            >
+
+                            <select
+                              id="villageId"
+                              name="villageId"
+                              class="form-control"
+                              [(ngModel)]="pacsLandInspectionReq.villageId"
+                              (change)="onVillageChange()"
+                            >
+                              <option value="">-- SELECT VILLAGE --</option>
+                              <option
+                                *ngFor="let obj of villageList"
+                                value="{{ obj.VILLAGE_CODE }}"
+                              >
+                                {{ obj.VILLAGE_NAME }}
+                              </option>
+                            </select>
+                          </div>
+                        </div>
+                        <div
+                          class="col-md-12"
+                          *ngIf="
+                            pacsLandInspectionReq.villageInspectionStatus ===
+                              1 ||
+                            pacsLandInspectionReq.villageInspectionStatus === 2
+                          "
+                        >
+                          <h3 class="text-center">{{ heading }}</h3>
+                        </div>
+                        <div
+                          class="col-md-12"
+                          *ngIf="questionsListReq.length > 0"
+                        >
+                          <div class="row mb-1">
+                            <div class="col-md-6">
+                              <h3 class="text-info">Question</h3>
+                            </div>
+                            <div class="col-md-2">
+                              <h3 class="text-center text-info">Answer</h3>
+                            </div>
+                            <div class="col-md-4">
+                              <h3 class="text-center text-info">
+                                File Upload/Reason
+                              </h3>
+                            </div>
+                          </div>
+                          <hr />
+                          <div
+                            class="row mb-3"
+                            *ngFor="let obj of questionsListReq; let i = index"
+                          >
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <lable class="form-control-label"
+                                  >{{ i + 1 }}.{{ obj.questionName }}</lable
+                                >
+                              </div>
+                            </div>
+                            <div class="col-md-2">
+                              <select
+                                id="questionAnswer{{ obj.questionId }}"
+                                class="form-control"
+                                [(ngModel)]="obj.questionAnswer"
+                                (change)="
+                                  onAnswerChange(
+                                    obj.questionId,
+                                    obj.questionAnswer
+                                  )
+                                "
+                              >
+                                <option value="">-- SELECT ANSWER --</option>
+                                <option value="1">Yes</option>
+                                <option value="0">No</option>
+                              </select>
+                            </div>
+                            <div
+                              class="col-md-4"
+                              *ngIf="obj.questionAnswer === '1'"
+                            >
+                              <input
+                                id="fileUpload{{ obj.questionId }}"
+                                class="form-control"
+                                type="file"
+                                (change)="onFileChange($event, obj.questionId)"
+                                accept="image/*"
+                                accept="application/pdf,image/*"
+                                #fileUpload
+                                autocomplete="off"
+                              />
+                            </div>
+                            <div
+                              class="col-md-4"
+                              *ngIf="obj.questionAnswer === '0'"
+                            >
+                              <input
+                                id="questionReason{{ obj.questionId }}"
+                                type="text"
+                                class="form-control"
+                                maxlength="50"
+                                autocomplete="off"
+                                placeholder="Enter Reason"
+                                [(ngModel)]="obj.questionReason"
+                              />
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-12 pt-4" align="center">
+                              <button
+                                type="submit"
+                                class="btn btn-primary"
+                                (click)="btnSubmit()"
+                              >
+                                <i class="fa fa-check-square-o"></i> Submit
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- // Basic form layout section end -->
+    </div>
+  </div>
+</div>

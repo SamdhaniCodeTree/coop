@@ -1,0 +1,310 @@
+<div class="app-content content">
+  <div class="content-overlay"></div>
+  <div class="content-wrapper">
+    <div class="content-header row">
+      <div class="content-header-left col-md-6 col-12">
+        <h3 class="content-header-title mb-0">PACS Geo Tagging Approval</h3>
+        <div class="row breadcrumbs-top">
+          <div class="breadcrumb-wrapper col-12">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item">
+                <a class="custom-cursor" routerLink="/dlco">Menu</a>
+              </li>
+              <li class="breadcrumb-item active">
+                <a class="custom-cursor" routerLink="/dlco/Pacsgeotaggingapproval">PACS Geo Tagging Approval</a>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="content-body">
+      <!-- Basic form layout section start -->
+
+      <div class="row match-height">
+        <div class="col-md-12">
+          <div class="card">
+            <div class="card-header">
+
+            </div>
+            <div class="card-content collapse show">
+              <div class="card-body">
+                <div class="form">
+                  <div class="form-body">
+                    <h4 class="form-section">
+                      <i class="feather icon-map-pin"></i> PACS Geo Tagging Approval
+                    </h4>
+                    <div class="row">
+                      <div class="col-md-3">
+                        <div class="form-group">
+                          <label for="divisionid">Division <span class="text-danger">*</span></label>
+
+                          <select id="divisionid" name="divisionid" class="form-control"
+                            [(ngModel)]="ceoReq.divisioncode" (change)="onDivisionChange()">
+                            <option value="">-- SELECT Division --</option>
+                            <option *ngFor="let obj of divisionList" value="{{ obj.DIVISION_CODE }}">
+                              {{ obj.DIVISION_NAME }}
+                            </option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-md-3">
+                        <div class="form-group">
+                          <label for="mandalId">Mandal <span class="text-danger">*</span></label>
+
+                          <select id="mandalId" name="mandalId" class="form-control" [(ngModel)]="ceoReq.mandalcode"
+                            (change)="onMandalChange()">
+                            <option value="">-- SELECT MANDAL --</option>
+                            <option *ngFor="let obj of mandalList" value="{{ obj.MANDAL_CODE }}">
+                              {{ obj.MANDAL_NAME }}
+                            </option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-md-3">
+                        <div class="form-group">
+                          <label for="mandalId">Pack Id <span class="text-danger">*</span></label>
+
+                          <select id="pacId" name="pacId" class="form-control" [(ngModel)]="ceoReq.pacscode">
+                            <option value="">-- SELECT PACS --</option>
+                            <option *ngFor="let obj of pacList" value="{{ obj.PACS_CODE }}">
+                              {{ obj.PACS_NAME }}
+                            </option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-md-3">
+                        <div class="form-group">
+                          <br>
+
+                          <button type="submit" class="btn btn-success" (click)="btnSubmit()">
+                            <i class="fa fa-check-square-o"></i> Get
+                          </button>
+                        </div>
+                      </div>
+
+                    </div>
+                    <div class="row">
+                      <div class="card-body">
+                        <div class="form">
+                          <div class="form-body">
+
+
+                            <div class="form-group">
+                              <table class="table table-bordered" datatable [dtOptions]="dtOptions"
+                                [dtTrigger]="dtTrigger">
+                                <thead class="thead-dark">
+
+                                  <tr>
+                                    <th>S.No.</th>
+                                    <th>District Name
+                                    </th>
+                                    <th>Mandal Name</th>
+                                    <th>Pack Name</th>
+
+                                    <th>Linked Rbk Name
+                                    </th>
+                                    <th>Lat Long</th>
+                                    <th>Geo Address</th>
+                                    <th>Linked Datetime</th>
+                                    <th>Present Status</th>
+                                    <th>Photo</th>
+                                    <th>Action</th>
+                                    <th>Approved <br> Datetime</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr *ngFor="let obj of RBKList; let i = index">
+                                    <td>{{ i + 1 }}</td>
+                                    <td>{{ obj.DIST_NAME }}</td>
+                                    <td>{{ obj.MANDAL_NAME }}</td>
+                                    <td>{{ obj.PACS_NAME }}</td>
+                                    <td>{{ obj.RBK_NAME }}</td>
+
+                                    <td>{{ obj.LATTITUDE }},{{ obj.LONGITUDE }}</td>
+                                    <td>{{ obj.GEO_ADDRESS }}</td>
+                                    <td>{{ obj.REGISTERD_DATE }}</td>
+                                    <td>
+                                      <a *ngIf="obj.STATUS == 'Pending'"
+                                        style="cursor: pointer; text-decoration: underline" class="text-primary"
+                                        (click)="btnapprovereject(obj)"><b>Approve/Reject</b></a>
+
+                                      <span style="color: green;" *ngIf="obj.STATUS != 'Pending'">{{
+                                        obj.STATUS
+                                        }}</span>
+                                    </td>
+                                    <td>
+                                      <a style="cursor: pointer;" class="text-primary"
+                                        (click)="viewPhoto(obj)">
+                                        <span style="color: green;font-size: 18px;"><i class="fa fa-eye"></i></span>
+                                      </a>
+ 
+                                    </td>
+                                    <td>
+                                      <a style="cursor: pointer;" class="text-primary"
+                                        (click)="Remove_record(obj)">
+                                        <span style="color: red;" title="Remove Record"><i class="fa fa-trash"></i></span>
+                                      </a>
+ 
+                                    </td>
+                                    <td>{{ obj.APPROVED_DATE }}</td>
+                                  </tr>
+                                </tbody>
+
+                              </table>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- // Basic form layout section end -->
+      <div class="popup-modal" *ngIf="approvalmodal">
+        <div class="popup-content">
+          <div class="popup-header">
+            <h4 class="title">Pack Geo Tagging Approval</h4>
+            <a
+              type="button"
+              class="close"
+              (click)="approvalmodal = false"
+              style="cursor: pointer"
+            >
+              <span>×</span>
+            </a>
+          </div>
+      
+          <div class="popup-body">
+            <div class="row justify-content-center align-items-center">
+              <div class="col-md-12">
+                  <div class="form-group">
+                    <label for="landReceivedMobileNo">
+                      PACK Name <span style="color: red">*</span>
+                    </label>
+                    <h5 style="color: green">
+                      {{ dropReq.packname }}
+                    </h5>
+                  </div>
+                  <div class="form-group">
+                    <label for="landReceivedMobileNo">
+                      RBK Name <span style="color: red">*</span>
+                    </label>
+                    <h5 style="color: green">
+                      {{ dropReq.rbkname }}
+                    </h5>
+                  </div>
+                  <div class="form-group">
+                    <label for="ApprovalStatus">
+                     Select Approval Status
+                      <span style="color: red">*</span>
+                    </label>
+                    <select id="ApprovalStatus" name="ApprovalStatus" class="form-control"
+                    [(ngModel)]="ceoReq.ApprovalStatus">
+                    <option value="0">-- Select Approval Status --</option>
+                    <option value="3">Approve</option>
+                    <option value="4">Resurvey</option>
+                  </select>
+                  </div>
+                  <div class="form-group">
+                    <label for="Remarks">
+                     Remarks
+                      <span style="color: red">*</span>
+                    </label>
+                    <input
+                      id="Remarks"
+                      type="text"
+                      class="form-control"
+                      [(ngModel)]="ceoReq.Remarks"
+                      placeholder="Enter Remarks"
+                      maxlength="15"
+                      autocomplete="off"
+                    />
+                  </div>
+                  <div class="form-group center">
+                    <button
+                type="button"
+                class="btn btn-outline-success btn-sm btn-rounded"
+                (click)="btnupdate()"
+              >
+                UPDATE
+              </button>
+              <button
+                type="button"
+                class="btn btn-outline-danger btn-sm btn-rounded"
+                (click)="approvalmodal = false"
+              >
+                Close
+              </button>
+                  </div>
+                 
+                
+              </div>
+            </div>
+          </div>   
+        </div>
+      </div>
+
+      <div class="popup-modal" *ngIf="Removemodal">
+        <div class="popup-content">
+          <div class="popup-header">
+            <h4 class="title">Pack Geo Tagging Remove Details</h4>
+            <a
+              type="button"
+              class="close"
+              (click)="Removemodal = false"
+              style="cursor: pointer"
+            >
+              <span>×</span>
+            </a>
+          </div>
+      
+          <div class="popup-body">
+            <div class="row justify-content-center align-items-center">
+              <div class="col-md-12">
+                  
+                   
+                  <div class="form-group">
+                    <label for="ApprovalStatus">
+                     Select Remarks 
+                      <span style="color: red">*</span>
+                    </label>
+                    <select id="ApprovalStatus" name="ApprovalStatus" class="form-control"
+                    [(ngModel)]="ceoReq.Remarks">
+                    <option value="">-- Select Remarks  --</option>
+                    <option value="Irrelavent image"> Distroed and Irrelavent image</option>
+                    <option value="Wrong Insert">Wrong Insert</option>
+                  </select>
+                  </div>
+                  
+                  <div class="form-group center">
+                    <button
+                type="button"
+                class="btn btn-outline-success btn-sm btn-rounded"
+                (click)="btnDelete()"
+              >
+                UPDATE
+              </button>
+              <button
+                type="button"
+                class="btn btn-outline-danger btn-sm btn-rounded"
+                (click)="Removemodal = false"
+              >
+                Close
+              </button>
+                  </div>
+                 
+                
+              </div>
+            </div>
+          </div>   
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

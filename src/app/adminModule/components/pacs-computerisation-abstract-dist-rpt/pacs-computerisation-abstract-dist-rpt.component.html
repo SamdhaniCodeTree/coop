@@ -1,0 +1,95 @@
+<div class="app-content content">
+  <div class="content-overlay"></div>
+  <div class="content-wrapper">
+    <div class="content-header row" style="margin-top: -18px !important;">
+      <div class="content-header-left col-md-6">
+        <h3 class="content-header-title mb-0" style="margin-top: 4px;">PACS COMPUTERIZATION ABSTRACT REPORT</h3>
+         
+        
+      </div>
+      <div class="content-header-left col-md-6" style="padding-left: 420px !important;">
+       
+        <h4 class="form-section right" style="text-align: center !important; margin-top: 4px;">
+           DISTRICT WISE REPORT
+        </h4>
+        
+      </div>
+    </div>
+    <div class="content-body">
+      <section id="basic-form-layouts">
+        <div class="row match-height">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header" style="margin-top: -20px !important;
+          "></div>
+              <div class="card-content collapse show">
+                <div class="card-body" style="padding-top: 0px;">
+                  <div class="form">
+                    <div class="form-body">
+                      
+                      <div class="row align-items-center">
+                        <div class="col-md-3">
+                          <div class="form-group">
+                            <label for="fromDate"
+                              >From Date :
+                              <span style="color: red">*</span></label
+                            >
+                            <input type="text" placeholder="DD-MM-YYYY" class="form-control bg-white" readonly [maxDate]="maxDate" (ngModelChange)="FromdateChange()"
+                            [(ngModel)]="fromDate" placement="bottom" container="" [bsConfig]="bsDatepickerConfig" bsDatepicker>
+                          
+                            
+                          </div>
+                        </div>
+                        <div class="col-md-3">
+                          <div class="form-group">
+                            <label for="toDate"
+                              >To Date :
+                              <span style="color: red">*</span></label
+                            >
+                            <input type="text" placeholder="DD-MM-YYYY" class="form-control bg-white" readonly [maxDate]="maxDate"  (ngModelChange)="TodateChange()"
+                            [(ngModel)]="toDate" placement="bottom" container="" [bsConfig]="bsDatepickerConfig" bsDatepicker>
+                          
+                             
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <button
+                            type="button"
+                            class="btn btn-success btn-sm mt-3"
+                            (click)="btnReportLoading()"
+                          >
+                            <i
+                              class="fa fa-arrow-right mr-2"
+                              aria-hidden="true"
+                            ></i>
+                            GO
+                          </button>
+                        </div>
+                      </div> 
+                      <!-- [type]="type"
+                      [districtName]="districtName"
+                      [districtId]="districtId" -->
+                      <app-pacs-computerisation-abstract-dist-details [fromDate]="reportFromDate"
+                      [toDate]="reportToDate" 
+                        (onDistrictChange)="onDistrictChange($event)"
+                        (onSiteNotDoneChange)="onSiteNotDoneChange($event)"
+                        (ondeviceNotDoneChange)="ondeviceNotDoneChange($event)"
+                        (oncalibNotDoneChange)="oncalibNotDoneChange($event)"
+                        (onDMTNotDoneChange)="onDMTNotDoneChange($event)"
+                        (onSiteDoneChange)="onSiteDoneChange($event)"
+                        (onDeviceDoneChange)="onDeviceDoneChange($event)"
+                        (onInstallDoneChange)="onInstallDoneChange($event)"
+                        (onDMTDoneChange)="onDMTDoneChange($event)"
+                      ></app-pacs-computerisation-abstract-dist-details>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- // Basic form layout section end -->
+    </div>
+  </div>
+</div>

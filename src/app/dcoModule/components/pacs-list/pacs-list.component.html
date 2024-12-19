@@ -1,0 +1,169 @@
+<div class="app-content content">
+    <div class="content-overlay"></div>
+    <div class="content-wrapper">
+      <div class="content-header row">
+        <div class="content-header-left col-md-6 col-12">
+          <h3 class="content-header-title mb-0">PACS List</h3>
+          <div class="row breadcrumbs-top">
+            <div class="breadcrumb-wrapper col-12">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                  <a class="custom-cursor" routerLink="/dco">Menu</a>
+                </li>
+                <li class="breadcrumb-item active">
+                  <a class="custom-cursor" routerLink="/dco/pacsList"
+                    >PACS List</a
+                  >
+                </li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="content-body">
+        <!-- Basic form layout section start -->
+        <section id="basic-form-layouts">
+          <div class="row match-height">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header">
+                  <!--<h4 class="card-title" id="basic-layout-form">Input Fields</h4>
+                   <a class="heading-elements-toggle"
+                    ><i class="fa fa-ellipsis-v font-medium-3"></i
+                  ></a>
+                  <div class="heading-elements">
+                    <ul class="list-inline mb-0">
+                      <li>
+                        <a data-action="collapse"
+                          ><i class="feather icon-minus"></i
+                        ></a>
+                      </li>
+                      <li>
+                        <a data-action="reload"
+                          ><i class="feather icon-rotate-cw"></i
+                        ></a>
+                      </li>
+                      <li>
+                        <a data-action="expand"
+                          ><i class="feather icon-maximize"></i
+                        ></a>
+                      </li>
+                      <li>
+                        <a data-action="close"><i class="feather icon-x"></i></a>
+                      </li>
+                    </ul>
+                  </div> -->
+                </div>
+                <div class="card-content collapse show">
+                  <div class="card-body">
+                    <div class="form">
+                      <div class="form-body">
+                        <h4 class="form-section">
+                          <i class="feather icon-map-pin"></i> PACS List
+                        </h4>
+                        <div class="row">
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <label for="divisionId"
+                                >Division <span class="text-danger">*</span></label
+                              >
+  
+                              <select
+                                id="divisionId"
+                                name="divisionId"
+                                class="form-control"
+                                [(ngModel)]="divisionId"
+                                (change)="loadDivisionChange()"
+                              >
+                                <option value="">-- SELECT DIVISION --</option>
+                                <option
+                                  *ngFor="let obj of divisionList"
+                                  value="{{ obj.DIVISION_CODE }}"
+                                >
+                                  {{ obj.DIVISION_NAME }}
+                                </option>
+                              </select>
+                            </div>
+                          </div>
+                          <div class="col-md-4">
+                            <div class="form-group">
+                              <label for="mandalId"
+                                >Mandal <span class="text-danger">*</span></label
+                              >
+  
+                              <select
+                                id="mandalId"
+                                name="mandalId"
+                                class="form-control"
+                                [(ngModel)]="mandalId"
+                                (change)="onMandalChange()"
+                              >
+                                <option value="">-- SELECT MANDAL --</option>
+                                <option
+                                  *ngFor="let obj of mandalList"
+                                  value="{{ obj.MANDAL_CODE }}"
+                                >
+                                  {{ obj.MANDAL_NAME }}
+                                </option>
+                              </select>
+                            </div>
+                          </div>
+
+                          <div
+                          class="col-md-12 table-responsive"
+                          [hidden]="pacsList.length < 1"
+                        >
+                        <h3 class="text-center">Primary Agriculture Cooperative Society - Village Mapping</h3>
+                          <table
+                            class="table table-bordered"
+                            datatable
+                            [dtOptions]="dtOptions"
+                            [dtTrigger]="dtTrigger"
+                          >
+                            <thead class="thead-dark">
+                              <tr>
+                                <th>S.No.</th>
+                                <th>District</th>
+                                <th>Division</th>
+                                <th>Mandal</th>
+                                <th>PAC</th>
+                                <th>Village</th>
+                                <th>Submitted By (Designation)</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr *ngFor="let obj of pacsList; let i = index">
+                                <td>{{ i + 1 }}</td>
+                                <td>{{ obj.DISTRICT_NAME }}</td>
+                                <td>{{ obj.DIVISION_NAME }}</td>
+                                <td>{{ obj.MANDAL_NAME }}</td>
+                                <td>{{ obj.PACS_NAME }}</td>
+                                <td>{{ obj.VILLAGE_NAME }}</td>
+                                <td>{{ obj.NAME }} ({{ obj.DESIGNATION }})</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+
+                        <div
+                        class="col-md-12 table-responsive"
+                        *ngIf="divisionId != '' && mandalId != '' && pacsList.length < 1"
+                      >
+                      <h6 class="text-center">No Data Available</h6>
+                    </div>
+                      
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- // Basic form layout section end -->
+      </div>
+    </div>
+  </div>
+  

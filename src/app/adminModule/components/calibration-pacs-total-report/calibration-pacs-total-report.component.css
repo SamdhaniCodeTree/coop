@@ -1,0 +1,17 @@
+.form-group {
+    margin-bottom: 1rem;
+  }
+  
+  input[type="password"],
+  input[type="text"] {
+    padding-right: 2.5rem;
+  }
+  
+  .bi-eye,
+  .bi-eye-slash {
+    font-size: 1.2rem;
+  }
+  .paddingtop{
+    padding-top: 0px;
+  }
+  

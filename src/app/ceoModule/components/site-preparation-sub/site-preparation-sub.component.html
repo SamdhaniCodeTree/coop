@@ -1,0 +1,1319 @@
+<div class="app-content content background">
+  <div class="content-overlay"></div>
+  <div class="content-wrapper">
+    <div class="content-header row">
+      <div class="content-header-left col-md-6 col-12">
+        <h3 class="content-header-title mb-0 text-white">Site Preparation Details</h3>
+        <div class="row breadcrumbs-top">
+          <div class="breadcrumb-wrapper col-12">
+            <ol class="breadcrumb">
+              <!-- <li class="breadcrumb-item">
+                <a class="custom-cursor text-white" routerLink="/ceo">Menu</a>
+              </li> -->
+              <!-- <li class="breadcrumb-item active">
+                <a
+                  class="custom-cursor text-white"
+                  routerLink="/ceo/Calibration"
+                  >Installation of PACS EQUIPMENT </a
+                >
+              </li> -->
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<div class="card backgrnd">
+    <div class="card-header p-2">
+      <h5 class="mb-0"></h5>
+    </div>
+    <div class="card-body">
+      <div class="row" *ngIf="CalibrationStatus">
+        <div class="col-md-12">
+      
+      
+        </div>
+
+      
+
+
+        <div class="col-md-4">
+            <div class="form-group">
+              <label>Building  <sup class="text-danger h6">*</sup></label>
+              <div class="ah-radio-buttons">
+                <div class="custom-control custom-radio custom-control-inline">
+                  <input
+                    class="custom-control-input"
+                    type="radio"
+                    name="BuildingType"
+                    id="BuildingType1"
+                    value="1"
+                    [(ngModel)]="SitePreparation.BuildingType"
+                    autocomplete="off"
+                    (change)="rbtnvalue(1)"
+                  />
+                  <label class="custom-control-label" for="BuildingType1">
+                    Building Rental
+                  </label>
+                </div>
+    
+                <div class="custom-control custom-radio custom-control-inline">
+                  <input
+                    class="custom-control-input"
+                    type="radio"
+                    name="BuildingType"
+                    id="BuildingType2"
+                    value="2"
+                    [(ngModel)]="SitePreparation.BuildingType"
+                    autocomplete="off"
+                    (change)="rbtnvalue(11)"
+                  />
+                  <label class="custom-control-label" for="BuildingType2"> 
+                    Building Own
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+ 
+          <div class="col-md-4" *ngIf="SitePreparation.BuildingType === '1' || SitePreparation.BuildingType === '2'">
+            <div class="form-group">
+              <label for="matrixScanerImgUpload"
+                > Interior Photo Upload <span style="color: red">*</span>
+              </label>
+              <input
+                type="file"
+                class="form-control p-0"
+                id="matrixScanerImgUpload"
+                (change)="OnlyJpegUpload($event,2)"
+                accept="image/jpeg"
+                #matrixScanerImgUpload
+                autocomplete="off"
+              />
+              <!-- (change)="onInteriorImgChange($event)" -->
+            </div>
+          </div>
+           
+          <div class="col-md-4" *ngIf="SitePreparation.BuildingType === '1' || SitePreparation.BuildingType === '2'">
+            <div class="form-group">
+              <label for="matrixScanerImgUpload"
+                > Exterior Front Side Photo Upload <span style="color: red">*</span>
+              </label>
+              <input
+                type="file"
+                class="form-control p-0"
+                id="ExteriorfrontImgUpload"
+                
+                (change)="OnlyJpegUpload($event,3)"
+                accept="image/jpeg"
+                #matrixScanerImgUpload
+                autocomplete="off"
+              />
+              <!-- (change)="onExteriorFrontImgChange($event)" -->
+            </div>
+          </div>
+
+          <div class="col-md-4" *ngIf="SitePreparation.BuildingType === '1' || SitePreparation.BuildingType === '2'">
+            <div class="form-group">
+              <label for="matrixScanerImgUpload"
+                > Exterior Back Side Photo Upload <span style="color: red">*</span>
+              </label>
+              <input
+                type="file"
+                class="form-control p-0"
+                id="ExteriorBackImgUpload"
+                (change)="OnlyJpegUpload($event,4)"
+                
+                accept="image/jpeg"
+                #matrixScanerImgUpload
+                autocomplete="off"
+              />
+              <!-- (change)="onExteriorBackImgChange($event)" -->
+            </div>
+          </div>
+
+          <div class="col-md-4" *ngIf="SitePreparation.BuildingType === '1' || SitePreparation.BuildingType === '2'">
+            <div class="form-group">
+              <label for="matrixScanerImgUpload"
+                > Exterior Right Side Photo Upload <span style="color: red">*</span>
+              </label>
+              <input
+                type="file"
+                class="form-control p-0"
+                id="ExteriorRightImgUpload"
+                (change)="OnlyJpegUpload($event,5)"
+                
+                accept="image/jpeg"
+                #matrixScanerImgUpload
+                autocomplete="off"
+              />
+              <!-- (change)="onExteriorrightImgChange($event)" -->
+            </div>
+          </div>
+            
+          <div class="col-md-4" *ngIf="SitePreparation.BuildingType === '1' || SitePreparation.BuildingType === '2'">
+            <div class="form-group">
+              <label for="matrixScanerImgUpload"
+                > Exterior Left Side Photo Upload <span style="color: red">*</span>
+              </label>
+              <input
+                type="file"
+                class="form-control p-0"
+                id="ExteriorLeftImgUpload"
+                (change)="OnlyJpegUpload($event,6)"
+                
+                accept="image/jpeg"
+                #matrixScanerImgUpload
+                autocomplete="off"
+              />
+              <!-- (change)="onExteriorLeftImgChange($event)" -->
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label>Availability of Power Supply  <sup class="text-danger h6">*</sup></label>
+              <div class="ah-radio-buttons">
+                <div class="custom-control custom-radio custom-control-inline">
+                  <input
+                    class="custom-control-input"
+                    type="radio"
+                    name="AvailabilityPowerSupply"
+                    id="AvailabilityPowerSupply1"
+                    value="1"
+                    [(ngModel)]="SitePreparation.AvailabilityPowerSupply"
+                    autocomplete="off"
+                    (change)="rbtnvalue(2)"
+                  />
+                  <label class="custom-control-label" for="AvailabilityPowerSupply1">
+                   Yes
+                  </label>
+                </div>
+    
+                <div class="custom-control custom-radio custom-control-inline">
+                  <input
+                    class="custom-control-input"
+                    type="radio"
+                    name="AvailabilityPowerSupply"
+                    id="AvailabilityPowerSupply2"
+                    value="0"
+                    [(ngModel)]="SitePreparation.AvailabilityPowerSupply"
+                    autocomplete="off"
+                    (change)="rbtnvalue(22)"
+                  />
+                  <label class="custom-control-label" for="AvailabilityPowerSupply2">
+                   No
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-4" *ngIf="SitePreparation.AvailabilityPowerSupply === '1'">
+            <div class="form-group">
+              <label>Phase Type <span style="color: red">*</span></label>
+              <select
+              id="PowerPhase"
+              class="form-control"
+              [(ngModel)]="SitePreparation.PowerPhase"
+              
+            >
+              <option value="">-- Select Phase --</option>
+              <option value="1">Two Phase</option>
+              <option value="2">Three Phase</option>
+               
+            </select>
+            </div>
+          </div>
+
+          <div class="col-md-4" *ngIf="SitePreparation.AvailabilityPowerSupply === '1'">
+            <div class="form-group">
+              <label>Phase Photo Upload <span style="color: red">*</span></label>
+              <input
+                type="file"
+                class="form-control p-0"
+                id="powerphaseImgChangeImgUpload"
+                
+                (change)="OnlyJpegUpload($event,7)"
+                accept="image/jpeg"
+                #matrixScanerImgUpload
+                autocomplete="off"
+              />
+              <!-- (change)="onpowerphaseImgChange($event)" -->
+            </div>
+          </div>
+
+      
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>Internet Connectivity Device <sup class="text-danger h6">*</sup></label>
+                  <div class="ah-radio-buttons">
+                    <div class="custom-control custom-radio custom-control-inline">
+                      <input
+                        class="custom-control-input"
+                        type="radio"
+                        name="internetDevice"
+                        id="internetDevice1"
+                        value="1"
+                        [(ngModel)]="SitePreparation.internetDevice"
+                        autocomplete="off"
+                        (change)="rbtnvalue(3)"
+                      />
+                      <label class="custom-control-label" for="internetDevice1">
+                        Dongle
+                      </label>
+                    </div>
+        
+                    <div class="custom-control custom-radio custom-control-inline">
+                      <input
+                        class="custom-control-input"
+                        type="radio"
+                        name="internetDevice"
+                        id="internetDevice2"
+                        value="2"
+                        [(ngModel)]="SitePreparation.internetDevice"
+                        autocomplete="off"
+                        (change)="rbtnvalue(33)"
+                      />
+                      <label class="custom-control-label" for="internetDevice2">
+                        LAN
+                      </label>
+                    </div>
+      
+                    <div class="custom-control custom-radio custom-control-inline">
+                        <input
+                          class="custom-control-input"
+                          type="radio"
+                          name="internetDevice"
+                          id="internetDevice3"
+                          value="0"
+                          [(ngModel)]="SitePreparation.internetDevice"
+                          autocomplete="off"
+                          (change)="rbtnvalue(333)"
+                        />
+                        <label class="custom-control-label" for="internetDevice3">
+                          Not Available
+                        </label>
+                      </div>
+                  </div>
+                </div>
+              </div>
+      
+              <div class="col-md-4" *ngIf="SitePreparation.internetDevice === '1' || SitePreparation.internetDevice === '2' ">
+                <div class="form-group">
+                  <label>Dongle/LAN  Band width speed <span style="color: red">*</span></label>
+                  <input type="text"
+                  class="form-control"
+                  [(ngModel)]="SitePreparation.Bandwidthspeed"
+                  placeholder="Please Enter Band Width Speed"
+                  maxlength="50"
+                  autocomplete="off">
+                </div>
+              </div>
+      
+      
+              <div class="col-md-4" *ngIf="SitePreparation.internetDevice === '1' || SitePreparation.internetDevice === '2' ">
+                <div class="form-group">
+                  <label for="donglrOrModemImgUpload"
+                    >Dongle/LAN Photo Upload <span style="color: red">*</span>
+                  </label>
+                  <input
+                    type="file"
+                    class="form-control p-0"
+                    id="donglrOrModemImgUpload"
+                    (change)="OnlyJpegUpload($event,8)"
+                    
+                    accept="image/jpeg"
+                    #donglrOrModemImgUpload
+                    autocomplete="off"
+                  />
+                  <!-- (change)="ondonglrOrModemImgChange($event)" -->
+                </div>
+              </div>
+        
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>Availability of Furniture   <sup class="text-danger h6">*</sup></label>
+                  <div class="ah-radio-buttons">
+                    <div class="custom-control custom-radio custom-control-inline">
+                      <input
+                        class="custom-control-input"
+                        type="radio"
+                        name="AvailabilityofFurniture"
+                        id="AvailabilityofFurniture1"
+                        value="1"
+                        [(ngModel)]="SitePreparation.AvailabilityofFurniture"
+                        autocomplete="off"
+                        (change)="rbtnvalue(4)"
+                      />
+                      <label class="custom-control-label" for="AvailabilityofFurniture1">
+                       Yes
+                      </label>
+                    </div>
+        
+                    <div class="custom-control custom-radio custom-control-inline">
+                      <input
+                        class="custom-control-input"
+                        type="radio"
+                        name="AvailabilityofFurniture"
+                        id="AvailabilityofFurniture2"
+                        value="0"
+                        [(ngModel)]="SitePreparation.AvailabilityofFurniture"
+                        autocomplete="off"
+                        (change)="rbtnvalue(44)"
+                      />
+                      <label class="custom-control-label" for="AvailabilityofFurniture2">
+                       No
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-4" *ngIf="SitePreparation.AvailabilityofFurniture === '1'">
+                <div class="form-group">
+                  <label>Computer Tables <span style="color: red">*</span></label>
+                  <input type="text"
+                  class="form-control"
+                  [(ngModel)]="SitePreparation.Computertables"
+                  placeholder="Please Enter Computer Tables Count"
+                  maxlength="2" numberOnly
+                  autocomplete="off">
+                </div>
+              </div>
+
+              <div class="col-md-4" *ngIf="SitePreparation.AvailabilityofFurniture === '1'">
+                <div class="form-group">
+                  <label>Computer Tables Image <span style="color: red">*</span></label>
+                  <input
+                  type="file"
+                  class="form-control p-0"
+                  id="donglrOrModemImgUpload"
+                  (change)="OnlyJpegUpload($event,9)"
+                  
+                  accept="image/jpeg"
+                  #donglrOrModemImgUpload
+                  autocomplete="off"
+                />
+                <!-- (change)="onconputertableImgChange($event)" -->
+                </div>
+              </div>
+
+              <div class="col-md-4" *ngIf="SitePreparation.AvailabilityofFurniture === '1'">
+                <div class="form-group">
+                  <label>Chairs <span style="color: red">*</span></label>
+                  <input type="text"
+                  class="form-control"
+                  [(ngModel)]="SitePreparation.chairs"
+                  placeholder="Please Enter Chairs Count"
+                  maxlength="2" numberOnly
+                  autocomplete="off">
+                </div>
+              </div>
+
+              <div class="col-md-4" *ngIf="SitePreparation.AvailabilityofFurniture === '1'">
+                <div class="form-group">
+                  <label>Chairs Image <span style="color: red">*</span></label>
+                  <input
+                  type="file"
+                  class="form-control p-0"
+                  id="ImgUpload"
+                  (change)="OnlyJpegUpload($event,10)"
+
+                  
+                  accept="image/jpeg"
+                  #donglrOrModemImgUpload
+                  autocomplete="off"
+                />
+                <!-- (change)="onChairImgChange($event)" -->
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>Earthing is Available  <sup class="text-danger h6">*</sup></label>
+                  <div class="ah-radio-buttons">
+                    <div class="custom-control custom-radio custom-control-inline">
+                      <input
+                        class="custom-control-input"
+                        type="radio"
+                        name="Earthing_available"
+                        id="Earthing_available1"
+                        value="1"
+                        [(ngModel)]="SitePreparation.Earthing_available"
+                        autocomplete="off"
+                        (change)="rbtnvalue(5)"
+                      />
+                      <label class="custom-control-label" for="Earthing_available1">
+                       Yes
+                      </label>
+                    </div>
+        
+                    <div class="custom-control custom-radio custom-control-inline">
+                      <input
+                        class="custom-control-input"
+                        type="radio"
+                        name="Earthing_available"
+                        id="Earthing_available2"
+                        value="0"
+                        [(ngModel)]="SitePreparation.Earthing_available"
+                        autocomplete="off"
+                        (change)="rbtnvalue(55)"
+                      />
+                      <label class="custom-control-label" for="Earthing_available2">
+                       No
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-4" *ngIf="SitePreparation.Earthing_available === '1'">
+                <div class="form-group">
+                  <label>Earthing Image <span style="color: red">*</span></label>
+                  <input
+                  type="file"
+                  class="form-control p-0"
+                  id="ImgUpload"
+                  (change)="OnlyJpegUpload($event,11)"
+
+                  
+                  accept="image/jpeg"
+                  #donglrOrModemImgUpload
+                  autocomplete="off"
+                />
+                <!-- (change)="onEarthingImgChange($event)" -->
+
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>MCBs & other modular boxes  <sup class="text-danger h6">*</sup></label>
+                  <div class="ah-radio-buttons">
+                    <div class="custom-control custom-radio custom-control-inline">
+                      <input
+                        class="custom-control-input"
+                        type="radio"
+                        name="MCBs_other_modular_boxes_available"
+                        id="MCBs_other_modular_boxes_available1"
+                        value="1"
+                        [(ngModel)]="SitePreparation.MCBs_other_modular_boxes_available"
+                        autocomplete="off"
+                        (change)="rbtnvalue(6)"
+                      />
+                      <label class="custom-control-label" for="MCBs_other_modular_boxes_available1">
+                       Yes
+                      </label>
+                    </div>
+        
+                    <div class="custom-control custom-radio custom-control-inline">
+                      <input
+                        class="custom-control-input"
+                        type="radio"
+                        name="MCBs_other_modular_boxes_available"
+                        id="MCBs_other_modular_boxes_available2"
+                        value="0"
+                        [(ngModel)]="SitePreparation.MCBs_other_modular_boxes_available"
+                        autocomplete="off"
+                        (change)="rbtnvalue(66)"
+                      />
+                      <label class="custom-control-label" for="MCBs_other_modular_boxes_available2">
+                       No
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              
+              <div class="col-md-4" *ngIf="SitePreparation.MCBs_other_modular_boxes_available === '1'">
+                <div class="form-group">
+                  <label>MCBs & other modular boxes Image <span style="color: red">*</span></label>
+                  <input
+                  type="file"
+                  class="form-control p-0"
+                  id="ImgUpload"
+                  (change)="OnlyJpegUpload($event,12)"
+
+                
+                  accept="image/jpeg"
+                  #donglrOrModemImgUpload
+                  autocomplete="off"
+                />
+                <!-- (change)="onmcbmodularImgChange($event)" -->
+                </div>
+              </div>
+
+              <div class="col-md-4">
+                <div class="form-group">
+                  <label>Wiring & Concealing  is completed  <sup class="text-danger h6">*</sup></label>
+                  <div class="ah-radio-buttons">
+                    <div class="custom-control custom-radio custom-control-inline">
+                      <input
+                        class="custom-control-input"
+                        type="radio"
+                        name="Wiring_Concealing"
+                        id="Wiring_Concealing1"
+                        value="1"
+                        [(ngModel)]="SitePreparation.Wiring_Concealing"
+                        autocomplete="off"
+                        (change)="rbtnvalue(7)"
+                      />
+                      <label class="custom-control-label" for="Wiring_Concealing1">
+                       Yes
+                      </label>
+                    </div>
+        
+                    <div class="custom-control custom-radio custom-control-inline">
+                      <input
+                        class="custom-control-input"
+                        type="radio"
+                        name="Wiring_Concealing"
+                        id="Wiring_Concealing2"
+                        value="0"
+                        [(ngModel)]="SitePreparation.Wiring_Concealing"
+                        autocomplete="off"
+                        (change)="rbtnvalue(77)"
+                      />
+                      <label class="custom-control-label" for="Wiring_Concealing2">
+                       No
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-4" >
+                <div class="form-group">
+                  <label>Click Here Lat Longs <span style="color: red">*</span></label>
+                  <button (click)="getLocation()" class="btn btn-info btn-sm">Get Location</button>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <label> Latitude :<span style="color: rgb(64, 0, 255)"><b>{{SitePreparation.Latitude}}</b></span></label>
+                </div>
+              </div>
+
+              <div class="col-md-2">
+                <div class="form-group">
+                  <label> Longitude :<span style="color: rgb(64, 0, 255)"><b>{{SitePreparation.Longitude}}</b></span></label>
+                </div>
+              </div>
+
+
+              <!-- <div class="col-md-4">
+                <div class="form-group">
+                  <label>Electrification Work Done by <span style="color: red">*</span></label>
+                  <select
+                  id="Electrification"
+                  class="form-control"
+                  [(ngModel)]="SitePreparation.ElectrificationWorkby"
+                  
+                >
+                  <option value="0">-- Select  Electrification Type--</option>
+                  <option value="10">Done by the Vendor (M/s Shree info).</option>
+                  <option value="20">Done by the third party.</option>
+                   
+                </select>
+                </div>
+              </div> -->
+ 
+  
+        <div class="col-md-12" align="center">
+          <button
+            type="button"
+            class="btn btn-success btn-sm"
+            (click)="btnPreparationSub()"
+          >
+            SUBMIT
+          </button>&nbsp;
+           
+        </div>
+      </div>
+
+      <div class="row" *ngIf="CertificationStatus">
+        <div class="col-md-1"></div>
+                <div class="col-md-2 button margin">
+                  <div class="form-group">
+                    <button
+                    type="button"
+                    class="btn btn-info btn-sm"
+                    (click)="btnPDF()"
+                  >
+                    Download PDF File
+                  </button>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <label for="giftAndDeedPhotoUpload"
+                      >PDF file Upload <span style="color: red">* (Below 1MB only PDF)</span>
+                    </label>
+                    <input
+                      type="file"
+                      class="form-control p-0"
+                      id="giftAndDeedPhotoUpload"
+                      (change)="onpdffileChange($event)"
+                      accept="pdf/*"
+                      autocomplete="off"
+                    />
+                  </div>
+                </div>
+        
+                <div class="col-md-2 button margin" >
+                  <div class="form-group">
+                    <label></label>
+                    <button
+                    type="button"
+                    class="btn btn-success btn-sm"
+                    (click)="Certificateupload()"
+                  >
+                    SUBMIT
+                  </button>
+                  </div>
+                </div>
+
+                <div class="col-md-2 button margin" >
+                  <div class="form-group">
+                    <label></label>
+                    <button
+                    type="button"
+                    class="btn btn-info btn-sm"
+                    (click)="EditDetails()"
+                  >
+                  SITE PREPARATION EDIT
+                  </button>
+                  </div>
+                </div>
+
+                <div class="col-md-2 button margin" >
+                  <div class="form-group">
+                    <label></label>
+                    <button
+                    type="button"
+                    class="btn btn-info btn-sm"
+                    (click)="certdownload()"
+                  >
+                  SITE PREPARATION FINAL CERTIFICATE DOWNLOAD
+                  </button>
+                  </div>
+                </div>
+               
+        
+              
+              </div>
+
+              <div class="row" *ngIf="MessageStatus">
+                <h3> Site Preparation Details Added Successfully... !</h3>
+              </div>
+    </div>
+  </div>
+
+
+  <div class="popup-modal" *ngIf="SitePreparationPopUp">
+    <div class="popup-content" style="width: 70%;">
+      <div class="popup-header" style="position: fixed; width:100%;z-index: 999;" >
+        <h4 class="title">SITE PREPARATION DETAILS EDIT</h4>
+        <a
+          type="button"
+          class="close"
+          (click)="SitePreparationPopUp = false"
+          style="cursor: pointer"
+        >
+          <span>×</span>
+        </a>
+      </div>
+  
+      <div class="popup-body py-5" style="height:500pX; width: 100%; overflow: auto;">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-md-12 row mt-5">  
+
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>Building  <sup class="text-danger h6">*</sup></label>
+                <div class="ah-radio-buttons">
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input
+                      class="custom-control-input" 
+                      type="radio"
+                      name="BuildingType"
+                      id="BuildingType1"
+                      value="1"
+                      [(ngModel)]="EditSitePreparation.BuildingType"
+                      autocomplete="off"
+                      (change)="rbtnvalue(1)"
+                    />
+                    <label class="custom-control-label" for="BuildingType1">
+                      Building Rental
+                    </label>
+                  </div>
+      
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input
+                      class="custom-control-input"
+                      type="radio"
+                      name="BuildingType" 
+                      id="BuildingType2"
+                      value="2"
+                      [(ngModel)]="EditSitePreparation.BuildingType"
+                      autocomplete="off"
+                      (change)="rbtnvalue(11)"
+                    />
+                    <label class="custom-control-label" for="BuildingType2"> 
+                      Building Own
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+    
+   
+            <div class="col-md-4" *ngIf="EditSitePreparation.BuildingType === '1' || EditSitePreparation.BuildingType === '2'">
+              <div class="form-group">
+                <label for="matrixScanerImgUpload"
+                  > Interior Photo Upload <span style="color: red">*</span>
+                </label>
+                <input
+                  type="file"
+                  class="form-control p-0"
+                  id="matrixScanerImgUpload" 
+                  (change)="EditOnlyJpegUpload($event,2)"
+                  accept="image/jpeg"
+                  #matrixScanerImgUpload
+                  autocomplete="off"
+                />
+                <!-- (change)="onInteriorImgChange($event)" -->
+              </div>
+            </div>
+             
+            <div class="col-md-4" *ngIf="EditSitePreparation.BuildingType === '1' || EditSitePreparation.BuildingType === '2'">
+              <div class="form-group">
+                <label for="matrixScanerImgUpload"
+                  > Exterior Front Side Photo Upload <span style="color: red">*</span>
+                </label>
+                <input
+                  type="file"
+                  class="form-control p-0"
+                  id="ExteriorfrontImgUpload"
+                  
+                  (change)="EditOnlyJpegUpload($event,3)"
+                  accept="image/jpeg"
+                  #matrixScanerImgUpload
+                  autocomplete="off"
+                />
+                <!-- (change)="onExteriorFrontImgChange($event)" -->
+              </div>
+            </div>
+  
+            <div class="col-md-4" *ngIf="EditSitePreparation.BuildingType === '1' || EditSitePreparation.BuildingType === '2'">
+              <div class="form-group">
+                <label for="matrixScanerImgUpload"
+                  > Exterior Back Side Photo Upload <span style="color: red">*</span>
+                </label>
+                <input
+                  type="file"
+                  class="form-control p-0"
+                  id="ExteriorBackImgUpload"
+                  (change)="EditOnlyJpegUpload($event,4)"
+                  
+                  accept="image/jpeg"
+                  #matrixScanerImgUpload
+                  autocomplete="off"
+                />
+                <!-- (change)="onExteriorBackImgChange($event)" -->
+              </div>
+            </div>
+  
+            <div class="col-md-4" *ngIf="EditSitePreparation.BuildingType === '1' || EditSitePreparation.BuildingType === '2'">
+              <div class="form-group">
+                <label for="matrixScanerImgUpload"
+                  > Exterior Right Side Photo Upload <span style="color: red">*</span>
+                </label>
+                <input
+                  type="file"
+                  class="form-control p-0"
+                  id="ExteriorRightImgUpload"
+                  (change)="EditOnlyJpegUpload($event,5)"
+                  
+                  accept="image/jpeg"
+                  #matrixScanerImgUpload
+                  autocomplete="off"
+                />
+                <!-- (change)="onExteriorrightImgChange($event)" -->
+              </div>
+            </div>
+              
+            <div class="col-md-4" *ngIf="EditSitePreparation.BuildingType === '1' || EditSitePreparation.BuildingType === '2'">
+              <div class="form-group">
+                <label for="matrixScanerImgUpload"
+                  > Exterior Left Side Photo Upload <span style="color: red">*</span>
+                </label>
+                <input
+                  type="file"
+                  class="form-control p-0"
+                  id="ExteriorLeftImgUpload"
+                  (change)="EditOnlyJpegUpload($event,6)"
+                  
+                  accept="image/jpeg"
+                  #matrixScanerImgUpload
+                  autocomplete="off"
+                />
+                <!-- (change)="onExteriorLeftImgChange($event)" -->
+              </div>
+            </div>
+  
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>Availability of Power Supply  <sup class="text-danger h6">*</sup></label>
+                <div class="ah-radio-buttons">
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input
+                      class="custom-control-input" disabled
+                      type="radio"
+                      name="AvailabilityPowerSupply"
+                      id="AvailabilityPowerSupply1"
+                      value="1"
+                      [(ngModel)]="EditSitePreparation.AvailabilityPowerSupply"
+                      autocomplete="off"
+                      (change)="rbtnvalue(2)"
+                    />
+                    <label class="custom-control-label" for="AvailabilityPowerSupply1">
+                     Yes
+                    </label>
+                  </div>
+      
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input
+                      class="custom-control-input" disabled
+                      type="radio"
+                      name="AvailabilityPowerSupply"
+                      id="AvailabilityPowerSupply2"
+                      value="0"
+                      [(ngModel)]="EditSitePreparation.AvailabilityPowerSupply"
+                      autocomplete="off"
+                      (change)="rbtnvalue(22)"
+                    />
+                    <label class="custom-control-label" for="AvailabilityPowerSupply2">
+                     No
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+  
+            <div class="col-md-4" *ngIf="EditSitePreparation.AvailabilityPowerSupply === '1'">
+              <div class="form-group">
+                <label>Phase Type <span style="color: red">*</span></label>
+                <select
+                id="PowerPhase"
+                class="form-control"
+                [(ngModel)]="EditSitePreparation.PowerPhase"
+                
+              >
+                <option value="">-- Select Phase --</option>
+                <option value="1">Two Phase</option>
+                <option value="2">Three Phase</option>
+                 
+              </select>
+              </div>
+            </div>
+  
+            <div class="col-md-4" *ngIf="EditSitePreparation.AvailabilityPowerSupply === '1'">
+              <div class="form-group">
+                <label>Phase Photo Upload <span style="color: red">*</span></label>
+                <input
+                  type="file"
+                  class="form-control p-0"
+                  id="powerphaseImgChangeImgUpload"                  
+                  (change)="EditOnlyJpegUpload($event,7)"
+                  accept="image/jpeg"
+                  #matrixScanerImgUpload
+                  autocomplete="off"
+                />
+                <!-- (change)="onpowerphaseImgChange($event)" -->
+              </div>
+            </div>
+  
+        
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label>Internet Connectivity Device <sup class="text-danger h6">*</sup></label>
+                    <div class="ah-radio-buttons">
+                      <div class="custom-control custom-radio custom-control-inline">
+                        <input
+                          class="custom-control-input"
+                          type="radio"
+                          name="internetDevice"
+                          id="internetDevice1" disabled
+                          value="1"
+                          [(ngModel)]="EditSitePreparation.internetDevice"
+                          autocomplete="off"
+                          (change)="rbtnvalue(3)"
+                        />
+                        <label class="custom-control-label" for="internetDevice1">
+                          Dongle
+                        </label>
+                      </div>
+          
+                      <div class="custom-control custom-radio custom-control-inline">
+                        <input
+                          class="custom-control-input" disabled
+                          type="radio"
+                          name="internetDevice"
+                          id="internetDevice2"
+                          value="2"
+                          [(ngModel)]="EditSitePreparation.internetDevice"
+                          autocomplete="off"
+                          (change)="rbtnvalue(33)"
+                        />
+                        <label class="custom-control-label" for="internetDevice2">
+                          Modem
+                        </label>
+                      </div>
+        
+                      <div class="custom-control custom-radio custom-control-inline">
+                          <input
+                            class="custom-control-input" disabled
+                            type="radio"
+                            name="internetDevice"
+                            id="internetDevice3"
+                            value="0"
+                            [(ngModel)]="EditSitePreparation.internetDevice"
+                            autocomplete="off"
+                            (change)="rbtnvalue(333)"
+                          />
+                          <label class="custom-control-label" for="internetDevice3">
+                            Not Available
+                          </label>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+        
+                <div class="col-md-4" *ngIf="EditSitePreparation.internetDevice === '1' || EditSitePreparation.internetDevice === '2' ">
+                  <div class="form-group">
+                    <label>Dongle/LAN  Band width speed <span style="color: red">*</span></label>
+                    <input type="text"
+                    class="form-control"
+                    [(ngModel)]="EditSitePreparation.Bandwidthspeed"
+                    placeholder="Please Enter Band Width Speed"
+                    maxlength="50"
+                    autocomplete="off">
+                  </div>
+                </div>
+        
+        
+                <div class="col-md-4" *ngIf="EditSitePreparation.internetDevice === '1' || EditSitePreparation.internetDevice === '2' ">
+                  <div class="form-group">
+                    <label for="donglrOrModemImgUpload"
+                      >Dongle/LAN Photo Upload <span style="color: red">*</span>
+                    </label>
+                    <input
+                      type="file"
+                      class="form-control p-0"
+                      id="donglrOrModemImgUpload"
+                      (change)="EditOnlyJpegUpload($event,8)"                      
+                      accept="image/jpeg"
+                      #donglrOrModemImgUpload
+                      autocomplete="off"
+                    />
+                    <!-- (change)="ondonglrOrModemImgChange($event)" -->
+                  </div>
+                </div>
+          
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label>Availability of Furniture   <sup class="text-danger h6">*</sup></label>
+                    <div class="ah-radio-buttons">
+                      <div class="custom-control custom-radio custom-control-inline">
+                        <input
+                          class="custom-control-input"
+                          type="radio"
+                          name="AvailabilityofFurniture" disabled
+                          id="AvailabilityofFurniture1"
+                          value="1"
+                          [(ngModel)]="EditSitePreparation.AvailabilityofFurniture"
+                          autocomplete="off"
+                          (change)="rbtnvalue(4)"
+                        />
+                        <label class="custom-control-label" for="AvailabilityofFurniture1">
+                         Yes
+                        </label>
+                      </div>
+          
+                      <div class="custom-control custom-radio custom-control-inline">
+                        <input
+                          class="custom-control-input" disabled
+                          type="radio"
+                          name="AvailabilityofFurniture"
+                          id="AvailabilityofFurniture2"
+                          value="0"
+                          [(ngModel)]="EditSitePreparation.AvailabilityofFurniture"
+                          autocomplete="off"
+                          (change)="rbtnvalue(44)"
+                        />
+                        <label class="custom-control-label" for="AvailabilityofFurniture2">
+                         No
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+  
+                <div class="col-md-4" *ngIf="EditSitePreparation.AvailabilityofFurniture === '1'">
+                  <div class="form-group">
+                    <label>Computer Tables <span style="color: red">*</span></label>
+                    <input type="text"
+                    class="form-control"
+                    [(ngModel)]="EditSitePreparation.Computertables"
+                    placeholder="Please Enter Computer Tables Count"
+                    maxlength="2" numberOnly
+                    autocomplete="off">
+                  </div>
+                </div>
+  
+                <div class="col-md-4" *ngIf="EditSitePreparation.AvailabilityofFurniture === '1'">
+                  <div class="form-group">
+                    <label>Computer Tables Image <span style="color: red">*</span></label>
+                    <input
+                    type="file"
+                    class="form-control p-0"
+                    id="donglrOrModemImgUpload"
+                    (change)="EditOnlyJpegUpload($event,9)"
+                    
+                    accept="image/jpeg"
+                    #donglrOrModemImgUpload
+                    autocomplete="off"
+                  />
+                  <!-- (change)="onconputertableImgChange($event)" -->
+                  </div>
+                </div>
+  
+                <div class="col-md-4" *ngIf="EditSitePreparation.AvailabilityofFurniture === '1'">
+                  <div class="form-group">
+                    <label>Chairs <span style="color: red">*</span></label>
+                    <input type="text"
+                    class="form-control"
+                    [(ngModel)]="EditSitePreparation.chairs"
+                    placeholder="Please Enter Chairs Count"
+                    maxlength="2" numberOnly
+                    autocomplete="off">
+                  </div>
+                </div>
+  
+                <div class="col-md-4" *ngIf="EditSitePreparation.AvailabilityofFurniture === '1'">
+                  <div class="form-group">
+                    <label>Chairs Image <span style="color: red">*</span></label>
+                    <input
+                    type="file"
+                    class="form-control p-0"
+                    id="ImgUpload"
+                    (change)="EditOnlyJpegUpload($event,10)"                    
+                    accept="image/jpeg"
+                    #donglrOrModemImgUpload
+                    autocomplete="off"
+                  />
+                  <!-- (change)="onChairImgChange($event)" -->
+                  </div>
+                </div>
+  
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label>Earthing is Available  <sup class="text-danger h6">*</sup></label>
+                    <div class="ah-radio-buttons">
+                      <div class="custom-control custom-radio custom-control-inline">
+                        <input
+                          class="custom-control-input" disabled
+                          type="radio"
+                          name="Earthing_available"
+                          id="Earthing_available1"
+                          value="1"
+                          [(ngModel)]="EditSitePreparation.Earthing_available"
+                          autocomplete="off"
+                          (change)="rbtnvalue(5)"
+                        />
+                        <label class="custom-control-label" for="Earthing_available1">
+                         Yes
+                        </label>
+                      </div>
+          
+                      <div class="custom-control custom-radio custom-control-inline">
+                        <input
+                          class="custom-control-input" disabled
+                          type="radio"
+                          name="Earthing_available"
+                          id="Earthing_available2"
+                          value="0"
+                          [(ngModel)]="EditSitePreparation.Earthing_available"
+                          autocomplete="off"
+                          (change)="rbtnvalue(55)"
+                        />
+                        <label class="custom-control-label" for="Earthing_available2">
+                         No
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+  
+                <div class="col-md-4" *ngIf="EditSitePreparation.Earthing_available === '1'">
+                  <div class="form-group">
+                    <label>Earthing Image <span style="color: red">*</span></label>
+                    <input
+                    type="file"
+                    class="form-control p-0"
+                    id="ImgUpload"
+                    (change)="EditOnlyJpegUpload($event,11)"
+  
+                    
+                    accept="image/jpeg"
+                    #donglrOrModemImgUpload
+                    autocomplete="off"
+                  />
+                  <!-- (change)="onEarthingImgChange($event)" -->
+  
+                  </div>
+                </div>
+  
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label>MCBs & other modular boxes  <sup class="text-danger h6">*</sup></label>
+                    <div class="ah-radio-buttons">
+                      <div class="custom-control custom-radio custom-control-inline">
+                        <input
+                          class="custom-control-input" disabled
+                          type="radio"
+                          name="MCBs_other_modular_boxes_available"
+                          id="MCBs_other_modular_boxes_available1"
+                          value="1"
+                          [(ngModel)]="EditSitePreparation.MCBs_other_modular_boxes_available"
+                          autocomplete="off"
+                          (change)="rbtnvalue(6)"
+                        />
+                        <label class="custom-control-label" for="MCBs_other_modular_boxes_available1">
+                         Yes
+                        </label>
+                      </div>
+          
+                      <div class="custom-control custom-radio custom-control-inline">
+                        <input
+                          class="custom-control-input" disabled
+                          type="radio"
+                          name="MCBs_other_modular_boxes_available"
+                          id="MCBs_other_modular_boxes_available2"
+                          value="0"
+                          [(ngModel)]="EditSitePreparation.MCBs_other_modular_boxes_available"
+                          autocomplete="off"
+                          (change)="rbtnvalue(66)"
+                        />
+                        <label class="custom-control-label" for="MCBs_other_modular_boxes_available2">
+                         No
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+  
+                
+                <div class="col-md-4" *ngIf="EditSitePreparation.MCBs_other_modular_boxes_available === '1'">
+                  <div class="form-group">
+                    <label>MCBs & other modular boxes Image <span style="color: red">*</span></label>
+                    <input
+                    type="file"
+                    class="form-control p-0"
+                    id="ImgUpload"
+                    (change)="EditOnlyJpegUpload($event,12)"  
+                    accept="image/jpeg"
+                    #donglrOrModemImgUpload
+                    autocomplete="off"
+                  />
+                  <!-- (change)="onmcbmodularImgChange($event)" -->
+                  </div>
+                </div>
+  
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label>Wiring & Concealing  is completed  <sup class="text-danger h6">*</sup></label>
+                    <div class="ah-radio-buttons">
+                      <div class="custom-control custom-radio custom-control-inline">
+                        <input
+                          class="custom-control-input" disabled
+                          type="radio"
+                          name="Wiring_Concealing"
+                          id="Wiring_Concealing1"
+                          value="1"
+                          [(ngModel)]="EditSitePreparation.Wiring_Concealing"
+                          autocomplete="off"
+                          (change)="rbtnvalue(7)"
+                        />
+                        <label class="custom-control-label" for="Wiring_Concealing1">
+                         Yes
+                        </label>
+                      </div>
+          
+                      <div class="custom-control custom-radio custom-control-inline">
+                        <input
+                          class="custom-control-input" disabled
+                          type="radio"
+                          name="Wiring_Concealing"
+                          id="Wiring_Concealing2"
+                          value="0"
+                          [(ngModel)]="EditSitePreparation.Wiring_Concealing"
+                          autocomplete="off"
+                          (change)="rbtnvalue(77)"
+                        />
+                        <label class="custom-control-label" for="Wiring_Concealing2">
+                         No
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+  
+                <div class="col-md-4" >
+                  <div class="form-group">
+                    <label>Click Here Lat Longs <span style="color: red">*</span></label>
+                    <button (click)="EditgetLocation()" class="btn btn-info btn-sm">Get Location</button>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label> Latitude :<span style="color: rgb(64, 0, 255)"><b>{{EditSitePreparation.Latitude}}</b></span></label>
+                  </div>
+                </div>
+  
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label> Longitude :<span style="color: rgb(64, 0, 255)"><b>{{EditSitePreparation.Longitude}}</b></span></label>
+                  </div>
+                </div>
+
+
+             <div class="col-md-12">
+              <div class="form-group center" style="text-align: center;">
+                <button
+            type="button"
+            class="btn btn-outline-success btn-sm btn-rounded"
+            (click)="btnupdate()"
+          >
+            UPDATE
+          </button>
+          <button
+            type="button"
+            class="btn btn-outline-danger btn-sm btn-rounded"
+            (click)="SitePreparationPopUp = false"
+          >
+            Close
+          </button>
+              </div>
+             </div>
+             
+            
+          </div>
+        </div>
+      </div>   
+    </div>
+  </div>

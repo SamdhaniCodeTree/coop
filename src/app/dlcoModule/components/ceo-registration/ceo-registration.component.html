@@ -1,0 +1,339 @@
+<div class="app-content content">
+  <div class="content-overlay"></div>
+  <div class="content-wrapper">
+    <div class="content-header row">
+      <div class="content-header-left col-md-6 col-12">
+        <h3 class="content-header-title mb-0">CEO Registration</h3>
+        <div class="row breadcrumbs-top">
+          <div class="breadcrumb-wrapper col-12">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item">
+                <a class="custom-cursor" routerLink="/dlco">Menu</a>
+              </li>
+              <li class="breadcrumb-item active">
+                <a class="custom-cursor" routerLink="/dlco/ceoRegistration"
+                  >CEO Registration</a
+                >
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="content-body">
+      <!-- Basic form layout section start -->
+      <section id="basic-form-layouts">
+        <div class="row match-height">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <!--<h4 class="card-title" id="basic-layout-form">Input Fields</h4>
+                 <a class="heading-elements-toggle"
+                  ><i class="fa fa-ellipsis-v font-medium-3"></i
+                ></a>
+                <div class="heading-elements">
+                  <ul class="list-inline mb-0">
+                    <li>
+                      <a data-action="collapse"
+                        ><i class="feather icon-minus"></i
+                      ></a>
+                    </li>
+                    <li>
+                      <a data-action="reload"
+                        ><i class="feather icon-rotate-cw"></i
+                      ></a>
+                    </li>
+                    <li>
+                      <a data-action="expand"
+                        ><i class="feather icon-maximize"></i
+                      ></a>
+                    </li>
+                    <li>
+                      <a data-action="close"><i class="feather icon-x"></i></a>
+                    </li>
+                  </ul>
+                </div> -->
+              </div>
+              <div class="card-content collapse show">
+                <div class="card-body">
+                  <div class="form">
+                    <div class="form-body">
+                      <h4 class="form-section">
+                        <i class="feather icon-user"></i> CEO Registration
+                        Form
+                      </h4>
+                      <div class="row">
+                        <div class="col-md-4">
+                          <div class="form-group">
+                            <label for="divisionid"
+                              >Division <span class="text-danger">*</span></label
+                            >
+
+                            <select
+                              id="divisionid"
+                              name="divisionid"
+                              class="form-control"
+                              [(ngModel)]="ceoReq.divisionid"
+                              (change)="onDivisionChange()"
+                            >
+                              <option value="">-- SELECT Division  --</option>
+                              <option
+                                *ngFor="let obj of divisionList"
+                                value="{{ obj.DIVISION_CODE }}"
+                              >
+                                {{ obj.DIVISION_NAME }}
+                              </option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="form-group">
+                            <label for="mandalId"
+                              >Mandal <span class="text-danger">*</span></label
+                            >
+
+                            <select
+                              id="mandalId"
+                              name="mandalId"
+                              class="form-control"
+                              [(ngModel)]="ceoReq.mandalid"
+                              (change)="onMandalChange()"
+                            >
+                              <option value="">-- SELECT MANDAL --</option>
+                              <option
+                                *ngFor="let obj of mandalList"
+                                value="{{ obj.MANDAL_CODE }}"
+                              >
+                                {{ obj.MANDAL_NAME }}
+                              </option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="form-group">
+                            <label for="pacId"
+                              >PACS <span class="text-danger">*</span></label
+                            >
+
+                            <select
+                              id="pacId"
+                              name="pacId"
+                              class="form-control"
+                              [(ngModel)]="ceoReq.pacsid"
+                             
+                            >
+                              <option value="">-- SELECT PACS --</option>
+                              <option
+                                *ngFor="let obj of pacList"
+                                value="{{ obj.PACS_CODE }}"
+                              >
+                                {{ obj.PACS_NAME }}
+                              </option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="form-group">
+                            <label for="name"
+                              >Name <span class="text-danger">*</span></label
+                            >
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="name"
+                              placeholder="Enter CEO name"
+                              maxlength="50"
+                              autocomplete="off"
+                              [(ngModel)]="ceoReq.name"
+                            />
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="form-group">
+                            <label for="name"
+                              >CEO Id <span class="text-danger">*</span></label
+                            >
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="name"
+                              placeholder="Enter CEO Id"
+                              maxlength="50"
+                              autocomplete="off"
+                              [(ngModel)]="ceoReq.uniqueid"
+                            />
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="form-group">
+                            <label for="name"
+                              >Designation <span class="text-danger">*</span></label
+                            >
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="name"
+                              placeholder="Enter Designation"
+                              maxlength="50"
+                              autocomplete="off"
+                              [(ngModel)]="ceoReq.designation"
+                            />
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="form-group">
+                            <label for="mobileNumber"
+                              >Mobile Number
+                              <span class="text-danger">*</span></label
+                            >
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="mobileNumber"
+                              placeholder="Enter CEO mobile number"
+                              maxlength="10"
+                              autocomplete="off"
+                              [(ngModel)]="ceoReq.mobileno"
+                            />
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="form-group">
+                            <label for="fatherHusbandName"
+                              >Father/Husband Name <span class="text-danger">*</span></label
+                            >
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="fatherHusbandName"
+                              placeholder="Enter father/husband name"
+                              maxlength="50"
+                              autocomplete="off"
+                              [(ngModel)]="ceoReq.fatherhusbandname"
+                            />
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="form-group">
+                            <label for="residentialAddress"
+                              >Residential Address <span class="text-danger">*</span></label
+                            >
+                            <textarea
+                              type="text"
+                              class="form-control"
+                              id="residentialAddress"
+                              placeholder="Enter residential address"
+                              maxlength="100"
+                              autocomplete="off"
+                              [(ngModel)]="ceoReq.residentialaddress"
+                            ></textarea>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="form-group">
+                            <label for="uidNum"
+                              >Aadhaar Number
+                              <span class="text-danger">*</span></label
+                            >
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="uidNum"
+                              placeholder="Enter CEO aadhaar number"
+                              maxlength="12"
+                              autocomplete="off"
+                              [(ngModel)]="ceoReq.uidnum"
+                            />
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="form-group">
+                            <label for="panNumber"
+                              >Pan card Number <span class="text-danger"></span></label
+                            >
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="panNumber"
+                              placeholder="Enter pancard number"
+                              maxlength="10"
+                              autocomplete="off"
+                              [(ngModel)]="ceoReq.pannumber"
+                            />
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="form-group">
+                            <label for="rationCardNo"
+                              >Ration card Number </label
+                            >
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="rationCardNo"
+                              placeholder="Enter rationcard number"
+                              maxlength="15"
+                              autocomplete="off"
+                              [(ngModel)]="ceoReq.rationcardnumber"
+                            />
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="form-group">
+                            <label for="mailId"
+                              >E-mail <span class="text-danger">*</span></label
+                            >
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="mailId"
+                              placeholder="Enter email"
+                              maxlength="30"
+                              autocomplete="off"
+                              [(ngModel)]="ceoReq.mailid"
+                            />
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="form-group">
+                            <label for="mailId"
+                              >Propose password for GIO Tagging application <span class="text-danger">*</span></label
+                            >
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="mailId"
+                              placeholder="Enter Password"
+                              maxlength="30"
+                              autocomplete="off" disabled
+                              [(ngModel)]="ceoReq.password"
+                              value="{{ceoReq.mobileno}}"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-actions text-center">
+                      <!-- <button type="reset" class="btn btn-warning mr-1">
+                        <i class="feather icon-x"></i> Cancel
+                      </button> -->
+                      <button
+                        type="submit"
+                        class="btn btn-success"
+                        (click)="btnSubmit()"
+                      >
+                        <i class="fa fa-check-square-o"></i> Submit
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- // Basic form layout section end -->
+    </div>
+  </div>
+</div>

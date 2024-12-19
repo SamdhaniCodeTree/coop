@@ -1,0 +1,292 @@
+<!-- <div class="row">
+  <div class="col-md-4">
+    <div class="form-group">
+      <label for="divisionId"
+        >Division <span class="text-danger">*</span></label
+      >
+
+      <select
+        id="divisionId"
+        name="divisionId"
+        class="form-control"
+        [(ngModel)]="constructionReq.divisionId"
+        (change)="loadDivisionChange()"
+      >
+        <option value="">-- SELECT DIVISION --</option>
+        <option
+          *ngFor="let obj of divisionList"
+          value="{{ obj.DIVISION_CODE }}"
+        >
+          {{ obj.DIVISION_NAME }}
+        </option>
+      </select>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      <label for="mandalId">Mandal <span class="text-danger">*</span></label>
+
+      <select
+        id="mandalId"
+        name="mandalId"
+        class="form-control"
+        [(ngModel)]="constructionReq.mandalId"
+        (change)="onMandalChange()"
+      >
+        <option value="">-- SELECT MANDAL --</option>
+        <option *ngFor="let obj of mandalList" value="{{ obj.MANDAL_CODE }}">
+          {{ obj.MANDAL_NAME }}
+        </option>
+      </select>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      <label for="pacId">PAC <span class="text-danger">*</span></label>
+
+      <select
+        id="pacId"
+        name="pacId"
+        class="form-control"
+        [(ngModel)]="constructionReq.pacsId"
+        (change)="onPACChange()"
+      >
+        <option value="">-- SELECT PAC --</option>
+        <option *ngFor="let obj of pacsList" value="{{ obj.PACS_CODE }}">
+          {{ obj.PACS_NAME }}
+        </option>
+      </select>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="form-group">
+      <label for="villageId">Village <span class="text-danger">*</span></label>
+
+      <select
+        id="villageId"
+        name="villageId"
+        class="form-control"
+        [(ngModel)]="constructionReq.villageId"
+        (change)="onVillageChange()"
+      >
+        <option value="">-- SELECT VILLAGE --</option>
+        <option *ngFor="let obj of villageList" value="{{ obj.VILLAGE_CODE }}">
+          {{ obj.VILLAGE_NAME }}
+        </option>
+      </select>
+    </div>
+  </div>
+</div> -->
+
+<div class="col-md-12">
+  <h4 class="form-section">
+    <i class="feather icon-map-pin">
+      Demographic Details   :: <br>   
+
+     Division:<span class="text-success">{{ divisionName }};</span>
+     District:<span class="text-danger">{{ districtName }};</span>
+     Mandal:<span class="text-success">{{ mandalName }};</span>
+     Pac:<span class="text-danger">{{ pacsName }};</span>
+     Village:<span class="text-success">{{ villageName }};</span>
+    </i>
+  </h4>
+</div>
+
+<h4 class="form-section" *ngIf="status === 0 && dataAvailable">
+  <i class="feather icon-map-pin"></i> Questions List
+</h4>
+
+<div class="row" *ngIf="status === 0 && dataAvailable">
+  <div class="col-md-4">
+    <div class="form-group">
+      <label for="inspectionDate"
+        >Inspection Date<span class="text-danger">*</span>
+      </label>
+      <!-- <app-date-picker
+        [PlaceHolder]="'Select date of Inspection'"
+        [(selectedDate)]="constructionReq.inspectionDate"
+        [maxDate]="maxDate"
+      ></app-date-picker> -->
+      <input type="text" placeholder="DD-MM-YYYY" class="form-control" [minDate]="minDate"
+      [(ngModel)]="inspectionDate" [maxDate]="maxDate"  placement="bottom" container="" [bsConfig]="bsDatepickerConfig" bsDatepicker>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="form-group">
+      <label for="godownCapacity"
+        >Capacity Of Godown To Be Constructed<span class="text-danger"
+          >*</span
+        ></label
+      >
+      <h5 class="text-success">
+        {{ constructionReq.godownCapacity }}
+      </h5>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="form-group">
+      <label for="builder">Builder<span class="text-danger">*</span></label>
+      <input
+        type="text"
+        id="builder"
+        class="form-control"
+        placeholder="Builder"
+        maxlength="50"
+        autocomplete="off"
+        [(ngModel)]="constructionReq.builder"
+      />
+    </div>
+  </div>
+
+  <div class="col-md-12" *ngIf="questionsListReq.length > 0">
+    <div class="row mb-1">
+      <div class="col-md-6">
+        <h3 class="text-info">Question</h3>
+      </div>
+      <div class="col-md-2">
+        <h3 class="text-center text-info">Answer</h3>
+      </div>
+      <div class="col-md-4">
+        <h3 class="text-center text-info">File Upload/Reason</h3>
+      </div>
+    </div>
+    <hr />
+    <div class="row mb-3" *ngFor="let obj of questionsListReq; let i = index">
+      <div class="col-md-6">
+        <div class="form-group">
+          <lable class="form-control-label"
+            >{{ i + 1 }}.{{ obj.questionName }}</lable
+          >
+        </div>
+      </div>
+      <div class="col-md-2">
+        <select
+          id="questionApproval{{ obj.questionId }}"
+          class="form-control"
+          [(ngModel)]="obj.questionApproval"
+          (change)="onAnswerChange(obj.questionId, obj.questionApproval)"
+        >
+          <option value="">-- SELECT ANSWER --</option>
+          <option value="1">Yes</option>
+          <option value="0">No</option>
+        </select>
+      </div>
+      <div class="col-md-4" *ngIf="obj.questionApproval === '1'">
+        <input
+          id="fileUpload{{ obj.questionId }}"
+          class="form-control p-1"
+          type="file"
+          (change)="onFileChange($event, obj.questionId)"
+          accept="image/*"
+          #fileUpload
+          autocomplete="off"
+        />
+      </div>
+      <div class="col-md-4" *ngIf="obj.questionApproval === '0'">
+        <input
+          id="remarks{{ obj.questionId }}"
+          type="text"
+          class="form-control"
+          maxlength="50"
+          autocomplete="off"
+          placeholder="Enter Reason"
+          [(ngModel)]="obj.remarks"
+        />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 pt-4" align="center">
+        <button type="submit" class="btn btn-primary" (click)="btnSubmit()">
+          <i class="fa fa-check-square-o"></i> Submit
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h4 class="form-section" *ngIf="status === 1 && dataAvailable">
+  <i class="feather icon-map-pin"></i> Questions List
+</h4>
+
+<div class="row" *ngIf="status === 1 && dataAvailable">
+  <div class="col-md-4">
+    <div class="form-group">
+      <label for="inspectionDate"
+        >Inspection Date<span class="text-danger">*</span>
+      </label>
+      <h5 class="text-success">
+        {{ constructionReq.inspectionDate }}
+      </h5>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="form-group">
+      <label for="godownCapacity"
+        >Capacity Of Godown To Be Constructed<span class="text-danger"
+          >*</span
+        ></label
+      >
+      <h5 class="text-success">
+        {{ constructionReq.godownCapacity }}
+      </h5>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="form-group">
+      <label for="builder">Builder<span class="text-danger">*</span></label>
+      <h5 class="text-success">
+        {{ constructionReq.builder }}
+      </h5>
+    </div>
+  </div>
+
+  <div class="col-md-12">
+    <div class="row mb-1">
+      <div class="col-md-6">
+        <h4 class="text-info">Question</h4>
+      </div>
+      <div class="col-md-2">
+        <h4 class="text-center text-info">Answer</h4>
+      </div>
+      <div class="col-md-4">
+        <h4 class="text-center text-info">File Upload/Reason</h4>
+      </div>
+    </div>
+    <div class="row mb-3" *ngFor="let obj of questionsListReq; let i = index">
+      <div class="col-md-6">
+        <div class="form-group">
+          <lable class="form-control-label"
+            >{{ i + 1 }}.{{ obj.questionName }}</lable
+          >
+        </div>
+      </div>
+      <div class="col-md-2" align="center">
+        <h6 class="text-success" *ngIf="obj.questionApproval === '1'">Yes</h6>
+        <h6 class="text-danger" *ngIf="obj.questionApproval === '0'">No</h6>
+      </div>
+      <div class="col-md-4" *ngIf="obj.questionApproval === '1'" align="center">
+        <button
+          id="questionPhoto{{ obj.questionId }}"
+          type="button"
+          class="btn btn-secondary"
+          (click)="viewPhoto(obj.photoUpload)"
+        >
+          VIEW PHOTO
+        </button>
+      </div>
+      <div class="col-md-4" *ngIf="obj.questionApproval === '0'" align="center">
+        <h6 class="text-info">{{ obj.remarks }}</h6>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row" *ngIf="status === 2">
+  <div class="col-md-12" align="center">
+    <h3 class="text-success">{{ statusMessage }}</h3>
+  </div>
+</div>

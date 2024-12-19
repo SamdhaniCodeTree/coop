@@ -1,0 +1,291 @@
+ 
+<div class="app-content content background">
+  <div class="content-overlay"></div>
+  <div class="content-wrapper">
+    <div class="content-header row">
+      <div class="content-header-left col-md-6 col-12">
+        <h3 class="content-header-title mb-0 text-white">CEO Details Edit and Update</h3>
+        <div class="row breadcrumbs-top">
+          <div class="breadcrumb-wrapper col-12">
+            <ol class="breadcrumb">
+              <!-- <li class="breadcrumb-item">
+                <a class="custom-cursor text-white" routerLink="/ceo">Menu</a>
+              </li> -->
+              <!-- <li class="breadcrumb-item active">
+                <a
+                  class="custom-cursor text-white"
+                  routerLink="/ceo/pacsDetailsGet"
+                  >CEO Details Edit and Update</a
+                >
+              </li> -->
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div> 
+<div class="card backgrnd">
+    <div class="card-header p-2">
+      <h5 class="mb-0"> </h5>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-md-12"> 
+      
+      
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="districtId">Name of the PACS  <span style="color: red">*</span></label>
+            <br>
+            <label class="text-success"><b>{{ceoDetailsList[0].PACS_NAME}}</b></label>
+            <!-- <input type="text" 
+            class="form-control"
+            [(ngModel)]="CeoDetailsedit.pacs_name"
+            placeholder="Please Enter Name of the PACS"
+            maxlength="50"
+            autocomplete="off"> -->
+          </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="form-group">
+              <label for="giftAndDeedPhotoUpload"
+                >Registration Number <span style="color: red">*</span>
+              </label>
+              <br>
+              <input type="text" 
+            class="form-control"
+            [(ngModel)]="CeoDetailsedit.registration_number"
+            placeholder="Please Enter Registration Number"
+            maxlength="50"
+            autocomplete="off">
+               
+             
+            </div>
+        </div>
+
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="districtId">NABARD Unique ID <span style="color: red">*</span></label>
+            <br>
+            <label class="text-success"><b>{{ceoDetailsList[0].NABARD_UNIQUE_ID}}</b></label>
+            <!-- <input type="text" 
+          class="form-control"
+          [(ngModel)]="CeoDetailsedit.unique_id"
+          placeholder="Please Enter Name of the PACS"
+          maxlength="50"
+          autocomplete="off">
+             -->
+          </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="form-group">
+              <label for="districtId">PACS Unique ID  <span style="color: red">*</span></label>
+              <br>
+              <label class="text-success"><b>{{ceoDetailsList[0].UNIQUE_ID}}</b></label>
+              <!-- <input type="text" 
+            class="form-control"
+            [(ngModel)]="CeoDetailsedit.unique_id"
+            placeholder="Please Enter Name of the PACS"
+            maxlength="50"
+            autocomplete="off">
+               -->
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="districtId">DCCB Bank Name <span style="color: red">*</span></label>
+              <br>
+              <label class="text-success"><b>{{ceoDetailsList[0].DCCB_BANK_NAME}}</b></label>
+              
+                
+            </div>
+          </div>
+
+          <!-- <div class="col-md-3">
+            <div class="form-group">
+              <label for="districtId">Affiliated DCCB   <span style="color: red">*</span></label>
+              <input type="text"
+              class="form-control"
+              [(ngModel)]="CeoDetailsedit.affiliateddccb"
+              placeholder="Please Enter Affiliated DCCB"
+              maxlength="50"
+              autocomplete="off">
+            </div>
+          </div> -->
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="districtId">Affiliated DCCB Branch  <span style="color: red">*</span></label>
+              <br>
+              <input type="text" 
+            class="form-control"
+            [(ngModel)]="CeoDetailsedit.affiliated_dccb_branch"
+            placeholder="Please Enter Affiliated DCCB Branch"
+            maxlength="50"
+            autocomplete="off">
+              
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="districtId">DCCB IFSC Code   <span style="color: red">*</span></label>
+              <br>
+              <input type="text" 
+            class="form-control"
+            [(ngModel)]="CeoDetailsedit.ddcbifsccode"
+            placeholder="Please Enter Dccb IFSC Code"
+            maxlength="50"
+            autocomplete="off">
+              
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="districtId">Village Name  <span style="color: red">*</span></label>
+              <br>
+              <label class="text-success"><b>{{ceoDetailsList[0].VILLAGE}}</b></label>
+              <!-- <input type="text" 
+            class="form-control"
+            [(ngModel)]="CeoDetailsedit.village"
+            placeholder="Please Enter Name of the PACS"
+            maxlength="50"
+            autocomplete="off"> -->
+              
+             
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="districtId">Mandal Name  <span style="color: red">*</span></label>
+              <br>
+              <label class="text-success"><b>{{ceoDetailsList[0].MANDAL_NAME}}</b></label>
+              <!-- <input type="text" 
+              class="form-control"
+              [(ngModel)]="CeoDetailsedit.mandal_name"
+              placeholder="Please Enter Name of the PACS"
+              maxlength="50"
+              autocomplete="off"> -->
+                
+               
+            </div>
+            
+          </div>
+
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="districtId">District Name  <span style="color: red">*</span></label>
+              <br>
+              <label class="text-success"><b>{{ceoDetailsList[0].DISTRICT_NAME}}</b></label>
+              
+
+               
+            </div>
+            
+          </div>
+          <!-- <div class="col-md-3">
+            <div class="form-group">
+              <label for="districtId">Pin Code  <span style="color: red">*</span></label>
+              <input type="text"
+              class="form-control"
+              [(ngModel)]="CeoDetailsedit.Pincode"
+              placeholder="Please Enter Pin code"
+              maxlength="50"
+              autocomplete="off">
+            </div>
+          </div> -->
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="districtId">Name of the President  <span style="color: red">*</span></label>
+              <br>
+              <input type="text"
+              class="form-control"
+              [(ngModel)]="CeoDetailsedit.name"
+              placeholder="Please Enter Name of the President"
+              maxlength="50"
+              autocomplete="off">
+               
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="districtId">Name of the CEO  <span style="color: red">*</span></label>
+              <br>
+              <input type="text"
+              class="form-control"
+              [(ngModel)]="CeoDetailsedit.name_of_the_dccb"
+              placeholder="Please Enter Name of the CEO"
+              maxlength="50"
+              autocomplete="off">
+              
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="districtId">Phone Number of CEO  <span style="color: red">*</span></label>
+              <br>
+              <!-- <label class="text-success"><b>{{ceoDetailsList[0].MOBILE_NO}}</b></label> -->
+              <input type="text"
+              class="form-control"
+              [(ngModel)]="CeoDetailsedit.mobile_no"
+              placeholder="Please Enter Name of the CEO"
+              maxlength="10"   numberOnly
+               
+              autocomplete="off">
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="districtId">Mail ID of PACS  <span style="color: red">*</span></label>
+              <br>
+              <input type="text"
+              class="form-control"
+              [(ngModel)]="CeoDetailsedit.mail_id"
+              placeholder="Please Enter Mail ID of PACS"
+              maxlength="50"
+              autocomplete="off">
+               
+            </div>
+          </div>
+          <!-- <div class="col-md-3">
+            <div class="form-group">
+              <label for="districtId">Remarks <span style="color: red">*</span></label>
+              <input type="text"
+              class="form-control"
+              [(ngModel)]="CeoDetailsedit.Remarks"
+              placeholder="Please Enter Remarks"
+              maxlength="50"
+              autocomplete="off">
+            </div>
+          </div> -->
+
+       
+
+ 
+  
+        <div class="col-md-12" align="center" *ngIf="btnupdate" >
+          <button
+            type="button" 
+            class="btn btn-success btn-sm"
+            (click)="btnCeoDetailsSub()"
+          >
+            Edit & Update 
+          </button>&nbsp;
+          <!-- <button
+            type="button"
+            class="btn btn-danger btn-sm"
+            (click)="btnLandAllotmentSub('2')"
+          >
+            LAND ALLOTMENT PENDING
+          </button> -->
+        </div>
+      </div>
+    </div>
+    
+  </div>
+  </div>
+</div>

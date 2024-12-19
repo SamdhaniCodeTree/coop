@@ -1,0 +1,450 @@
+ul {
+    list-style-type: none;
+    margin-top: 10px;
+    padding: 0;
+    overflow: hidden;
+
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 15px;
+}
+
+li a:hover:not(.active) {
+    background-color: #04AA6D;
+}
+
+li a:hover {
+    background-color: #04AA6D;
+    color: white !important;
+}
+
+.active {
+    background-color: #04AA6D;
+}
+
+#main-header {
+    /* background-image:linear-gradient(348deg, #acc41e, #a0a21d, #9aa5a8, #40e1c7, #ad5c43); 
+     background-image: linear-gradient(270deg, #f0f323, #f0f323, #f0f323, #f0f323, #f0f323); */
+     background-image: linear-gradient(355deg, #503a3a, #d27070, #f0f315, #f0f320, #f0f323);
+    transition: all .5s;
+    z-index: 997;
+    padding: 15px 0;
+    top: 0;
+
+}
+
+
+/* Media Querys*/
+
+/* Extra small devices (portrait phones, less than 576px) */
+@media (min-width: 320px) and (max-width:375px) {
+
+    .title-img {
+        width: 80% !important;
+        position: absolute;
+        top: 0px;
+        left: 3px;
+        height: 55px !important;
+    }
+
+    .cooparation-banner {
+        width: 100%;
+        position: absolute;
+        top: -218px;
+        left: 0px;
+        height: 140px;
+    }
+
+    .title-img1 {
+        width: 75%;
+        position: absolute;
+        top: -228px;
+        right: 63px;
+    }
+
+    #hero:before {
+        content: "";
+        background: rgba(2, 5, 161, 0.91);
+        position: absolute;
+        bottom: 0;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 140px !important;
+    }
+
+    #hero {
+        height: 30vh !important;
+    }
+
+    .about .content p:last-child {
+        /* margin-bottom: 0; */
+        font-size: 16px;
+        padding: 24px;
+        margin-top: -57px;
+    }
+
+    .guidline-text {
+        font-size: 19px;
+        padding: 28px;
+    }
+
+    .footer-bgm1 {
+        height: 100px !important;
+        width: 100% !important;
+    }
+
+    .apcop-left {
+        position: absolute !important;
+        top: 8px;
+        left: 121px;
+        color: green;
+        width: 101%;
+        font-size: 12px;
+    }
+
+    .apcop-right {
+        position: absolute;
+        left: 133px;
+        top: -91px;
+        color: green;
+        font-size: 14px;
+    }
+
+    .logo-left {
+
+        background-color: white;
+        height: 254px;
+        width: 100% !important;
+    }
+
+
+    ul {
+        list-style-type: none;
+        margin-top: 10px;
+        padding: 0;
+        overflow: hidden;
+        background: #463558;
+    }
+
+}
+
+
+
+
+@media (min-width: 376px) and (max-width:425px) {
+
+    .title-img {
+        width: 80% !important;
+        position: absolute;
+        top: 0px;
+        left: 3px;
+        height: 55px !important;
+    }
+
+    .cooparation-banner {
+        width: 100%;
+        position: absolute;
+        top: -218px;
+        left: 0px;
+        height: 177px;
+    }
+
+    .title-img1 {
+        width: 75%;
+        position: absolute;
+        top: -228px;
+        right: 63px;
+    }
+
+    #hero:before {
+        content: "";
+        background: rgba(2, 5, 161, 0.91);
+        position: absolute;
+        bottom: 0;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 140px !important;
+    }
+
+    #hero {
+        height: 30vh !important;
+    }
+
+    .about .content p:last-child {
+        /* margin-bottom: 0; */
+        font-size: 16px;
+        padding: 24px;
+        margin-top: -57px;
+    }
+
+    .guidline-text {
+        font-size: 19px;
+        padding: 28px;
+    }
+
+    .footer-bgm1 {
+        height: 100px !important;
+        width: 100% !important;
+    }
+
+    .footer-logo {
+        width: 16%;
+        margin-top: 22px;
+        filter: drop-shadow(0 12px 25px rgba(255, 255, 255, 1));
+        margin-top: 17px;
+    }
+
+    .apcop-left {
+        position: absolute !important;
+        top: 3px;
+        left: 151px;
+        color: green;
+        width: 101%;
+        font-size: 12px;
+    }
+
+    .apcop-right {
+        position: absolute;
+        left: 165px;
+        top: -91px;
+        color: green;
+        font-size: 14px;
+    }
+
+    .logo-left {
+
+        background-color: white;
+        height: 254px;
+        width: 100% !important;
+    }
+
+    ul {
+        list-style-type: none;
+        margin-top: 10px;
+        padding: 0;
+        overflow: hidden;
+        background: #463558;
+    }
+}
+
+
+@media (min-width: 420px) and (max-width:465px) {
+
+    .title-img {
+        width: 80% !important;
+        position: absolute;
+        top: 0px;
+        left: 3px;
+        height: 55px !important;
+    }
+
+    .cooparation-banner {
+        width: 100%;
+        position: absolute;
+        top: -218px;
+        left: 0px;
+        height: 177px;
+    }
+
+    .title-img1 {
+        width: 75%;
+        position: absolute;
+        top: -228px;
+        right: 63px;
+    }
+
+    #hero:before {
+        content: "";
+        background: rgba(2, 5, 161, 0.91);
+        position: absolute;
+        bottom: 0;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 140px !important;
+    }
+
+    #hero {
+        height: 10vh !important;
+    }
+
+    .about .content p:last-child {
+        /* margin-bottom: 0; */
+        font-size: 16px;
+        padding: 24px;
+        margin-top: -57px;
+    }
+
+    .guidline-text {
+        font-size: 19px;
+        padding: 28px;
+    }
+
+    .footer-bgm1 {
+        height: 100px !important;
+        width: 100% !important;
+    }
+
+    .footer-logo {
+        width: 16%;
+        margin-top: 22px;
+        filter: drop-shadow(0 12px 25px rgba(255, 255, 255, 1));
+        margin-top: 17px;
+    }
+
+    .apcop-left {
+        position: absolute !important;
+        top: 3px;
+        left: 151px;
+        color: green;
+        width: 101%;
+        font-size: 12px;
+    }
+
+    .apcop-right {
+        position: absolute;
+        left: 165px;
+        top: -91px;
+        color: green;
+        font-size: 14px;
+    }
+
+    .logo-left {
+
+        background-color: white;
+        height: 254px;
+        width: 100% !important;
+    }
+
+    #hero {
+        height: 10vh !important;
+    }
+
+    ul {
+        list-style-type: none;
+        margin-top: 10px;
+        padding: 0;
+        overflow: hidden;
+        background: #463558;
+    }
+}
+
+
+
+ 
+
+
+@media (min-width: 360px) and (max-width:390px) {
+
+    .title-img {
+        width: 80% !important;
+        position: absolute;
+        top: 0px;
+        left: 3px;
+        height: 55px !important;
+    }
+
+    .cooparation-banner {
+        width: 100%;
+        position: absolute;
+        top: -218px;
+        left: 0px;
+        height: 177px;
+    }
+
+    .title-img1 {
+        width: 75%;
+        position: absolute;
+        top: -228px;
+        right: 63px;
+    }
+
+    #hero:before {
+        content: "";
+        background: rgba(2, 5, 161, 0.91);
+        position: absolute;
+        bottom: 0;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 140px !important;
+    }
+
+    #hero {
+        height: 10vh !important;
+    }
+
+    .about .content p:last-child {
+        /* margin-bottom: 0; */
+        font-size: 16px;
+        padding: 24px;
+        margin-top: -57px;
+    }
+
+    .guidline-text {
+        font-size: 19px;
+        padding: 28px;
+    }
+
+    .footer-bgm1 {
+        height: 100px !important;
+        width: 100% !important;
+    }
+
+    .footer-logo {
+        width: 16%;
+        margin-top: 22px;
+        filter: drop-shadow(0 12px 25px rgba(255, 255, 255, 1));
+        margin-top: 17px;
+    }
+
+    .apcop-left {
+        position: absolute !important;
+        top: 3px;
+        left: 151px;
+        color: green;
+        width: 101%;
+        font-size: 12px;
+    }
+
+    .apcop-right {
+        position: absolute;
+        left: 165px;
+        top: -91px;
+        color: green;
+        font-size: 14px;
+    }
+
+    .logo-left {
+
+        background-color: white;
+        height: 254px;
+        width: 100% !important;
+    }
+
+    #hero {
+        height: 10vh !important;
+    }
+
+    ul {
+        list-style-type: none;
+        margin-top: 10px;
+        padding: 0;
+        overflow: hidden;
+        background: #463558;
+    }
+}
+
+/* End Media Querys*/

@@ -1,0 +1,184 @@
+<!--  
+  <div class="app-content content">
+    <div class="content-overlay"></div>
+    <div class="content-wrapper">
+      <div class="content-header row">
+        <div class="content-header-left col-md-6 col-12">
+          <h3 class="content-header-title mb-0">HARDWARE PAYMENT TOTAL REPORT</h3>
+          <div class="row breadcrumbs-top">
+            <div class="breadcrumb-wrapper col-12"> 
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="content-body">
+        <section id="basic-form-layouts">
+          <div class="row match-height">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header"></div>
+                <div class="card-content collapse show">
+                  <div class="card-body">
+                    <div class="form">
+                      <div class="form-body">
+                        <h4 class="form-section">
+                          <i class="feather icon-user"></i> HARDWARE PAYMENT TOTAL REPORT
+                        </h4>  
+                          <div class="col-md-12">
+                            <button type="button" class="btn btn-sm btn-success pull-right" (click)="btnExcelDownload()">
+                              <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+                              DOWNLOAD EXCEL
+                            </button>
+                            
+                          </div>
+                          <div class="col-md-12 table-responsive">
+                        
+                            <table class="table table-bordered" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                              <thead class="thead-dark">
+                        
+                                <tr>
+                                  <th rowspan="2">S NO</th>
+                                  <th rowspan="2">PARTICULARS</th> 
+                                  <th colspan="2">SELLER</th>
+                                  <th colspan="2">NODAL AGENCY</th>
+                                  <th colspan="2">CC & RCS OFFICE</th> 
+                                </tr>
+                        
+                                <tr>
+                                  <th>NO. OF PACS</th>
+                                  <th>AMOUNT</th>                                  
+                                  <th>NO. OF PACS</th>
+                                  <th>AMOUNT</th>                                  
+                                  <th>NO. OF PACS</th>
+                                  <th>AMOUNT</th>                                  
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr *ngFor="let obj of stateLevelDetails; let i = index">
+                                  <td>{{ i + 1 }}</td> 
+                                  <td>{{ obj.PARTICULARS }}</td>
+
+                                  <td>
+
+                                    <a *ngIf="obj.SITE_DONE != '0'" style="cursor: pointer; text-decoration: underline" class="text-primary"
+                                      (click)="btnSitedoneDetails(obj)"><b>{{ obj.SITE_DONE }}</b></a>
+                                    <span *ngIf="obj.SITE_DONE == '0'">{{
+                                      obj.SITE_DONE
+                                      }}</span>
+                                  </td>
+                                  
+                                  <td>{{ obj.SELLER_NO_OF_PACS }}</td>
+                                  <td>{{ obj.SELLER_AMOUNT }}</td>
+                                  <td>{{ obj.NODAL_AGENCY_NO_OF_PACS }}</td>
+                                  <td>{{ obj.NODAL_AGENCY_AMOUNT }}</td>
+                                  <td>{{ obj.CC_RCS_OFFICE_NO_OF_PACS }}</td>
+                                  <td>{{ obj.CC_RCS_OFFICE_AMOUNT }}</td> 
+                                </tr> 
+                              </tbody> 
+                            </table>
+                          </div> 
+                        </div>
+                       
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          
+        </section>
+       
+      </div>
+    </div>
+  </div>
+
+
+ 
+   -->
+
+
+   <div class="app-content content">
+    <div class="content-overlay"></div>
+    <div class="content-wrapper">
+      <div class="content-header row">
+        <div class="content-header-left col-md-6 col-12">
+          <h3 class="content-header-title mb-0">HARDWARE PAYMENT TOTAL REPORT</h3>
+          <div class="row breadcrumbs-top">
+            <div class="breadcrumb-wrapper col-12">
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="content-body">
+        <section id="basic-form-layouts">
+          <div class="row match-height">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header"></div>
+                <div class="card-content collapse show">
+                  <div class="card-body paddingtop">
+                    <div class="form">
+                      <div class="form-body">
+                        <!-- <h4 class="form-section">
+                          <i class="feather icon-user"></i>HARDWARE PAYMENT TOTAL REPORT
+                        </h4>  -->
+                        <div class="row align-items-center">
+                          <div class="col-md-3">
+                            <div class="form-group">
+                              <label for="fromDate"
+                                >From Date :
+                                <span style="color: red">*</span></label
+                              >
+                              <input type="text" placeholder="DD-MM-YYYY" class="form-control" [maxDate]="maxDate"
+                              [(ngModel)]="fromDate" placement="bottom" container="" [bsConfig]="bsDatepickerConfig" bsDatepicker (ngModelChange)="FromDateChange()">
+                            
+                              
+                            </div>
+                          </div>
+                          <div class="col-md-3">
+                            <div class="form-group">
+                              <label for="toDate"
+                                >To Date :
+                                <span style="color: red">*</span></label
+                              >
+                              <input type="text" placeholder="DD-MM-YYYY" class="form-control" [maxDate]="maxDate"
+                              [(ngModel)]="toDate" placement="bottom" container="" [bsConfig]="bsDatepickerConfig" bsDatepicker (ngModelChange)="ToDateChange()">
+                            
+                           
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <button
+                              type="button"
+                              class="btn btn-success btn-sm mt-3"
+                              (click)="btnLoadReport()"
+                            >
+                              <i
+                                class="fa fa-arrow-right mr-2"
+                                aria-hidden="true"
+                              ></i>
+                              GO
+                            </button>
+                          </div>
+                        </div> 
+                        <app-calibration-pacs-total-details [fromDate]="reportFromDate"
+                        [toDate]="reportToDate" 
+                          (onNoofPacsChange)="onNoofPacsChange($event)" 
+                          
+                        ></app-calibration-pacs-total-details>
+                       <!-- (onNodalNoofPacsChange)="onNodalNoofPacsChange($event)" 
+                           (onCCRcsNoofPacsChange)="onCCRcsNoofPacsChange($event)"  -->
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- // Basic form layout section end -->
+      </div>
+    </div>
+  </div>
+  

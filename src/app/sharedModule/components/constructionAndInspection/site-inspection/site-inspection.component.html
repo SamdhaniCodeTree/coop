@@ -1,0 +1,557 @@
+<div class="row">
+
+  <div class="col-md-12">
+    <h4 class="form-section">
+      <i class="feather icon-map-pin">
+        Boundaries and Survey Details  :: <br>   
+
+       Division:<span class="text-success">{{ divisionName }};</span>
+       District:<span class="text-danger">{{ districtName }};</span>
+       Mandal:<span class="text-success">{{ mandalName }};</span>
+       Pac:<span class="text-danger">{{ pacsName }};</span>
+       Village:<span class="text-success">{{ villageName }};</span>
+      </i>
+    </h4>
+  </div>
+  <div class="col-md-12">
+    <div class="col-md-1">
+
+    </div>
+    <div class="col-md-10">
+
+      <div>
+       
+        <div class="row" *ngIf="dataNotAvailable">
+          <div class="col-md-12">
+            <h4 class="text-danger text-center">
+              Land Allotment/Handover not completed
+            </h4>
+          </div>
+        </div>
+        <div *ngIf="dataAvailable">
+         
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>Allotment Proceedings :</label>
+                <br />
+                <button id="allotmentProceedings" type="button" class="btn btn-secondary"
+                  (click)="viewPDF(inspectionDetailsList.allotmentProceedings)">
+                  VIEW REPORT
+                </button>
+
+                <!-- <h6 class="text-success">
+                  {{ inspectionDetailsList.allotmentProceedings }}
+                </h6> -->
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>Survey No :</label>
+                <h6 class="text-success">
+                  {{ inspectionDetailsList.SurveyNo }}
+                </h6>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>Extent :</label>
+                <h6 class="text-success">
+                  {{ inspectionDetailsList.extent }}
+                </h6>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>South :</label>
+                <h6 class="text-success">
+                  {{ inspectionDetailsList.south }}
+                </h6>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>North :</label>
+                <h6 class="text-success">
+                  {{ inspectionDetailsList.north }}
+                </h6>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>East :</label>
+                <h6 class="text-success">
+                  {{ inspectionDetailsList.east }}
+                </h6>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>West :</label>
+                <h6 class="text-success">
+                  {{ inspectionDetailsList.west }}
+                </h6>
+              </div>
+            </div>
+          </div>
+
+          <h4 class="form-section">
+            <i class="feather icon-map-pin"></i> Inspection Details
+          </h4>
+          <div class="row" *ngIf="levelStatus === 0">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="inspectionDate">Inspection Date<span class="text-danger">*</span>
+                </label>
+                <input type="text" placeholder="DD-MM-YYYY" class="form-control"
+                              [(ngModel)]="inspectionDate" [maxDate]="maxDate" placement="bottom" container="" [bsConfig]="bsDatepickerConfig" bsDatepicker>
+                              <app-date-picker *ngIf="datedisable"
+                                [PlaceHolder]="'Please Select From Date'"
+                                [(selectedDate)]="inspectionDate"
+                                [minDate]="minDate"
+                                [maxDate]="maxDate"
+                              ></app-date-picker>
+                <!-- <app-date-picker [PlaceHolder]="'Select date of Inspection'"
+                  [(selectedDate)]="siteInspectionReq.inspectionDate" [maxDate]="maxDate"></app-date-picker> -->
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="capacityOfGoDown">Capacity Of Godown To Be Constructed (In MT Tonnes)<span
+                    class="text-danger">*</span></label>
+                <input type="text" id="capacityOfGoDown" class="form-control" placeholder="Godown Capacity"
+                  maxlength="5" digitsOnly autocomplete="off" [(ngModel)]="siteInspectionReq.capacityOfGoDown" />
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="estimatedLandValue">Estimated land value (In Lakhs)<span
+                    class="text-danger">*</span></label>
+                <input type="text" id="estimatedLandValue" class="form-control" placeholder="Estimated land value"
+                  maxlength="5" digitsOnly autocomplete="off" [(ngModel)]="siteInspectionReq.estimatedLandValue" />
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="siteInspectionPhotoUpload">Site Inspection Photo<span class="text-danger">*</span></label>
+                <input id="siteInspectionPhotoUpload" class="form-control p-1" type="file"
+                  (change)="onSiteInspectionChange($event)" accept="image/jpeg" #siteInspectionPhotoUpload
+                  autocomplete="off" />
+              </div>
+            </div>
+
+            <div class="col-md-12" align="center">
+              <div class="form-group">
+                <button id="btnSubmit" type="button" class="btn btn-success" (click)="btnInspectionSub()">
+                  SUBMIT
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="row" *ngIf="levelStatus > 0">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="inspectionDate">Inspection Date<span class="text-danger">*</span>
+                </label>
+                <h5 class="text-success">
+                  {{ siteInspectionReq.inspectionDate }}
+                </h5>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="capacityOfGoDown">Capacity Of Godown To Be Constructed (In MT Tonnes)<span
+                    class="text-danger">*</span></label>
+                <h5 class="text-success">
+                  {{ siteInspectionReq.capacityOfGoDown }}
+                </h5>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="estimatedLandValue">Estimated land value (In Lakhs)<span
+                    class="text-danger">*</span></label>
+                <h5 class="text-success">
+                  {{ siteInspectionReq.estimatedLandValue }}
+                </h5>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="siteInspectionPhotoUpload">Site Inspection Photo<span class="text-danger">*</span></label>
+                <br />
+                <button id="siteInspectionPhotoUpload" type="button" class="btn btn-secondary"
+                  (click)="viewPhoto(siteInspectionReq.siteInspectionPhotoUpload)">
+                  VIEW PHOTO
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <h4 class="form-section" *ngIf="levelStatus > 0">
+            <i class="feather icon-map-pin"></i> Status of land
+          </h4>
+          <div class="row" *ngIf="levelStatus === 1">
+            <div class="col-md-12" *ngIf="questionsListReq.length > 0">
+              <div class="row mb-1">
+                <div class="col-md-6">
+                  <h3 class="text-info">Question</h3>
+                </div>
+                <div class="col-md-2">
+                  <h3 class="text-center text-info">Answer</h3>
+                </div>
+                <div class="col-md-4">
+                  <h3 class="text-center text-info">File Upload/Reason</h3>
+                </div>
+              </div>
+              <hr />
+              <div class="row mb-3" *ngFor="let obj of questionsListReq; let i = index">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <lable class="form-control-label">{{ i + 1 }}.{{ obj.questionName }}</lable>
+                  </div>
+                </div>
+                <div class="col-md-2">
+                  <select id="questionApproval{{ obj.questionId }}" class="form-control"
+                    [(ngModel)]="obj.questionApproval" (change)="onAnswerChange(obj.questionId, obj.questionApproval)">
+                    <option value="">-- SELECT ANSWER --</option>
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                  </select>
+                </div>
+                <div class="col-md-4" *ngIf="obj.questionApproval === '1'">
+                  <input id="fileUpload{{ obj.questionId }}" class="form-control" type="file"
+                    (change)="onFileChange($event, obj.questionId)" accept="image/*" #fileUpload autocomplete="off" />
+                </div>
+                <div class="col-md-4" *ngIf="obj.questionApproval === '0'">
+                  <input id="remarks{{ obj.questionId }}" type="text" class="form-control" maxlength="50"
+                    autocomplete="off" placeholder="Enter Reason" [(ngModel)]="obj.remarks" />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12 pt-4" align="center">
+                  <button type="submit" class="btn btn-primary" (click)="btnQuestionSubmit()">
+                    <i class="fa fa-check-square-o"></i> Submit
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row" *ngIf="levelStatus > 1">
+            <div class="col-md-12" *ngIf="questionsListReq.length > 0">
+              <div class="row mb-1">
+                <div class="col-md-6">
+                  <h4 class="text-info">Question</h4>
+                </div>
+                <div class="col-md-2">
+                  <h4 class="text-center text-info">Answer</h4>
+                </div>
+                <div class="col-md-4">
+                  <h4 class="text-center text-info">File Upload/Reason</h4>
+                </div>
+              </div>
+              <div class="row mb-3" *ngFor="let obj of questionsListReq; let i = index">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <lable class="form-control-label">{{ i + 1 }}.{{ obj.questionName }}</lable>
+                  </div>
+                </div>
+                <div class="col-md-2" align="center">
+                  <h6 class="text-success" *ngIf="obj.questionApproval === 'Yes'">
+                    Yes
+                  </h6>
+                  <h6 class="text-danger" *ngIf="obj.questionApproval === 'No'">No</h6>
+                </div>
+                <div class="col-md-4" *ngIf="obj.questionApproval === 'Yes'" align="center">
+                  <button id="questionPhoto{{ obj.questionId }}" type="button" class="btn btn-secondary"
+                    (click)="viewPhoto(obj.photoUpload)">
+                    VIEW PHOTO
+                  </button>
+                </div>
+                <div class="col-md-4" *ngIf="obj.questionApproval === 'No'" align="center">
+                  <h6 class="text-info">{{ obj.remarks }}</h6>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <h4 class="form-section" *ngIf="levelStatus > 1">
+            <i class="feather icon-map-pin"></i> Suitability of land construction
+          </h4>
+          <div class="row" *ngIf="levelStatus === 2">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="dllicApproval">Recommendation of mandal level inspection committe
+                  <span class="text-danger">*</span></label>
+                <select id="dllicApproval" class="form-control" [(ngModel)]="siteInspectionReq.dllicApproval">
+                  <option value="">-- SELECT RECOMMENDATION --</option>
+                  <option value="1">Suitable For Construction</option>
+                  <option value="0">Not suitable For Construction</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="col-md-4" *ngIf="siteInspectionReq.dllicApproval === '0'">
+              <div class="form-group">
+                <label for="dllicRemarks">Remarks<span class="text-danger">*</span></label>
+                <textarea type="text" id="dllicRemarks" class="form-control" placeholder="Enter remarks" maxlength="100"
+                  autocomplete="off" [(ngModel)]="siteInspectionReq.dllicRemarks"></textarea>
+              </div>
+            </div>
+
+            <div class="col-md-4" *ngIf="siteInspectionReq.dllicApproval === '1'">
+              <div class="form-group">
+                <label for="siteReadyForConstruction">Site ready for construction <span
+                    class="text-danger">*</span></label>
+                <select id="siteReadyForConstruction" class="form-control"
+                  [(ngModel)]="siteInspectionReq.siteReadyForConstruction">
+                  <option value="">-- SELECT RECOMMENDATION --</option>
+                  <option value="1">Yes</option>
+                  <option value="0">No</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="col-md-4" *ngIf="siteInspectionReq.siteReadyForConstruction === '1'">
+              <div class="form-group">
+                <label for="nregaTakenWork">Works to be taken up for making the site ready for
+                  Construction <span class="text-danger">*</span></label>
+                <select id="nregaTakenWork" class="form-control" [(ngModel)]="siteInspectionReq.nregaTakenWork">
+                  <option value="">-- SELECT RECOMMENDATION --</option>
+                  <option value="1">Yes</option>
+                  <option value="0">No</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="col-md-4" *ngIf="siteInspectionReq.nregaTakenWork === '1'">
+              <div class="form-group">
+                <label for="nregaWorks">Works to be taken up
+                  <span class="text-danger">*</span></label>
+                <select id="nregaWorks" class="form-control" [(ngModel)]="siteInspectionReq.nregaWorks">
+                  <option value="">-- SELECT RECOMMENDATION --</option>
+                  <option value="1">Land levelling and shaping</option>
+                  <option value="2">Bush clearance</option>
+                  <option value="3">Approach road</option>
+                  <option value="0">Others</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="col-md-4" *ngIf="siteInspectionReq.nregaWorks === '0'">
+              <div class="form-group">
+                <label for="nregaOthersRemarks">Remarks<span class="text-danger">*</span></label>
+                <textarea type="text" id="nregaOthersRemarks" class="form-control" placeholder="Enter remarks"
+                  maxlength="100" autocomplete="off" [(ngModel)]="siteInspectionReq.nregaOthersRemarks"></textarea>
+              </div>
+            </div>
+
+            <div class="col-md-12" align="center">
+              <div class="form-group">
+                <button id="btnSubmit" type="button" class="btn btn-success" (click)="btnInspectionReportSub()">
+                  SUBMIT
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="row" *ngIf="levelStatus > 2">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="dllicApproval">Recommendation of division level inspection committe
+                  <span class="text-danger">*</span></label>
+                <h5 *ngIf="
+            siteInspectionReq.dllicApproval ===
+            'DLLIC Recommended for Construction'
+          " class="text-success">
+                  {{ siteInspectionReq.dllicApproval }}
+                </h5>
+                <h5 *ngIf="
+            siteInspectionReq.dllicApproval !==
+            'DLLIC Recommended for Construction'
+          " class="text-danger">
+                  {{ siteInspectionReq.dllicApproval }}
+                </h5>
+              </div>
+            </div>
+
+            <div class="col-md-4" *ngIf="
+        siteInspectionReq.dllicApproval !== 'DLLIC Recommended for Construction'
+      ">
+              <div class="form-group">
+                <label for="dllicRemarks">Remarks<span class="text-danger">*</span></label>
+                <p class="text-success">
+                  {{ siteInspectionReq.dllicRemarks }}
+                </p>
+              </div>
+            </div>
+
+            <div class="col-md-4" *ngIf="
+        siteInspectionReq.dllicApproval === 'DLLIC Recommended for Construction'
+      ">
+              <div class="form-group">
+                <label for="siteReadyForConstruction">Site ready for Construction <span
+                    class="text-danger">*</span></label>
+                <h5 *ngIf="siteInspectionReq.siteReadyForConstruction === 'Yes'" class="text-success">
+                  Yes
+                </h5>
+                <h5 *ngIf="siteInspectionReq.siteReadyForConstruction !== 'Yes'" class="text-danger">
+                  No
+                </h5>
+              </div>
+            </div>
+
+            <div class="col-md-4" *ngIf="siteInspectionReq.siteReadyForConstruction === 'Yes'">
+              <div class="form-group">
+                <label for="nregaTakenWork">Works to be taken up for making the site ready for
+                  Construction <span class="text-danger">*</span></label>
+                <h5 *ngIf="siteInspectionReq.nregaTakenWork === 'Yes'" class="text-success">
+                  Yes
+                </h5>
+                <h5 *ngIf="siteInspectionReq.nregaTakenWork !== 'Yes'" class="text-danger">
+                  No
+                </h5>
+              </div>
+            </div>
+
+            <div class="col-md-4" *ngIf="siteInspectionReq.nregaTakenWork === 'Yes'">
+              <div class="form-group">
+                <label for="nregaWorks">Works to be taken up
+                  <span class="text-danger">*</span></label>
+                <h5 class="text-success">
+                  {{ siteInspectionReq.nregaWorks }}
+                </h5>
+              </div>
+            </div>
+
+            <div class="col-md-4" *ngIf="siteInspectionReq.nregaWorks === 'Others'">
+              <div class="form-group">
+                <label for="nregaOthersRemarks">Remarks<span class="text-danger">*</span></label>
+                <p class="text-success">
+                  {{ siteInspectionReq.nregaOthersRemarks }}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <h4 class="form-section" *ngIf="
+      levelStatus > 2 &&
+      siteInspectionReq.dllicApproval ===
+        'DLLIC Recommended for Construction' &&
+      siteInspectionReq.siteReadyForConstruction === 'Yes'
+    ">
+            <i class="feather icon-map-pin"></i> Documents upload
+          </h4>
+          <div class="row" *ngIf="
+      levelStatus === 3 &&
+      siteInspectionReq.dllicApproval ===
+        'DLLIC Recommended for Construction' &&
+      siteInspectionReq.siteReadyForConstruction === 'Yes'
+    ">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="leaseAgreementRegistered">Lease Agreement Registered<span
+                    class="text-danger">*</span></label>
+                <select id="leaseAgreementRegistered" class="form-control"
+                  [(ngModel)]="siteInspectionReq.leaseAgreementRegistered">
+                  <option value="">-- SELECT RECOMMENDATION --</option>
+                  <option value="1">Yes</option>
+                  <option value="0">No</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="col-md-4" *ngIf="siteInspectionReq.leaseAgreementRegistered === '1'">
+              <div class="form-group">
+                <label for="leaseAgreementPhoto">Lease Agreement<span class="text-danger">*</span></label>
+                <input id="leaseAgreementPhoto" class="form-control p-1" type="file"
+                  (change)="onLeaseAgreementChange($event)" accept="application/pdf" #leaseAgreementPhoto
+                  autocomplete="off" />
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="siteInspectionReportPhotoUpload">Site inspection report<span
+                    class="text-danger">*</span></label>
+                <input id="siteInspectionReportPhotoUpload" class="form-control p-1" type="file"
+                  (change)="onSiteInspectionReportChange($event)" accept="application/pdf"
+                  #siteInspectionReportPhotoUpload autocomplete="off" />
+              </div>
+            </div>
+
+            <div class="col-md-12" align="center">
+              <div class="form-group">
+                <button id="btnSubmit" type="button" class="btn btn-success" (click)="btnLeaseDocumentsSub()">
+                  SUBMIT
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="row" *ngIf="
+      levelStatus > 3 &&
+      siteInspectionReq.dllicApproval ===
+        'DLLIC Recommended for Construction' &&
+      siteInspectionReq.siteReadyForConstruction === 'Yes'
+    ">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="leaseAgreementRegistered">Lease Agreement Registered<span
+                    class="text-danger">*</span></label>
+
+                <h5 *ngIf="siteInspectionReq.leaseAgreementRegistered === 'Yes'" class="text-success">
+                  YES
+                </h5>
+                <h5 *ngIf="siteInspectionReq.leaseAgreementRegistered === 'No'" class="text-danger">
+                  NO
+                </h5>
+              </div>
+            </div>
+
+            <div class="col-md-4" *ngIf="siteInspectionReq.leaseAgreementRegistered === 'Yes'">
+              <div class="form-group">
+                <label for="leaseAgreementPhoto">Lease Agreement<span class="text-danger">*</span></label>
+                <br />
+                <button id="leaseAgreementPhoto" type="button" class="btn btn-secondary"
+                  (click)="viewPDF(siteInspectionReq.leaseAgreementPhoto)">
+                  VIEW REPORT
+                </button>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="siteInspectionReportPhotoUpload">Site inspection report<span
+                    class="text-danger">*</span></label>
+                <br />
+                <button id="siteInspectionReportPhotoUpload" type="button" class="btn btn-secondary"
+                  (click)="viewPDF(siteInspectionReq.siteInspectionReportUpload)">
+                  VIEW REPORT
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-1">
+
+    </div>
+  </div>
+
+</div>

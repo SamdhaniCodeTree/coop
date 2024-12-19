@@ -1,0 +1,762 @@
+<div class="app-content content">
+  <div class="content-overlay"></div>
+  <div class="content-wrapper">
+    <div class="content-header row">
+      <div class="content-header-left col-md-6 col-12">
+        <h3 class="content-header-title mb-0">PAC Land Inspection</h3>
+        <div class="row breadcrumbs-top">
+          <div class="breadcrumb-wrapper col-12">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item">
+                <a class="custom-cursor" routerLink="/dco">Menu</a>
+              </li>
+              <li class="breadcrumb-item active">
+                <a class="custom-cursor" routerLink="/dco/pacsLandInspection"
+                  >PAC Land Inspection</a
+                >
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="content-body">
+      <!-- Basic form layout section start -->
+      <section id="basic-form-layouts">
+        <div class="row match-height">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <!--<h4 class="card-title" id="basic-layout-form">Input Fields</h4>
+                 <a class="heading-elements-toggle"
+                  ><i class="fa fa-ellipsis-v font-medium-3"></i
+                ></a>
+                <div class="heading-elements">
+                  <ul class="list-inline mb-0">
+                    <li>
+                      <a data-action="collapse"
+                        ><i class="feather icon-minus"></i
+                      ></a>
+                    </li>
+                    <li>
+                      <a data-action="reload"
+                        ><i class="feather icon-rotate-cw"></i
+                      ></a>
+                    </li>
+                    <li>
+                      <a data-action="expand"
+                        ><i class="feather icon-maximize"></i
+                      ></a>
+                    </li>
+                    <li>
+                      <a data-action="close"><i class="feather icon-x"></i></a>
+                    </li>
+                  </ul>
+                </div> -->
+              </div>
+              <div class="card-content collapse show">
+                <div class="card-body">
+                  <div class="form">
+                    <div class="form-body">
+                      <h4 class="form-section">
+                        <i class="feather icon-map-pin"></i> Demographic
+                        Detalils
+                      </h4>
+                      <div class="row">
+                        <div class="col-md-3">
+                          <div class="form-group">
+                            <label for="divisionId"
+                              >Division
+                              <span class="text-danger">*</span></label
+                            >
+
+                            <select
+                              id="divisionId"
+                              name="divisionId"
+                              class="form-control"
+                              [(ngModel)]="pacLandInspectionReq.divisionId"
+                              (change)="loadDivisionChange()"
+                            >
+                              <option value="">-- SELECT DIVISION --</option>
+                              <option
+                                *ngFor="let obj of divisionList"
+                                value="{{ obj.DIVISION_CODE }}"
+                              >
+                                {{ obj.DIVISION_NAME }}
+                              </option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="col-md-3">
+                          <div class="form-group">
+                            <label for="mandalId"
+                              >Mandal <span class="text-danger">*</span></label
+                            >
+
+                            <select
+                              id="mandalId"
+                              name="mandalId"
+                              class="form-control"
+                              [(ngModel)]="pacLandInspectionReq.mandalId"
+                              (change)="onMandalChange()"
+                            >
+                              <option value="">-- SELECT MANDAL --</option>
+                              <option
+                                *ngFor="let obj of mandalList"
+                                value="{{ obj.MANDAL_CODE }}"
+                              >
+                                {{ obj.MANDAL_NAME }}
+                              </option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="col-md-3">
+                          <div class="form-group">
+                            <label for="pacId"
+                              >PAC <span class="text-danger">*</span></label
+                            >
+
+                            <select
+                              id="pacId"
+                              name="pacId"
+                              class="form-control"
+                              [(ngModel)]="pacLandInspectionReq.pacId"
+                              (change)="onPACChange()"
+                            >
+                              <option value="">-- SELECT PAC --</option>
+                              <option
+                                *ngFor="let obj of pacsList"
+                                value="{{ obj.PACS_CODE }}"
+                              >
+                                {{ obj.PACS_NAME }}
+                              </option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="col-md-3">
+                          <div class="form-group">
+                            <label for="villageId"
+                              >Village <span class="text-danger">*</span></label
+                            >
+
+                            <select
+                              id="villageId"
+                              name="villageId"
+                              class="form-control"
+                              [(ngModel)]="pacLandInspectionReq.villageId"
+                              (change)="onVillageChange()"
+                            >
+                              <option value="">-- SELECT VILLAGE --</option>
+                              <option
+                                *ngFor="let obj of villageList"
+                                value="{{ obj.VILLAGE_CODE }}"
+                              >
+                                {{ obj.VILLAGE_NAME }}
+                              </option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row" *ngIf="villageDataAvailable !== ''">
+                        <div class="col-md-12">
+                          <h4 class="text-center text-primary">
+                            {{ villageDataAvailable }}
+                          </h4>
+                        </div>
+                      </div>
+
+                      <!-- <div
+                        class="row"
+                        *ngIf="pacLandInspectionReq.levelStatus > 0"
+                      >
+                        <div class="col-md-3">
+                          <div class="form-group">
+                            <label for="divisionId"
+                              >Division
+                              <span class="text-danger">*</span></label
+                            >
+                            <h6 class="text-success">{{ "DIVISION NAME" }}</h6>
+                          </div>
+                        </div>
+                        <div class="col-md-3">
+                          <div class="form-group">
+                            <label for="mandalId"
+                              >Mandal <span class="text-danger">*</span></label
+                            >
+                            <h6 class="text-success">{{ "MANDAL NAME" }}</h6>
+                          </div>
+                        </div>
+                        <div class="col-md-3">
+                          <div class="form-group">
+                            <label for="pacId"
+                              >PAC <span class="text-danger">*</span></label
+                            >
+                            <h6 class="text-success">{{ "PAC NAME" }}</h6>
+                          </div>
+                        </div>
+                        <div class="col-md-3">
+                          <div class="form-group">
+                            <label for="villageId"
+                              >Village <span class="text-danger">*</span></label
+                            >
+                            <h6 class="text-success">{{ "VILLAGE NAME" }}</h6>
+                          </div>
+                        </div>
+                      </div> -->
+
+                      <h4
+                        class="form-section"
+                        *ngIf="pacLandInspectionReq.levelStatus > 0"
+                      >
+                        <i class="feather icon-map-pin"></i> Questions List
+                      </h4>
+                      <div
+                        class="row"
+                        *ngIf="pacLandInspectionReq.levelStatus > 0"
+                      >
+                        <div class="col-md-12">
+                          <div class="row mb-1">
+                            <div class="col-md-6">
+                              <h4 class="text-info">Question</h4>
+                            </div>
+                            <div class="col-md-2">
+                              <h4 class="text-center text-info">Answer</h4>
+                            </div>
+                            <div class="col-md-4">
+                              <h4 class="text-center text-info">
+                                File Upload/Reason
+                              </h4>
+                            </div>
+                          </div>
+                          <div
+                            class="row mb-3"
+                            *ngFor="let obj of questionsList; let i = index"
+                          >
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <lable class="form-control-label"
+                                  >{{ i + 1 }}.{{ obj.QUESTION_NAME }}</lable
+                                >
+                              </div>
+                            </div>
+                            <div class="col-md-2" align="center">
+                              <h6
+                                class="text-success"
+                                *ngIf="obj.QUES_YES_NO === 1"
+                              >
+                                Yes
+                              </h6>
+                              <h6
+                                class="text-danger"
+                                *ngIf="obj.QUES_YES_NO === 0"
+                              >
+                                No
+                              </h6>
+                            </div>
+                            <div
+                              class="col-md-4"
+                              *ngIf="obj.QUES_YES_NO === 1"
+                              align="center"
+                            >
+                              <button
+                                id="questionPhoto{{ obj.QUESTION_ID }}"
+                                type="button"
+                                class="btn btn-secondary"
+                                (click)="viewPhoto(obj.QUES_IMAGE)"
+                              >
+                                VIEW PHOTO
+                              </button>
+                            </div>
+                            <div
+                              class="col-md-4"
+                              *ngIf="obj.QUES_YES_NO === 0"
+                              align="center"
+                            >
+                              <h6 class="text-info">{{ obj.QUES_REASON }}</h6>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <h4
+                        class="form-section"
+                        *ngIf="pacLandInspectionReq.levelStatus > 0"
+                      >
+                        <i class="feather icon-map-pin"></i> Mandal Committee
+                        Inspection Report Upload
+                      </h4>
+                      <div
+                        class="row"
+                        *ngIf="
+                          pacLandInspectionReq.levelStatus > 0 &&
+                          pacLandInspectionReq.levelStatus === 1
+                        "
+                      >
+                        <div class="col-md-4">
+                          <div class="form-group">
+                            <label for="mandalLevelCommitteReportUpload"
+                              >Mandal Committee Inspection Report</label
+                            >
+                            <input
+                              id="mandalLevelCommitteReportUpload"
+                              class="form-control"
+                              type="file"
+                              (change)="onMandalCommitteReportChange($event)"
+                              accept="image/*"
+                              accept="application/pdf,image/*"
+                              #MandalCommitteReportFileUpload
+                              autocomplete="off"
+                            />
+                          </div>
+                        </div>
+                        <div class="col-md-12" align="center">
+                          <div class="form-group">
+                            <button
+                              id="btnSubmit"
+                              type="button"
+                              class="btn btn-secondary"
+                              (click)="btnSubmit()"
+                            >
+                              UPLOAD REPORT
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        class="row"
+                        *ngIf="
+                          pacLandInspectionReq.levelStatus > 0 &&
+                          pacLandInspectionReq.levelStatus !== 1
+                        "
+                      >
+                        <div class="col-md-4">
+                          <div class="form-group">
+                            <label id="mandalLevelCommitteReportUpload"
+                              >Mandal Committee Inspection Report</label
+                            >
+                            <button
+                              id="mandalLevelCommitteReportUpload"
+                              type="button"
+                              class="btn btn-secondary ml-5"
+                              (click)="
+                                viewPhoto(
+                                  pacLandInspectionReq.mandalLevelCommitteReportUpload
+                                )
+                              "
+                            >
+                              VIEW PHOTO
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+
+                      <h4
+                        class="form-section"
+                        *ngIf="pacLandInspectionReq.levelStatus > 1"
+                      >
+                        <i class="feather icon-map-pin"></i> Mandal Committee &
+                        NREGA Recommendation
+                      </h4>
+                      <div
+                        class="row"
+                        *ngIf="
+                          pacLandInspectionReq.levelStatus > 1 &&
+                          pacLandInspectionReq.levelStatus === 2
+                        "
+                      >
+                        <div class="col-md-4">
+                          <div class="form-group">
+                            <label for="committeRecommendedThelandOfGodown"
+                              >Mandal Committee Recommendation the land for
+                              construction of godown</label
+                            >
+                            <select
+                              id="committeRecommendedThelandOfGodown"
+                              class="form-control"
+                              [(ngModel)]="
+                                pacLandInspectionReq.committeRecommendedThelandOfGodown
+                              "
+                            >
+                              <option value="">
+                                -- SELECT RECOMMENDATION --
+                              </option>
+                              <option value="1">Yes</option>
+                              <option value="0">No</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div
+                          class="col-md-4"
+                          *ngIf="
+                            pacLandInspectionReq.committeRecommendedThelandOfGodown ===
+                            '1'
+                          "
+                        >
+                          <div class="form-group">
+                            <label for="nregaActivityRecommendation"
+                              >Mandal Committee Recommended NREGA
+                              Activities</label
+                            >
+                            <select
+                              id="nregaActivityRecommendation"
+                              class="form-control"
+                              [(ngModel)]="
+                                pacLandInspectionReq.nregaActivityRecommendation
+                              "
+                            >
+                              <option value="">-- SELECT ACTIVITIES --</option>
+                              <option
+                                value="{{ obj.NREGA_ACTIVY_NO }}"
+                                *ngFor="let obj of nregaActivityList"
+                              >
+                                {{ obj.NREGA_ACTIVITIES }}
+                              </option>
+                            </select>
+                          </div>
+                        </div>
+                        <div
+                          class="col-md-4"
+                          *ngIf="
+                            pacLandInspectionReq.nregaActivityRecommendation ===
+                            'NREGA004'
+                          "
+                        >
+                          <div class="form-group">
+                            <label for="nregaActivityRemarks"> Reason </label>
+                            <input
+                              id="nregaActivityRemarks"
+                              class="form-control"
+                              type="text"
+                              placeholder="Enter reason"
+                              autocomplete="off"
+                              maxlength="50"
+                              [(ngModel)]="
+                                pacLandInspectionReq.nregaActivityRemarks
+                              "
+                            />
+                          </div>
+                        </div>
+                        <div class="col-md-12" align="center">
+                          <div class="form-group">
+                            <button
+                              id="btnSubmit"
+                              type="button"
+                              class="btn btn-secondary"
+                              (click)="btnSubmit()"
+                            >
+                              SUBMIT
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        class="row"
+                        *ngIf="
+                          pacLandInspectionReq.levelStatus > 1 &&
+                          pacLandInspectionReq.levelStatus !== 2
+                        "
+                      >
+                        <div class="col-md-4">
+                          <div class="form-group">
+                            <label id="mandalLevelCommitteReportUpload">
+                              Mandal Committee Recommendation the land for
+                              construction of godown
+                            </label>
+                            <h6
+                              class="text-success"
+                              *ngIf="
+                                pacLandInspectionReq.committeRecommendedThelandOfGodown ===
+                                '1'
+                              "
+                            >
+                              Yes
+                            </h6>
+                            <h6
+                              class="text-danger"
+                              *ngIf="
+                                pacLandInspectionReq.committeRecommendedThelandOfGodown ===
+                                '0'
+                              "
+                            >
+                              No
+                            </h6>
+                          </div>
+                        </div>
+                        <div
+                          class="col-md-4"
+                          *ngIf="
+                            pacLandInspectionReq.nregaActivityRecommendation !==
+                            ''
+                          "
+                        >
+                          <div class="form-group">
+                            <label id="mandalLevelCommitteReportUpload">
+                              Mandal Committee Recommended NREGA Activities
+                            </label>
+                            <h6 class="text-success">
+                              {{
+                                pacLandInspectionReq.nregaActivityRecommendation
+                              }}
+                            </h6>
+                          </div>
+                        </div>
+                        <div
+                          class="col-md-4"
+                          *ngIf="
+                            pacLandInspectionReq.nregaActivityRemarks !== ''
+                          "
+                        >
+                          <div class="form-group">
+                            <label id="mandalLevelCommitteReportUpload">
+                              Reason
+                            </label>
+                            <h6 class="text-success">
+                              {{ pacLandInspectionReq.nregaActivityRemarks }}
+                            </h6>
+                          </div>
+                        </div>
+                      </div>
+
+                      <h4
+                        class="form-section"
+                        *ngIf="
+                          pacLandInspectionReq.levelStatus > 2 &&
+                          pacLandInspectionReq.committeRecommendedThelandOfGodown ===
+                            '1'
+                        "
+                      >
+                        <i class="feather icon-map-pin"></i> NREGA Work
+                        Allotment & Work Completion Certiticates Upload
+                      </h4>
+                      <div
+                        class="row"
+                        *ngIf="
+                          pacLandInspectionReq.levelStatus > 2 &&
+                          pacLandInspectionReq.levelStatus === 3 &&
+                          pacLandInspectionReq.committeRecommendedThelandOfGodown ===
+                            '1'
+                        "
+                      >
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="workAllotmentCertificate"
+                              >Work Allotment Certificate</label
+                            >
+                            <input
+                              id="workAllotmentCertificate"
+                              class="form-control"
+                              type="file"
+                              (change)="onWorkAllotmentCertChange($event)"
+                              accept="image/*"
+                              accept="application/pdf,image/*"
+                              #WorkAllotmentCertificateFileUpload
+                              autocomplete="off"
+                            />
+                          </div>
+                        </div>
+
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="workCompletionCertificate"
+                              >Work Completion Certificate</label
+                            >
+                            <input
+                              id="workCompletionCertificate"
+                              class="form-control"
+                              type="file"
+                              (change)="onWorkCompletionCertChange($event)"
+                              accept="image/*"
+                              accept="application/pdf,image/*"
+                              #WorkCompletionCertificateFileUpload
+                              autocomplete="off"
+                            />
+                          </div>
+                        </div>
+                        <div class="col-md-12" align="center">
+                          <div class="form-group">
+                            <button
+                              id="btnSubmit"
+                              type="button"
+                              class="btn btn-secondary"
+                              (click)="btnSubmit()"
+                            >
+                              SUBMIT
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        class="row"
+                        *ngIf="
+                          pacLandInspectionReq.levelStatus > 2 &&
+                          pacLandInspectionReq.levelStatus !== 3 &&
+                          pacLandInspectionReq.committeRecommendedThelandOfGodown ===
+                            '1'
+                        "
+                      >
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label id="workAllotmentCertificate">
+                              Work Allotment Certificate
+                            </label>
+                            <button
+                              id="workAllotmentCertificate"
+                              type="button"
+                              class="btn btn-secondary ml-5"
+                              (click)="
+                                viewPhoto(
+                                  pacLandInspectionReq.workAllotmentCertificate
+                                )
+                              "
+                            >
+                              VIEW PHOTO
+                            </button>
+                          </div>
+                        </div>
+
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label id="workCompletionCertificate">
+                              Work Completion Certificate
+                            </label>
+                            <button
+                              id="workCompletionCertificate"
+                              type="button"
+                              class="btn btn-secondary ml-5"
+                              (click)="
+                                viewPhoto(
+                                  pacLandInspectionReq.workCompletionCertificate
+                                )
+                              "
+                            >
+                              VIEW PHOTO
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+
+                      <h4
+                        class="form-section"
+                        *ngIf="
+                          pacLandInspectionReq.levelStatus > 3 &&
+                          pacLandInspectionReq.committeRecommendedThelandOfGodown ===
+                            '1'
+                        "
+                      >
+                        <i class="feather icon-map-pin"></i> Land ready for
+                        construction
+                      </h4>
+                      <div
+                        class="row"
+                        *ngIf="
+                          pacLandInspectionReq.levelStatus > 3 &&
+                          pacLandInspectionReq.levelStatus === 4 &&
+                          pacLandInspectionReq.committeRecommendedThelandOfGodown ===
+                            '1'
+                        "
+                      >
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="nregaWorkCompleted"
+                              >Land ready for construction</label
+                            >
+                            <select
+                              id="nregaWorkCompleted"
+                              class="form-control"
+                              [(ngModel)]="
+                                pacLandInspectionReq.nregaWorkCompleted
+                              "
+                            >
+                              <option value="">
+                                -- SELECT RECOMMENDATION --
+                              </option>
+                              <option value="1">Yes</option>
+                              <option value="0">No</option>
+                            </select>
+                          </div>
+                        </div>
+
+                        <div class="col-md-12" align="center">
+                          <div class="form-group">
+                            <button
+                              id="btnSubmit"
+                              type="button"
+                              class="btn btn-secondary"
+                              (click)="btnSubmit()"
+                            >
+                              SUBMIT
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        class="row"
+                        *ngIf="
+                          pacLandInspectionReq.levelStatus > 3 &&
+                          pacLandInspectionReq.committeRecommendedThelandOfGodown ===
+                            '1'
+                        "
+                      >
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label id="nregaWorkCompleted">
+                              Land ready for construction
+                            </label>
+                            <h6
+                              class="text-success"
+                              *ngIf="
+                                pacLandInspectionReq.nregaWorkCompleted === '1'
+                              "
+                            >
+                              Yes
+                            </h6>
+                            <h6
+                              class="text-danger"
+                              *ngIf="
+                                pacLandInspectionReq.nregaWorkCompleted === '0'
+                              "
+                            >
+                              No
+                            </h6>
+                          </div>
+                        </div>
+                      </div>
+
+                      <h4
+                        class="form-section"
+                        *ngIf="
+                          pacLandInspectionReq.levelStatus > 4 ||
+                          pacLandInspectionReq.finalSubCompleted === 1
+                        "
+                      >
+                        <i class="feather icon-map-pin"></i> Land Inspection
+                        Final Report
+                      </h4>
+                      <div
+                        class="row"
+                        *ngIf="
+                          pacLandInspectionReq.levelStatus >= 4 ||
+                          pacLandInspectionReq.finalSubCompleted === 1
+                        "
+                      >
+                        <div class="col-md-12">
+                          <h3 class="text-center text-success" *ngIf="pacLandInspectionReq.levelStatus === 5 && pacLandInspectionReq.nregaWorkCompleted === '1'">
+                            {{ finalReportMessage }}
+                          </h3>
+                          <h3 class="text-center text-danger" *ngIf="(pacLandInspectionReq.levelStatus > 0  && pacLandInspectionReq.levelStatus !== 5 && pacLandInspectionReq.finalSubCompleted === 1) || (pacLandInspectionReq.levelStatus === 5 && pacLandInspectionReq.nregaWorkCompleted === '0')">
+                            {{ finalReportMessage }}
+                          </h3>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- // Basic form layout section end -->
+    </div>
+  </div>
+</div>

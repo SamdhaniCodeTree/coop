@@ -1,0 +1,296 @@
+<div class="app-content content">
+  <div class="content-overlay"></div>
+  <div class="content-wrapper">
+    <div class="content-header row">
+      <div class="content-header-left col-md-6 col-12">
+        <h3 class="content-header-title mb-0">Calibration Details Approve / Reject </h3>
+        <div class="row breadcrumbs-top">
+        </div>
+      </div>
+    </div>
+
+    <div class="content-body">  
+      <!-- Basic form layout section start -->
+      <section id="basic-form-layouts" style="padding: 0px 0 !important;">
+        <div class="row match-height">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <div class="form-actions text-center pull-right">
+                </div>
+              </div>
+
+               
+               
+               
+              <div class="card-content collapse show">
+                <div class="card-body"> 
+                  <div class="col-md-12 table-responsive">
+
+                    <table class="table table-bordered" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger"
+                      *ngIf="table1">
+                      <thead class="thead-dark">
+
+                        <tr>
+                          <th rowspan="2">S.No.</th>
+                          
+                          <th colspan="10">DEVICE RECEIVED DETAILS </th>
+                          <th colspan="6">CALIBRATION DETAILS </th>
+                          <th rowspan="2">ACTION</th>
+                          <th rowspan="2">REMARKS</th>
+                        </tr>
+                        <tr>
+
+                          <th>DEVICE NAME</th>
+                          <th>DEVICE SERIAL NUMBER</th>
+                          <th>RECEIVED DATE</th>
+                          <th>ACKNOWLEDGMENT NUMBER</th>
+                          <th>COMPONENT NAME</th>
+                          <th>MODEL DETAILS</th>
+                          <th>DEVICE IMAGE </th>
+                          <th>SERIAL NO IMAGE</th>
+                          <th>TAX INVOICE</th>
+                          <th>DELIVERY CHALLAN</th>
+                          <th>MAKER</th>
+                          <th>MANUFACTURE DATA</th>
+                          <th>SERIAL NUMBER</th>
+                          <th>COVER STATUS</th>
+                          <th>INSPECTION DATE</th>
+                          <th>DEVICE IMAGE</th>
+                        </tr>
+
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let obj of CalibrationDisList; let i = index">
+                          <td>{{ i + 1 }}</td>
+                          <!-- <td>{{ obj.DISTRICT_NAME}}</td>
+                          <td>{{ obj.DIVISION_NAME}}</td>
+                          <td>{{ obj.PACS_NAME}}</td> -->
+
+                          <td>{{ obj.DEVICE_NAME}}</td>
+                          <td>{{ obj.SERIAL_NUMBER}}</td>
+                          <td>{{ obj.RECEIVED_DATE}}</td>
+                          <td>{{ obj.ACK_NO}}</td>
+                          <td>{{ obj.COMPONENT_NAME}}</td>
+                          <td>{{ obj.MODEL_DETAILS}}</td>
+
+                          <td>
+                            <button type="button" class="btn btn-link btn-sm" *ngIf="
+                                    obj.IMAGE !== null &&
+                                    obj.IMAGE !== '' &&
+                                    obj.IMAGE !== undefined
+                                  " (click)="btnPhotoView(obj.IMAGE)">
+                              View
+                            </button>
+                            <span *ngIf="
+                                    obj.IMAGE === null ||
+                                    obj.IMAGE === '' ||
+                                    obj.IMAGE === undefined
+                                  ">{{ obj.IMAGE }}</span>
+                          </td>
+                          <td>
+                            <button type="button" class="btn btn-link btn-sm" *ngIf="
+                                    obj.SLNO_IMAGE !== null &&
+                                    obj.SLNO_IMAGE !== '' &&
+                                    obj.SLNO_IMAGE !== undefined
+                                  " (click)="btnPhotoView(obj.SLNO_IMAGE)">
+                              View
+                            </button>
+                            <span *ngIf="
+                                    obj.SLNO_IMAGE === null ||
+                                    obj.SLNO_IMAGE === '' ||
+                                    obj.SLNO_IMAGE === undefined
+                                  ">{{ obj.SLNO_IMAGE }}</span>
+                          </td>
+                          <td>
+
+                            <button type="button" class="btn btn-link btn-sm" *ngIf="
+                                    obj.TAX_INVOICE !== null &&
+                                    obj.TAX_INVOICE !== '' &&
+                                    obj.TAX_INVOICE !== undefined
+                                  " (click)="btnPDFView(obj.TAX_INVOICE)">
+                              View
+                            </button>
+                            <span *ngIf="
+                                    obj.TAX_INVOICE === null ||
+                                    obj.TAX_INVOICE === '' ||
+                                    obj.TAX_INVOICE === undefined
+                                  ">{{ obj.TAX_INVOICE }}</span>
+
+
+                          </td>
+                          <td>
+
+                            <button type="button" class="btn btn-link btn-sm" *ngIf="
+                                    obj.DELIVERY_CHALLAN !== null &&
+                                    obj.DELIVERY_CHALLAN !== '' &&
+                                    obj.DELIVERY_CHALLAN !== undefined
+                                  " (click)="btnPDFView(obj.DELIVERY_CHALLAN)">
+                              View
+                            </button>
+                            <span *ngIf="
+                                    obj.DELIVERY_CHALLAN === null ||
+                                    obj.DELIVERY_CHALLAN === '' ||
+                                    obj.DELIVERY_CHALLAN === undefined
+                                  ">{{ obj.DELIVERY_CHALLAN }}</span>
+
+
+                          </td>
+                          <td>{{ obj.CL_MAKER }}</td>
+                          <td>{{ obj.CL_MANUFACTURE_DATA }}</td>
+                          <td>{{ obj.CL_SERIAL_NUMBER }}</td>
+                          <td>{{ obj.CL_COVER_RECEIVED_STATUS }}</td>
+                          <td>{{ obj.CL_INSPECTION_DATE }}</td>
+
+                          <td>
+                            <button type="button" class="btn btn-link btn-sm" *ngIf="
+          obj.CL_DEVICE_IMAGE_UPD !== null &&
+          obj.CL_DEVICE_IMAGE_UPD !== '' &&
+          obj.CL_DEVICE_IMAGE_UPD !== undefined
+        " (click)="btnPhotoView(obj.CL_DEVICE_IMAGE_UPD)">
+                              View
+                            </button>
+                            <span *ngIf="
+          obj.CL_DEVICE_IMAGE_UPD === null ||
+          obj.CL_DEVICE_IMAGE_UPD === '' ||
+          obj.CL_DEVICE_IMAGE_UPD === undefined
+        ">{{ obj.CL_DEVICE_IMAGE_UPD }}</span>
+                          </td>
+
+
+
+                          <td class="d-flex justify-content-center pb-5">
+                            <a *ngIf="obj.SP_APROVED_STATUS === 0"
+                              style="cursor: pointer; text-decoration: underline; font-size: 15px;"
+                              title="Approved Records" class="text-success btn btn-sm bg-white"
+                              (click)="Approveddetails(obj)"><span><i class="fa fa-check"></i>
+                              </span></a> &nbsp;
+                            <a *ngIf="obj.SP_APROVED_STATUS === 0"
+                              style="cursor: pointer; text-decoration: underline; font-size: 15px;"
+                              title="Rejected Records" class="text-danger btn btn-sm bg-white"
+                              (click)="RejectDetails(obj)"><span><i class="fa fa-close"></i>
+                              </span></a>
+                            <span *ngIf="obj.SP_APROVED_STATUS == '1'" style="color: green;">APPROVED</span>
+                            <span *ngIf="obj.SP_APROVED_STATUS == '9'" style="color: red;">REJECTED</span>
+                          </td>
+                          <!-- <td>{{obj.APCOB_REMARKS}}</td> -->
+
+                          <td> 
+                          <span *ngIf="obj.SP_APROVED_STATUS === 0">{{obj.APCOB_REMARKS}}</span>  
+                          <span *ngIf="obj.SP_APROVED_STATUS == '1'" style="color: green;">-</span>
+                          <span *ngIf="obj.SP_APROVED_STATUS == '9'" style="color: red;">-</span>
+                          </td>
+                        </tr>
+                      </tbody>
+
+
+                     
+
+                    </table>
+                    
+                    
+
+                   
+                  </div>
+                  <div class="col-md-12 row" *ngIf="approvedStat">
+                    <div class="col-md-6"></div>
+                    <div class="col-md-1" >
+                      <button type="button"  [disabled]="submithide"  class="btn btn-sm btn-success" style="margin-right: -2415px;"
+                      (click)="Approveddetailsbycalib()">
+                      SUBMIT & DOWNLOAD
+                    </button>
+                    </div>
+                    <div class="col-md-5"></div>
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<div class="popup-modal" *ngIf="RejectshowaprovedPopup">  
+  <div class="popup-content" style="min-width: 75%">
+    <div class="popup-header">
+      <h4 class="title"> Calibration Details Reject</h4>
+      <a type="button" class="close" style="cursor: pointer">
+        <span (click)="onClear()">×</span>
+      </a>
+    </div>
+
+    <div class="popup-body" style="max-height:500px; overflow-y: auto;">
+      <div class="row justify-content-center align-items-center">
+
+        <div class="col-md-12 row">
+          <div class="col-md-2"></div>
+          <div class="col-md-8">
+            <label for="stockpoint">Remarks <span style="color: red">*</span></label>
+            <textarea type="text" class="form-control" [(ngModel)]="Remrks"></textarea>
+          </div>
+        </div>
+        <br>
+        <div class="row">
+        </div>
+        <div class="popup-footer justify-content-center">
+          <button type="button" class="btn btn-sm btn-success text-white" (click)="RejectbtnDetails()">
+            SUBMIT
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="popup-modal" *ngIf="showapprovedPopup">
+  <div class="popup-content" style="min-width: 75%">
+    <div class="popup-header">
+      <h4 class="title"> Calibration Details </h4>
+      <a type="button" class="close" style="cursor: pointer">
+        <span (click)="onClear1()">×</span>
+      </a>
+    </div>
+
+    <div class="popup-body" style="max-height:500px; overflow-y: auto;">
+      <div class="row justify-content-center align-items-center">
+
+
+        <div class="col-md-12 row">
+          <div class="col-md-2"><button type="button" class="btn btn-info btn-sm" (click)="btnPDF()">
+              Download PDF File
+            </button> </div>
+          <!-- <div class="col-md-3">
+            <div class="form-group">
+              <label for="giftAndDeedPhotoUpload">PDF file Upload <span style="color: red">*</span>
+              </label>
+              <input type="file" class="form-control p-0" id="giftAndDeedPhotoUpload" (change)="onpdffileChange($event)"
+                accept="pdf/*" autocomplete="off" />
+            </div>
+          </div> -->
+
+
+
+
+        </div>
+
+
+        <br>
+        <div class="row">
+
+
+
+
+
+        </div>
+        <!-- <div class="popup-footer justify-content-center">
+          <button type="button"   class="btn btn-sm btn-success text-white" (click)="Certificateupload()">
+            SUBMIT
+          </button>
+        </div> -->
+      </div>
+    </div>
+  </div>
+</div>

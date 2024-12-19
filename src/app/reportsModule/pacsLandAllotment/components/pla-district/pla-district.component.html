@@ -1,0 +1,142 @@
+<div class="row">
+  <div class="col-md-12">
+    <label for="toDate">
+      DISTRICT :
+      <span class="text-success">
+        <b> {{ districtName }}</b>
+      </span>
+    </label>
+  </div>
+  <div class="col-md-12">
+    <button
+      type="button"
+      class="btn btn-sm btn-success pull-right"
+      (click)="btnExcelDownload()"
+    >
+      <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+      DOWNLOAD EXCEL
+    </button>
+    <!-- <button
+        type="button"
+        class="btn btn-sm btn-danger pull-right"
+        (click)="btnPDF()"
+      >
+        <i
+          class="fa fa-file-pdf-o mr-2"
+          aria-hidden="true"
+        ></i>
+        DOWNLOAD PDF
+      </button> -->
+  </div>
+  <div
+    class="col-md-12 table-responsive"
+    [hidden]="districtLevelDetails.length < 1"
+  >
+    <table
+      class="table table-bordered"
+      datatable
+      [dtOptions]="dtOptions"
+      [dtTrigger]="dtTrigger"
+    >
+      <thead class="thead-dark">
+        
+        <tr>
+          <th>S.No.</th>
+          <th>MANDAL NAME</th>
+          <th>RBKS</th>
+          <th>SUBMITTED <br>RBKS</th>
+          <th>NOT<br> SUBMITTED <br>RBKS</th>
+          <th>LAND <br>ALLOTMENT<br> COMPLETED</th>
+          <th>LAND <br>SUBMITTED<br> VILLAGES</th>
+          <th>PERCENTAGE<br> COMPLETED</th>
+          <th>LAND <br>ALLOTMENT <br>NOT COMPLETED</th>
+          <th>PERCENTAGE<br> NOT<br> COMPLETED</th>
+          <th>LAND <br>HANDOVER<br> COMPLETED</th>
+          <th>LAND<br> HANDOVER <br>NOT COMPLETED</th>
+        </tr>
+      </thead>
+      <tbody *ngIf="districtLevelDetails?.length > 0">
+        <tr *ngFor="let obj of districtLevelDetails; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>
+            <a
+              *ngIf="obj.TOTAL_SUBMIT_RBKS !== 0"
+              style="cursor: pointer; text-decoration: underline"
+              class="text-primary"
+              (click)="btnGetDetails(obj)"
+              ><b>{{ obj.MANDAL_NAME }}</b></a
+            >
+            <span *ngIf="obj.TOTAL_SUBMIT_RBKS === 0">{{
+              obj.MANDAL_NAME
+            }}</span>
+          </td>
+          <td>{{ obj.TOTAL_RBKS }}</td>
+          <td>
+            {{ obj.TOTAL_SUBMIT_RBKS }}
+          </td>
+          <td>
+            {{ obj.TOTAL_NOT_SUBMIT_RBKS }}
+          </td>
+          <td>
+            {{ obj.TOTAL_LAND_SUBMITTED }}
+          </td>
+          <td>
+            {{ obj.TOTAL_SUBMIT_VILLAGES }}
+          </td>
+          <td>{{ obj.PERCENTAGE_COMPLETED }} %</td>
+          <td>
+            {{ obj.TOTAL_LAND_NOT_SUBMITTED }}
+          </td>
+          <td>{{ obj.PERCENTAGE_NOT_COMPLETED }} %</td>
+          <td>
+            {{ obj.TOTAL_LAND_HANDOVER_SUBMIT }}
+          </td>
+          <td>
+            {{ obj.TOTAL_LAND_HANDOVER_NOT_SUBMIT }}
+          </td>
+        </tr>
+      </tbody>
+      <tbody *ngIf="districtLevelDetails?.length > 0">
+        <tr>
+          <td>--</td>
+          <td>
+            <b>TOTAL</b>
+          </td>
+          <td>
+            {{ reportTotals.TOTAL_RBKS }}
+          </td>
+          <td>
+            {{ reportTotals.TOTAL_SUBMIT_RBKS }}
+          </td>
+          <td>
+            {{ reportTotals.TOTAL_NOT_SUBMIT_RBKS }}
+          </td>
+          <td>
+            {{ reportTotals.TOTAL_LAND_SUBMITTED }}
+          </td>
+          <td>
+            {{ reportTotals.TOTAL_SUBMIT_VILLAGES }}
+          </td>
+          <td>{{ reportTotals.PERCENTAGE_COMPLETED }} %</td>
+          <td>
+            {{ reportTotals.TOTAL_LAND_NOT_SUBMITTED }}
+          </td>
+          <td>{{ reportTotals.PERCENTAGE_NOT_COMPLETED }} %</td>
+          <td>
+            {{ reportTotals.TOTAL_LAND_HANDOVER_SUBMIT }}
+          </td>
+          <td>
+            {{ reportTotals.TOTAL_LAND_HANDOVER_NOT_SUBMIT }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div
+    class="col-md-12 table-responsive"
+    [hidden]="districtLevelDetails?.length > 1"
+  >
+    <h6 class="text-center">No Data Available</h6>
+  </div>
+</div>

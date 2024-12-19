@@ -1,0 +1,159 @@
+<div class="app-content content">
+  <div class="content-overlay"></div>
+  <div class="content-wrapper">
+    <div class="content-header row">
+      <div class="content-header-left col-md-6 col-12">
+        <h3 class="content-header-title mb-0">PACS Registration</h3>
+        <div class="row breadcrumbs-top">
+          <div class="breadcrumb-wrapper col-12">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item">
+                <a class="custom-cursor" routerLink="/dlco">Menu</a>
+              </li>
+              <li class="breadcrumb-item active">
+                <a class="custom-cursor" routerLink="/dlco/pacsCreation"
+                  >PACS Creation</a
+                >
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="content-body">
+      <!-- Basic form layout section start -->
+      <section id="basic-form-layouts">
+        <div class="row match-height">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <!--<h4 class="card-title" id="basic-layout-form">Input Fields</h4>
+                 <a class="heading-elements-toggle"
+                  ><i class="fa fa-ellipsis-v font-medium-3"></i
+                ></a>
+                <div class="heading-elements">
+                  <ul class="list-inline mb-0">
+                    <li>
+                      <a data-action="collapse"
+                        ><i class="feather icon-minus"></i
+                      ></a>
+                    </li>
+                    <li>
+                      <a data-action="reload"
+                        ><i class="feather icon-rotate-cw"></i
+                      ></a>
+                    </li>
+                    <li>
+                      <a data-action="expand"
+                        ><i class="feather icon-maximize"></i
+                      ></a>
+                    </li>
+                    <li>
+                      <a data-action="close"><i class="feather icon-x"></i></a>
+                    </li>
+                  </ul>
+                </div> -->
+              </div>
+              <div class="card-content collapse show">
+                <div class="card-body">
+                  <div class="form">
+                    <div class="form-body">
+                      <h4 class="form-section">
+                        <i class="feather icon-map-pin"></i> PACS Registration
+                        Form
+                      </h4>
+                      <div class="row">
+                        <div class="col-md-4">
+                          <div class="form-group">
+                            <label for="mandalId"
+                              >Mandal <span class="text-danger">*</span></label
+                            >
+
+                            <select
+                              id="mandalId"
+                              name="mandalId"
+                              class="form-control"
+                              [(ngModel)]="pacReq.mandalId"
+                              (change)="loadVillageList()"
+                            >
+                              <option value="">-- SELECT MANDAL --</option>
+                              <option
+                                *ngFor="let obj of mandalList"
+                                value="{{ obj.MANDAL_CODE }}"
+                              >
+                                {{ obj.MANDAL_NAME }}
+                              </option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="form-group">
+                            <label for="villageId"
+                              >Village <span class="text-danger">*</span></label
+                            >
+
+                            <app-multi-select-dropdown
+                              PlaceHolder="Please Select Villages"
+                              [dropdownList]="villageList"
+                              [(selectedItems)]="selectedItems"
+                              [idField]="'VILLAGE_CODE'"
+                              [textField]="'VILLAGE_NAME'"
+                            >
+                            </app-multi-select-dropdown>
+
+                            <!-- <select
+                              id="villageId"
+                              name="villageId"
+                              class="form-control"
+                              [(ngModel)]="pacReq.villageId"
+                            >
+                              <option value="">-- SELECT VILLAGES --</option>
+                              <option
+                                *ngFor="let obj of villageList"
+                                value="{{ obj.VILLAGE_CODE }}"
+                              >
+                                {{ obj.VILLAGE_NAME }}
+                              </option>
+                            </select> -->
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="form-group">
+                            <label for="pacName">Name of the PAC</label>
+                            <input
+                              type="text"
+                              id="pacName"
+                              class="form-control"
+                              placeholder="PAC Name"
+                              name="pacName"
+                              [(ngModel)]="pacReq.pacName"
+                              autocomplete="off"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="form-actions text-center">
+                      <!-- <button type="reset" class="btn btn-warning mr-1">
+                        <i class="feather icon-x"></i> Cancel
+                      </button> -->
+                      <button
+                        type="submit"
+                        class="btn btn-success"
+                        (click)="btnSubmit()"
+                      >
+                        <i class="fa fa-check-square-o"></i> Submit
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- // Basic form layout section end -->
+    </div>
+  </div>
+</div>

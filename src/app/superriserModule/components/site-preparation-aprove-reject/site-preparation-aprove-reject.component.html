@@ -1,0 +1,351 @@
+<div class="app-content content">
+    <div class="content-overlay"></div>
+    <div class="content-wrapper">
+      <div class="content-header row">
+        <div class="content-header-left col-md-6 col-12">
+          <h3 class="content-header-title mb-0">SITE PREPARATION DETAILS REPORT</h3>
+          <div class="row breadcrumbs-top">
+            <!-- <div class="breadcrumb-wrapper col-12">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item">
+                    <a class="custom-cursor" routerLink="/dlco">Menu</a>
+                  </li>
+                  <li class="breadcrumb-item active">
+                    <a class="custom-cursor" routerLink="/dlco/SitePreParationDetails"> Calibration Details Verification</a>
+                  </li>
+                </ol>
+              </div>-->
+          </div>
+        </div>
+      </div>
+  
+      <div class="content-body">
+  
+  
+        <!-- Basic form layout section start -->
+        <section id="basic-form-layouts" style="padding: 0px 0 !important;">
+          <div class="row match-height">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header">
+                  <div class="form-actions text-center pull-right">
+                    <!-- <button type="reset" class="btn btn-warning mr-1">
+                                <i class="feather icon-x"></i> Cancel
+                              </button> 
+                      <button type="submit" class="btn btn-success" (click)="showsection()">
+                        <i class="fa fa-check-square-o"></i> (+)Add Employee
+                      </button> -->
+                  </div>
+                </div>
+   
+                 
+  
+                <div class="card-content collapse show">
+                  <div class="card-body">
+                     
+                    <div class="col-md-12 table-responsive">
+  
+                      <table class="table table-bordered">
+                        <thead class="thead-dark">
+  
+                          <tr>
+                            <th>S.No.</th>
+                            <th>DISTRICT NAME</th>
+                            <th>DIVISION NAME</th>
+                            <th>PACs NAME</th>
+                            <th>BUILDING </th>
+                            <th>INTERIOR PHOTO </th>
+                            <th>EXTERIOR FRONT<br> SIDE PHOTO</th>
+                            <th>EXTERIOR BACK <br> SIDE PHOTO</th>
+                            <th>EXTERIOR RIGHT<br> SIDE PHOTO</th>
+                            <th>EXTERIOR LEFT<br> SIDE PHOTO</th>
+                            <th>AVAILABILITY OF<br> POWER SUPPLY</th>
+                            <th>POWER SUPPLY<br> PHASE</th>
+                            <th>INTERNET <br>CONNECTIVITY DEVICE </th>
+                            <th>DONGLE/MODEM BAND <br> WIDTH SPEED  </th>                             
+                            <th>DONGLE/MODEM  <br> PHOTO  </th>
+                            <th>AVAILABILITY OF   <br>  FURNITURE  </th>
+                            <th>COMPUTER     <br>  TABLES  </th>
+                            <th>COMPUTER TABLES     <br>  PHOTO  </th>
+                            <th>CHAIRS </th>
+                            <th>CHAIRS<br> PHOTO</th>
+                            <th>EARTHING IS<br> AVAILABLE </th>
+                            <th>EARTHING <br> PHOTO </th>
+                            <th>MCBS & OTHER<br> MODULAR BOXES    </th>
+                            <th>MCBS & OTHER<br> MODULAR BOXES<br>PHOTO    </th>
+                            <th>WIRING & CONCEALING<br> IS COMPLETED       </th>
+                            <th>LATITUDE        </th>
+                            <th>LONGITUDE     </th>                           
+                            <!-- <th>ACTION     </th>                            -->
+                            </tr>
+                           
+                           
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let obj of SitePrepartionDetailsList; let i = index">
+                            <td>{{ i + 1 }}</td>
+                            <td>{{ obj.DISTRICT_NAME}}</td>
+                            <td>{{ obj.DIVISION_NAME}}</td>
+                            <td>{{ obj.PACS_NAME}}</td>
+                            
+                            <td>{{ obj.BUILDING}}</td>
+                            <td>
+                                <button type="button" class="btn btn-link btn-sm" *ngIf="
+                                        obj.BUILDING_INTERIORIMAGE !== null &&
+                                        obj.BUILDING_INTERIORIMAGE !== '' &&
+                                        obj.BUILDING_INTERIORIMAGE !== undefined
+                                      " (click)="btnPhotoView(obj.BUILDING_INTERIORIMAGE)">
+                                  View
+                                </button>
+                                <span *ngIf="
+                                        obj.BUILDING_INTERIORIMAGE === null ||
+                                        obj.BUILDING_INTERIORIMAGE === '' ||
+                                        obj.BUILDING_INTERIORIMAGE === undefined
+                                      ">{{ obj.BUILDING_INTERIORIMAGE }}</span>
+                              </td>
+                              <td>
+                                <button type="button" class="btn btn-link btn-sm" *ngIf="
+                                        obj.BUILDING_EXTERIOR_FRONTIMAGE !== null &&
+                                        obj.BUILDING_EXTERIOR_FRONTIMAGE !== '' &&
+                                        obj.BUILDING_EXTERIOR_FRONTIMAGE !== undefined
+                                      " (click)="btnPhotoView(obj.BUILDING_EXTERIOR_FRONTIMAGE)">
+                                  View
+                                </button>
+                                <span *ngIf="
+                                        obj.BUILDING_EXTERIOR_FRONTIMAGE === null ||
+                                        obj.BUILDING_EXTERIOR_FRONTIMAGE === '' ||
+                                        obj.BUILDING_EXTERIOR_FRONTIMAGE === undefined
+                                      ">{{ obj.BUILDING_EXTERIOR_FRONTIMAGE }}</span>
+                              </td>
+
+                              <td>
+                                <button type="button" class="btn btn-link btn-sm" *ngIf="
+                                        obj.BUILDING_EXTERIOR_BACKIMAGE !== null &&
+                                        obj.BUILDING_EXTERIOR_BACKIMAGE !== '' &&
+                                        obj.BUILDING_EXTERIOR_BACKIMAGE !== undefined
+                                      " (click)="btnPhotoView(obj.BUILDING_EXTERIOR_BACKIMAGE)">
+                                  View
+                                </button>
+                                <span *ngIf="
+                                        obj.BUILDING_EXTERIOR_BACKIMAGE === null ||
+                                        obj.BUILDING_EXTERIOR_BACKIMAGE === '' ||
+                                        obj.BUILDING_EXTERIOR_BACKIMAGE === undefined
+                                      ">{{ obj.BUILDING_EXTERIOR_BACKIMAGE }}</span>
+                              </td>
+
+                              <td>
+                                <button type="button" class="btn btn-link btn-sm" *ngIf="
+                                        obj.BUILDING_RIGHTSIDE_IMAGE !== null &&
+                                        obj.BUILDING_RIGHTSIDE_IMAGE !== '' &&
+                                        obj.BUILDING_RIGHTSIDE_IMAGE !== undefined
+                                      " (click)="btnPhotoView(obj.BUILDING_RIGHTSIDE_IMAGE)">
+                                  View
+                                </button>
+                                <span *ngIf="
+                                        obj.BUILDING_RIGHTSIDE_IMAGE === null ||
+                                        obj.BUILDING_RIGHTSIDE_IMAGE === '' ||
+                                        obj.BUILDING_RIGHTSIDE_IMAGE === undefined
+                                      ">{{ obj.BUILDING_RIGHTSIDE_IMAGE }}</span>
+                              </td>
+
+                            <td>
+                                <button type="button" class="btn btn-link btn-sm" *ngIf="
+                                        obj.BUILDINGLEFTSIDEIMAGE !== null &&
+                                        obj.BUILDINGLEFTSIDEIMAGE !== '' &&
+                                        obj.BUILDINGLEFTSIDEIMAGE !== undefined
+                                      " (click)="btnPhotoView(obj.BUILDINGLEFTSIDEIMAGE)">
+                                  View
+                                </button>
+                                <span *ngIf="
+                                        obj.BUILDINGLEFTSIDEIMAGE === null ||
+                                        obj.BUILDINGLEFTSIDEIMAGE === '' ||
+                                        obj.BUILDINGLEFTSIDEIMAGE === undefined
+                                      ">{{ obj.BUILDINGLEFTSIDEIMAGE }}</span>
+                              </td>  
+                            
+                            <td>{{ obj.AVAILABILITY_POWERSUPPLY}}</td>
+                            <td>{{ obj.POWER_SUPPLY}}</td>
+                            <td>{{ obj.INTERNET_DEVICE}}</td>
+                            <td>{{ obj.INTERNET_CONNECTIVITY}}</td>                           
+                                                    
+                            
+                            <td>
+                                <button type="button" class="btn btn-link btn-sm" *ngIf="
+                                        obj.INTERNET_IMAGE !== null &&
+                                        obj.INTERNET_IMAGE !== '' &&
+                                        obj.INTERNET_IMAGE !== undefined
+                                      " (click)="btnPhotoView(obj.INTERNET_IMAGE)">
+                                  View
+                                </button>
+                                <span *ngIf="
+                                        obj.INTERNET_IMAGE === null ||
+                                        obj.INTERNET_IMAGE === '' ||
+                                        obj.INTERNET_IMAGE === undefined
+                                      ">{{ obj.INTERNET_IMAGE }}</span>
+                              </td> 
+
+                              <td>{{ obj.AVAILABILITYOFFURNITURE}}</td>  
+                             
+                            <th>{{ obj.COMPUTERTABLES }}</th>
+  <td>
+  
+    <button type="button" class="btn btn-link btn-sm" *ngIf="
+            obj.COMPUTERTABLESIMAGE !== null &&
+            obj.COMPUTERTABLESIMAGE !== '' &&
+            obj.COMPUTERTABLESIMAGE !== undefined
+          " (click)="btnPhotoView(obj.COMPUTERTABLESIMAGE)">
+      View
+    </button>
+    <span *ngIf="
+            obj.COMPUTERTABLESIMAGE === null ||
+            obj.COMPUTERTABLESIMAGE === '' ||
+            obj.COMPUTERTABLESIMAGE === undefined
+          ">{{ obj.COMPUTERTABLESIMAGE }}</span>
+
+
+  </td>
+  <th>{{ obj.CHAIRS }}</th>
+  <td>
+  
+    <button type="button" class="btn btn-link btn-sm" *ngIf="
+            obj.CHAIRSIMAGE !== null &&
+            obj.CHAIRSIMAGE !== '' &&
+            obj.CHAIRSIMAGE !== undefined
+          " (click)="btnPhotoView(obj.CHAIRSIMAGE)">
+      View
+    </button>
+    <span *ngIf="
+            obj.CHAIRSIMAGE === null ||
+            obj.CHAIRSIMAGE === '' ||
+            obj.CHAIRSIMAGE === undefined
+          ">{{ obj.CHAIRSIMAGE }}</span>
+
+
+  </td>
+
+  <th>{{ obj.ELECTRICIAN_TYPE }}</th>
+  <td>
+  
+    
+    <button type="button" class="btn btn-link btn-sm" *ngIf="
+            obj.EARTHING_IMAGE !== null &&
+            obj.EARTHING_IMAGE !== '' &&
+            obj.EARTHING_IMAGE !== undefined
+          " (click)="btnPhotoView(obj.EARTHING_IMAGE)">
+      View
+    </button>
+    <span *ngIf="
+            obj.EARTHING_IMAGE === null ||
+            obj.EARTHING_IMAGE === '' ||
+            obj.EARTHING_IMAGE === undefined
+          ">{{ obj.EARTHING_IMAGE }}</span>
+
+
+  </td>
+  <th>{{ obj.WIRING_CONCEALING_STAUS }}</th>
+
+  <td>
+  
+    
+    <button type="button" class="btn btn-link btn-sm" *ngIf="
+            obj.MCB_IMAGE !== null &&
+            obj.MCB_IMAGE !== '' &&
+            obj.MCB_IMAGE !== undefined
+          " (click)="btnPhotoView(obj.MCB_IMAGE)">
+      View
+    </button>
+    <span *ngIf="
+            obj.MCB_IMAGE === null ||
+            obj.MCB_IMAGE === '' ||
+            obj.MCB_IMAGE === undefined
+          ">{{ obj.MCB_IMAGE }}</span>
+
+
+  </td>
+ 
+ 
+  <td>{{ obj.WIRING_CONCEALING_STAUS }}</td>
+  <td>{{ obj.LATITUDE }}</td>
+  <td>{{ obj.LONGITUDE }}</td>
+  
+                             
+  <!-- <td class="d-flex justify-content-center pb-5">
+    <a *ngIf="obj.SITE_STATUS === 0"
+      style="cursor: pointer; text-decoration: underline; font-size: 15px;"
+      title="Approved Records" class="text-success btn btn-sm bg-white"
+      (click)="Approveddetails(obj)"><span><i class="fa fa-check"></i>
+      </span></a> &nbsp;
+    <a *ngIf="obj.SITE_STATUS === 0"
+      style="cursor: pointer; text-decoration: underline; font-size: 15px;"
+      title="Rejected Records" class="text-danger btn btn-sm bg-white"
+      (click)="BtnRejectDetails(obj)"><span><i class="fa fa-close"></i>
+      </span></a>
+    <span *ngIf="obj.SITE_STATUS == '1'" style="color: green;"><b>APPROVED </b></span>
+    <span *ngIf="obj.SITE_STATUS == '9'" style="color: red;"><b>REJECTED</b></span>
+  </td>
+  
+                            <td *ngIf="remarksupd">{{Remrks}}</td> -->
+  
+                          </tr>
+                        </tbody>
+  
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+  
+  
+  
+      </div>
+    </div>
+  </div>
+  
+
+  
+   
+
+  <div class="popup-modal" *ngIf="RejectshowaprovedPopup">
+    <div class="popup-content" style="min-width: 75%">
+      <div class="popup-header">
+        <h4 class="title"> Site Preparation Details Reject</h4>
+        <a type="button" class="close" style="cursor: pointer">
+          <span (click)="onClear()">×</span>
+        </a>
+      </div>
+  
+      <div class="popup-body" style="max-height:500px; overflow-y: auto;">
+        <div class="row justify-content-center align-items-center">
+  
+          <div class="col-md-12 row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+              <label for="stockpoint">Remarks <span style="color: red">*</span></label>
+              <!-- <input type="text" class="form-control" [(ngModel)]="SiteRemrks"> -->
+              <textarea type="text" class="form-control" id="Remarksid" maxlength="200" [(ngModel)]="Remarks"></textarea>
+            </div>
+  
+  
+          </div>
+  
+  
+          <br>
+          <div class="row">
+  
+  
+  
+  
+  
+          </div>
+          <div class="popup-footer justify-content-center">
+            <button type="button" class="btn btn-sm btn-success text-white" (click)="RegbtnSubmitDetails()">
+              SUBMIT
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

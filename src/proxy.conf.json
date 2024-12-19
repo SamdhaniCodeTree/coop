@@ -1,0 +1,8 @@
+{
+  "/copsBackend": {
+      "target": "https://apicooperation.ap.gov.in",
+      "secure": false,
+      "changeOrigin":true,
+      "logLevel": "debug"
+  }
+}

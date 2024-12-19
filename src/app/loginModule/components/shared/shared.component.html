@@ -1,0 +1,308 @@
+
+<div class="app-content content">
+    <div class="content-overlay"></div>
+  <div class="content-wrapper" style="background-image: linear-gradient(to left, #42481f, #a0a21d, #006f93, #18ac94, #233a2c);">
+    <div class="content-header row">
+        <div class="content-header-left col-md-6 col-12">
+          <h3 class="content-header-title mb-0" style="color:white;">Application Registration </h3>
+          <div class="row breadcrumbs-top">
+            <div class="breadcrumb-wrapper col-12">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                  <a class="custom-cursor" routerLink="/" style="color:white;"><i class="fa fa-home"> </i> Home</a>
+                </li>
+                 
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-body">
+        <section id="basic-form-layouts">
+            <div class="row match-height">
+              <div class="col-md-12">
+                <div class="card">
+                  <div class="card-content collapse show">
+                    <div class="card-body">
+                        <div class="form">
+                            <div class="form-body ">
+                                <h4 class="form-section header">&nbsp; &nbsp;
+                                    <i class="feather icon-map-pin" style="color: blue;"></i><b style="color: blue;">Applicant Registration
+                                    Form</b>
+                                  </h4>
+                                   
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+
+
+                      <section id="basic-form-layouts" style="padding:0px;">
+                        <div class="row match-height">
+                          <div class="col-md-12">
+                            <div class="card">
+                              <div class="card-content collapse show">
+                                <div class="card-body">
+                                    <div class="form">
+                                        <div class="form-body">
+                                                                                          <div class="row">
+                                                 
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label for="natureOfUnit">Title <span class="text-danger">*</span></label>
+                                                        <select id="Rpttype"
+                                                        class="form-control"
+                                                        [(ngModel)]="RegistercoopSocieties.user_type"> 
+                                                                                                                
+                                                        <option value="">-- select Title--</option>
+                                                        <option value="1">Sri</option>
+                                                        <option value="2">Smt</option>
+                                                        <option value="2">Kum</option>
+                                                         </select>
+                                                    </div>
+                                                </div>
+        
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                      <label>Name </label>
+                                                      <input [(ngModel)]="RegistercoopSocieties.Applicant_name"
+                                                        type="text"
+                                                        id="name" 
+                                                        class="form-control"
+                                                        placeholder="Enter Name"
+                                                        name="name"
+                                                        autocomplete="off" lettersOnly
+                                                      />
+                                                    </div>
+                                                  </div>
+        
+                                                  <div class="col-md-3">
+                                                    <div class="form-group">
+                                                      <label >SurName </label>
+                                                      <input [(ngModel)]="RegistercoopSocieties.Applicant_surname"
+                                                        type="text"
+                                                        id="Surname"
+                                                        class="form-control"
+                                                        placeholder="Enter SurName"
+                                                        name="Surname"
+                                                        autocomplete="off" lettersOnly
+                                                      />
+                                                    </div>
+                                                  </div>
+                                                  <div class="col-md-3">
+                                                    <div class="form-group">
+                                                      <label>S/o, W/o, D/o, C/o</label>
+                                                      <input [(ngModel)]="RegistercoopSocieties.wellvesher"
+                                                        type="text"
+                                                        id="name"
+                                                        class="form-control"
+                                                        placeholder="Enter Name"
+                                                        name="name"
+                                                        autocomplete="off" lettersOnly
+                                                      />
+                                                    </div>
+                                                  </div>
+                                                  <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label for="natureOfUnit">Gender <span class="text-danger">*</span></label>
+                                                        <select id="Rpttype"
+                                                        class="form-control"
+                                                        [(ngModel)]="RegistercoopSocieties.Applicant_Gender"
+                                                        >
+                                                        
+                                                        <option value="">-- Select Gender --</option>
+                                                        <option value="1">Male</option>
+                                                        <option value="2">Female</option>
+                                                        <option value="3">Transgender</option>
+                                                         </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                      <label>UID(Aadhar No)</label>
+                                                      <input [(ngModel)]="RegistercoopSocieties.uidNum"
+                                                        id="uidNum"
+                                                        type="text"
+                                                        class="form-control"                                                         
+                                                        placeholder="Enter Aadharnumber"
+                                                        maxlength="12"
+                                                        autocomplete="off"
+                                                        NumbersOnly
+                                                        />
+                                                    </div>
+                                                  </div>
+                                                  <div class="col-md-3">
+                                                      
+                                                    <div class="form-group">
+                                                        <label for="'age">
+                                                          Date Of Birth
+                                                        </label>
+                                                     <input 
+                                                     type="date"
+                                                     class="form-control p-0"
+                                                      [(ngModel)]="RegistercoopSocieties.applicat_age"
+                                                      (change)="ageCalculator()"/>
+                                                      
+            
+                                                  </div>                                                
+                                                  
+                                               </div>
+                                               <div class="col-md-1">
+                                                <div class="form-group">
+                                                <label></label><br>
+                                              <label for="'age" *ngIf="display_age" style="    font-size: 20px;                                             margin: 6px;
+                                              float: right;">Age :<label style="color:green;"><b>{{showAge}}</b></label></label>
+                                                 
+                                            
+                                          </div>
+                                               </div>
+
+        
+                                                 
+                                              </div>
+                                              <div class="row">
+                                              
+                                              </div>
+
+                                              <div class="row">
+                                               
+                                                  <div class="col-md-3">
+                                                    <div class="form-group">
+                                                      <label for="Adharupload"
+                                                        > Mobile Number 
+                                                        <span style="color: red">*</span>
+                                                      </label>
+                                                      <input
+                                                        type="text" [(ngModel)]="RegistercoopSocieties.mobileno"
+                                                        class="form-control p-0"
+                                                        id="Adharupload"
+                                                        autocomplete="off" NumbersOnly maxlength="10"
+                                                      />
+                                                    </div>
+                                                  </div>
+                                                  <div class="col-md-3" style="top:22px;">
+                                                    <div class="form-group">
+                                                      <label for="Adharupload"
+                                                        >  
+                                                      </label>
+                                                      <label></label>
+                                                      <button 
+                                                      type="submit"
+                                                      class="btn btn-success"
+                                                      (click)="btnsendotp()"
+                                                    >
+                                                     Send
+                                                    </button>
+                                                    </div>
+                                                  </div>
+
+        
+                                                  
+                                              </div>
+                                              <div class="row" *ngIf="verifyotpdiv">
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                      <label for="mobileNumber"
+                                                        >Enter OTP
+                                                        <span class="text-danger">*</span></label
+                                                      >
+                                                      <input
+                                                        type="text"
+                                                        class="form-control"
+                                                        id="mobileNumber"
+                                                        placeholder="Enter OTP number"
+                                                        maxlength="6"
+                                                        autocomplete="off" NumbersOnly
+                                                         
+                                                      />
+                                                    </div>
+                                                  </div>
+              
+                                                  <div class="col-md-3" style="top:22px;">
+                                                    <div class="form-group">
+                                                      <label for="Adharupload"
+                                                        >  
+                                                      </label>
+                                                      <label></label>
+                                                      <button style="top:22px;"
+                                                      type="submit" (click)="btnotpverify()"
+                                                      class="btn btn-info">
+                                                      
+                                                    
+                                                     Verify
+                                                    </button>&nbsp; 
+                                                    <button style="top:22px;"
+                                                      type="submit"
+                                                      class="btn btn-danger"
+                                                      (click)="btnResendotp()"
+                                                    >
+                                                     Re-send
+                                                    </button>
+                                                    </div>
+              
+                                                  
+              
+                                                   
+                                              </div>
+                                              
+            
+            
+                                        </div>
+                                        <hr>
+
+                                        <div class="row" *ngIf="submitdiv">
+                                          <div class="col-md-7">
+                                            <div class="form-group">
+                                        <div class="form-actions text-right">
+                                          <button
+                                            type="submit"
+                                            class="btn btn-success"
+                                            (click)="btnsubmit()"
+                                          >
+                                           Submit
+                                          </button> &nbsp;  
+                                          <button
+                                      type="Next"
+                                      class="btn btn-danger"
+                                       
+                                    >
+                                    Close
+                                    </button>
+                                        </div>
+                                      </div>
+                                    </div>
+    
+                                    <div class="col-md-3">
+                                      <div class="form-group">
+                                  <div class="form-actions text-right">
+                                    
+                                  </div>
+                                </div>
+                              </div>
+                            </div> 
+                                              
+            
+            
+                                        </div>
+                                    </div>
+                                </div>    
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    
+
+                </div>
+                </div>
+            </div>
+        </section>
+
+            
+    </div>
+  </div>
+</div>
+
+

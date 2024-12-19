@@ -1,0 +1,250 @@
+<div class="app-content content">
+    <div class="content-overlay"></div>
+    <div class="content-wrapper">
+      <div class="content-header row">
+        <div class="content-header-left col-md-6 col-12">
+          <h3 class="content-header-title mb-0">Calibration Internet Details</h3>
+          <div class="row breadcrumbs-top">
+            <div class="breadcrumb-wrapper col-12">
+  
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="content-body">
+        <section id="basic-form-layouts">
+          <div class="row match-height">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header"></div>
+                <div class="card-content collapse show">
+                  <div class="card-body">
+                    <div class="form">
+                      <div class="form-body">
+                        <h4 class="form-section">
+                          <i class="feather icon-user"></i>Calibration Internet Details
+                        </h4>
+                       
+  
+                        <div class="row" *ngIf="TeckDetailsshow">
+                           
+                          <div class="col-md-12 table-responsive" [hidden]="DEVICEDETAILSLIST.length < 1">
+                            <table class="table table-bordered">
+                              <thead class="thead-dark">
+                                <tr>
+                                  <th>S.No</th>
+                                  <th>DISTRICT NAME</th>
+                                            <th>MANDAL NAME</th>
+                                            <th>PACS NAME</th>
+                                            <th>PACS CODE</th>
+                                            <th>DEVICE NAME</th>
+                                            <th>MAKER</th>
+                                            <th>SERIAL NUMBER</th>
+                                            <th>MANUFACTURE DATE</th>
+                                            <th>CEO FILE PATH</th>
+  
+                                  <th>
+                                    <input type="checkbox" (change)="selectAll($event)" title="Select Check Box"
+                                      [checked]="allSelected"><span>Select/Un Select</span>
+                                  </th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr *ngFor="let obj of DEVICEDETAILSLIST; let i = index">
+                                  <td>{{ i + 1 }}</td>
+                                  <td style="font-size: 14px;"><b>{{ obj.DISTRICT_NAME }}</b></td> 
+                                            <td style="font-size: 14px;"><b>{{ obj.MANDAL_NAME }}</b></td> 
+                                            <td style="font-size: 14px;"><b>{{ obj.PACS_NAME }}</b></td>
+                                            <td style="font-size: 14px;"><b>{{ obj.PACS_CODE }}</b></td>
+                                            <td style="font-size: 14px;"><b>{{ obj.DEVICE_NAME }}</b></td>
+                                            <td style="font-size: 14px;"><b>{{ obj.COMPONENT_NAME }}</b></td>
+                                            <td style="font-size: 14px;"><b>{{ obj.CL_SERIAL_NUMBER }}</b></td>
+                                            <td style="font-size: 14px;"><b>{{ obj.CL_MANUFACTURE_DATA }}</b></td>
+                                            <!-- <td style="font-size: 14px;"><b>{{ obj.INTERNET_DOC_PATH }}</b></td> -->
+
+                                            <td> 
+                                              <button 
+                                              type="button"
+                                               *ngIf="obj.INTERNET_DOC_PATH != null"
+                                                class="btn btn-link btn-sm" 
+                                                (click)="btnPdfView(obj.INTERNET_DOC_PATH)" style="font-size: 12px;">  
+                                                  View
+                                              </button>
+                                              <span *ngIf="obj.INTERNET_DOC_PATH == null">NA </span> 
+                                          </td>  
+  
+                                  <td>
+                                    <input type="checkbox" [(ngModel)]="obj.selected" name="selected-{{ i }}"
+                                      (change)="updateSubmitVisibility()">
+                                  </td>
+                                </tr>
+                              </tbody>
+  
+                            </table>
+                            <div class="row">
+                              <div class="col-md-5"></div>
+                              <div class="col-md-2">
+                                <h5>SELECTED COUNT : <span class="text-success">{{ selectedCount |
+                                    number:'2.0-2':'en-IN'}} </span></h5>
+                              </div>
+                              <div class="col-md-3">
+                                <!-- <h5>TOTAL AMOUNT :
+                                   <span class="text-success">₹ {{ totalSum  | number:'2.0-2':'en-IN'}} </span>  
+                                  <span class="text-success">₹{{ formatIndianNumber(totalSum) }} </span>
+                                </h5> -->
+                              </div>
+                              <div class="col-md-2"></div>
+                            </div>
+  
+                          </div>
+                          <div class="row col-md-12" *ngIf="isSubmitVisible">
+                            <div class="col-md-5">
+                              <!-- <label for="giftAndDeedPhotoUpload" class="float-right">PAYMENT REQUEST PDF FILE UPLOAD <span style="color: red">*</span>
+                                </label> -->
+                            </div>
+                            <!-- <div class="col-md-3"> -->
+                            <!-- <div class="form-group">
+                                      
+                                      <input type="file" class="form-control p-0" id="giftAndDeedPhotoUpload" (change)="onpdffileChange($event)"
+                                        accept="pdf/*" autocomplete="off" />
+                                    </div> -->
+                            <!-- </div> -->
+                            <!-- <div class="col-md-2"></div> -->
+                            <div class="col-md-2">
+                              <button type="button" class="btn btn-sm btn-danger pull-right"
+                                (click)="btnReject()">REJECT</button>
+                              <button type="submit" class="btn btn-sm btn-success pull-right"
+                                (click)="btnSubmitView()">SUBMIT</button>
+  
+                            </div>
+  
+                            <div class="col-md-5"></div>
+  
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- // Basic form layout section end -->
+      </div>
+    </div>
+  </div>
+  
+  <div class="popup-modal" *ngIf="DeviceDetailsshow">
+    <div class="popup-content" style="min-width: 75%">
+      <div class="popup-header">
+        <h4 class="title"> Device Details</h4>
+        <a type="button" class="close" style="cursor: pointer">
+          <span (click)="onClear()">×</span>
+        </a>
+      </div>
+  
+      <div class="popup-body" style="max-height:500px; overflow-y: auto;">
+        <div class="row justify-content-center align-items-center">
+  
+          <div class="col-md-12 row">
+  
+  
+  
+            <div class="col-md-12 table-responsive" [hidden]="CalibrationDeviceList.length < 1">
+              <table class="table table-bordered">
+                <thead class="thead-dark">
+                  <tr>
+                    <th>S.No</th>
+                    <th>DEVICE NAME</th>
+                    <th>Make</th>
+                    <th>Model</th>
+                    <th>Basic Price</th>
+                    <th>TAX INVOICE</th>
+                    <th>DELIVERY CHALLAN</th>
+                    <th>INSTALLATION REPORT</th>
+  
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let obj of CalibrationDeviceList; let i = index">
+                    <td>{{ i + 1 }}</td>
+                    <td><b>{{ obj.DEVICE_NAME }}</b></td>
+                    <td><b>{{ obj.MAKER }}</b></td>
+                    <td><b>{{ obj.MODEL }}</b></td>
+                    <!-- <td><b>{{ obj.BASICUNITPRICE }}</b></td>  -->
+                    <td class="align-middle" *ngIf="shouldShowRowspan(i, 'BASICUNITPRICE')"
+                      [attr.rowspan]="getRowspan(i, 'BASICUNITPRICE')"><b>{{ obj.BASICUNITPRICE }}</b></td>
+                    <td>
+                      <button type="button" *ngIf="obj.TAX_INVOICE != null" class="btn btn-link btn-sm"
+                        (click)="btnPdfView(obj.TAX_INVOICE)" style="font-size: 12px;">
+                        View
+                      </button>
+                      <span *ngIf="obj.TAX_INVOICE == null">NA </span>
+                    </td>
+                    <td>
+                      <button type="button" *ngIf="obj.DELIVERY_CHALLAN != null" class="btn btn-link btn-sm"
+                        (click)="btnPdfView(obj.DELIVERY_CHALLAN)" style="font-size: 12px;">
+                        View
+                      </button>
+                      <span *ngIf="obj.DELIVERY_CHALLAN == null">NA </span>
+                    </td>
+                    <td>
+                      <button type="button" *ngIf="obj.INSTALLATION_DOC != null" class="btn btn-link btn-sm"
+                        (click)="btnPdfView(obj.INSTALLATION_DOC)" style="font-size: 12px;">
+                        View
+                      </button>
+                      <span *ngIf="obj.INSTALLATION_DOC == null">NA </span>
+                    </td>
+  
+                  </tr>
+                </tbody>
+  
+              </table>
+  
+  
+            </div>
+  
+          </div>
+          <br>
+  
+  
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+  <div class="popup-modal" *ngIf="ShowRejectPopup">
+    <div class="popup-content" style="min-width: 75%">
+      <div class="popup-header">
+        <h4 class="title">PACS Internet  Reject</h4>
+        <a type="button" class="close" style="cursor: pointer">
+          <span (click)="onClear1()">×</span>
+        </a>
+      </div>
+  
+      <div class="popup-body" style="max-height:500px; overflow-y: auto;">
+        <div class="row justify-content-center align-items-center">
+  
+          <div class="col-md-12 row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+              <label for="stockpoint">Remarks <span style="color: red">*</span></label>
+              <textarea type="text" class="form-control" [(ngModel)]="Remarks"></textarea>
+            </div>
+          </div>
+          <br>
+          <div class="row">
+          </div>
+          <div class="popup-footer justify-content-center">
+            <button type="button" class="btn btn-sm btn-success text-white" (click)="btnRejectSubmit()">
+              SUBMIT
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+ 

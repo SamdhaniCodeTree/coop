@@ -1,0 +1,1670 @@
+<div class="app-content content background">
+  <div class="content-overlay"></div>
+  <div class="content-wrapper">
+    <div class="content-header row">
+      <div class="content-header-left col-md-6 col-12">
+        <h3 class="content-header-title mb-0 text-white">CALIBRATION REGISTRATION</h3>
+        <div class="row breadcrumbs-top">
+          <div class="breadcrumb-wrapper col-12">
+            <ol class="breadcrumb">
+              <!-- <li class="breadcrumb-item">
+                <a class="custom-cursor text-white" routerLink="/ceo">Menu</a>
+              </li> -->
+              <!-- <li class="breadcrumb-item active">
+                <a
+                  class="custom-cursor text-white"
+                  routerLink="/ceo/Calibration"
+                  >Installation of PACS Equipment</a
+                >
+              </li>  -->
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+   
+  <div class="card backgrnd">
+      <!-- <div class="card-header p-2">
+        <h5 class="mb-0"> Installation of PACS Equipment.</h5>
+      </div> -->
+      <div class="card-body ">
+        <div class="row" *ngIf="CalibrationStatus">
+          <div class="col-md-12">
+        
+        
+          </div>
+          
+         
+         
+          <div class="col-md-4">
+              <div class="form-group">
+                <label for="inspectionDate"
+                  >Inspection Date<span class="text-danger">*</span>
+                </label>
+                <input type="text" class="form-control"  readonly
+                [(ngModel)]="inspectionDate" >
+<!--           
+                placeholder="DD-MM-YYYY" [minDate]="minDate" [maxDate]="maxDate"  placement="bottom" container="" [bsConfig]="bsDatepickerConfig" bsDatepicker -->
+              </div>
+            </div>
+    
+          <div class="col-md-4">
+            <div class="form-group">
+              <label>Is Desktop Computer Available <sup class="text-danger h6">*</sup></label>
+              <div class="ah-radio-buttons">
+                <div class="custom-control custom-radio custom-control-inline">
+                  <input
+                    class="custom-control-input"
+                    type="radio"
+                    name="isDesktopAvailable" 
+                    id="isDesktopAvailable1"
+                    value="1"
+                    [(ngModel)]="calibrationDetails.isDesktopAvailable"
+                    autocomplete="off"
+                    (change)="rbtnvalue(1)"
+                  />
+                  <label class="custom-control-label" for="isDesktopAvailable1">
+                      Available
+                  </label>
+                </div>
+    
+                <div class="custom-control custom-radio custom-control-inline">
+                  <input
+                    class="custom-control-input"
+                    type="radio"
+                    name="isDesktopAvailable"
+                    id="isDesktopAvailable2"
+                    value="0"
+                    [(ngModel)]="calibrationDetails.isDesktopAvailable"
+                    autocomplete="off"
+                    (change)="rbtnvalue(1)"
+                  />
+                  <label class="custom-control-label" for="isDesktopAvailable2">
+                      Not Available
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+          <div class="col-md-4" *ngIf="calibrationDetails.isDesktopAvailable === '1'">
+              <div class="form-group">
+                <label>Desktop Maker <span style="color: red">*</span></label>
+                <input type="text"
+                class="form-control"
+                [(ngModel)]="calibrationDetails.desktopMaker"
+                placeholder="Please Enter Desktop Maker"
+                maxlength="50"
+                autocomplete="off">
+              </div>
+            </div>
+  
+            <div class="col-md-4" *ngIf="calibrationDetails.isDesktopAvailable === '1'">
+              <div class="form-group">
+                <label>Desktop Serial No <span style="color: red">*</span></label>
+                <input type="text"
+                class="form-control"
+                [(ngModel)]="calibrationDetails.desktopSerialNo"
+                placeholder="Please Enter Desktop Serial No"
+                maxlength="50"
+                autocomplete="off">
+              </div>
+            </div>
+  
+            <div class="col-md-4" *ngIf="calibrationDetails.isDesktopAvailable === '1'">
+              <div class="form-group">
+                <label for="desktopManufactureDate"
+                  >DESKTOP Manufacture Date <span style="color: red">*</span></label
+                >
+                <input type="text" placeholder="DD-MM-YYYY" class="form-control" [minDate]="minDate"
+                [(ngModel)]="desktopManufactureDate" [maxDate]="maxDate"  placement="bottom" container="" [bsConfig]="bsDatepickerConfig" bsDatepicker>
+          
+              </div>
+            </div>
+    
+          <div class="col-md-4" *ngIf="calibrationDetails.isDesktopAvailable === '1'">
+            <div class="form-group">
+              <label for="giftAndDeedPhotoUpload"
+                >Desktop Photo Upload <span style="color: red; font-size: 10px;">* Max 100KB jpeg</span>
+              </label>
+              <input
+                type="file"
+                class="form-control p-0"
+                id="giftAndDeedPhotoUpload"               
+                (change)="OnlyJpegUpload($event,1)"
+                accept="image/*"
+                autocomplete="off"
+              />
+              <!-- (change)="onTitleDesktopPhotoChange($event)" -->
+            </div>
+          </div>
+  
+  
+          <div class="col-md-4" *ngIf="calibrationDetails.isDesktopAvailable === '1'">
+              <div class="form-group">
+                <label>CPU Maker <span style="color: red">*</span></label>
+                <input type="text"
+                class="form-control"
+                [(ngModel)]="calibrationDetails.cpuMaker"
+                placeholder="Please Enter CPU Maker"
+                maxlength="50"
+                autocomplete="off">
+              </div>
+            </div>
+    
+            <div class="col-md-4" *ngIf="calibrationDetails.isDesktopAvailable === '1'">
+              <div class="form-group">
+                <label>CPU Serial No <span style="color: red">*</span></label>
+                <input type="text"
+                class="form-control"
+                [(ngModel)]="calibrationDetails.cpuSerialNo"
+                placeholder="Please Enter CPU Serial No"
+                maxlength="50"
+                autocomplete="off">
+              </div>
+            </div>
+    
+            <div class="col-md-4" *ngIf="calibrationDetails.isDesktopAvailable === '1'">
+                <div class="form-group">
+                  <label for="cpuManufactureDate"
+                    >CPU Manufacture Date <span style="color: red">*</span></label
+                  >
+                  <input type="text" placeholder="DD-MM-YYYY" class="form-control" [minDate]="minDate"
+                  [(ngModel)]="cpuManufactureDate" [maxDate]="maxDate"  placement="bottom" container="" [bsConfig]="bsDatepickerConfig" bsDatepicker>
+            
+                  
+                </div>
+              </div>
+    
+            <div class="col-md-4" *ngIf="calibrationDetails.isDesktopAvailable === '1'">
+              <div class="form-group">
+                <label for="cpuImgUpload"
+                  >CPU Photo Upload <span style="color: red; font-size: 10px;">*  Max 100KB jpeg</span>
+                </label>
+                <input
+                  type="file"
+                  class="form-control p-0"
+                  id="cpuImgUpload"
+                  (change)="OnlyJpegUpload($event,2)"
+                  accept="image/*"
+                  #cpuImgUpload
+                  autocomplete="off"
+                />
+
+                <!-- (change)="onCPUImageChange($event)" -->
+
+              </div>
+            </div>
+    
+            <div class="col-md-4" *ngIf="calibrationDetails.isDesktopAvailable === '1'">
+              <div class="form-group">
+                <label>Mouse Maker <span style="color: red">*</span></label>
+                <input type="text"
+                class="form-control"
+                [(ngModel)]="calibrationDetails.mouseMaker"
+                placeholder="Please Enter Mouse Maker"
+                maxlength="50"
+                autocomplete="off">
+              </div>
+            </div>
+    
+            <div class="col-md-4" *ngIf="calibrationDetails.isDesktopAvailable === '1'">
+              <div class="form-group">
+                <label>Mouse Serial No <span style="color: red">*</span></label>
+                <input type="text"
+                class="form-control"
+                [(ngModel)]="calibrationDetails.mouseSerialNo"
+                placeholder="Please Enter Mouse Serial No"
+                maxlength="50"
+                autocomplete="off">
+              </div>
+            </div>
+    
+            <div class="col-md-4" [hidden]="calibrationDetails.isDesktopAvailable !== '1'">
+                <div class="form-group">
+                  <label for="mouseManufactureDate"
+                    >MOUSE Manufacture Date <span style="color: red">*</span></label
+                  >
+                  <input type="text" placeholder="DD-MM-YYYY" class="form-control" [minDate]="minDate"
+                  [(ngModel)]="mouseManufactureDate" [maxDate]="maxDate"  placement="bottom" container="" [bsConfig]="bsDatepickerConfig" bsDatepicker>
+            
+                   
+                </div>
+              </div>
+    
+    
+            <div class="col-md-4" *ngIf="calibrationDetails.isDesktopAvailable === '1'">
+              <div class="form-group">
+                <label for="mouseImgUpload"
+                  >Mouse Photo Upload <span style="color: red; font-size: 10px;">* Max 100KB jpeg</span>
+                </label>
+                <input
+                  type="file"
+                  class="form-control p-0"
+                  id="mouseImgUpload"
+                 
+                  (change)="OnlyJpegUpload($event,3)"
+                  accept="image/*"
+                  #mouseImgUpload
+                  autocomplete="off"
+                />
+                <!-- (change)="onMouseImageChange($event)" -->
+              </div>
+            </div>
+    
+            <div class="col-md-4" *ngIf="calibrationDetails.isDesktopAvailable === '1'">
+              <div class="form-group">
+                <label>Keyboard Maker <span style="color: red">*</span></label>
+                <input type="text"
+                class="form-control"
+                [(ngModel)]="calibrationDetails.keyBoardMaker"
+                placeholder="Please Enter Keyboard Maker"
+                maxlength="50"
+                autocomplete="off">
+              </div>
+            </div>
+    
+            <div class="col-md-4" *ngIf="calibrationDetails.isDesktopAvailable === '1'">
+              <div class="form-group">
+                <label>Keyboard Serial No <span style="color: red">*</span></label>
+                <input type="text"
+                class="form-control"
+                [(ngModel)]="calibrationDetails.keyBoardSerialNo"
+                placeholder="Please Enter Keyboard Serial No"
+                maxlength="50"
+                autocomplete="off">
+              </div>
+            </div>
+    
+            <div class="col-md-4" [hidden]="calibrationDetails.isDesktopAvailable !== '1'">
+                <div class="form-group">
+                  <label for="keyBoardManufactureDate"
+                    >Keyboard Manufacture Date <span style="color: red">*</span></label
+                  >
+                  <input type="text" placeholder="DD-MM-YYYY" class="form-control" [minDate]="minDate"
+                  [(ngModel)]="keyBoardManufactureDate" [maxDate]="maxDate"  placement="bottom" container="" [bsConfig]="bsDatepickerConfig" bsDatepicker>
+            
+                </div>
+              </div>
+    
+            <div class="col-md-4" [hidden]="calibrationDetails.isDesktopAvailable !== '1'">
+              <div class="form-group">
+                <label for="keyboardImgUpload"
+                  >Keyboard Photo Upload <span style="color: red; font-size: 10px;">*  Max 100KB jpeg</span>
+                </label>
+                <input
+                  type="file"
+                  class="form-control p-0"
+                  id="keyboardImgUpload"
+                  (change)="OnlyJpegUpload($event,4)"
+                 
+                  accept="image/*"
+                  #keyboardImgUpload
+                  autocomplete="off"
+                />
+                <!-- (change)="onKeyBoardImageChange($event)" -->
+              </div>
+            </div>
+    
+            <div class="col-md-4" *ngIf="calibrationDetails.isDesktopAvailable === '1'">
+              <div class="form-group">
+                <label>UPS Maker <span style="color: red">*</span></label>
+                <input type="text"
+                class="form-control"
+                [(ngModel)]="calibrationDetails.upsMaker"
+                placeholder="Please Enter UPS Maker"
+                maxlength="50"
+                autocomplete="off">
+              </div>
+            </div>
+    
+            <div class="col-md-4" *ngIf="calibrationDetails.isDesktopAvailable === '1'">
+              <div class="form-group">
+                <label>UPS Serial No <span style="color: red">*</span></label>
+                <input type="text"
+                class="form-control"
+                [(ngModel)]="calibrationDetails.upsSerialNo"
+                placeholder="Please Enter UPS Serial No"
+                maxlength="50"
+                autocomplete="off">
+              </div>
+            </div>
+    
+            <div class="col-md-4" *ngIf="calibrationDetails.isDesktopAvailable === '1'">
+                <div class="form-group">
+                  <label for="upsManufactureDate"
+                    >UPS Manufacture Date <span style="color: red">*</span></label
+                  >
+                  <input type="text" placeholder="DD-MM-YYYY" class="form-control" [minDate]="minDate"
+                  [(ngModel)]="upsManufactureDate" [maxDate]="maxDate"  placement="bottom" container="" [bsConfig]="bsDatepickerConfig" bsDatepicker>
+            
+  
+                   
+                </div>    
+              </div>
+    
+            <div class="col-md-4" *ngIf="calibrationDetails.isDesktopAvailable === '1'">
+              <div class="form-group">
+                <label for="upsImgUpload"
+                  >UPS Photo Upload   <span style="color: red; font-size: 10px;">* Max 100KB jpeg </span> 
+                </label>
+                <input
+                  type="file"
+                  class="form-control p-0"
+                  id="upsImgUpload"
+                  (change)="OnlyJpegUpload($event,5)"
+                  
+                  accept="image/*"
+                  #upsImgUpload
+                  autocomplete="off"
+                />
+                <!-- (change)="onUPSImageChange($event)" -->
+              </div>
+            </div>
+  
+            <!-- <div class="col-md-4">
+              <div class="form-group">
+                <label>Electronic Weigh Scale-200Kgs (Platform with digital Indicator) <sup class="text-danger h6">*</sup></label>
+                <div class="ah-radio-buttons">
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input
+                      class="custom-control-input"
+                      type="radio"
+                      name="isEleWeightScale"
+                      id="isEleWeightScale1"
+                      value="1"
+                      [(ngModel)]="calibrationDetails.isEleWeightScale"
+                      autocomplete="off"
+                    />
+                    <label class="custom-control-label" for="isEleWeightScale1">
+                      Available
+                    </label>
+                  </div>
+      
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input
+                      class="custom-control-input"
+                      type="radio"
+                      name="isEleWeightScale"
+                      id="isEleWeightScale2"
+                      value="0"
+                      [(ngModel)]="calibrationDetails.isEleWeightScale"
+                      autocomplete="off"
+                    />
+                    <label class="custom-control-label" for="isEleWeightScale2">
+                      Not Available
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+  
+            <div class="col-md-4" *ngIf="calibrationDetails.isEleWeightScale === '1'">
+              <div class="form-group">
+                <label>Electronic Weight Scale Maker <span style="color: red">*</span></label>
+                <input type="text"
+                class="form-control"
+                [(ngModel)]="calibrationDetails.electronicWeightScaleMaker"
+                placeholder="Please Enter Electronic Weight Scaler Maker"
+                maxlength="50"
+                autocomplete="off">
+              </div>
+            </div>
+    
+            <div class="col-md-4" *ngIf="calibrationDetails.isEleWeightScale === '1'">
+              <div class="form-group">
+                <label>Electronic Weight Scale Serial No <span style="color: red">*</span></label>
+                <input type="text"
+                class="form-control"
+                [(ngModel)]="calibrationDetails.electronicWeightScaleSerialNo"
+                placeholder="Please Enter Electronic Weight Scaler Serial No"
+                maxlength="50"
+                autocomplete="off">
+              </div>
+            </div>
+    
+            <div class="col-md-4" *ngIf="calibrationDetails.isEleWeightScale === '1'">
+                <div class="form-group">
+                  <label for="EleWeightManufactureDate"
+                    >Electronic Weigh Scale Manufacture Date <span style="color: red">*</span></label
+                  >
+                  <input type="text" placeholder="DD-MM-YYYY" class="form-control" [minDate]="minDate"
+                  [(ngModel)]="EleWeightManufactureDate" [maxDate]="maxDate"  placement="bottom" container="" [bsConfig]="bsDatepickerConfig" bsDatepicker>
+            
+                   
+                </div>
+              </div>
+    
+            <div class="col-md-4" *ngIf="calibrationDetails.isEleWeightScale === '1'">
+              <div class="form-group">
+                <label for="electronicWeighImgUpload"
+                  >Electronic Weigh Scale Photo Upload <span style="color: red">*</span>
+                </label>
+                <input
+                  type="file"
+                  class="form-control p-0"
+                  id="electronicWeighImgUpload"
+                  (change)="onElectronicWeighImageChange($event)"
+                  accept="image/*"
+                  #electronicWeighImgUpload
+                  autocomplete="off"
+                />
+              </div>
+            </div> -->
+  
+  
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>UPS 1KVA <sup class="text-danger h6">*</sup></label>
+                <div class="ah-radio-buttons">
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input
+                      class="custom-control-input"
+                      type="radio"
+                      name="isUps1Kva"
+                      id="isUps1Kva1"
+                      value="1"
+                      [(ngModel)]="calibrationDetails.isUps1Kva"
+                      autocomplete="off"
+                      (change)="rbtnvalue(2)"
+                    />
+                    <label class="custom-control-label" for="isUps1Kva1">
+                      Available
+                    </label>
+                  </div>
+      
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input
+                      class="custom-control-input"
+                      type="radio"
+                      name="isUps1Kva"
+                      id="isUps1Kva2"
+                      value="0"
+                      [(ngModel)]="calibrationDetails.isUps1Kva"
+                      autocomplete="off"
+                      (change)="rbtnvalue(2)"
+                    />
+                    <label class="custom-control-label" for="isUps1Kva2">
+                      Not Available
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4" *ngIf="calibrationDetails.isUps1Kva === '1'">
+              <div class="form-group">
+                <label>UPS 1KVA Maker <span style="color: red">*</span></label>
+                <input type="text"
+                class="form-control"
+                [(ngModel)]="calibrationDetails.ups1KVAMaker"
+                placeholder="Please Enter UPS 1KVA Maker"
+                maxlength="50"
+                autocomplete="off">
+              </div>
+            </div>
+    
+            <div class="col-md-4" *ngIf="calibrationDetails.isUps1Kva === '1'">
+              <div class="form-group">
+                <label>UPS 1KVA Serial No <span style="color: red">*</span></label>
+                <input type="text"
+                class="form-control"
+                [(ngModel)]="calibrationDetails.ups1KVASerialNo"
+                placeholder="Please Enter UPS 1KVA Serial No"
+                maxlength="50"
+                autocomplete="off">
+              </div>
+            </div>
+    
+            <div class="col-md-4" *ngIf="calibrationDetails.isUps1Kva === '1'">
+              <div class="form-group">
+                <label for="ups1KvaManufactureDate"
+                  >1KVA UPS Manufacture Date <span style="color: red">*</span></label
+                >
+                <input type="text" placeholder="DD-MM-YYYY" class="form-control" [minDate]="minDate"
+                [(ngModel)]="ups1KvaManufactureDate" [maxDate]="maxDate"  placement="bottom" container="" [bsConfig]="bsDatepickerConfig" bsDatepicker>
+          
+                 
+              </div>
+            </div>
+    
+            <div class="col-md-4" *ngIf="calibrationDetails.isUps1Kva === '1'">
+              <div class="form-group">
+                <label for="ups1KvaImgUpload"
+                  >UPS 1KVA Photo Upload <span style="color: red;font-size: 10px;">* Max 100KB jpeg</span>
+                </label>
+                <input
+                  type="file"
+                  class="form-control p-0"
+                  id="ups1KvaImgUpload"
+                  (change)="OnlyJpegUpload($event,6)"
+                  
+                  accept="image/*"
+                  #ups1KvaImgUpload
+                  autocomplete="off"
+                />
+                <!-- (change)="onUPS1KVAImgChange($event)" -->
+              </div>
+            </div>
+  
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>Battery <sup class="text-danger h6">*</sup></label>
+                <div class="ah-radio-buttons">
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input
+                      class="custom-control-input"
+                      type="radio"
+                      name="isBattery"
+                      id="isBattery1"
+                      value="1"
+                      [(ngModel)]="calibrationDetails.isBattery"
+                      autocomplete="off"
+                      (change)="rbtnvalue(3)"
+                    />
+                    <label class="custom-control-label" for="isBattery1">
+                      Available
+                    </label>
+                  </div>
+      
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input
+                      class="custom-control-input"
+                      type="radio"
+                      name="isBattery"
+                      id="isBattery2"
+                      value="0"
+                      [(ngModel)]="calibrationDetails.isBattery"
+                      autocomplete="off"
+                      (change)="rbtnvalue(3)"
+                    />
+                    <label class="custom-control-label" for="isBattery2">
+                      Not Available
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+  
+            <div class="col-md-4" *ngIf="calibrationDetails.isBattery === '1'">
+              <div class="form-group">
+                <label>Battery Maker <span style="color: red">*</span></label>
+                <input type="text"
+                class="form-control"
+                [(ngModel)]="calibrationDetails.BatteryMaker"
+                placeholder="Please Enter Battery Maker"
+                maxlength="50"
+                autocomplete="off">
+              </div>
+            </div>
+    
+            <div class="col-md-4" *ngIf="calibrationDetails.isBattery === '1'">
+              <div class="form-group">
+                <label>Battery Serial No <span style="color: red">*</span></label>
+                <input type="text"
+                class="form-control"
+                [(ngModel)]="calibrationDetails.BatterySerialNo"
+                placeholder="Please Enter Battery Serial No"
+                maxlength="50"
+                autocomplete="off">
+              </div>
+            </div>
+            
+            <div class="col-md-4" *ngIf="calibrationDetails.isBattery === '1'">
+              <div class="form-group">
+                <label for="batteryManufactureDate">
+                  Battery Manufacture Date 
+                  <span style="color: red">*</span>
+                  </label>
+                  <input type="text" placeholder="DD-MM-YYYY" class="form-control" [minDate]="minDate"
+                  [(ngModel)]="batteryKvaManufactureDate" [maxDate]="maxDate"  placement="bottom" container="" [bsConfig]="bsDatepickerConfig" bsDatepicker>
+            
+              </div>
+            </div>
+    
+            <div class="col-md-4" *ngIf="calibrationDetails.isBattery === '1'">
+              <div class="form-group">
+                <label for="batteryImgUpload"
+                  >Battery Photo Upload <span style="color: red;font-size: 10px;">* Max 100KB jpeg</span>
+                </label>
+                <input
+                  type="file"
+                  class="form-control p-0"
+                  id="batteryImgUpload"
+                  (change)="OnlyJpegUpload($event,7)"
+                  
+                  accept="image/*"
+                  #batteryImgUpload
+                  autocomplete="off"
+                />
+                <!-- (change)="onBatteryImgChange($event)" -->
+              </div>
+            </div>
+          
+            <div class="col-md-4">
+              <div class="form-group">
+                <label> Printer <sup class="text-danger h6">*</sup></label>
+                <div class="ah-radio-buttons">
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input
+                      class="custom-control-input"
+                      type="radio"
+                      name="is24Pin80ColMatrixPrinter"
+                      id="is24Pin80ColMatrixPrinter1"
+                      value="1"
+                      [(ngModel)]="calibrationDetails.is24Pin80ColMatrixPrinter"
+                      autocomplete="off"
+                      (change)="rbtnvalue(4)"
+                    />
+                    <label class="custom-control-label" for="is24Pin80ColMatrixPrinter1">
+                      Available
+                    </label>
+                  </div>
+      
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input
+                      class="custom-control-input"
+                      type="radio"
+                      name="is24Pin80ColMatrixPrinter"
+                      id="is24Pin80ColMatrixPrinter2"
+                      value="0"
+                      [(ngModel)]="calibrationDetails.is24Pin80ColMatrixPrinter"
+                      autocomplete="off"
+                      (change)="rbtnvalue(4)"
+                    />
+                    <label class="custom-control-label" for="is24Pin80ColMatrixPrinter2">
+                      Not Available
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+    
+            <div class="col-md-4" *ngIf="calibrationDetails.is24Pin80ColMatrixPrinter === '1'">
+              <div class="form-group">
+                <label>Matrix Printer Maker <span style="color: red">*</span></label>
+                <input type="text"
+                class="form-control"
+                [(ngModel)]="calibrationDetails.matrixPrinterMaker"
+                placeholder="Please Enter Matrix Printer Maker"
+                maxlength="50"
+                autocomplete="off">
+              </div>
+            </div>
+    
+            <div class="col-md-4" *ngIf="calibrationDetails.is24Pin80ColMatrixPrinter === '1'">
+              <div class="form-group">
+                <label>Matrix Printer Serial No <span style="color: red">*</span></label>
+                <input type="text"
+                class="form-control"
+                [(ngModel)]="calibrationDetails.matrixPrinterSerialNo"
+                placeholder="Please Enter Matrix Printer Serial No"
+                maxlength="50"
+                autocomplete="off">
+              </div>
+            </div>
+            
+            <div class="col-md-4" *ngIf="calibrationDetails.is24Pin80ColMatrixPrinter === '1'">
+              <div class="form-group">
+                <label for="matrixPrinterManufactureDate">
+                  Matrix Printer Manufacture Date 
+                  <span style="color: red">*</span>
+                  </label>
+                  <input type="text" placeholder="DD-MM-YYYY" class="form-control" [minDate]="minDate"
+                  [(ngModel)]="matrixPrinterManufactureDate" [maxDate]="maxDate"  placement="bottom" container="" [bsConfig]="bsDatepickerConfig" bsDatepicker>
+            
+                   
+              </div>
+            </div>
+    
+            <div class="col-md-4" *ngIf="calibrationDetails.is24Pin80ColMatrixPrinter === '1'">
+              <div class="form-group">
+                <label for="matrixPrinterImgUpload"
+                  >Matrix Printer Photo Upload <span style="color: red;font-size: 10px;">* Max 100KB jpeg</span>
+                </label>
+                <input
+                  type="file"
+                  class="form-control p-0"
+                  id="matrixPrinterImgUpload"
+                 
+                  (change)="OnlyJpegUpload($event,8)"
+                  accept="image/*"
+                  #matrixPrinterImgUpload
+                  autocomplete="off"
+                />
+                <!-- (change)="onMatrixPrinterImgChange($event)" -->
+              </div>
+            </div>
+  
+  
+            <div class="col-md-4">
+              <div class="form-group">
+                <label> Scaner <sup class="text-danger h6">*</sup></label>
+                <div class="ah-radio-buttons">
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input
+                      class="custom-control-input"
+                      type="radio"
+                      name="isscaner"
+                      id="isscaner1"
+                      value="1"
+                      [(ngModel)]="calibrationDetails.isscaner"
+                      autocomplete="off"
+                      (change)="rbtnvalue(5)"
+                    />
+                    <label class="custom-control-label" for="isscaner1">
+                      Available
+                    </label>
+                  </div>
+      
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input
+                      class="custom-control-input"
+                      type="radio"
+                      name="isscaner"
+                      id="isscaner2"
+                      value="0"
+                      [(ngModel)]="calibrationDetails.isscaner"
+                      autocomplete="off"
+                      (change)="rbtnvalue(5)"
+                    />
+                    <label class="custom-control-label" for="isscaner2">
+                      Not Available
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+    
+            <div class="col-md-4" *ngIf="calibrationDetails.isscaner === '1'">
+              <div class="form-group">
+                <label> Scaner Maker <span style="color: red">*</span></label>
+                <input type="text"
+                class="form-control"
+                [(ngModel)]="calibrationDetails.matrixScanerMaker"
+                placeholder="Please Enter Scaner Maker"
+                maxlength="50"
+                autocomplete="off">
+              </div>
+            </div>
+    
+            <div class="col-md-4" *ngIf="calibrationDetails.isscaner === '1'">
+              <div class="form-group">
+                <label> Scaner Serial No <span style="color: red">*</span></label>
+                <input type="text"
+                class="form-control"
+                [(ngModel)]="calibrationDetails.matrixScanerSerialNo"
+                placeholder="Please Enter Scaner Serial No"
+                maxlength="50"
+                autocomplete="off">
+              </div>
+            </div>
+            
+            <div class="col-md-4" *ngIf="calibrationDetails.isscaner === '1'">
+              <div class="form-group">
+                <label for="matrixScanerManufactureDate">
+                   Scaner Manufacture Date 
+                  <span style="color: red">*</span>
+                  </label>
+                  <input type="text" placeholder="DD-MM-YYYY" class="form-control" [minDate]="minDate"
+                  [(ngModel)]="matrixScanerManufactureDate" [maxDate]="maxDate"  placement="bottom" container="" [bsConfig]="bsDatepickerConfig" bsDatepicker>
+            
+                   
+              </div>
+            </div>
+    
+            <div class="col-md-4" *ngIf="calibrationDetails.isscaner === '1'">
+              <div class="form-group">
+                <label for="matrixScanerImgUpload"
+                  >Scaner Photo Upload <span style="color: red;font-size: 10px;">* Max 100KB jpeg</span>
+                </label>
+                <input
+                  type="file"
+                  class="form-control p-0"
+                  id="matrixScanerImgUpload"
+                  
+                  (change)="OnlyJpegUpload($event,9)"
+                  accept="image/*"
+                  #matrixScanerImgUpload
+                  autocomplete="off"
+                />
+                <!-- (change)="onMatrixScanerImgChange($event)" -->
+              </div>
+            </div>
+  
+  
+  
+            <div class="col-md-4">
+              <div class="form-group">
+                <label> WebCam <sup class="text-danger h6">*</sup></label>
+                <div class="ah-radio-buttons">
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input
+                      class="custom-control-input"
+                      type="radio"
+                      name="isWebCam"
+                      id="isWebCam1"
+                      value="1"
+                      [(ngModel)]="calibrationDetails.isWebCam"
+                      autocomplete="off"
+                      (change)="rbtnvalue(6)"
+                    />
+                    <label class="custom-control-label" for="isWebCam1">
+                      Available
+                    </label>
+                  </div>
+      
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input
+                      class="custom-control-input"
+                      type="radio"
+                      name="isWebCam"
+                      id="isWebCam2"
+                      value="0"
+                      [(ngModel)]="calibrationDetails.isWebCam"
+                      autocomplete="off"
+                      (change)="rbtnvalue(6)"
+                    />
+                    <label class="custom-control-label" for="isWebCam2">
+                      Not Available
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+    
+            <div class="col-md-4" *ngIf="calibrationDetails.isWebCam === '1'">
+              <div class="form-group">
+                <label>WebCam Maker <span style="color: red">*</span></label>
+                <input type="text"
+                class="form-control"
+                [(ngModel)]="calibrationDetails.matrixWebCamMaker"
+                placeholder="Please Enter  WebCam Maker"
+                maxlength="50"
+                autocomplete="off">
+              </div>
+            </div>
+    
+            <div class="col-md-4" *ngIf="calibrationDetails.isWebCam === '1'">
+              <div class="form-group">
+                <label> WebCam Serial No <span style="color: red">*</span></label>
+                <input type="text"
+                class="form-control"
+                [(ngModel)]="calibrationDetails.matrixWebCamSerialNo"
+                placeholder="Please Enter  WebCam Serial No"
+                maxlength="50"
+                autocomplete="off">
+              </div>
+            </div>
+            
+            <div class="col-md-4" *ngIf="calibrationDetails.isWebCam === '1'">
+              <div class="form-group">
+                <label for="matrixWebCamManufactureDate">
+                   WebCam Manufacture Date 
+                  <span style="color: red">*</span>
+                  </label>
+                  <input type="text" placeholder="DD-MM-YYYY" class="form-control" [minDate]="minDate"
+                  [(ngModel)]="WebCamManufactureDate" [maxDate]="maxDate"  placement="bottom" container="" [bsConfig]="bsDatepickerConfig" bsDatepicker>
+            
+                   
+              </div>
+            </div>
+    
+            <div class="col-md-4" *ngIf="calibrationDetails.isWebCam === '1'">
+              <div class="form-group">
+                <label for="matrixScanerImgUpload"
+                  > WebCam Photo Upload  <span style="color: red;font-size: 10px;">* Max 100KB jpeg</span>
+                </label>
+                <input
+                  type="file"
+                  class="form-control p-0"
+                  id="matrixScanerImgUpload"
+                 
+                  accept="image/*"
+                  #matrixScanerImgUpload
+                  autocomplete="off"
+                  (change)="OnlyJpegUpload($event,10)"
+                />
+                <!-- (change)="onWebCamImgChange($event)" -->
+              </div>
+            </div>
+    
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>Internet Connectivity Device <sup class="text-danger h6">*</sup></label>
+                <div class="ah-radio-buttons">
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input
+                      class="custom-control-input"
+                      type="radio"
+                      name="internetDevice"
+                      id="internetDevice1"
+                      value="1"
+                      [(ngModel)]="calibrationDetails.internetDevice"
+                      autocomplete="off" (change)="rbtnvalue(7)" 
+                    />
+                    <label class="custom-control-label" for="internetDevice1">
+                      Dongle
+                    </label>
+                  </div>
+      
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input
+                      class="custom-control-input"
+                      type="radio"
+                      name="internetDevice"
+                      id="internetDevice2"
+                      value="2"
+                      [(ngModel)]="calibrationDetails.internetDevice"
+                      autocomplete="off" (change)="rbtnvalue(7)" 
+                    />
+                    <label class="custom-control-label" for="internetDevice2">
+                      Modem
+                    </label>
+                  </div>
+    
+                  <div class="custom-control custom-radio custom-control-inline">
+                      <input
+                        class="custom-control-input"
+                        type="radio"
+                        name="internetDevice"
+                        id="internetDevice3"
+                        value="0"
+                        [(ngModel)]="calibrationDetails.internetDevice"
+                        autocomplete="off" (change)="rbtnvalue(7)" 
+                      />
+                      <label class="custom-control-label" for="internetDevice3">
+                        Not Available
+                      </label>
+                    </div>
+                </div>
+              </div>
+            </div>
+    
+            <div class="col-md-4" *ngIf="calibrationDetails.internetDevice === '1' || calibrationDetails.internetDevice === '2' ">
+              <div class="form-group">
+                <label>Dongle/Modem Maker <span style="color: red">*</span></label>
+                <input type="text"
+                class="form-control"
+                [(ngModel)]="calibrationDetails.internetDevMaker"
+                placeholder="Please Enter Dongle/Modem Maker"
+                maxlength="50"
+                autocomplete="off">
+              </div>
+            </div>
+    
+            <div class="col-md-4" *ngIf="calibrationDetails.internetDevice === '1' || calibrationDetails.internetDevice === '2' ">
+              <div class="form-group">
+                <label>Dongle/Modem Serial No <span style="color: red">*</span></label>
+                <input type="text"
+                class="form-control"
+                [(ngModel)]="calibrationDetails.internetDevSerialNo"
+                placeholder="Please Enter Dongle/Modem Serial No"
+                maxlength="50"
+                autocomplete="off">
+              </div>
+            </div>
+    
+            
+            <div class="col-md-4" *ngIf="calibrationDetails.internetDevice === '1' || calibrationDetails.internetDevice === '2' ">
+              <div class="form-group">
+                <label for="internetDevManufactureDate">
+                  Dongle/Modem Manufacture Date 
+                  <span style="color: red">*</span>
+                  </label>
+                  <input type="text" placeholder="DD-MM-YYYY" class="form-control" [minDate]="minDate"
+                  [(ngModel)]="internetDevManufactureDate" [maxDate]="maxDate"  placement="bottom" container="" [bsConfig]="bsDatepickerConfig" bsDatepicker>
+            
+                   
+              </div>
+            </div>
+    
+            <div class="col-md-4" *ngIf="calibrationDetails.internetDevice === '1' || calibrationDetails.internetDevice === '2' ">
+              <div class="form-group">
+                <label for="donglrOrModemImgUpload"
+                  >Dongle/Modem Photo Upload <span style="color: red;font-size: 10px;">* Max 100KB jpeg</span>
+                </label>
+                <input
+                  type="file"
+                  class="form-control p-0"
+                  id="donglrOrModemImgUpload"
+                  
+                  accept="image/*"
+                  #donglrOrModemImgUpload
+                  autocomplete="off"
+                  (change)="OnlyJpegUpload($event,11)" 
+                />
+                <!-- (change)="ondonglrOrModemImgChange($event)" -->
+              </div>
+            </div>
+        
+            <div class="col-md-4">
+              <div class="form-group">
+                <label> Biometric Scanner <sup class="text-danger h6">*</sup></label>
+                <div class="ah-radio-buttons">
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input
+                      class="custom-control-input"
+                      type="radio"
+                      name="isBiometricscanner"
+                      id="isBiometricscanner1"
+                      value="1"
+                      [(ngModel)]="calibrationDetails.isBiometricscanner"
+                      autocomplete="off"  (change)="rbtnvalue(8)" 
+                    />
+                    <label class="custom-control-label" for="isBiometricscanner1">
+                      Available
+                    </label>
+                  </div>
+      
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input
+                      class="custom-control-input"
+                      type="radio"
+                      name="isBiometricscanner"
+                      id="isBiometricscanner2"
+                      value="0"
+                      [(ngModel)]="calibrationDetails.isBiometricscanner"
+                      autocomplete="off"  (change)="rbtnvalue(8)" 
+                    />
+                    <label class="custom-control-label" for="isBiometricscanner2">
+                      Not Available
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+    
+            <div class="col-md-4" *ngIf="calibrationDetails.isBiometricscanner === '1'">
+              <div class="form-group">
+                <label>Biometric Scanner Maker <span style="color: red">*</span></label>
+                <input type="text"
+                class="form-control"
+                [(ngModel)]="calibrationDetails.Biometricscannermaker"
+                placeholder="Please Enter Biometric Scanner Maker"
+                maxlength="50"
+                autocomplete="off">
+              </div>
+            </div>
+    
+            <div class="col-md-4" *ngIf="calibrationDetails.isBiometricscanner === '1'">
+              <div class="form-group">
+                <label>Biometric Scanner Serial No <span style="color: red">*</span></label>
+                <input type="text"
+                class="form-control"
+                [(ngModel)]="calibrationDetails.BiometricscannerSerialNo"
+                placeholder="Please Enter Biometric Scanner Serial No"
+                maxlength="50"
+                autocomplete="off">
+              </div>
+            </div>
+            
+            <div class="col-md-4" *ngIf="calibrationDetails.isBiometricscanner === '1'">
+              <div class="form-group">
+                <label for="matrixWebCamManufactureDate">
+                  Biometric Scanner Manufacture Date 
+                  <span style="color: red">*</span>
+                  </label>
+                  <input type="text" placeholder="DD-MM-YYYY" class="form-control" [minDate]="minDate"
+                  [(ngModel)]="BiometricscannerManufactureDate" [maxDate]="maxDate"  placement="bottom" container="" [bsConfig]="bsDatepickerConfig" bsDatepicker>
+            
+                   
+              </div>
+            </div>
+    
+            <div class="col-md-4" *ngIf="calibrationDetails.isBiometricscanner === '1'">
+              <div class="form-group">
+                <label for="matrixScanerImgUpload"
+                  >Biometric Scanner Photo Upload  <span style="color: red;font-size: 10px;">* Max 100KB jpeg</span>
+                </label>
+                <input
+                  type="file"
+                  class="form-control p-0"
+                  id="matrixScanerImgUpload"
+                 
+                  (change)="OnlyJpegUpload($event,12)" 
+                  accept="image/*"
+                  #matrixScanerImgUpload
+                  autocomplete="off"
+                />
+                <!-- (change)="onBiometricscannerImgChange($event)" -->
+              </div>
+            </div>
+  
+  
+            <div class="col-md-4">
+              <div class="form-group">
+                <label> Tablet <sup class="text-danger h6">*</sup></label>
+                <div class="ah-radio-buttons">
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input
+                      class="custom-control-input"
+                      type="radio"
+                      name="isTablet"
+                      id="isTablet1"
+                      value="1"
+                      [(ngModel)]="calibrationDetails.isTablet"
+                      autocomplete="off"  (change)="rbtnvalue(9)" 
+                    />
+                    <label class="custom-control-label" for="isTablet1">
+                      Available
+                    </label>
+                  </div>
+      
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input
+                      class="custom-control-input"
+                      type="radio"
+                      name="isTablet"
+                      id="isTablet2"
+                      value="0"
+                      [(ngModel)]="calibrationDetails.isTablet"
+                      autocomplete="off"  (change)="rbtnvalue(9)" 
+                    />
+                    <label class="custom-control-label" for="isTablet2">
+                      Not Available
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+    
+            <div class="col-md-4" *ngIf="calibrationDetails.isTablet === '1'">
+              <div class="form-group">
+                <label>Tablet Maker <span style="color: red">*</span></label>
+                <input type="text"
+                class="form-control"
+                [(ngModel)]="calibrationDetails.Tabletmaker"
+                placeholder="Please Enter Tablet Maker"
+                maxlength="50"
+                autocomplete="off">
+              </div>
+            </div>
+    
+            <div class="col-md-4" *ngIf="calibrationDetails.isTablet === '1'">
+              <div class="form-group">
+                <label>Tablet Serial No <span style="color: red">*</span></label>
+                <input type="text"
+                class="form-control"
+                [(ngModel)]="calibrationDetails.TabletSerialNo"
+                placeholder="Please Enter Tablet Serial No"
+                maxlength="50"
+                autocomplete="off">
+              </div>
+            </div>
+            
+            <div class="col-md-4" *ngIf="calibrationDetails.isTablet === '1'">
+              <div class="form-group">
+                <label for="matrixWebCamManufactureDate">
+                  Tablet Manufacture Date 
+                  <span style="color: red">*</span>
+                  </label>
+                  <input type="text" placeholder="DD-MM-YYYY" class="form-control" [minDate]="minDate"
+                  [(ngModel)]="TabletDate" [maxDate]="maxDate"  placement="bottom" container="" [bsConfig]="bsDatepickerConfig" bsDatepicker>
+            
+                   
+              </div>
+            </div>
+    
+            <div class="col-md-4" *ngIf="calibrationDetails.isTablet === '1'">
+              <div class="form-group">
+                <label for="matrixScanerImgUpload"
+                  >Tablet Photo Upload  <span style="color: red;font-size: 10px;">* Max 100KB jpeg</span>
+                </label>
+                <input
+                  type="file"
+                  class="form-control p-0"
+                  id="matrixScanerImgUpload"
+                  
+                  (change)="OnlyJpegUpload($event,13)" 
+                  accept="image/*"
+                  #matrixScanerImgUpload
+                  autocomplete="off"
+                />
+                <!-- (change)="onTabletImgChange($event)" -->
+              </div>
+            </div>
+  
+  
+            <div class="col-md-4">
+              <div class="form-group">
+                <label> Bluetooth Thermal Printer <sup class="text-danger h6">*</sup></label>
+                <div class="ah-radio-buttons">
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input
+                      class="custom-control-input"
+                      type="radio"
+                      name="isBluetooththermalprinter"
+                      id="isBluetooththermalprinter1"
+                      value="1"
+                      [(ngModel)]="calibrationDetails.isBluetooththermalprinter"
+                      autocomplete="off" (change)="rbtnvalue(10)" 
+                    />
+                    <label class="custom-control-label" for="isBluetooththermalprinter1">
+                      Available
+                    </label>
+                  </div>
+      
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input
+                      class="custom-control-input"
+                      type="radio"
+                      name="isBluetooththermalprinter"
+                      id="isBluetooththermalprinter2"
+                      value="0"
+                      [(ngModel)]="calibrationDetails.isBluetooththermalprinter"
+                      autocomplete="off" (change)="rbtnvalue(10)" 
+                    />
+                    <label class="custom-control-label" for="isBluetooththermalprinter2">
+                      Not Available
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+    
+            <div class="col-md-4" *ngIf="calibrationDetails.isBluetooththermalprinter === '1'">
+              <div class="form-group">
+                <label>Bluetooth Thermal Printer Maker <span style="color: red">*</span></label>
+                <input type="text"
+                class="form-control"
+                [(ngModel)]="calibrationDetails.Bluetooththermalprintermaker"
+                placeholder="Please Enter Bluetooth Thermal Printer Maker"
+                maxlength="50"
+                autocomplete="off">
+              </div>
+            </div>
+    
+            <div class="col-md-4" *ngIf="calibrationDetails.isBluetooththermalprinter === '1'">
+              <div class="form-group">
+                <label>Bluetooth Thermal Printer Serial No <span style="color: red">*</span></label>
+                <input type="text"
+                class="form-control"
+                [(ngModel)]="calibrationDetails.BluetooththermalprinterSerialNo"
+                placeholder="Please Enter Bluetooth Thermal Printer Serial No"
+                maxlength="50"
+                autocomplete="off">
+              </div>
+            </div>
+            
+            <div class="col-md-4" *ngIf="calibrationDetails.isBluetooththermalprinter === '1'">
+              <div class="form-group">
+                <label for="matrixWebCamManufactureDate">
+                  Bluetooth Thermal Printer Manufacture Date 
+                  <span style="color: red">*</span>
+                  </label>
+                  <input type="text" placeholder="DD-MM-YYYY" class="form-control" [minDate]="minDate"
+                  [(ngModel)]="BluetooththermalprinterDate" [maxDate]="maxDate"  placement="bottom" container="" [bsConfig]="bsDatepickerConfig" bsDatepicker>
+            
+                   
+              </div>
+            </div>
+    
+            <div class="col-md-4" *ngIf="calibrationDetails.isBluetooththermalprinter === '1'">
+              <div class="form-group">
+                <label for="matrixScanerImgUpload"
+                  >Bluetooth Thermal Printer Photo Upload  <span style="color: red;font-size: 10px;">* Max 100KB jpeg</span>
+                </label>
+                <input
+                  type="file"
+                  class="form-control p-0"
+                  id="matrixScanerImgUpload" (change)="OnlyJpegUpload($event,14)" 
+                 
+                  accept="image/*"
+                  #matrixScanerImgUpload
+                  autocomplete="off"
+                />
+                <!-- (change)="onBluetooththermalprinterImgChange($event)" -->
+              </div>
+            </div>
+  
+  
+            <div class="col-md-4">
+              <div class="form-group">
+                <label> Barcode Scanner <sup class="text-danger h6">*</sup></label>
+                <div class="ah-radio-buttons">
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input
+                      class="custom-control-input"
+                      type="radio"
+                      name="isBarcodescanner"
+                      id="isBarcodescanner1"
+                      value="1"
+                      [(ngModel)]="calibrationDetails.isBarcodescanner"
+                      autocomplete="off"  (change)="rbtnvalue(11)" 
+                    />
+                    <label class="custom-control-label" for="isBarcodescanner1">
+                      Available
+                    </label>
+                  </div>
+      
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input
+                      class="custom-control-input"
+                      type="radio"
+                      name="isBarcodescanner"
+                      id="isBarcodescanner2"
+                      value="0"
+                      [(ngModel)]="calibrationDetails.isBarcodescanner"
+                      autocomplete="off"   (change)="rbtnvalue(11)" 
+                    />
+                    <label class="custom-control-label" for="isBarcodescanner2">
+                      Not Available
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+    
+            <div class="col-md-4" *ngIf="calibrationDetails.isBarcodescanner === '1'">
+              <div class="form-group">
+                <label>Barcode Scanner Maker <span style="color: red">*</span></label>
+                <input type="text"
+                class="form-control"
+                [(ngModel)]="calibrationDetails.Barcodescannermaker"
+                placeholder="Please Enter Barcode Scanner Maker"
+                maxlength="50"
+                autocomplete="off">
+              </div>
+            </div>
+    
+            <div class="col-md-4" *ngIf="calibrationDetails.isBarcodescanner === '1'">
+              <div class="form-group">
+                <label>Barcode Scanner Serial No <span style="color: red">*</span></label>
+                <input type="text"
+                class="form-control"
+                [(ngModel)]="calibrationDetails.BarcodescannerSerialNo"
+                placeholder="Please Enter Barcode Scanner Serial No"
+                maxlength="50"
+                autocomplete="off">
+              </div>
+            </div>
+            
+            <div class="col-md-4" *ngIf="calibrationDetails.isBarcodescanner === '1'">
+              <div class="form-group">
+                <label for="matrixWebCamManufactureDate">
+                  Barcode Scanner Manufacture  Date 
+                  <span style="color: red">*</span>
+                  </label>
+                  <input type="text" placeholder="DD-MM-YYYY" class="form-control" [minDate]="minDate"
+                  [(ngModel)]="BarcodescannerDate" [maxDate]="maxDate"  placement="bottom" container="" [bsConfig]="bsDatepickerConfig" bsDatepicker>
+            
+                   
+              </div>
+            </div>
+    
+            <div class="col-md-4" *ngIf="calibrationDetails.isBarcodescanner === '1'">
+              <div class="form-group">
+                <label for="matrixScanerImgUpload"
+                  >Barcode Scanner Photo Upload  <span style="color: red;font-size: 10px;">* Max 100KB jpeg</span>
+                </label>
+                <input
+                  type="file"
+                  class="form-control p-0"
+                  id="matrixScanerImgUpload"
+                 
+                  accept="image/*"
+                  #matrixScanerImgUpload
+                  autocomplete="off" (change)="OnlyJpegUpload($event,15)" 
+                />
+                <!-- (change)="onBarcodescannerImgChange($event)" -->
+              </div>
+            </div>
+  
+            <div class="col-md-4">
+              <div class="form-group">
+                <label> POS Device <sup class="text-danger h6">*</sup></label>
+                <div class="ah-radio-buttons">
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input
+                      class="custom-control-input"
+                      type="radio"
+                      name="isposdevice"
+                      id="isposdevice1"
+                      value="1"
+                      [(ngModel)]="calibrationDetails.isposdevice"
+                      autocomplete="off"   (change)="rbtnvalue(12)" 
+                    />
+                    <label class="custom-control-label" for="isposdevice1">
+                      Available
+                    </label>
+                  </div>
+      
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input
+                      class="custom-control-input"
+                      type="radio"
+                      name="isposdevice"
+                      id="isposdevice2"
+                      value="0"
+                      [(ngModel)]="calibrationDetails.isposdevice"
+                      autocomplete="off"    (change)="rbtnvalue(12)" 
+                    />
+                    <label class="custom-control-label" for="isposdevice2">
+                      Not Available
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+    
+            <div class="col-md-4" *ngIf="calibrationDetails.isposdevice === '1'">
+              <div class="form-group">
+                <label>POS Device Maker <span style="color: red">*</span></label>
+                <input type="text"
+                class="form-control"
+                [(ngModel)]="calibrationDetails.posdevicemaker"
+                placeholder="Please Enter POS Device Maker"
+                maxlength="50"
+                autocomplete="off">
+              </div>
+            </div>
+    
+            <div class="col-md-4" *ngIf="calibrationDetails.isposdevice === '1'">
+              <div class="form-group">
+                <label>POS Device Serial No <span style="color: red">*</span></label>
+                <input type="text"
+                class="form-control"
+                [(ngModel)]="calibrationDetails.posdeviceSerialNo"
+                placeholder="Please Enter POS Device Serial No"
+                maxlength="50"
+                autocomplete="off">
+              </div>
+            </div>
+            
+            <div class="col-md-4" *ngIf="calibrationDetails.isposdevice === '1'">
+              <div class="form-group">
+                <label for="matrixWebCamManufactureDate">
+                  POS Device Manufacture Date 
+                  <span style="color: red">*</span>
+                  </label>
+                  <input type="text" placeholder="DD-MM-YYYY" class="form-control" [minDate]="minDate"
+                  [(ngModel)]="posdeviceDate" [maxDate]="maxDate"  placement="bottom" container="" [bsConfig]="bsDatepickerConfig" bsDatepicker>
+            
+                   
+              </div>
+            </div>
+    
+            <div class="col-md-4" *ngIf="calibrationDetails.isposdevice === '1'">
+              <div class="form-group">
+                <label for="matrixScanerImgUpload"
+                  >POS Device Photo Upload  <span style="color: red;font-size: 10px;">* Max 100KB jpeg</span>
+                </label>
+                <input
+                  type="file"
+                  class="form-control p-0"
+                  id="matrixScanerImgUpload"  (change)="OnlyJpegUpload($event,16)" 
+                 
+                  accept="image/*"
+                  #matrixScanerImgUpload
+                  autocomplete="off"
+                />
+                <!-- (change)="onPOSdeviceImgChange($event)" -->
+              </div>
+            </div>
+  
+  
+            <div class="col-md-4">
+              <div class="form-group">
+                <label> PassBook Printer <sup class="text-danger h6">*</sup></label>
+                <div class="ah-radio-buttons">
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input
+                      class="custom-control-input"
+                      type="radio"
+                      name="isPassbookprinter"
+                      id="isPassbookprinter1"
+                      value="1"
+                      [(ngModel)]="calibrationDetails.isPassbookprinter"
+                      autocomplete="off" (change)="rbtnvalue(13)" 
+                    />
+                    <label class="custom-control-label" for="isPassbookprinter1">
+                      Available
+                    </label>
+                  </div>
+      
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input
+                      class="custom-control-input"
+                      type="radio"
+                      name="isPassbookprinter"
+                      id="isPassbookprinter2"
+                      value="0"
+                      [(ngModel)]="calibrationDetails.isPassbookprinter"
+                      autocomplete="off"  (change)="rbtnvalue(13)" 
+                    />
+                    <label class="custom-control-label" for="isPassbookprinter2">
+                      Not Available
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4" *ngIf="calibrationDetails.isPassbookprinter === '1'">
+              <div class="form-group">
+                <label>PassBook Printer Maker <span style="color: red">*</span></label>
+                <input type="text"
+                class="form-control"
+                [(ngModel)]="calibrationDetails.PassbookprinterMaker"
+                placeholder="Please Enter PassBook Printer Maker"
+                maxlength="50"
+                autocomplete="off">
+              </div>
+            </div>
+    
+            <div class="col-md-4" *ngIf="calibrationDetails.isPassbookprinter === '1'">
+              <div class="form-group">
+                <label>PassBook Printer Serial No <span style="color: red">*</span></label>
+                <input type="text"
+                class="form-control"
+                [(ngModel)]="calibrationDetails.PassbookprinterSerialNo"
+                placeholder="Please Enter PassBook Printer Serial No"
+                maxlength="50"
+                autocomplete="off">
+              </div>
+            </div>
+            
+            <div class="col-md-4" *ngIf="calibrationDetails.isPassbookprinter === '1'">
+              <div class="form-group">
+                <label for="matrixWebCamManufactureDate">
+                  PassBook Printer Manufacture Date 
+                  <span style="color: red">*</span>
+                  </label>
+                  <input type="text" placeholder="DD-MM-YYYY" class="form-control" [minDate]="minDate"
+                  [(ngModel)]="PassbookprinterDate" [maxDate]="maxDate"  placement="bottom" container="" [bsConfig]="bsDatepickerConfig" bsDatepicker>
+            
+                   
+              </div>
+            </div>
+    
+            <div class="col-md-4" *ngIf="calibrationDetails.isPassbookprinter === '1'">
+              <div class="form-group">
+                <label for="PassbookprinterImage"
+                  >PassBook Printer Photo Upload  <span style="color: red;font-size: 10px;">* Max 100KB jpeg</span>
+                </label>
+                <input
+                  type="file"
+                  class="form-control p-0"
+                  id="PassbookprinterImage"
+                  (change)="OnlyJpegUpload($event,17)" 
+                  
+                  accept="image/*"
+                  #PassbookprinterImage
+                  autocomplete="off"
+                />
+                <!-- (change)="onPassbookprinterImgChange($event)" -->
+              </div>
+            </div>
+    
+          <div class="col-md-12" align="center" *ngIf="btnlandsub">
+            <button
+              type="button"
+              class="btn btn-success btn-sm"
+              (click)="btnLandAllotmentSub()" 
+            >
+              SUBMIT
+            </button>&nbsp;
+            <!-- <button
+              type="button"
+              class="btn btn-danger btn-sm"
+              (click)="btnLandAllotmentSub('2')"
+            >
+              LAND ALLOTMENT PENDING
+            </button> -->
+          </div>
+        </div>
+  
+        <div class="row" *ngIf="CertificationStatus">
+  <div class="col-md-2"></div>
+          <div class="col-md-3 button">
+            <div class="form-group">
+              <button
+              type="button"
+              class="btn btn-info btn-sm"
+              (click)="btnPDF()"
+            >
+              Download PDF File
+            </button>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="giftAndDeedPhotoUpload"
+                >PDF file Upload <span style="color: red">*</span>
+              </label>
+              <input
+                type="file"
+                class="form-control p-0"
+                id="giftAndDeedPhotoUpload"
+                (change)="onpdffileChange($event)"
+                accept="pdf/*"
+                autocomplete="off"
+              />
+            </div>
+          </div>
+  
+          <div class="col-md-3 button"   >
+            <div class="form-group">
+              <label></label>
+              <button
+              type="button"
+              class="btn btn-success btn-sm"
+              (click)="Certificateupload()"
+            >
+              SUBMIT
+            </button>
+            </div>
+          </div>
+         
+  
+        
+        </div>
+  
+        <div class="row" *ngIf="MessageStatus">
+          <h3> Details Added Successfully... !</h3>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+  

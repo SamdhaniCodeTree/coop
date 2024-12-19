@@ -1,0 +1,538 @@
+<div class="row">
+    <div class="col-md-12" *ngIf="district">
+        <label for="toDate">
+            FROM DATE :
+            <span class="text-success">
+              <b> {{ fromDate  }}</b>
+            </span>
+          </label>&nbsp; &nbsp;&nbsp; &nbsp; 
+          <label for="toDate">
+            TO DATE :
+            <span class="text-success">
+              <b> {{ toDate }}</b>
+            </span>
+          </label>&nbsp; &nbsp;&nbsp; &nbsp;
+        <label for="toDate">
+            DISTRICT :
+            <span class="text-success">
+                <b> {{ districtName | uppercase }}</b>
+            </span>
+        </label>
+    </div>
+    <div class="col-md-12" *ngIf="division">
+        <label for="toDate">
+            FROM DATE :
+            <span class="text-success">
+              <b> {{ fromDate  }}</b>
+            </span>
+          </label>&nbsp; &nbsp;&nbsp; &nbsp; 
+          <label for="toDate">
+            TO DATE :
+            <span class="text-success">
+              <b> {{ toDate }}</b>
+            </span>
+          </label>&nbsp; &nbsp;&nbsp; &nbsp;
+        <label for="toDate">
+            DIVISION :
+            <span class="text-success">
+                <b> {{ divisionName | uppercase }}</b>
+            </span>
+        </label>
+    </div>
+    <div class="col-md-12">
+        <button type="button" class="btn btn-sm btn-success pull-right" (click)="btnExcelDownload()">
+            <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+            DOWNLOAD EXCEL
+        </button>
+        <button  *ngIf="type == '12'"
+          type="button"
+          class="btn btn-sm btn-danger pull-right"
+          (click)="btnPDF('12')"
+        >
+          <i
+            class="fa fa-file-pdf-o mr-2"
+            aria-hidden="true"
+          ></i>
+          DOWNLOAD PDF
+        </button>
+
+        <button  *ngIf="type == '15'"
+        type="button"
+        class="btn btn-sm btn-danger pull-right"
+        (click)="btnPDF('15')"
+      >
+        <i
+          class="fa fa-file-pdf-o mr-2"
+          aria-hidden="true"
+        ></i>
+        DOWNLOAD PDF
+      </button>
+    </div>
+    <div class="col-md-12 table-responsive tbl-fixed" [hidden]="districtLevelDetails.length < 1">
+        <table class="table table-bordered tbl-data" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+            <thead class="thead-dark">
+
+                <tr>
+                    <th rowspan="2" style="z-index: 5;">S NO</th>
+                    <th rowspan="2" style="z-index: 5;">NAME OF THE DISTRICT</th>
+                    <th rowspan="2" style="z-index: 5;">NAME OF THE DCCB</th>
+                    <th rowspan="2" style="z-index: 5;">NAME OF THE PACS</th>  
+                    <th colspan="6">MONITOR</th>
+                    <th colspan="6">CPU</th>
+                    <th colspan="6">MOUSE</th>
+                    <th colspan="6">KEY BOARD</th> 
+                    <th colspan="6">UPS-2KVA</th>
+                    <th colspan="6">UPS-BATTERY 1</th>
+                    <th colspan="6">UPS-BATTERY 2</th> 
+                    <th colspan="6">MULTI-FUNCTIONAL DEVICE (MFD)</th>
+                    <th colspan="6">VPN DEVICE</th>
+                    <th colspan="6">WEBCAM</th>
+                    <th colspan="6">INTERNET CONNECTIVITY</th>
+                    <th colspan="6">BIOMETRIC SCANNER</th>
+                    <th colspan="6">TAB</th>
+                    <th colspan="6">BLUETOOTH THERMAL PRINTER</th>
+                    <th colspan="6">BARCODE SCANNER</th>
+                    <th colspan="6">POS DEVICE - HAND HELD</th>
+                    <th colspan="6">PASSBOOK PRINTER</th>  
+                </tr>
+
+              
+                  <tr>  
+                    <th>MAKE</th>
+                    <th>MODEL DETAILS</th>
+                   
+                    <th>RECEIVED DATE</th>
+                    <th>WARRANTY DATE</th>
+                    <th>AMC DATE</th>
+                    <th>IMAGE</th>
+                    <th>MAKE</th>
+                    <th>MODEL DETAILS</th>
+                   
+                    <th>RECEIVED DATE</th>
+                    <th>WARRANTY DATE</th>
+                    <th>AMC DATE</th>
+                    <th>IMAGE</th>
+                    <th>MAKE</th>
+                    <th>MODEL DETAILS</th>
+                   
+                    <th>RECEIVED DATE</th>
+                    <th>WARRANTY DATE</th>
+                    <th>AMC DATE</th>
+                    <th>IMAGE</th>
+                    <th>MAKE</th>
+                    <th>MODEL DETAILS</th>
+                   
+                    <th>RECEIVED DATE</th>
+                    <th>WARRANTY DATE</th>
+                    <th>AMC DATE</th>
+                    <th>IMAGE</th>
+                    <th>MAKE</th>
+                    <th>MODEL DETAILS</th>
+                   
+                    <th>RECEIVED DATE</th>
+                    <th>WARRANTY DATE</th>
+                    <th>AMC DATE</th>
+                    <th>IMAGE</th>
+                    <th>MAKE</th>
+                    <th>MODEL DETAILS</th>
+                   
+                    <th>RECEIVED DATE</th>
+                    <th>WARRANTY DATE</th>
+                    <th>AMC DATE</th>
+                    <th>IMAGE</th>
+                    <th>MAKE</th>
+                    <th>MODEL DETAILS</th>
+                   
+                    <th>RECEIVED DATE</th>
+                    <th>WARRANTY DATE</th>
+                    <th>AMC DATE</th>
+                    <th>IMAGE</th>
+                    <th>MAKE</th>
+                    <th>MODEL DETAILS</th>
+                   
+                    <th>RECEIVED DATE</th>
+                    <th>WARRANTY DATE</th>
+                    <th>AMC DATE</th>
+                    <th>IMAGE</th>
+                    <th>MAKE</th>
+                    <th>MODEL DETAILS</th>
+                   
+                    <th>RECEIVED DATE</th>
+                    <th>WARRANTY DATE</th>
+                    <th>AMC DATE</th>
+                    <th>IMAGE</th>
+                    <th>MAKE</th>
+                    <th>MODEL DETAILS</th>
+                   
+                    <th>RECEIVED DATE</th>
+                    <th>WARRANTY DATE</th>
+                    <th>AMC DATE</th>
+                    <th>IMAGE</th>
+                    <th>MAKE</th>
+                    <th>MODEL DETAILS</th>
+                   
+                    <th>RECEIVED DATE</th>
+                    <th>WARRANTY DATE</th>
+                    <th>AMC DATE</th>
+                    <th>IMAGE</th>
+                    <th>MAKE</th>
+                    <th>MODEL DETAILS</th>
+                   
+                    <th>RECEIVED DATE</th>
+                    <th>WARRANTY DATE</th>
+                    <th>AMC DATE</th>
+                    <th>IMAGE</th>
+                    <th>MAKE</th>
+                    <th>MODEL DETAILS</th>
+                   
+                    <th>RECEIVED DATE</th>
+                    <th>WARRANTY DATE</th>
+                    <th>AMC DATE</th>
+                    <th>IMAGE</th>
+                    <th>MAKE</th>
+                    <th>MODEL DETAILS</th>
+                   
+                    <th>RECEIVED DATE</th>
+                    <th>WARRANTY DATE</th>
+                    <th>AMC DATE</th>
+                    <th>IMAGE</th>
+                    <th>MAKE</th>
+                    <th>MODEL DETAILS</th>
+                   
+                    <th>RECEIVED DATE</th>
+                    <th>WARRANTY DATE</th>
+                    <th>AMC DATE</th>
+                    <th>IMAGE</th>
+                    <th>MAKE</th>
+                    <th>MODEL DETAILS</th>
+                   
+                    <th>RECEIVED DATE</th>
+                    <th>WARRANTY DATE</th>
+                    <th>AMC DATE</th>
+                    <th>IMAGE</th>
+                    <th>MAKE</th>
+                    <th>MODEL DETAILS</th>
+                    
+                    <th>RECEIVED DATE</th>
+                    <th>WARRANTY DATE</th>
+                    <th>AMC DATE</th> 
+                    <th>IMAGE</th>
+                 </tr>  
+            </thead>
+             <tbody *ngIf="districtLevelDetails?.length > 0">
+                <tr *ngFor="let obj of districtLevelDetails; let i = index">
+                    <td>{{ i + 1 }}</td>
+                    <td>{{ obj.DISTRICT_NAME }}</td>
+                    <td>{{ obj.AFFILITED_DCCB_NAME }}</td>
+                    <td>{{ obj.PACS_NAME }}</td> 
+                        <td>{{ obj.MODEL_DETAILS1 }}</td>  
+                        <td>{{ obj.SERIAL_NUMBER1 }}</td>  
+                        <td>{{ obj.RECEIVED_DATE1 | slice:0:10 | date:"d-MM-Y" }}</td> 
+                        <td>{{ obj.WARRANTY_DATE1 | slice:0:10 | date:"d-MM-Y" }}</td> 
+                        <td>{{ obj.AMC_DATE1 | slice:0:10 | date:"d-MM-Y" }}</td> 
+                        <td>
+                        
+
+                        <button 
+                        type="button"
+                         *ngIf="obj.IMAGE1 != null"
+                          class="btn btn-link btn-sm" 
+                          (click)="btnPhotoView(obj.IMAGE1)" style="font-size: 12px;">  
+                            View
+                        </button>
+                        <span *ngIf="obj.IMAGE1 == null">N/A </span> 
+                    </td>   
+                           
+                        <td>{{ obj.MODEL_DETAILS2 }}</td>  
+                        <td>{{ obj.SERIAL_NUMBER2 }}</td>  
+                        <td>{{ obj.RECEIVED_DATE2 | slice:0:10 | date:"d-MM-Y"}}</td> 
+                        <td>{{ obj.WARRANTY_DATE2 | slice:0:10 | date:"d-MM-Y"}}</td> 
+                        <td>{{ obj.AMC_DATE2 | slice:0:10 | date:"d-MM-Y"}}</td> 
+                        <td>
+                        
+
+                            <button 
+                            type="button"
+                             *ngIf="obj.IMAGE2 != null"
+                              class="btn btn-link btn-sm" 
+                              (click)="btnPhotoView(obj.IMAGE2)" style="font-size: 12px;">  
+                                View
+                            </button>
+                            <span *ngIf="obj.IMAGE2 == null">N/A </span> 
+                        </td>    
+                        <td>{{ obj.MODEL_DETAILS3 }}</td>  
+                        <td>{{ obj.SERIAL_NUMBER3 }}</td>  
+                        <td>{{ obj.RECEIVED_DATE3 | slice:0:10 | date:"d-MM-Y"}}</td>
+                        <td>{{ obj.WARRANTY_DATE3 | slice:0:10 | date:"d-MM-Y"}}</td> 
+                        <td>{{ obj.AMC_DATE3 | slice:0:10 | date:"d-MM-Y"}}</td> 
+                        <td>
+                        
+
+                            <button 
+                            type="button"
+                             *ngIf="obj.IMAGE3 != null"
+                              class="btn btn-link btn-sm" 
+                              (click)="btnPhotoView(obj.IMAGE3)" style="font-size: 12px;">  
+                                View
+                            </button>
+                            <span *ngIf="obj.IMAGE3 == null">N/A </span> 
+                        </td>    
+                        <td>{{ obj.MODEL_DETAILS4 }}</td>  
+                        <td>{{ obj.SERIAL_NUMBER4 }}</td>  
+                        <td>{{ obj.RECEIVED_DATE4 | slice:0:10 | date:"d-MM-Y"}}</td> 
+                        <td>{{ obj.WARRANTY_DATE4 | slice:0:10 | date:"d-MM-Y"}}</td> 
+                        <td>{{ obj.AMC_DATE4 | slice:0:10 | date:"d-MM-Y"}}</td> 
+                        <td>
+                        
+
+                            <button 
+                            type="button"
+                             *ngIf="obj.IMAGE4 != null"
+                              class="btn btn-link btn-sm" 
+                              (click)="btnPhotoView(obj.IMAGE4)" style="font-size: 12px;">  
+                                View
+                            </button>
+                            <span *ngIf="obj.IMAGE4 == null">N/A </span> 
+                        </td>   
+                        <td>{{ obj.MODEL_DETAILS5 }}</td>  
+                        <td>{{ obj.SERIAL_NUMBER5 }}</td>  
+                        <td>{{ obj.RECEIVED_DATE5 | slice:0:10 | date:"d-MM-Y"}}</td> 
+                        <td>{{ obj.WARRANTY_DATE5 | slice:0:10 | date:"d-MM-Y"}}</td> 
+                        <td>{{ obj.AMC_DATE5 | slice:0:10 | date:"d-MM-Y"}}</td> 
+                        <td>
+                        
+
+                            <button 
+                            type="button"
+                             *ngIf="obj.IMAGE5 != null"
+                              class="btn btn-link btn-sm" 
+                              (click)="btnPhotoView(obj.IMAGE5)" style="font-size: 12px;">  
+                                View
+                            </button>
+                            <span *ngIf="obj.IMAGE5 == null">N/A </span> 
+                        </td>   
+                        <td>{{ obj.MODEL_DETAILS6 }}</td>  
+                        <td>{{ obj.SERIAL_NUMBER6 }}</td>  
+                        <td>{{ obj.RECEIVED_DATE6 | slice:0:10 | date:"d-MM-Y" }}</td> 
+                        <td>{{ obj.WARRANTY_DATE6 | slice:0:10 | date:"d-MM-Y" }}</td> 
+                        <td>{{ obj.AMC_DATE6 | slice:0:10 | date:"d-MM-Y"}}</td> 
+                        <td>
+                        
+
+                            <button 
+                            type="button"
+                             *ngIf="obj.IMAGE6 != null"
+                              class="btn btn-link btn-sm" 
+                              (click)="btnPhotoView(obj.IMAGE6)" style="font-size: 12px;">  
+                                View
+                            </button>
+                            <span *ngIf="obj.IMAGE6 == null">N/A </span> 
+                        </td>   
+                        <td>{{ obj.MODEL_DETAILS7 }}</td>  
+                        <td>{{ obj.SERIAL_NUMBER7 }}</td>  
+                        <td>{{ obj.RECEIVED_DATE7 | slice:0:10 | date:"d-MM-Y"}}</td> 
+                        <td>{{ obj.WARRANTY_DATE7 | slice:0:10 | date:"d-MM-Y"}}</td> 
+                        <td>{{ obj.AMC_DATE7 | slice:0:10 | date:"d-MM-Y"}}</td> 
+                        <td>
+                        
+
+                            <button 
+                            type="button"
+                             *ngIf="obj.IMAGE7 != null"
+                              class="btn btn-link btn-sm" 
+                              (click)="btnPhotoView(obj.IMAGE7)" style="font-size: 12px;">  
+                                View
+                            </button>
+                            <span *ngIf="obj.IMAGE7 == null">N/A </span> 
+                        </td>   
+                        <td>{{ obj.MODEL_DETAILS8 }}</td>  
+                        <td>{{ obj.SERIAL_NUMBER8 }}</td>  
+                        <td>{{ obj.RECEIVED_DATE8 | slice:0:10 | date:"d-MM-Y"}}</td> 
+                        <td>{{ obj.WARRANTY_DATE8 | slice:0:10 | date:"d-MM-Y"}}</td> 
+                        <td>{{ obj.AMC_DATE8 | slice:0:10 | date:"d-MM-Y"}}</td> 
+                        <td>
+                        
+
+                            <button 
+                            type="button"
+                             *ngIf="obj.IMAGE8 != null"
+                              class="btn btn-link btn-sm" 
+                              (click)="btnPhotoView(obj.IMAGE8)" style="font-size: 12px;">  
+                                View
+                            </button>
+                            <span *ngIf="obj.IMAGE8 == null">N/A </span> 
+                        </td>   
+                        <td>{{ obj.MODEL_DETAILS9 }}</td>  
+                        <td>{{ obj.SERIAL_NUMBER9 }}</td>  
+                        <td>{{ obj.RECEIVED_DATE9 | slice:0:10 | date:"d-MM-Y"}}</td> 
+                        <td>{{ obj.WARRANTY_DATE9 | slice:0:10 | date:"d-MM-Y"}}</td> 
+                        <td>{{ obj.AMC_DATE9 | slice:0:10 | date:"d-MM-Y"}}</td> 
+                        <td>
+                        
+
+                            <button 
+                            type="button"
+                             *ngIf="obj.IMAGE9 != null"
+                              class="btn btn-link btn-sm" 
+                              (click)="btnPhotoView(obj.IMAGE9)" style="font-size: 12px;">  
+                                View
+                            </button>
+                            <span *ngIf="obj.IMAGE9 == null">N/A </span> 
+                        </td>   
+                        <td>{{ obj.MODEL_DETAILS10 }}</td>  
+                        <td>{{ obj.SERIAL_NUMBER10 }}</td>  
+                        <td>{{ obj.RECEIVED_DATE10 | slice:0:10 | date:"d-MM-Y"}}</td>
+                        <td>{{ obj.WARRANTY_DATE10 | slice:0:10 | date:"d-MM-Y"}}</td> 
+                        <td>{{ obj.AMC_DATE10 | slice:0:10 | date:"d-MM-Y"}}</td> 
+                        <td>
+                        
+
+                            <button 
+                            type="button"
+                             *ngIf="obj.IMAGE10 != null"
+                              class="btn btn-link btn-sm" 
+                              (click)="btnPhotoView(obj.IMAGE10)" style="font-size: 12px;">  
+                                View
+                            </button>
+                            <span *ngIf="obj.IMAGE10 == null">N/A </span> 
+                        </td>    
+                        <td>{{ obj.MODEL_DETAILS11 }}</td>  
+                        <td>{{ obj.SERIAL_NUMBER11 }}</td>  
+                        <td>{{ obj.RECEIVED_DATE11 | slice:0:10 | date:"d-MM-Y"}}</td>
+                        <td>{{ obj.WARRANTY_DATE11 | slice:0:10 | date:"d-MM-Y"}}</td> 
+                        <td>{{ obj.AMC_DATE11 | slice:0:10 | date:"d-MM-Y"}}</td> 
+                        <td>
+                        
+
+                            <button 
+                            type="button"
+                             *ngIf="obj.IMAGE11 != null"
+                              class="btn btn-link btn-sm" 
+                              (click)="btnPhotoView(obj.IMAGE11)" style="font-size: 12px;">  
+                                View
+                            </button>
+                            <span *ngIf="obj.IMAGE11 == null">N/A </span> 
+                        </td>    
+                        <td>{{ obj.MODEL_DETAILS12 }}</td>  
+                        <td>{{ obj.SERIAL_NUMBER12 }}</td>  
+                        <td>{{ obj.RECEIVED_DATE12 | slice:0:10 | date:"d-MM-Y"}}</td> 
+                        <td>{{ obj.WARRANTY_DATE12 | slice:0:10 | date:"d-MM-Y"}}</td> 
+                        <td>{{ obj.AMC_DATE12 | slice:0:10 | date:"d-MM-Y"}}</td> 
+                        <td>
+                        
+
+                            <button 
+                            type="button"
+                             *ngIf="obj.IMAGE12 != null"
+                              class="btn btn-link btn-sm" 
+                              (click)="btnPhotoView(obj.IMAGE12)" style="font-size: 12px;">  
+                                View
+                            </button>
+                            <span *ngIf="obj.IMAGE12 == null">N/A </span> 
+                        </td>   
+                        <td>{{ obj.MODEL_DETAILS13 }}</td>  
+                        <td>{{ obj.SERIAL_NUMBER13 }}</td>  
+                        <td>{{ obj.RECEIVED_DATE13 | slice:0:10 | date:"d-MM-Y"}}</td>
+                        <td>{{ obj.WARRANTY_DATE13 | slice:0:10 | date:"d-MM-Y"}}</td> 
+                        <td>{{ obj.AMC_DATE13 | slice:0:10 | date:"d-MM-Y"}}</td> 
+                        <td>
+                        
+
+                            <button 
+                            type="button"
+                             *ngIf="obj.IMAGE13 != null"
+                              class="btn btn-link btn-sm" 
+                              (click)="btnPhotoView(obj.IMAGE13)" style="font-size: 12px;">  
+                                View
+                            </button>
+                            <span *ngIf="obj.IMAGE13 == null">N/A </span> 
+                        </td>    
+                        <td>{{ obj.MODEL_DETAILS14 }}</td>  
+                        <td>{{ obj.SERIAL_NUMBER14 }}</td>  
+                        <td>{{ obj.RECEIVED_DATE14 | slice:0:10 | date:"d-MM-Y"}}</td> 
+                        <td>{{ obj.WARRANTY_DATE14 | slice:0:10 | date:"d-MM-Y"}}</td> 
+                        <td>{{ obj.AMC_DATE14 | slice:0:10 | date:"d-MM-Y"}}</td> 
+                        <td>
+                        
+
+                            <button 
+                            type="button"
+                             *ngIf="obj.IMAGE14 != null"
+                              class="btn btn-link btn-sm" 
+                              (click)="btnPhotoView(obj.IMAGE14)" style="font-size: 12px;">  
+                                View
+                            </button>
+                            <span *ngIf="obj.IMAGE14 == null">N/A </span> 
+                        </td>   
+                        <td>{{ obj.MODEL_DETAILS15 }}</td>  
+                        <td>{{ obj.SERIAL_NUMBER15 }}</td>  
+                        <td>{{ obj.RECEIVED_DATE15 | slice:0:10 | date:"d-MM-Y"}}</td> 
+                        <td>{{ obj.WARRANTY_DATE15 | slice:0:10 | date:"d-MM-Y"}}</td> 
+                        <td>{{ obj.AMC_DATE15 | slice:0:10 | date:"d-MM-Y"}}</td> 
+                        <td>
+                        
+
+                            <button 
+                            type="button"
+                             *ngIf="obj.IMAGE15 != null"
+                              class="btn btn-link btn-sm" 
+                              (click)="btnPhotoView(obj.IMAGE15)" style="font-size: 12px;">  
+                                View
+                            </button>
+                            <span *ngIf="obj.IMAGE15 == null">N/A </span> 
+                        </td>   
+                        <td>{{ obj.MODEL_DETAILS16 }}</td>  
+                        <td>{{ obj.SERIAL_NUMBER16 }}</td>  
+                        <td>{{ obj.RECEIVED_DATE16 | slice:0:10 | date:"d-MM-Y"}}</td>
+                        <td>{{ obj.WARRANTY_DATE16 | slice:0:10 | date:"d-MM-Y"}}</td> 
+                        <td>{{ obj.AMC_DATE16 | slice:0:10 | date:"d-MM-Y"}}</td> 
+                        <td>
+                        
+
+                            <button 
+                            type="button"
+                             *ngIf="obj.IMAGE16 != null"
+                              class="btn btn-link btn-sm" 
+                              (click)="btnPhotoView(obj.IMAGE16)" style="font-size: 12px;">  
+                                View
+                            </button>
+                            <span *ngIf="obj.IMAGE16 == null">N/A </span> 
+                        </td>    
+                        <td>{{ obj.MODEL_DETAILS17 }}</td>  
+                        <td>{{ obj.SERIAL_NUMBER17 }}</td>  
+                        <td>{{ obj.RECEIVED_DATE17 | slice:0:10 | date:"d-MM-Y"}}</td> 
+                        <td>{{ obj.WARRANTY_DATE17 | slice:0:10 | date:"d-MM-Y"}}</td> 
+                        <td>{{ obj.AMC_DATE17 | slice:0:10 | date:"d-MM-Y"}}</td> 
+                        <td>
+                        
+
+                            <button 
+                            type="button"
+                             *ngIf="obj.IMAGE17 != null"
+                              class="btn btn-link btn-sm" 
+                              (click)="btnPhotoView(obj.IMAGE17)" style="font-size: 12px;">  
+                                View
+                            </button>
+                            <span *ngIf="obj.IMAGE17 == null">N/A </span> 
+                        </td>   
+                        <!-- <td>
+                        
+
+                        <button 
+                        type="button"
+                         *ngIf="obj.PDF_VIEW != '-'"
+                          class="btn btn-link btn-sm" 
+                          (click)="btnPhotoView(obj.PDF_VIEW)" style="font-size: 12px;">  
+                            View
+                        </button>
+                        <span *ngIf="obj.PDF_VIEW == '-'">IMAGE NOT FOUND </span> 
+                    </td>   -->
+                </tr>
+            </tbody>  
+        </table>
+    </div>
+
+    <!-- <div class="col-md-12 table-responsive" [hidden]="districtLevelDetails?.length > 1">
+        <h6 class="text-center">No Data Available</h6>
+    </div> -->
+</div>

@@ -1,0 +1,489 @@
+<div class="app-content content background">
+  <div class="content-overlay"></div>
+  <div class="content-wrapper">
+      <div class="content-header row">
+          <div class="content-header-left col-md-6 col-12">
+              <h3 class="content-header-title mb-0 text-white">CALIBRATION REGISTRATION</h3>
+              <div class="row breadcrumbs-top">
+                  <div class="breadcrumb-wrapper col-12">
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="card backgrnd">
+        <div class="col-md-12 row">
+
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="deviceId">SELECT DISTRICT  <span style="color: red">*</span></label>
+              <select                 
+                  id="Districtcode"
+                  class="form-control"
+                  [(ngModel)]="calibrationDetails1.Districtcode" 
+                  (change)="DistChange(calibrationDetails1.Districtcode)"
+                   > 
+                   <option value="">-- SELECT DISTRICT --</option>
+                  <option
+                    value="{{ obj.DISTRICT_CODE }}"
+                    *ngFor="let obj of DistrictlistData">
+                    {{ obj.DISTRICT_NAME }}
+                  </option>
+                </select>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="deviceId">SELECT MANDAL  <span style="color: red">*</span></label>
+              <select                 
+                  id="Mandalcode"
+                  class="form-control"
+                  [(ngModel)]="calibrationDetails1.Mandalcode" 
+                  (change)="MandalChange(calibrationDetails1.Mandalcode)"
+                   > 
+                   <option value="">-- SELECT MANDAL --</option>
+                  <option
+                    value="{{ obj.MANDAL_CODE }}"
+                    *ngFor="let obj of MandallistData">
+                    {{ obj.MANDAL_NAME }}
+                  </option>
+                </select>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="deviceId">SELECT PACS  <span style="color: red">*</span></label>
+              <select                 
+                  id="PACS_CODE"
+                  class="form-control"
+                  [(ngModel)]="calibrationDetails1.PACS_CODE" 
+                  (change)="PacsChange(calibrationDetails1.PACS_CODE)"
+                   > 
+                   <option value="">-- SELECT PACS --</option>
+                  <option
+                    value="{{ obj.PACS_CODE }}"
+                    *ngFor="let obj of pacslistData" >
+                    {{ obj.PACS_NAME }}
+                  </option>
+                </select>
+            </div>
+          </div>
+        </div>
+        
+        <div  *ngIf="calibrationdetails">
+          <div class="card-body ">
+              <div class="row">
+
+                
+                  <div class="col-md-3">
+                      <div class="form-group">
+                          <label for="deviceId"> SELECT DEVICE <span style="color: red">*</span></label>
+                          <select id="deviceId" class="form-control" [(ngModel)]="calibrationDetails1.deviceId"
+                              (change)="deviceChange(calibrationDetails1.deviceId)">
+                              <option disabled selected value="">-- SELECT DEVICE --</option>
+                              <option value="{{ obj.DEVICE_ID }}" *ngFor="let obj of DeviceList">
+                                  {{ obj.DEVICE_NAME }}
+                              </option>
+                          </select>
+                      </div>
+                  </div>
+
+                  <div class="col-md-3">
+                      <div class="form-group">
+                          <label for="inspectionDate"> INSTALLATION DATE<span class="text-danger">*</span>
+                          </label>
+                          <input type="text" class="form-control bg-white" [(ngModel)]="inspectionDate" readonly placeholder="DD-MM-YYYY" (ngModelChange)="onDateChange($event)" [minDate]="minDate" [maxDate]="maxDate"  placement="bottom" container="" [bsConfig]="bsDatepickerConfig" bsDatepicker>
+                      </div>
+                  </div>
+                  <div class="col-md-3">
+                      <div class="form-group">
+                          <label for="MakerId">{{DeviceText}} MAKER <span style="color: red">*</span></label>
+                          <input type="text" class="form-control text-success bg-white" readonly [(ngModel)]="calibrationDetails1.MakerId"
+                              placeholder="ENTER {{DeviceText}} MAKER" maxlength="50" autocomplete="off">
+                      </div>
+                  </div>
+
+                  <div class="col-md-3">
+                      <div class="form-group">
+                          <label for="SerialNo">{{DeviceText}} SERIAL NUMBER <span style="color: red">*</span></label>
+                          <input type="text" class="form-control text-success bg-white" readonly id="SerialNo"
+                              [(ngModel)]="calibrationDetails1.SerialNo"
+                              placeholder="ENTER {{DeviceText}} SERIAL NUMBER" maxlength="50" autocomplete="off">
+                      </div>
+                  </div>
+
+                  <div class="col-md-3">
+                      <div class="form-group">
+                          <label for="ManufactureDate">{{DeviceText}} MANUFACTURE DATE<span
+                                  style="color: red">*</span></label>
+                          <input type="text" placeholder="DD-MM-YYYY" readonly class="form-control text-success bg-white" [minDate]="minDate"
+                              [(ngModel)]="ManufactureDate" [maxDate]="maxDate" placement="bottom" container=""
+                              [bsConfig]="bsDatepickerConfig" bsDatepicker>
+
+                      </div>
+                  </div>
+
+
+                  <div class="col-md-3">
+                      <div class="form-group">
+                          <label for="CoverId">IS {{DeviceText}} COVER RECEIVED <span
+                                  style="color: red">*</span></label>
+                          <select id="CoverId" class="form-control" [(ngModel)]="calibrationDetails1.CoverId">
+                              <!-- (change)="deviceChange(deviceId)"
+               DeviceDetails.deviceId -->
+                              <option disabled selected value="">-- SELECT IS {{DeviceText}} COVER RECEIVED --
+                              </option>
+                              <option value="1"> YES </option>
+                              <option value="0"> NO </option>
+                              <!-- <option
+                    value="{{ obj.DEVICE_ID }}"
+                    *ngFor="let obj of DeviceList"
+                  >
+                    {{ obj.DEVICE_NAME }}
+                  </option> -->
+                          </select>
+                      </div>
+                  </div>
+
+                  <div class="col-md-3">
+                      <div class="form-group">
+                          <label for="UploadImage">{{DeviceText}} IMAGE UPLOAD<span
+                                  style="color: red; font-size: 10px;">* (MAX 250KB JPFG ONLY)</span>
+                          </label>
+                          <input type="file" class="form-control p-0" id="UploadImage"
+                              (change)="OnlyJpegUpload($event,1)" accept="image/*" autocomplete="off" />
+                      </div>
+                  </div>
+
+                  <div class="col-md-3">
+                      <div class="form-group">
+                          <label for="pdffileUpd">{{DeviceText}} INSTALLATION DOCUMENT UPLOAD<span
+                            style="color: red; font-size: 10px;">* (MAX 3MB PDF ONLY)</span>
+                          </label>
+                          <input type="file" class="form-control p-0" id="pdffileUpd"
+                              accept="pdf/*" autocomplete="off" (change)="onpdffileChange($event)" />
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="col-md-12" align="center" *ngIf="btnclisub">
+              <button type="button" class="btn btn-success btn-sm" (click)="btnCalibrationSub()">
+                  SUBMIT
+              </button>&nbsp;
+          </div>
+        </div>
+
+        <!-- <div class="row" *ngIf="CertificationStatus">
+          <div class="col-md-2"></div>
+          <div class="col-md-3 button">
+              <div class="form-group">
+                  <button type="button" class="btn btn-info btn-sm" (click)="btnPDF()">
+                     DOWNLOAD PDF FILE
+                  </button>
+              </div>
+          </div>
+          <div class="col-md-3">
+              <div class="form-group">
+                  <label for="fileupdforpdf">PDF FILE UPLOAD <span
+                    style="color: red; font-size: 10px;">* (MAX 1MB PDF ONLY)</span>
+                  </label>
+                  <input type="file" class="form-control p-0" id="fileupdforpdf"
+                      (change)="onpdffileChange1($event)" accept="pdf/*" autocomplete="off" />
+              </div>
+          </div>
+
+          <div class="col-md-3 button" >
+              <div class="form-group">
+                  <label></label>
+                  <button type="button" class="btn btn-success btn-sm" (click)="Certificateupload()">
+                      SUBMIT
+                  </button>
+              </div>
+          </div>
+
+
+
+      </div> -->
+
+      <div class="row" *ngIf="CertificationStatus">
+        <div class="col-md-4" style="text-align: left;">
+          <h3 style="margin:30px">  Details Added Successfully... !</h3>
+        </div>
+        <div class="col-md-4"></div>
+
+        <div class="col-md-3" style=" margin-top: 31px;margin-left: 100px;">
+          <button type="button" class="btn btn-info btn-sm" (click)="calibbtnPDF()">
+          Download PDF File
+        </button> </div>
+    </div>
+
+          <div     
+          class="col-md-12 table-responsive"
+          [hidden]="calibrationList.length < 1"
+        >          
+          <table
+            class="table table-bordered"
+            datatable
+            [dtOptions]="dtOptions"
+            [dtTrigger]="dtTrigger" 
+          >          
+          <!-- <p class="Status bg-success text-white" style="padding: 10px !important"><b>DEVICE DETAILS SUBMITTED LIST</b></p> -->
+            <thead class="thead-dark">
+              
+              <tr>
+                <th>S NO</th>
+                <th>DEVICE NAME</th>
+                <th>INSPECTION <br>DATE</th>
+                <th>DEVICE <br>MAKER</th>
+                <th>SERIAL <br>NUMBER</th>
+                <th>MANUFACTURING <br>DATE</th>
+                <th>IS COVER RECEIVED <br>STATUS</th>
+                <th>DEVICE IMAGE</th>                                    
+                <th>INSTALLATION <br>DOCUMENT</th> 
+                <th>ACTION</th>  
+                <th>REMARKS</th>                                 
+              </tr> 
+            </thead>
+            <tbody *ngIf="calibrationList?.length > 0">
+              <tr *ngFor="let obj of calibrationList; let i = index">
+                <td>{{ i + 1 }}</td>                                      
+                <td>{{ obj.DEVICE_NAME }}</td>
+                <td>{{ obj.INSPECTION_DATE }}</td>
+                <td>{{ obj.MAKER }}</td>
+                <td>{{ obj.SERIAL_NUMBER }}</td>                                    
+                <td>{{ obj.MANUFACTURE_DATA }}</td>
+                <td><span *ngIf="obj.COVER_RECEIVED_STATUS==1">YES</span>
+                  <span *ngIf="obj.COVER_RECEIVED_STATUS==0">NO</span>                  
+                 </td>
+                <!-- <td>{{ obj.COVER_RECEIVED_STATUS }}</td>  -->
+                <!-- <td>{{ obj.DEVICE_IMAGE_UPD }}</td>  -->
+                
+
+
+                <td>
+                  <button
+                    type="button"
+                    class="btn btn-link btn-sm"
+                    *ngIf="
+                      obj.DEVICE_IMAGE_UPD !== null &&
+                      obj.DEVICE_IMAGE_UPD !== '' &&
+                      obj.DEVICE_IMAGE_UPD !== undefined
+                    "
+                    (click)="btnPhotoView(obj.DEVICE_IMAGE_UPD)"
+                  >
+                    VIEW
+                  </button>
+                  <span
+                    *ngIf="
+                      obj.DEVICE_IMAGE_UPD === null ||
+                      obj.DEVICE_IMAGE_UPD === '' ||
+                      obj.DEVICE_IMAGE_UPD === undefined
+                    "
+                    >NA</span
+                  >
+                </td>
+
+                
+
+                <td>
+                  <button
+                    type="button"
+                    class="btn btn-link btn-sm"
+                    *ngIf="
+                      obj.INSTALLATION_DOC !== null &&
+                      obj.INSTALLATION_DOC !== '' &&
+                      obj.INSTALLATION_DOC !== undefined
+                    "
+                    (click)="btnPdfView(obj.INSTALLATION_DOC)"
+                  >
+                    VIEW
+                  </button>
+                  <span
+                    *ngIf="
+                      obj.INSTALLATION_DOC === null ||
+                      obj.INSTALLATION_DOC === '' ||
+                      obj.INSTALLATION_DOC === undefined
+                    "
+                    >NA</span
+                  >
+                </td> 
+
+                <td >
+                  <button *ngIf="obj.EDIT_STATUS =='1'"
+                    type="button" class="btn btn-info" title="Edit Device Received Details"                              
+                     
+                    (click)="btnViewEdit1(obj)" [disabled]="hideEdit"
+                  ><i class="fas fa-edit" style="color: white;"></i></button>
+                  <span *ngIf="obj.EDIT_STATUS =='0'">-</span>
+                  <!-- <button *ngIf="obj.EDIT_STATUS =='0'"
+                  type="button" class="btn btn-info" title="Edit Device Received Details"                              
+                   
+                  (click)="btnViewEdit1(obj)" [disabled]="hideEdit"
+                ><i class="fas fa-edit" style="color: white;"></i></button>    -->
+                </td>
+                <!-- <td>{{obj.REMARKS}}</td> -->
+                <td class="text-danger font-weight-bold"> 
+
+                  <span *ngIf="obj.CEO_REMARKS !=null"> {{obj.CEO_REMARKS}}</span>
+                  <span *ngIf="obj.DGM_REMARKS !=null"> {{obj.DGM_REMARKS}}</span>
+                </td>
+              </tr>
+            </tbody> 
+          </table>
+        </div> 
+
+
+        <div class="col-md-12" align="center" *ngIf="btnclisubFinalsub">
+          <button type="button" class="btn btn-success btn-sm" (click)="FinalStatus()" [disabled]="finalsub">
+              SUBMIT
+          </button>&nbsp;
+          </div>
+        
+        
+
+          
+
+      </div>
+
+  </div>
+
+
+  <div class="popup-modal" *ngIf="CalibrationPopUp">
+    <div class="popup-content">
+      <div class="popup-header">
+        <h4 class="title">DEVICE RECEIVED DETAILS EDIT</h4>
+        <a
+          type="button"
+          class="close"
+          (click)="CalibrationPopUp = false"
+          style="cursor: pointer"
+        >
+          <span>×</span>
+        </a>
+      </div>
+  
+      <div class="popup-body">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-md-12 row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="handOverByName">
+                  Device Name :
+                </label>
+                <br>
+                <label class="text-success"><b>{{EditcalibrationDetails.Devicename}}</b></label>
+                 
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="handOverByName">
+                  INSPECTION DATE :
+                </label>
+                <input type="text"class="form-control bg-white" readonly
+                [(ngModel)]="EditInspection_date" 
+                  placeholder="DD-MM-YYYY"  [minDate]="minDate" [maxDate]="maxDate"  placement="bottom" container="" [bsConfig]="bsDatepickerConfig" bsDatepicker>
+
+                
+                
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="handOverByName">
+                  MAKER :
+                </label>
+                <input
+                  id="handOverByName"
+                  type="text"
+                  class="form-control"
+                   [(ngModel)]="EditcalibrationDetails.Maker"
+                  placeholder="Please Enter Maker"
+                  maxlength="30"
+                  autocomplete="off"
+                />
+                 
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="handOverByName">
+                  SERIAL NUMBER : 
+                </label>
+                <input
+                  id="handOverByName"
+                  type="text"
+                  class="form-control"
+                   [(ngModel)]="EditcalibrationDetails.Serial_number"
+                  placeholder="Please Enter Serial Number"
+                  maxlength="30"
+                  autocomplete="off"/>
+                
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="handOverByName">
+                  MANUFACTURE DATE : 
+                </label>
+                <input type="text"class="form-control bg-white" readonly
+                [(ngModel)]="EditManufactureDate" placeholder="DD-MM-YYYY"  [minDate]="minDate" [maxDate]="maxDate"  placement="bottom" container="" [bsConfig]="bsDatepickerConfig" bsDatepicker>
+
+                
+                
+              </div>
+            </div>
+             
+
+
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="handOverByName">
+                 IMAGE UPLOAD  
+                </label>
+                <input type="file" class="form-control p-0" id="UploadImage"
+                (change)="EditOnlyJpegUpload($event)" accept="image/*" autocomplete="off" />
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="handOverByName">
+                  INSTALLATION DOCUMENT UPLOAD  
+                </label>
+                <input
+                  type="file"
+                  class="form-control p-0"
+                  id="taxinvoicepdf"
+                  (change)="onpdffiletaxinvoiceChangeEdit($event)"
+                  accept="application/pdf"
+                  autocomplete="off"
+                />
+              </div>
+            </div>
+           
+             <div class="col-md-12">
+              <div class="form-group center" style="text-align: center;">
+                <button
+            type="button"
+            class="btn btn-outline-success btn-sm btn-rounded"
+            (click)="btnupdate()"
+          >
+            UPDATE
+          </button>
+          <button
+            type="button"
+            class="btn btn-outline-danger btn-sm btn-rounded"
+            (click)="CalibrationPopUp = false"
+          >
+            Close
+          </button>
+              </div>
+             </div>
+             
+            
+          </div>
+        </div>
+      </div>   
+    </div>
+  </div>
+
+

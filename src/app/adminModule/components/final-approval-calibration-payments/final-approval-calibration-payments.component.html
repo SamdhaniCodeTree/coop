@@ -1,0 +1,366 @@
+
+ 
+  <div class="app-content content">
+    <div class="content-overlay"></div>
+    <div class="content-wrapper">
+      <div class="content-header row">
+        <div class="content-header-left col-md-6 col-12">
+          <h3 class="content-header-title mb-0">Calibration Approval Payments</h3>
+          <div class="row breadcrumbs-top">
+            <div class="breadcrumb-wrapper col-12">
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="content-body">   
+        <section id="basic-form-layouts">
+          <div class="row match-height">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header"></div>
+                <div class="card-content collapse show">
+                  <div class="card-body">
+                    <div class="form">
+
+                      <div  *ngIf="approverejectdisable">
+                        <button type="button" class="btn btn-sm btn-info pull-right" style="margin-top: 28px;" (click)="btnapproved()">
+                          <i class="fa fa-eye mr-2" aria-hidden="true"></i>
+                          Approve Details
+                      </button>
+                        <button type="button" class="btn btn-sm btn-danger pull-right" style="margin-top: 28px;" (click)="btnRejected()">
+                          <i class="fa fa-eye mr-2" aria-hidden="true"></i>
+                          Pending Details
+                      </button>
+                      </div>
+
+
+
+                      <div class="form-body">
+                        <h4 class="form-section">
+                          <i class="feather icon-user"></i>Calibration Approval Payments
+                        </h4>  
+                        <div class="row">
+                            <!-- <div class="col-md-12"> -->
+                                <div class="col-md-8"></div>
+                                <div class="col-md-2 pull-right" *ngIf="DeviceDetails">
+                                  <input style="margin-top: 0px; margin-left: 86px;"
+                                type="text" 
+                                [(ngModel)]="searchQuery"
+                                class="form-control "
+                                (input)="applyFilter()"
+                                placeholder="Search"
+                              >
+                                </div>
+                                <div class="col-md-2"  *ngIf="DeviceDetails">
+                                <button type="button" class="btn btn-sm btn-success pull-right" (click)="btnExcelDownload()">
+                                    <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+                                    DOWNLOAD EXCEL
+                                </button>
+                                
+                            </div>
+                             
+                
+                
+                             
+                            
+                                <!-- <button
+                                type="button"
+                                class="btn btn-sm btn-danger pull-right"
+                                (click)="btnPDF()"
+                              >
+                                <i
+                                  class="fa fa-file-pdf-o mr-2"
+                                  aria-hidden="true"
+                                ></i>
+                                DOWNLOAD PDF
+                              </button> -->
+                            <!-- </div> -->
+                            <div class="col-md-12 table-responsive tbl-fixed" [hidden]="DEVICEDETAILSLIST.length < 1" *ngIf="DeviceDetails">
+                                <table class="table table-bordered tbl-data">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th [appSort]="filterdata" data-order="desc" data-name="SLNO">S.No</th>
+                                            <th [appSort]="filterdata" data-order="desc" data-name="TRANSACTION_ID"><i class="fa fa-sort"></i>TRANSACTION ID</th>
+                                            <th [appSort]="filterdata" data-order="desc" data-name="TRANSACTION_DATE"><i class="fa fa-sort"></i>TRANSACTION DATE</th>
+                                            <th [appSort]="filterdata" data-order="desc" data-name="PACS_COUNT"><i class="fa fa-sort"></i>PACS COUNT</th>
+                                            <th [appSort]="filterdata" data-order="desc" data-name="REQUESTED_AMOUNT"><i class="fa fa-sort"></i>REQUESTED AMOUNT</th>
+                                            <th [appSort]="filterdata" data-order="desc" data-name="TRANSACTION_STATUS_MSG"><i class="fa fa-sort"></i>TRANSACTION STATUS MSG</th>
+                                            <th [appSort]="filterdata" data-order="desc" data-name="LAST_PAYMENT_DATE"><i class="fa fa-sort"></i>LAST PAYMENT DATE</th>
+                                            <th [appSort]="filterdata" data-order="desc" data-name="TOTAL_PAID_AMOUNT"><i class="fa fa-sort"></i>TOTAL PAID AMOUNT</th>
+                                            <th [appSort]="filterdata" data-order="desc" data-name="BALANCE_AMOUNT"><i class="fa fa-sort"></i>BALANCE AMOUNT</th> 
+                                            <th [appSort]="filterdata" data-order="desc" data-name="APCOB_DGM_FILE_PATH"><i class="fa fa-sort"></i>PAYMENT<br>RECOMMENDATION<br>FILE BY APCOB</th> 
+                                            <th [appSort]="filterdata" data-order="desc" data-name="DEPT_APPROVED_FILE_PATH"><i class="fa fa-sort"></i>FILE UPLOAD</th>  
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let obj of filterdata; let i = index" >
+                                            <td style="font-size: 14px;"><b>{{ i + 1 }}</b></td> 
+                                            <!-- <td style="font-size: 14px;"><b>{{ obj.TRANSACTION_ID }}</b></td> -->
+
+                                            <td>
+                                              <a
+                                                style="cursor: pointer; text-decoration: underline"
+                                                class="text-primary"
+                                                (click)="btnGetDetails(obj)"
+                                                ><b>{{ obj.TRANSACTION_ID }}</b></a
+                                              >
+                                            </td>
+                                            <td style="font-size: 14px;"><b>{{ obj.TRANSACTION_DATE }}</b></td>
+                                            <td style="font-size: 14px;"><b>{{ obj.PACS_COUNT }}</b></td>
+                                            <td style="font-size: 14px;"><b>{{ obj.REQUESTED_AMOUNT }}</b></td>
+                                            <td style="font-size: 14px;"><b>{{ obj.TRANSACTION_STATUS_MSG }}</b></td>
+                                            <td style="font-size: 14px;"><b>{{ obj.LAST_PAYMENT_DATE }}</b></td>
+                                            <td style="font-size: 14px;"><b>{{ obj.TOTAL_PAID_AMOUNT }}</b></td>
+                                            <td style="font-size: 14px;"><b>{{ obj.BALANCE_AMOUNT }}</b></td> 
+
+                                            <td> 
+                                              <button 
+                                              type="button"
+                                               *ngIf="obj.APCOB_DGM_FILE_PATH != null"
+                                                class="btn btn-link btn-sm" 
+                                                (click)="btnPdfViewCrystal(obj.APCOB_DGM_FILE_PATH)" style="font-size: 12px;">  
+                                                  View
+                                              </button>
+                                              <span *ngIf="obj.APCOB_DGM_FILE_PATH == null">NA </span> 
+                                          </td>
+
+                                            <td style="font-size: 14px;"><b><a *ngIf="obj.DEPT_APPROVED_FILE_PATH == null"
+                                              style="cursor: pointer; text-decoration: underline; font-size: 15px;"
+                                              title="Payment Upload Files" class="text-danger btn btn-sm bg-white"
+                                              (click)="Details(obj)"><span><i class="fa fa-file-pdf-o"></i>
+                                              </span></a>
+                                              <a *ngIf="obj.DEPT_APPROVED_FILE_PATH != null"
+                                              style="cursor: pointer; text-decoration: underline; font-size: 15px;"
+                                              title="Payment File View" class="text-success btn btn-sm bg-white"
+                                              (click)="btnPdfView(obj.DEPT_APPROVED_FILE_PATH)"><span><i class="fa fa-file-pdf-o"></i>
+                                              </span></a>
+                                            </b></td>  
+                                        </tr>
+                                    </tbody> 
+                                </table>  
+                            </div>  
+
+                            <div class="col-md-12 row "  *ngIf="TransactionDetails">
+                              
+                                <div class="col-md-9"></div>
+                                <!-- <div class="col-md-2"><input style="margin-top: 0px; margin-left: 86px;"
+                                  type="text" 
+                                  [(ngModel)]="searchQueryTransaction"
+                                  class="form-control "
+                                  (input)="applyFilterTransaction()"
+                                  placeholder="Search"
+                                ></div> -->
+                                <div class="col-md-2">
+                                <button type="button" class="btn btn-sm btn-success pull-right" (click)="btnExcelDownload1()">
+                                    <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+                                    DOWNLOAD EXCEL
+                                </button>
+                            </div>
+                                <div class="col-md-1">
+                                  <button
+                                  type="button"
+                                  class="btn btn-sm btn-info pull-right"
+                                  (click)="btnback()"
+                                >Back</button> 
+                                </div>
+                            
+                            </div>
+
+                            <div class="col-md-12 table-responsive tbl-fixed" [hidden]="TRANSACTIONLIST.length < 1" *ngIf="TransactionDetails"> 
+                              <table class="table table-bordered tbl-data">
+                                  <thead class="thead-dark">
+                                      <tr>
+                                          <th>S.No</th>
+                                          <th>TRANSACTION ID</th>
+                                          <th>PACS CODE</th>
+                                          <th>PACS NAME</th>
+                                          <th>GST TOTAL AMOUNT</th>
+                                          <th>CEO AUTHORIZED CERTIFICATE</th> 
+                                          <th>VIEW DETAILS</th>  
+                                          <th  *ngIf="detailhide">
+                                            <input type="checkbox" (change)="selectAll($event)" [checked]="allSelected">
+                                        </th>
+                                      </tr>
+                                  </thead>
+                                  <tbody>
+                                      <tr *ngFor="let obj of TRANSACTIONLIST; let i = index" >
+                                          <td style="font-size: 14px;"><b>{{ i + 1 }}</b></td>  
+                                          <td style="font-size: 14px;"><b>{{ obj.TRANS_ID }}</b></td>
+                                          <td style="font-size: 14px;"><b>{{ obj.PACS_CODE }}</b></td>
+                                          <td style="font-size: 14px;"><b>{{ obj.PACS_NAME }}</b></td>
+                                          <td style="font-size: 14px;"><b>{{ obj.GST_TOT_AMOUNT }}</b></td>
+                                          <!-- <td style="font-size: 14px;"><b>{{ obj.CEO_PATH }}</b></td>  -->
+
+                                          <td> 
+                                            <button 
+                                            type="button"
+                                             *ngIf="obj.CEO_PATH != null"
+                                              class="btn btn-link btn-sm" 
+                                              (click)="btnPdfView(obj.CEO_PATH)" style="font-size: 12px;">  
+                                                View
+                                            </button>
+                                            <span *ngIf="obj.CEO_PATH == null">NA </span> 
+                                        </td> 
+                                        <td>
+                                          <button
+                                          type="button" class="btn btn-info"                               
+                                           
+                                          (click)="btnViewDetails(obj)"
+                                        ><i class="fas fa-eye" style="color: white;"></i></button>
+                                        </td> 
+
+                                        <td *ngIf="detailhide">
+                                          <input type="checkbox" [(ngModel)]="obj.selected" name="selected-{{ i }}" (change)="updateSubmitVisibility()">
+                                      </td> 
+                                      </tr>
+                                  </tbody> 
+                              </table>  
+
+                              <div class="col-md-12 row "  *ngIf="TransactionDetails">
+                              
+                                <div class="col-md-5"></div>
+                                <div class="col-md-2">
+                                  <button  *ngIf="detailhide"
+                                  type="button"
+                                  class="btn btn-sm btn-info pull-right"
+                                  (click)="btnVerify()"
+                                >VERIFY</button> 
+                                </div>
+                                <div class="col-md-5"></div>
+                            
+                            </div>
+                        </div>
+                          </div> 
+
+                          <div class="col-md-12 row "  *ngIf="ViewPACSDet">
+                              
+                            <div class="col-md-11"></div>
+                            <div class="col-md-1">
+                              <button
+                              type="button"
+                              class="btn btn-sm btn-info pull-left"
+                              (click)="btnback1()"
+                            >Back</button> 
+                            </div> 
+                        </div> 
+                        <div class="col-md-12 table-responsive tbl-fixed" [hidden]="PACSDETAILSLIST.length < 1" *ngIf="ViewPACSDet"> 
+                          <table class="table table-bordered tbl-data">
+                              <thead class="thead-dark">
+                                  <tr>
+                                      <th>S.No</th>
+                                      <th>DEVICE NAME</th>
+                                      <th>DEVICE IMAGE</th>
+                                      <th>TAX INVOICE</th>
+                                      <th>DELIVERY CHALLAN</th> 
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                  <tr *ngFor="let obj of PACSDETAILSLIST; let i = index" >
+                                      <td style="font-size: 14px;"><b>{{ i + 1 }}</b></td>  
+                                      <td style="font-size: 14px;"><b>{{ obj.DEVICE_NAME }}</b></td>
+                                      <td> 
+                                        <button 
+                                        type="button"
+                                         *ngIf="obj.DEVICE_IMAGE != null"
+                                          class="btn btn-link btn-sm"
+                                          (click)="btnPhotoView(obj.DEVICE_IMAGE)" style="font-size: 12px;">  
+                                            View
+                                        </button>
+                                        <span *ngIf="obj.DEVICE_IMAGE == null">NA </span> 
+                                    </td>
+
+                                      <td> 
+                                        <button 
+                                        type="button"
+                                         *ngIf="obj.TAX_INVOICE != null"
+                                          class="btn btn-link btn-sm" 
+                                          (click)="btnPdfView(obj.TAX_INVOICE)" style="font-size: 12px;">  
+                                            View
+                                        </button>
+                                        <span *ngIf="obj.TAX_INVOICE == null">NA </span> 
+                                    </td> 
+                                      <td> 
+                                        <button 
+                                        type="button"
+                                         *ngIf="obj.DELIVERY_CHALLAN != null"
+                                          class="btn btn-link btn-sm" 
+                                          (click)="btnPdfView(obj.DELIVERY_CHALLAN)" style="font-size: 12px;">  
+                                            View
+                                        </button>
+                                        <span *ngIf="obj.DELIVERY_CHALLAN == null">NA </span> 
+                                    </td> 
+                                  </tr>
+                              </tbody> 
+                          </table>  
+                      </div> 
+
+
+
+
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div> 
+        </section>
+        <!-- // Basic form layout section end -->
+      </div>
+    </div>
+  </div>
+
+  <div class="popup-modal" *ngIf="showapprovedPopup">
+    <div class="popup-content" style="min-width: 75%">
+      <div class="popup-header">
+        <h4 class="title">Payment Details Upload </h4>
+        <a type="button" class="close" style="cursor: pointer">
+          <span (click)="onClear()">×</span>
+        </a>
+      </div>
+  
+      <div class="popup-body" style="max-height:500px; overflow-y: auto;">
+        <div class="row justify-content-center align-items-center">
+  
+  
+          <div class="col-md-12 row">
+            <!-- <div class="col-md-2"><button type="button" class="btn btn-info btn-sm" (click)="btnPDF()">
+                Download PDF File
+              </button> </div> -->
+              <div class="col-md-4"></div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label for="giftAndDeedPhotoUpload">Payment PDF file Upload <span style="color: red">*</span>
+                </label>
+                <input type="file" class="form-control p-0" id="giftAndDeedPhotoUpload" (change)="onpdffileChange($event)"
+                  accept="pdf/*" autocomplete="off" />
+              </div>
+            </div>
+  
+  
+  
+  
+          </div>
+  
+  
+          <br>
+          <div class="row">
+  
+  
+  
+  
+  
+          </div>
+          <div class="popup-footer justify-content-center">
+            <button type="button"   class="btn btn-sm btn-success text-white" (click)="Certificateupload()">
+              SUBMIT
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  

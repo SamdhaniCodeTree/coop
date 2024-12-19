@@ -1,0 +1,74 @@
+<div class="col-md-12">
+    <button type="button" class="btn btn-sm btn-success pull-right" (click)="btnExcelDownload()">
+      <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+      DOWNLOAD EXCEL
+    </button>
+    <button
+    type="button"
+    class="btn btn-sm btn-danger pull-right"
+    (click)="btnPDF()" 
+  >
+    <i
+      class="fa fa-file-pdf-o mr-2"
+      aria-hidden="true"
+    ></i>
+    DOWNLOAD PDF
+  </button>
+  
+    <label for="toDate">
+      FROM DATE :
+      <span class="text-success">
+        <b> {{ fromDate  }}</b>
+      </span>
+    </label>&nbsp; &nbsp;&nbsp; &nbsp; 
+    <label for="toDate">
+      TO DATE :
+      <span class="text-success">
+        <b> {{ toDate }}</b>
+      </span>
+    </label>&nbsp; &nbsp;&nbsp; &nbsp;
+  </div>
+  <div class="col-md-12 table-responsive tbl-fixed">
+
+    <table class="table table-bordered tbl-data" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+      <thead class="thead-dark">
+
+        <tr>
+          <th>S NO</th>
+          <th>NAME OF THE DISTRICT</th> 
+          <th>NO OF DCCBs</th>
+          <th>NO OF PACS</th>
+          <th>NO OF TRANSACTION IDs</th> 
+          <th>AMOUNT (IN RS.) </th> 
+        </tr> 
+      </thead>
+      <tbody>
+        <tr *ngFor="let obj of stateLevelDetails; let i = index">
+          <td>{{ i + 1 }}</td> 
+          <td>{{ obj.DISTRICT_NAME }}</td>
+          <td>{{ obj.NAME_OF_THE_DCCB }}</td>
+          <td><a *ngIf="obj.REQUESTS != '0'" 
+            style="cursor: pointer; text-decoration: underline" 
+            class="text-primary" 
+            (click)="btnPacsDetails(obj)">
+           <b>{{ obj.REQUESTS }}</b>
+         </a> </td>
+          <td>{{ obj.NO_OF_TRANSACTION_IDS }}</td>
+          <td>{{ obj.AMOUNT }}</td> 
+        </tr> 
+      </tbody> 
+
+      <tbody *ngIf="stateLevelDetails?.length > 0">
+        <tr>
+          <td class="font-weight-bold">--</td>
+          <td class="font-weight-bold">
+             TOTAL 
+          </td>
+          <td class="font-weight-bold">-</td>
+          <td class="font-weight-bold">{{ reportTotals.REQUESTS }}</td>
+          <td class="font-weight-bold">{{ reportTotals.NO_OF_TRANSACTION_IDS }}</td>
+          <td class="font-weight-bold">{{ reportTotals.AMOUNT }}</td> 
+        </tr>
+      </tbody>
+    </table>
+  </div> 

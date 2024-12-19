@@ -1,0 +1,169 @@
+<div class="app-content content">
+    <div class="content-overlay"></div>
+    <div class="content-wrapper">
+      <div class="content-header row"></div>
+      <div class="content-body">
+        <div class="row grouped-multiple-statistics-card">
+          <div class="col-12">
+            <div class="row">
+              <div class="col-lg-6 col-xl-4 col-sm-6 col-12">
+                <div class="card custom-cursor" (click)="btnInspectionrDashboardDetails('0')">
+                  <div class="card-body">
+                    <div class="d-flex align-items-start mb-sm-1 mb-xl-0">
+                      <span
+                        class="
+                          card-icon
+                          primary
+                          d-flex
+                          justify-content-center
+                          mr-3
+                        "
+                      >
+                        <i
+                          class="
+                            feather
+                            p-1
+                            icon-refresh-ccw
+                            customize-icon
+                            font-large-2
+                            p-1
+                          "
+                        ></i>
+                      </span>
+                      <div class="stats-amount mr-3">
+                        <h3 class="heading-text text-bold-600">
+                          {{ dashboardCounts.Pending }}
+                        </h3>
+                        <p class="sub-heading">Pending</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+  
+              <div class="col-lg-6 col-xl-4 col-sm-6 col-12">
+                <div class="card custom-cursor" (click)="btnInspectionrDashboardDetails('1')">
+                  <div class="card-body">
+                    <div class="d-flex align-items-start mb-sm-1 mb-xl-0">
+                      <span
+                        class="
+                          card-icon
+                          success
+                          d-flex
+                          justify-content-center
+                          mr-3
+                        "
+                      >
+                        <i
+                          class="
+                            feather
+                            p-1
+                            icon-check-circle
+                            customize-icon
+                            font-large-2
+                            p-1
+                          "
+                        ></i>
+                      </span>
+                      <div class="stats-amount mr-3">
+                        <h3 class="heading-text text-bold-600">
+                          {{ dashboardCounts.Approve }}
+                        </h3>
+                        <p class="sub-heading">Approved</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+  
+              <div class="col-lg-6 col-xl-4 col-sm-6 col-12">
+                <div class="card custom-cursor" (click)="btnInspectionrDashboardDetails('2')">
+                  <div class="card-body">
+                    <div class="d-flex align-items-start mb-sm-1 mb-xl-0">
+                      <span
+                        class="
+                          card-icon
+                          danger
+                          d-flex
+                          justify-content-center
+                          mr-3
+                        "
+                      >
+                        <i
+                          class="
+                            feather
+                            p-1
+                            icon-x-circle
+                            customize-icon
+                            font-large-2
+                            p-1
+                          "
+                        ></i>
+                      </span>
+                      <div class="stats-amount mr-3">
+                        <h3 class="heading-text text-bold-600">
+                          {{ dashboardCounts.Reject }}
+                        </h3>
+                        <p class="sub-heading">Rejected</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="col-md-12 table-responsive" [hidden]="inspectionList.length < 1">
+      <h3 class="text-center">{{ headingText }}</h3>
+      <table
+        class="table table-bordered"
+        datatable
+        [dtOptions]="dtOptions"
+        [dtTrigger]="dtTrigger"
+      >
+        <thead class="thead-dark">
+          <tr>
+            <th>S.No.</th>
+            <th>DIVISION</th>
+            <th>MANDAL</th>
+            <th>PACS</th>
+            <th>VILLAGE</th>
+            <th>SURVEY NO</th>
+            <th>CAPACITY OF GODOWN</th>
+            <th>MLLIC RECOMMENDATION</th>
+            <th>NREGA WORKS</th>
+            <th [hidden]="requestType !== '0'">VIEW</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let obj of inspectionList; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{ obj.DIVISION_NAME }}</td>
+            <td>{{ obj.MANDAL_NAME }}</td>
+            <td>{{ obj.PACS_NAME }}</td>
+            <td>{{ obj.VILLAGE_NAME }}</td>
+            <td>{{ obj.SURVEY_NO }}</td>
+            <td>{{ obj.CAPACITY_OF_GODOWN }}</td>
+            <td>{{ obj.MLLIC_RECOMMENDATION }}</td>
+            <td>
+              <span *ngIf="obj.NREGA_WORKS !== null">{{ obj.NREGA_WORKS }}</span>
+              <span *ngIf="obj.NREGA_WORKS === null">NA</span>
+            </td>
+            <td [hidden]="requestType !== '0'">
+              <button
+                type="button"
+                class="btn btn-primary btn-sm"
+                (click)="btnViewDetails(obj)"
+              >
+                VIEW
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  

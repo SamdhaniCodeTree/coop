@@ -1,0 +1,261 @@
+<div class="row">
+  <div class="col-md-3">
+    <label for="toDate">
+      DISTRICT :
+      <span class="text-success">
+        <b> {{ districtName }}</b>
+      </span>
+    </label>
+  </div>
+  <div class="col-md-3">
+    <label for="toDate">
+      MANDAL :
+      <span class="text-success">
+        <b> {{ mandalName }}</b>
+      </span>
+    </label>
+  </div>
+  <div class="col-md-12">
+    <button
+      type="button"
+      class="btn btn-sm btn-success pull-right"
+      (click)="btnExcelDownload()"
+    >
+      <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+      DOWNLOAD EXCEL
+    </button>
+    <!-- <button
+          type="button"
+          class="btn btn-sm btn-danger pull-right"
+          (click)="btnPDF()"
+        >
+          <i
+            class="fa fa-file-pdf-o mr-2"
+            aria-hidden="true"
+          ></i>
+          DOWNLOAD PDF
+        </button> -->
+  </div>
+  <div
+    class="col-md-12 table-responsive"
+    [hidden]="mandalLevelDetails.length < 1"
+  >
+    <table
+      class="table table-bordered"
+      datatable
+      [dtOptions]="dtOptions"
+      [dtTrigger]="dtTrigger"
+    >
+      <thead class="thead-dark">
+        <tr>
+          <th>S.No.</th>
+          <th>DIVISION<br> NAME</th>
+          <th>VILLAGE<br> NAME</th>
+          <th>PUBLIC/<br>OWN LAND</th>
+          <th>SURVEY NO</th>
+          <th>AREA</th>
+          <th>LAND <br>ALOTMENT<br> STATUS</th>
+          <th>LATITUDE</th>
+          <th>LONGITUDE</th>
+          <th>NORTH<br> BOUNDARY</th>
+          <th>SOUTH<br> BOUNDARY</th>
+          <th>EAST <br>BOUNDARY</th>
+          <th>WEST <br>BOUNDARY</th>
+          <th>LAND<br> PHOTO</th>
+          <th>HANDOVER <br>VILLAGE<br> NAME</th>
+          <th>ALLOTMENT<br> ORDER</th>
+          <th>LAND TAKEN <br>BY NAME</th>
+          <th>LAND TAKEN<br> BY MOBILE NO</th>
+          <th>LAND TAKEN <br>BY DESIGNATION</th>
+          <th>LAND HANDOVER <br>BY NAME</th>
+          <th>LAND HANDOVER <br>BY MOBILE NO</th>
+          <th>LAND HANDOVER<br> BY DESIGNATION</th>
+          <th>POSSESSION <br>CERTIFICATE</th>
+        </tr>
+      </thead>
+      <tbody *ngIf="mandalLevelDetails?.length > 0">
+        <tr *ngFor="let obj of mandalLevelDetails; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ obj.DIVISION_NAME }}</td>
+          <td>
+            <b>{{ obj.VILLAGE_NAME }}</b>
+          </td>
+          <td>{{ obj.PUBLIC_OWN_LAND }}</td>
+          <td>{{ obj.SURVEY_NUMBER }}</td>
+          <td>{{ obj.AREA }}</td>
+          <td>{{ obj.LAND_ALLOTMENT_STATUS }}</td>
+          <td>{{ obj.LATITUDE }}</td>
+          <td>{{ obj.LONGITUDE }}</td>
+          <td>
+            <button
+              type="button"
+              class="btn btn-link btn-sm"
+              *ngIf="
+                obj.NORTH_IMG !== null &&
+                obj.NORTH_IMG !== '' &&
+                obj.NORTH_IMG !== undefined
+              "
+              (click)="btnPhotoView(obj.NORTH_IMG)"
+            >
+              {{ obj.NORTH_BOUNDARY }}
+            </button>
+            <span
+              *ngIf="
+                obj.NORTH_IMG === null ||
+                obj.NORTH_IMG === '' ||
+                obj.NORTH_IMG === undefined
+              "
+              >{{ obj.NORTH_BOUNDARY }}</span
+            >
+          </td>
+          <td>
+            <button
+              type="button"
+              class="btn btn-link btn-sm"
+              *ngIf="
+                obj.SOUTH_IMG !== null &&
+                obj.SOUTH_IMG !== '' &&
+                obj.SOUTH_IMG !== undefined
+              "
+              (click)="btnPhotoView(obj.SOUTH_IMG)"
+            >
+              {{ obj.SOUTH_BOUNDARY }}
+            </button>
+            <span
+              *ngIf="
+                obj.SOUTH_IMG === null ||
+                obj.SOUTH_IMG === '' ||
+                obj.SOUTH_IMG === undefined
+              "
+              >{{ obj.SOUTH_BOUNDARY }}</span
+            >
+          </td>
+          <td>
+            <button
+              type="button"
+              class="btn btn-link btn-sm"
+              *ngIf="
+                obj.EAST_IMG !== null &&
+                obj.EAST_IMG !== '' &&
+                obj.EAST_IMG !== undefined
+              "
+              (click)="btnPhotoView(obj.EAST_IMG)"
+            >
+              {{ obj.EAST_BOUNDARY }}
+            </button>
+            <span
+              *ngIf="
+                obj.EAST_IMG === null ||
+                obj.EAST_IMG === '' ||
+                obj.EAST_IMG === undefined
+              "
+              >{{ obj.EAST_BOUNDARY }}</span
+            >
+          </td>
+          <td>
+            <button
+              type="button"
+              class="btn btn-link btn-sm"
+              *ngIf="
+                obj.WEST_IMG !== null &&
+                obj.WEST_IMG !== '' &&
+                obj.WEST_IMG !== undefined
+              "
+              (click)="btnPhotoView(obj.WEST_IMG)"
+            >
+              {{ obj.WEST_BOUNDARY }}
+            </button>
+            <span
+              *ngIf="
+                obj.WEST_IMG === null ||
+                obj.WEST_IMG === '' ||
+                obj.WEST_IMG === undefined
+              "
+              >{{ obj.WEST_BOUNDARY }}</span
+            >
+          </td>
+          <td>
+            <button
+              type="button"
+              class="btn btn-link btn-sm"
+              *ngIf="
+                obj.LAND_ENTIRE_IMG !== null &&
+                obj.LAND_ENTIRE_IMG !== '' &&
+                obj.LAND_ENTIRE_IMG !== undefined
+              "
+              (click)="btnPhotoView(obj.LAND_ENTIRE_IMG)"
+            >
+              VIEW
+            </button>
+            <span
+              *ngIf="
+                obj.LAND_ENTIRE_IMG === null ||
+                obj.LAND_ENTIRE_IMG === '' ||
+                obj.LAND_ENTIRE_IMG === undefined
+              "
+              >NA</span
+            >
+          </td>
+          <td>{{ obj.HANDOVER_VILLAGE_NAME }}</td>
+          <td>
+            <button
+              type="button"
+              class="btn btn-link btn-sm"
+              *ngIf="
+                obj.ALLOTMENT_ORDER_APDDCF !== null &&
+                obj.ALLOTMENT_ORDER_APDDCF !== '' &&
+                obj.ALLOTMENT_ORDER_APDDCF !== undefined
+              "
+              (click)="btnPdfView(obj.ALLOTMENT_ORDER_APDDCF)"
+            >
+              VIEW
+            </button>
+            <span
+              *ngIf="
+                obj.ALLOTMENT_ORDER_APDDCF === null ||
+                obj.ALLOTMENT_ORDER_APDDCF === '' ||
+                obj.ALLOTMENT_ORDER_APDDCF === undefined
+              "
+              >NA</span
+            >
+          </td>
+          <td>{{ obj.LAND_TAKEN_BY_NAME }}</td>
+          <td>{{ obj.LAND_TAKEN_BY_MOB_NO }}</td>
+          <td>{{ obj.LAND_TAKEN_BY_DISIGNATION }}</td>
+          <td>{{ obj.LAND_HANDOVER_BY_NAME }}</td>
+          <td>{{ obj.LAND_HANDOVER_BY_MOB_NO }}</td>
+          <td>{{ obj.LAND_HANDOVER_BY_DISIGNATION }}</td>
+          <td>
+            <button
+              type="button"
+              class="btn btn-link btn-sm"
+              *ngIf="
+                obj.ATT_POSITION_STATEMENT_PDF !== null &&
+                obj.ATT_POSITION_STATEMENT_PDF !== '' &&
+                obj.ATT_POSITION_STATEMENT_PDF !== undefined
+              "
+              (click)="btnPdfView(obj.ATT_POSITION_STATEMENT_PDF)"
+            >
+              VIEW
+            </button>
+            <span
+              *ngIf="
+                obj.ATT_POSITION_STATEMENT_PDF === null ||
+                obj.ATT_POSITION_STATEMENT_PDF === '' ||
+                obj.ATT_POSITION_STATEMENT_PDF === undefined
+              "
+              >NA</span
+            >
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div
+    class="col-md-12 table-responsive"
+    [hidden]="mandalLevelDetails?.length > 1"
+  >
+    <h6 class="text-center">No Data Available</h6>
+  </div>
+</div>

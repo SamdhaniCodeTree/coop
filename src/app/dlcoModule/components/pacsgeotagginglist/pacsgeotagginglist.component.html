@@ -1,0 +1,235 @@
+<div class="app-content content">
+  <div class="content-overlay"></div>
+  <div class="content-wrapper">
+    <div class="content-header row">
+      <div class="content-header-left col-md-6 col-12">
+        <h3 class="content-header-title mb-0">PACS Geotagging</h3>
+        <div class="row breadcrumbs-top">
+          <div class="breadcrumb-wrapper col-12">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item">
+                <a class="custom-cursor" routerLink="/dlco">Menu</a>
+              </li>
+              <li class="breadcrumb-item active">
+                <a class="custom-cursor" routerLink="/dlco/Pacsgeotagging">PACS Geotagging</a>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="content-body">
+      <section id="basic-form-layouts">
+        <div class="row match-height">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header"></div>
+              <div class="card-content collapse show">
+                <div class="card-body">
+                  <div class="form">
+                    <div class="form-body">
+                      <h4 class="form-section">
+                        <i class="feather icon-location-pin"></i>PACS Geotagging
+                      </h4>
+                       
+                      <div class="form-group">
+                        <button
+                        type="button"
+                        class="btn btn-sm btn-success pull-right"
+                        (click)="btnExcelDownload()"
+                      >
+                        <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+                        DOWNLOAD EXCEL
+                      </button>
+                        <div
+                        class="col-md-12 table-responsive"
+                        [hidden]="Geotaglist.length < 1"
+                      >
+                        <table
+                          class="table table-bordered"
+                          datatable
+                          [dtOptions]="dtOptions"
+                          [dtTrigger]="dtTrigger"
+                        >
+                        <thead class="thead-dark">
+                          <tr>
+                            <td colspan="3">
+
+                            </td>
+                            <td colspan="3" style="color: #fff;
+                             background-color: #4f9773e0;">
+                               PACS
+                            </td>
+                            <td colspan="3" style="color: #fff;
+                            background-color: #85a99b;">
+                               RBK
+                            </td>
+                          </tr>
+                          <tr>
+                            <th>S.No.</th>
+                            <th>District Name
+                            </th>
+                            <th>No of CEO Registered</th>
+                            <th>Total
+                            </th>
+
+                            <th>GEO tagged
+                            </th>
+                            <th>Not GEO tagged</th>
+                            <th>Total</th>
+                            <th>RBKs Mapped</th>
+                            <th>RBKs Not Mapped</th>
+                          </tr>
+                        </thead>
+                          <tbody>
+                            <tr *ngFor="let obj of Geotaglist; let i = index">
+                              <td>{{ i + 1 }}</td>
+                              <td>{{ obj.DIST_NAME }}</td>
+                              <td>{{ obj.NO_OF_CEO_REGIS }}</td>
+                              <td>{{ obj.TOTAL_PACS }}</td>
+                              <td>
+                                <a *ngIf="obj.NO_OF_SUB_PACS !== '0'" style="cursor: pointer;" class="text-primary"
+                                  (click)="getgeotagcompletedlist(obj)">{{obj.NO_OF_SUB_PACS}}</a>
+
+                                <span style="color: red;" *ngIf="obj.NO_OF_SUB_PACS!= 'Pending'">{{
+                                  obj.STATUS
+                                  }}</span>
+                              </td>
+                              <td>
+                                <a *ngIf="obj.NO_OF_NOT_SUB_PACS !== '0'" style="cursor: pointer;"
+                                  class="text-primary"
+                                  (click)="getgeotagpendinglist(obj)">{{obj.NO_OF_NOT_SUB_PACS}}</a>
+
+                                <span style="color: red;" *ngIf="obj.NO_OF_NOT_SUB_PACS != 'Pending'">{{
+                                  obj.STATUS
+                                  }}</span>
+                              </td>
+                              <td>{{ obj.TOTAL_RBKS }}</td>
+                              <td>
+                                <a *ngIf="obj.NO_OF_SUB_RBKS !== '0'" style="cursor: pointer;" class="text-primary"
+                                  (click)="getrbklist(obj)">{{obj.NO_OF_SUB_RBKS}}</a>
+
+                                <span style="color: red;" *ngIf="obj.NO_OF_SUB_RBKS != 'Pending'">{{
+                                  obj.STATUS
+                                  }}</span>
+                              </td>
+
+                              
+                              <td>{{ obj.NO_OF_NOT_SUB_RBKS }}</td>
+
+                            </tr>
+                         
+                           
+                          <tbody *ngIf="Geotaglist?.length > 0">
+                              <tr>
+                                <td>--</td>
+                                <td><b>TOTAL</b></td>
+                                <td>{{ reportTotals.NO_OF_CEO_REGIS }}</td>
+                                <td>{{ reportTotals.TOTAL_PACS }}</td>
+                                
+                                <td>{{ reportTotals.NO_OF_SUB_PACS }}</td>
+                                <td>{{ reportTotals.NO_OF_NOT_SUB_PACS }}</td>
+                                <td>{{ reportTotals.TOTAL_RBKS }}</td>
+                                <td>{{ reportTotals.NO_OF_SUB_RBKS }}</td>
+                                <td>{{ reportTotals.NO_OF_NOT_SUB_RBKS }}</td>
+                                
+                              </tr>
+                            </tbody>
+                        </table>
+                      </div>
+                        
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+         
+      </section>
+      <div class="view-panel" *ngIf="rbklistmodal">
+        <div class="card card-body">
+            <div class="row justify-content-between align-items-center mb-2 px-2">
+                <a href="#" (click)="rbklistmodal = false" title="close window"><i class="fa fa-times-circle-o fa-2x">
+                  <h4> Geo Tag coverd RBK List</h4>
+                </i></a>
+               
+                 
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                  <div class="col-md-12 table-responsive" [hidden]="rbklistmodal.length < 1">
+                    <table class="table table-bordered" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                      <thead class="thead-dark">
+                        
+                        <tr>
+                          <th>S.No.</th>
+                          <th>Mandal Name
+                          </th>                              
+                          <th>RBK Name
+                          </th>
+
+                         
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let obj of rbklistall; let i = index">
+                          <td>{{ i + 1 }}</td>
+                          <td>{{ obj.MANDAL_NAME }}</td>                             
+                          <td>{{ obj.RBK_NAME }}</td>                           
+                        </tr>
+                      </tbody>
+                       
+                    </table>
+                  </div>
+                </div>
+        </div>
+      </div>
+      </div>
+      <div class="view-panel" *ngIf="geotagmodal">
+        <div class="card card-body">
+            <div class="row justify-content-between align-items-center mb-2 px-2">
+                <a href="#" (click)="geotagmodal = false" title="close window">
+                  <i class="fa fa-times-circle-o fa-2x">
+                    <h4> {{geotagstatus}}</h4>
+                  </i></a>
+                
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                  <div class="col-md-12 table-responsive" [hidden]="Geotaglist.length < 1">
+                    <table class="table table-bordered" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                      <thead class="thead-dark">
+                        
+                        <tr>
+                          <th>S.No.</th>
+                          <th>Mandal Name
+                          </th>
+                          <th>PACS Name</th>
+                          <th style="text-align:center !important;max-width:950px;">RBK Name
+                          </th>
+
+                         
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let obj of Geotaglistcompleted; let i = index">
+                          <td>{{ i + 1 }}</td>
+                          <td>{{ obj.MANDAL_NAME }}</td>
+                          <td>{{ obj.PACS_NAME }}</td>
+                          <td style="text-align:left !important;max-width:950px;">{{ obj.RBK_NAME }}</td>
+                          
+
+                        </tr>
+                      </tbody>
+                       
+                    </table>
+                  </div>
+                </div>
+           </div>
+          </div>     
+        </div>
+    </div>
+  </div>
+</div>

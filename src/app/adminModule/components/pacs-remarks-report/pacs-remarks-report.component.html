@@ -1,0 +1,107 @@
+ 
+  <div class="app-content content">
+    <div class="content-overlay"></div>
+    <div class="content-wrapper">
+      <div class="content-header row">
+        <div class="content-header-left col-md-6 col-12">
+          <h3 class="content-header-title mb-0">PACS Wise Remarks Report</h3>
+          <div class="row breadcrumbs-top">
+            <div class="breadcrumb-wrapper col-12"> 
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="content-body">
+        <section id="basic-form-layouts">
+          <div class="row match-height">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header"></div>
+                <div class="card-content collapse show">
+                  <div class="card-body">
+                    <div class="form">
+                      <div class="form-body">
+                        <h4 class="form-section">
+                          <i class="feather icon-user"></i> PACS WISE REMARKS REPORT
+                        </h4>  
+
+                        <div class="row"> 
+
+                            <div class="col-md-3">
+                              <div class="form-group">
+                                  <label for="typeid"> SELECT TYPE <span style="color: red">*</span></label>
+                                  <select id="typeid" class="form-control" [(ngModel)]="typeid"
+                                      >   
+                                      <option disabled selected value="undefined">-- SELECT TYPE --</option>
+                                      <option value="1"> CEO </option>
+                                      <option value="2"> HARDWARE </option> 
+                                      <option value="3"> APCOB </option> 
+                                  </select>
+                              </div>
+
+
+                          </div> 
+                          <div class="col-md-3">
+                            <div class="form-group"> 
+                                <button type="submit" class="btn btn-primary" style="margin-top: 26px;" (click)="GetDetails()">
+                                  GO
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-md-6"></div>
+
+                         
+                        </div>
+                          <div class="col-md-12">
+                            <button type="button" class="btn btn-sm btn-success pull-right" (click)="btnExcelDownload()">
+                              <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+                              DOWNLOAD EXCEL
+                            </button>
+                            
+                          </div>
+                          <div class="col-md-12 table-responsive tbl-fixed">
+                        
+                            <table class="table table-bordered tbl-data" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                              <thead class="thead-dark">
+                        
+                                <tr>
+                                  <th>S NO</th>
+                                  <th>DISTRICT NAME</th> 
+                                  <th>MANDAL NAME</th> 
+                                  <th>PACS CODE</th>
+                                  <th>PACS NAME</th>
+                                  <th>DATE</th>
+                                  <th>REMARKS</th>  
+                                </tr> 
+                              </thead>
+                              <tbody>
+                                <tr *ngFor="let obj of stateLevelDetails; let i = index">
+                                  <td>{{ i + 1 }}</td> 
+                                  <td>{{ obj.DISTRICT_NAME }}</td>
+                                  <td>{{ obj.MANDAL_NAME }}</td>
+                                  <td>{{ obj.PACS_CODE }}</td>
+                                  <td>{{ obj.PACS_NAME }}</td>
+                                  <td>{{ obj.PACS_DATE }}</td>
+                                  <td class="text-danger font-weight-bold">{{ obj.REMARKS }}</td> 
+                                </tr> 
+                              </tbody> 
+                            </table>
+                          </div> 
+                        </div>
+                       
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          
+        </section>
+       
+      </div>
+    </div>
+  </div>
+
+
+ 
+  

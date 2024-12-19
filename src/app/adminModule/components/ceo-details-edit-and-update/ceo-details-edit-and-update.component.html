@@ -1,0 +1,142 @@
+<div class="app-content content background">
+    <div class="content-overlay"></div>
+    <div class="content-wrapper">
+      <div class="content-header row">
+        <div class="content-header-left col-md-6 col-12">
+          <h3 class="content-header-title mb-0 text-white">PACS Details Edit and Update</h3>
+          <div class="row breadcrumbs-top">
+            <div class="breadcrumb-wrapper col-12">
+              <ol class="breadcrumb">
+                
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div> 
+  <div class="card backgrnd">
+      <div class="card-header p-2">
+        <h5 class="mb-0"> </h5>
+      </div>
+      <div class="card-body">
+        <div class="">
+          <div class="col-md-12 row" > 
+              <div class="col-md-2" style="padding-left: 80px;">
+                  <label for="districtId" >ENTER PACS CODE  <span style="color: red">*</span></label>
+                  
+              </div>
+              <div class="col-md-2">
+                  <input type="text" 
+                  class="form-control"
+                  [(ngModel)]="CeoDetailsedit.pacs_code"
+                  placeholder="Please Enter  PACS Code"
+                  maxlength="4"
+                  autocomplete="off">
+              </div>
+              <div class="col-md-2">
+                  <button
+              type="button" 
+              class="btn btn-success btn-sm"
+              (click)="btnSearch()"
+            > Search &nbsp; &nbsp;<i class="fa fa-search"></i>
+              
+            </button>
+              </div>
+              <br>
+              
+          </div>
+          <div><hr></div>
+          <div *ngIf="EditDiv " class="row">
+           
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="districtId">Name of the PACS  <span style="color: red">*</span></label>
+              <br>
+              <label class="text-success"><b>{{CeoDetailsedit.pacs_name}}</b></label>
+              <!-- <textarea type="text" 
+              class="form-control"
+              [(ngModel)]="CeoDetailsedit.pacs_name"
+              placeholder="Please Enter Name of the PACS"
+              maxlength="50"
+              autocomplete="off"></textarea> -->
+            </div>
+          </div>
+             
+            <div class="col-md-3">
+              <div class="form-group">
+                <label for="districtId">Name of the CEO  <span style="color: red">*</span></label>
+                <br>
+                <input type="text"
+                class="form-control"
+                [(ngModel)]="CeoDetailsedit.name_of_the_dccb"
+                placeholder="Please Enter Name of the CEO"
+                maxlength="50"
+                autocomplete="off">
+                
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label for="districtId">Phone Number of CEO  <span style="color: red">*</span></label>
+                <br>
+                
+                <input type="text"
+                class="form-control"
+                [(ngModel)]="CeoDetailsedit.mobile_no"
+                placeholder="Please Enter Name of the CEO"
+                maxlength="10"   numberOnly
+                 
+                autocomplete="off">
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label for="districtId">Mail ID of PACS  <span style="color: red">*</span></label>
+                <br>
+                <input type="text"
+                class="form-control"
+                [(ngModel)]="CeoDetailsedit.mail_id"
+                placeholder="Please Enter Mail ID of PACS"
+                maxlength="50"
+                autocomplete="off">
+                 
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label for="districtId">Aadhar Number <span style="color: red">*</span></label>
+                <input type="text"
+                class="form-control"
+                [(ngModel)]="CeoDetailsedit.Aadharnumber"
+                placeholder="Please Enter Aadhar Number"
+                maxlength="12"
+                autocomplete="off">
+              </div>
+            </div>
+  
+         
+  
+   
+    
+          <div class="col-md-12" align="center" *ngIf="btnupdate" >
+            <button
+              type="button" 
+              class="btn btn-success btn-sm"
+              (click)="btnCeoDetailsSub()"
+            >
+              Edit & Update 
+            </button>&nbsp;
+            <!-- <button
+              type="button"
+              class="btn btn-danger btn-sm"
+              (click)="btnLandAllotmentSub('2')"
+            >
+              LAND ALLOTMENT PENDING
+            </button> -->
+          </div>
+        </div>
+      </div>
+  </div>
+      
+    </div>
+    </div>
+  </div>

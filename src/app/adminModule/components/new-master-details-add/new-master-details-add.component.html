@@ -1,0 +1,490 @@
+<div class="app-content content">
+    <div class="content-overlay"></div>
+      <div class="content-wrapper">
+        <div class="content-header row">
+            <div class="content-header-left col-md-6 col-12">
+              <h3 class="content-header-title mb-0">Master Data Add / Delete</h3>
+              <div class="row breadcrumbs-top">
+                <div class="breadcrumb-wrapper col-12">
+                  <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                      <a class="custom-cursor" routerLink="/dlco">Menu</a>
+                    </li>
+                    
+                  </ol>
+                </div>
+              </div>
+            </div>
+          </div>
+    
+          <div class="content-body">
+            <section id="basic-form-layouts" style="padding: 0px !important;">
+                <div class="row match-height">
+                  <div class="col-md-12">
+                    <div class="content-body">
+                        <div class="card-content collapse show" *ngIf="Viewdetails">
+                            <div class="card-body">
+                              <div class="form">
+                                <div class="form-body"><button
+                                  type="button"
+                                  class="btn btn-sm btn-success pull-right"
+                                  (click)="btnAddDetails()"
+                                >
+                                  <i class="fa fa-add mr-2" aria-hidden="true"></i>
+                                  Add Data
+                                </button>
+                                  <h4 class="form-section">
+                                    <i class="feather icon-user"></i>Masters Data Report
+                                  </h4>
+            
+                                  <div class="col-md-12">
+                                    
+                                    
+                                  </div>
+                                  
+                                  <div class="row">
+                                      
+                                      <div
+                                        class="col-md-12 table-responsive"
+                                        [hidden]="stateDetailsMasterdata.length < 1"
+                                      >
+          
+          
+                                      
+          
+                                        <table 
+                                          class="table table-bordered row-border hover" 
+                                        >
+                                          <thead class="thead-dark">
+                                            <tr>
+                                                <th rowspan="2">S.No.</th>
+                                              <th colspan="2">District</th>
+                                              <th colspan="2">Mandal</th>
+                                              <th colspan="2">Packs</th>
+                                              <th colspan="2">RBK</th>
+                                              <th colspan="2">Division</th>
+                                              <th colspan="2">Village</th>
+                                              <th rowspan="2">Phase</th>
+                                              <th rowspan="2">Action</th>
+                                            </tr>
+                                            <tr>
+                                              
+                                              <th>Code </th>
+                                              <th>Name </th>
+                                              <th>Code </th>
+                                              <th>Name </th>
+                                              <th>Code </th>
+                                              <th>Name </th>
+                                              <th>Code </th>
+                                              <th>Name </th>
+                                              <th>Code </th>
+                                              <th>Name </th>
+                                              <th>Code </th>
+                                              <th>Name </th>
+                                              
+                                                </tr>
+                                          </thead>
+                                          <tbody>
+                                          <tr *ngFor="let obj of stateDetailsMasterdata; let i = index">
+                                            <td>{{ i + 1 }}</td>
+                                            <td>{{ obj.DIST_CODE }}</td>
+                                            <td>{{ obj.DIST_NAME }}</td>
+                                            <td>      {{ obj.MANDAL_CODE }}    </td>
+                                            <td>{{ obj.MANDAL_NAME }}</td>
+                                            <td>{{ obj.PACS_CODE }}</td>
+                                            <td>{{ obj.PACS_NAME }}</td>
+                                            <td>{{ obj.RBK_CODE }}</td>
+                                            <td>{{ obj.RBK_NAME }}</td>
+                                            <td>{{ obj.DIVISION_CODE }}</td>
+                                            <td>{{ obj.DIVISION_NAME }}</td>
+                                            <td>{{ obj.VILLAGE_CODE }} </td>
+                                            <td>{{ obj.VILLAGE_NAME }} </td>
+                                            <td>{{ obj.PHASE }}</td>
+                                            <td><i class="fa fa-trash" style="color: red; font-size: 20px;" title="Remove Record" (click)="btnmastrsremove(obj)"></i></td>
+                                             
+                                          </tr>
+                                        </tbody>
+                                           
+                                        </table>
+                                      </div>
+                                    
+                                      <div
+                                        class="col-md-12 table-responsive"
+                                        [hidden]="stateDetailsMasterdata?.length > 0"
+                                      >
+                                        <h6 class="text-center">No Data Available</h6>
+                                      </div>
+                                    </div>
+          
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        <!-- // Basic form layout section end -->
+                      </div>
+                    <div class="card">
+                      <div class="card-content collapse show" *ngIf="AddDetails">
+                        <div class="card-body">
+                            <div class="form">
+                                <div class="form-body"><button
+                                  type="button"
+                                  class="btn btn-sm btn-info pull-right"
+                                  (click)="btnViewDetails()"
+                                >
+                                  <i class="fa fa-add mr-2" aria-hidden="true"></i>
+                                  Back
+                                </button>
+                                    <h4 class="form-section heading-div">
+                                        <i class="feather icon-map-pin"></i>&nbsp;<b>Master Details Get
+                                        </b>
+                                      </h4>
+                                      <div class="col-md-12">
+                                        
+                                        
+                                      </div>
+                                      <div class="row">
+
+                                        <div class="col-md-3">
+                                          <div class="form-group">
+                                            <label for="districtId">SELECT DISTRICT <span style="color: red">*</span></label>
+                                            <select 
+                                              class="form-control"
+                                              [(ngModel)]="Regdetails.DistrictCode"
+                                              (change)="districtChange(Regdetails.DistrictCode)"
+                                            >
+                                              <option value="">-- SELECT DISTRICT --</option>
+                                              <option
+                                                value="{{ obj.DIST_CODE }}"
+                                                *ngFor="let obj of M_DistList">
+                                                {{ obj.DIST_NAME }}
+                                              </option>
+                                            </select>
+                                          </div>
+                                        </div>
+
+                                        <div class="col-md-3">
+                                          <div class="form-group">
+                                            <label for="mandalId">SELECT  <span style="color: red">*</span></label>
+                                            <select
+                                              id="mandalId"
+                                              class="form-control"
+                                              [(ngModel)]="Regdetails.DivisionCode"
+                                              (change)="ondivisionChange()"
+                                            >
+                                              <option value="">-- SELECT MANDAL --</option>
+                                              <option
+                                                value="{{ obj.DIV_CODE }}"
+                                                *ngFor="let obj of Divsionlist"
+                                              >
+                                                {{ obj.DIVISON_NAME }}
+                                              </option>
+                                            </select>
+                                          </div>
+                                        </div>
+
+                                        <div class="col-md-3">
+                                          <div class="form-group">
+                                            <label for="mandalId">SELECT MANDAL <span style="color: red">*</span></label>
+                                            <select
+                                              id="mandalId"
+                                              class="form-control"
+                                              [(ngModel)]="Regdetails.MandalCode"
+                                              (change)="onMandalChange()"
+                                            >
+                                              <option value="">-- SELECT MANDAL --</option>
+                                              <option
+                                                value="{{ obj.MANDAL_CODE }}"
+                                                *ngFor="let obj of mandalList"
+                                              >
+                                                {{ obj.MANDAL_NAME }}
+                                              </option>
+                                            </select>
+                                          </div>
+                                        </div>
+
+                                        <div class="col-md-3">
+                                          <div class="form-group">
+                                            <label for="PACSId"
+                                              > SELECT PACS
+                                              <span style="color: red">*</span></label
+                                            >
+                                            <select
+                                              id="PACSId" 
+                                              class="form-control" (change)="onpacsChange()"
+                                              [(ngModel)]="Regdetails.PackCode" >
+                                              <option value="">-- SELECT PACS --</option>
+                                              <option
+                                                value="{{ obj.PACS_CODE }}"
+                                                *ngFor="let obj of packsList"
+                                              >
+                                                {{ obj.PACS_NAME }}
+                                              </option>
+                                            </select>
+                                          </div>
+                                        </div>
+                                  
+                                        <div class="col-md-3">
+                                          <div class="form-group">
+                                            <label for="rbkId">SELECT RBK <span style="color: red">*</span></label>
+                                            <select
+                                              id="rbkId"
+                                              class="form-control"
+                                              [(ngModel)]="Regdetails.RbkCode"
+                                              (change)="onRbkChange()"
+                                            >
+                                              <option value="">-- SELECT RBK --</option>
+                                              <option value="{{ obj.RBKCODE }}" *ngFor="let obj of rbkList">
+                                                {{ obj.RGK_NAME }}
+                                              </option>
+                                            </select>
+                                          </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                          <div class="form-group">
+                                            <label for="villageId"
+                                              >REVENUE VILLAGE (Godown Location)
+                                              <span style="color: red">*</span></label
+                                            >
+                                            <select
+                                              id="villageId"
+                                              class="form-control"
+                                              [(ngModel)]="Regdetails.VillageCode"
+                                              (change)="onVillageChange()"
+                                            >
+                                              <option value="">-- SELECT VILLAGE --</option>
+                                              <option
+                                                value="{{ obj.VILLAGE_CODE }}"
+                                                *ngFor="let obj of villageList"
+                                              >
+                                                {{ obj.VILLAGE_NAME }}
+                                              </option>
+                                            </select>
+                                          </div>
+                                        </div>
+
+                                      <!-- <div class="col-md-3">
+                                        <div class="form-group">
+                                          <label> District Code :</label>
+                                          <input
+                                            type="text"
+                                            id="name" [(ngModel)]="Regdetails.DistrictCode"
+                                            class="form-control"
+                                            placeholder="Enter District Code"
+                                            name="name" 
+                                            autocomplete="off" NumbersOnly
+                                          />
+                                        </div>
+                                      </div>
+    
+                                      <div class="col-md-3">
+                                        <div class="form-group">
+                                          <label> District Name :</label>
+                                          <input
+                                            type="text"
+                                            id="type" [(ngModel)]="Regdetails.DistrictName"
+                                            class="form-control"
+                                            placeholder="Enter District Name" 
+                                            name="type" lettersOnly
+                                            autocomplete="off" (ngModelChange)="
+                                            Regdetails.DistrictName = $event.toUpperCase()"
+                                          />
+                                        </div>
+                                      </div> -->
+                                      <div class="col-md-3">
+                                        <div class="form-group">
+                                          <label> Mandal Code :</label>
+                                          <input
+                                            type="text"
+                                            id="name" [(ngModel)]="Regdetails.MandalCode"
+                                            class="form-control"
+                                            placeholder="Enter Mandal Code"
+                                            name="name" 
+                                            autocomplete="off" NumbersOnly
+                                          />
+                                        </div>
+                                      </div>
+    
+                                      <div class="col-md-3">
+                                        <div class="form-group">
+                                          <label> Mandal Name :</label>
+                                          <input
+                                            type="text"
+                                            id="type" [(ngModel)]="Regdetails.MandalName"
+                                            class="form-control"
+                                            placeholder="Enter Mandal Name" 
+                                            name="type" lettersOnly
+                                            autocomplete="off" (ngModelChange)="
+                                            Regdetails.MandalName = $event.toUpperCase()"
+                                          />
+                                        </div>
+                                      </div>
+                                      <div class="col-md-3">
+                                        <div class="form-group">
+                                          <label> Pack Code :</label>
+                                          <input
+                                            type="text"
+                                            id="name" [(ngModel)]="Regdetails.PackCode"
+                                            class="form-control"
+                                            placeholder="Enter Pack Code"
+                                            name="name" 
+                                            autocomplete="off" NumbersOnly
+                                          />
+                                        </div>
+                                      </div>
+    
+                                      <div class="col-md-3">
+                                        <div class="form-group">
+                                          <label> Pack Name :</label>
+                                          <input
+                                            type="text"
+                                            id="type" [(ngModel)]="Regdetails.PackName"
+                                            class="form-control"
+                                            placeholder="Enter Pack Name" 
+                                            name="type" lettersOnly
+                                            autocomplete="off" (ngModelChange)="
+                                            Regdetails.PackName = $event.toUpperCase()"
+                                          />
+                                        </div>
+                                      </div>
+                                      <div class="col-md-3">
+                                        <div class="form-group">
+                                          <label> RBK Code :</label>
+                                          <input
+                                            type="text"
+                                            id="name" [(ngModel)]="Regdetails.RbkCode"
+                                            class="form-control"
+                                            placeholder="Enter RBK Code"
+                                            name="name" 
+                                            autocomplete="off" NumbersOnly
+                                          />
+                                        </div>
+                                      </div>
+    
+                                      <div class="col-md-3">
+                                        <div class="form-group">
+                                          <label> RBK Name :</label>
+                                          <input
+                                            type="text"
+                                            id="type" [(ngModel)]="Regdetails.RbkName"
+                                            class="form-control"
+                                            placeholder="Enter RBK Name" 
+                                            name="type" lettersOnly
+                                            autocomplete="off" (ngModelChange)="
+                                            Regdetails.RbkName = $event.toUpperCase()"
+                                          />
+                                        </div>
+                                      </div>
+                                      <div class="col-md-3">
+                                        <div class="form-group">
+                                          <label> Division Code :</label>
+                                          <input
+                                            type="text"
+                                            id="name" [(ngModel)]="Regdetails.DivisionCode"
+                                            class="form-control"
+                                            placeholder="Enter Division Code"
+                                            name="name" 
+                                            autocomplete="off" NumbersOnly
+                                          />
+                                        </div>
+                                      </div>
+    
+                                      <div class="col-md-3">
+                                        <div class="form-group">
+                                          <label> Division Name :</label>
+                                          <input
+                                            type="text"
+                                            id="type" [(ngModel)]="Regdetails.DivisionName"
+                                            class="form-control"
+                                            placeholder="Enter Division Name" 
+                                            name="type" lettersOnly
+                                            autocomplete="off" (ngModelChange)="
+                                            Regdetails.DivisionName = $event.toUpperCase()"
+                                          />
+                                        </div>
+                                      </div>
+                                      <div class="col-md-3">
+                                        <div class="form-group">
+                                          <label> Village Code :</label>
+                                          <input
+                                            type="text"
+                                            id="name" [(ngModel)]="Regdetails.VillageCode"
+                                            class="form-control"
+                                            placeholder="Enter Village Code"
+                                            name="name" 
+                                            autocomplete="off" NumbersOnly
+                                          />
+                                        </div>
+                                      </div>
+    
+                                      <div class="col-md-3">
+                                        <div class="form-group">
+                                          <label> Village Name :</label>
+                                          <input
+                                            type="text"
+                                            id="type" [(ngModel)]="Regdetails.VillageName"
+                                            class="form-control"
+                                            placeholder="Enter Village Name" 
+                                            name="type" lettersOnly
+                                            autocomplete="off" (ngModelChange)="
+                                            Regdetails.VillageName = $event.toUpperCase()"
+                                          />
+                                        </div>
+                                      </div>
+                                      
+                                      <div class="col-md-3">
+                                        <div class="form-group">
+                                          <label> Phase Type :</label>
+                                          <select id="details"
+                                            class="form-control"
+                                            [(ngModel)]="Regdetails.Phase">
+                                             
+                                            <option value="">Select Phase </option>
+                                            
+                                            <option value="2">Phase - II</option>
+                                            <option value="3">Phase - III</option>
+                                             
+                                             </select>
+                                        </div>
+                                      </div>
+
+                                      
+    
+                                       
+                                     
+                                  </div>
+                                  <hr>
+    
+                                  <div class="col-md-12 row">
+                                    <div class="col-md-5"></div>
+                                    <div class="col-md-2"> 
+                                        <button type="button"  (click)="btnmastrsSub('1')" class="btn btn-success" >Add Details</button>
+                                    </div>
+                                    <div class="col-md-5"></div>
+                                  </div>
+                                </div>
+                                
+    
+                               
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </section>
+    
+             
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        </div>
+      </div>
+    </div>
+    
+

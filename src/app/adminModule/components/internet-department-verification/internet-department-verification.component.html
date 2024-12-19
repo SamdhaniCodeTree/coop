@@ -1,0 +1,103 @@
+<div class="app-content content">
+    <div class="content-overlay"></div>
+    <div class="content-wrapper">
+        <div class="content-header row">
+            <div class="content-header-left col-md-6 col-12">
+                <h3 class="content-header-title mb-0">Department Internet Details </h3>
+                <div class="row breadcrumbs-top">
+                    <div class="breadcrumb-wrapper col-12">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content-body">
+            <section id="basic-form-layouts">
+                <div class="row match-height">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header"></div>
+                            <div class="card-content collapse show">
+                                <div class="card-body">
+                                    <div class="form">
+                                        <div class="form-body">
+                                            <h4 class="form-section">
+                                                <i class="feather icon-user"></i>Department Internet Details
+                                            </h4>
+
+
+                                            <div class="row">
+
+                                                <div class="col-md-12 table-responsive"
+                                                    [hidden]="DeparmentList.length < 1">
+                                                    <table class="table table-bordered" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                                                        <thead class="thead-dark">
+                                                            <tr>
+                                                                <th>S.No</th>
+                                                                <th>DISTRICT NAME</th>
+                                                                <th>MANDAL NAME</th>
+                                                                <th>PACS NAME</th>
+                                                                <th>PACS CODE</th>
+                                                                <th>DEVICE NAME</th>
+                                                                <th>MAKER</th>
+                                                                <th>SERIAL NUMBER</th>
+                                                                <th>MANUFACTURE DATE</th>
+                                                                <th>Ceo Certificate</th>
+
+                                                                 
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr *ngFor="let obj of DeparmentList; let i = index">
+                                                                <td>{{ i + 1 }}</td>
+                                                                <td style="font-size: 14px;"><b>{{ obj.DISTRICT_NAME
+                                                                        }}</b></td>
+                                                                <td style="font-size: 14px;"><b>{{ obj.MANDAL_NAME
+                                                                        }}</b></td>
+                                                                <td style="font-size: 14px;"><b>{{ obj.PACS_NAME }}</b>
+                                                                </td>
+                                                                <td style="font-size: 14px;"><b>{{ obj.PACS_CODE }}</b>
+                                                                </td>
+                                                                <td style="font-size: 14px;"><b>{{ obj.DEVICE_NAME
+                                                                        }}</b></td>
+                                                                <td style="font-size: 14px;"><b>{{ obj.COMPONENT_NAME
+                                                                        }}</b></td>
+                                                                <td style="font-size: 14px;"><b>{{ obj.CL_SERIAL_NUMBER
+                                                                        }}</b></td>
+                                                                <td style="font-size: 14px;"><b>{{
+                                                                        obj.CL_MANUFACTURE_DATA }}</b></td>
+                                                                        <td>
+                                                                <button type="button"
+                                                                    *ngIf="obj.INTERNET_DOC_PATH != null"
+                                                                    class="btn btn-link btn-sm"
+                                                                    (click)="btnPdfView(obj.INTERNET_DOC_PATH,obj)"
+                                                                    style="font-size: 12px;">
+                                                                    View
+                                                                </button>
+                                                                <span *ngIf="obj.INTERNET_DOC_PATH == null">NA </span>
+                                                                </td>
+
+                                                                 
+                                                            </tr>
+                                                        </tbody>
+
+                                                    </table>
+
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- // Basic form layout section end -->
+        </div>
+    </div>
+</div>
+
+ 

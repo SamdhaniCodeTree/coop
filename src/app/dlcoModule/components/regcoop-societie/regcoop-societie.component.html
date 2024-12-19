@@ -1,0 +1,480 @@
+
+<div class="app-content content">
+    <div class="content-overlay"></div>
+  <div class="content-wrapper">
+    <div class="content-header row">
+        <div class="content-header-left col-md-6 col-12">
+          <h3 class="content-header-title mb-0">Registration of Cooperative Societies</h3>
+          <div class="row breadcrumbs-top">
+            <div class="breadcrumb-wrapper col-12">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                  <a class="custom-cursor" routerLink="/dlco">Menu</a>
+                </li>
+                <!-- <li class="breadcrumb-item active">
+                  <a class="custom-cursor" routerLink="/dlco/pacsCreation"
+                    >individualapplication</a
+                  >
+                </li> -->
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-body">
+        <section id="basic-form-layouts">
+            <div class="row match-height">
+              <div class="col-md-12">
+                <div class="card">
+                  <div class="card-content collapse show">
+                    <div class="card-body">
+                        <div class="form">
+                            <div class="form-body ">
+                                <h4 class="form-section header">&nbsp; &nbsp;
+                                    <i class="feather icon-map-pin" style="color: blue;"></i><b style="color: blue;"> Society Registration
+                                    Form</b>
+                                  </h4>
+                                  <div class="row">
+                                    
+                                  </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+
+
+                      <section id="basic-form-layouts">
+                        <div class="row match-height">
+                          <div class="col-md-12">
+                            <div class="card">
+                              <div class="card-content collapse show">
+                                <div class="card-body">
+                                    <div class="form">
+                                        <div class="form-body">
+                                            <h4 class="form-section"></h4>
+                                              <div class="row">
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label for="natureOfUnit">Applicant Type  <span class="text-danger">*</span></label>
+                                                        <select id="Rpttype"
+                                                        class="form-control"
+                                                        [(ngModel)]="RegistercoopSocieties.application_type"
+                                                        (change)="onRpttypeChange()">
+                                                        
+                                                         
+                                                        <option value="">-- Select Type  --</option>
+                                                        <option value="Individual">Individual</option>
+                                                        <option value="Registered">Registered Society</option>
+                                                        <option value="APCS Act 1964">APCS Act 1964 TO APMACS Act 1995</option>
+                                                        <option value="APMACS Act 1995">APMACS Act 1995 TO APCS Act 1964</option>
+                                                         </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label for="natureOfUnit">Title <span class="text-danger">*</span></label>
+                                                        <select id="Rpttype"
+                                                        class="form-control"
+                                                        [(ngModel)]="RegistercoopSocieties.user_type"
+                                                        (change)="onRpttypeChange()">
+                                                         
+                                                        <option value="0">-- select--</option>
+                                                        <option value="1">Sri</option>
+                                                        <option value="2">Smt</option>
+                                                        <option value="2">Kum</option>
+                                                         </select>
+                                                    </div>
+                                                </div>
+        
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                      <label>Name </label>
+                                                      <input [(ngModel)]="RegistercoopSocieties.Applicant_name"
+                                                        type="text"
+                                                        id="name"
+                                                        class="form-control"
+                                                        placeholder="Enter Name"
+                                                        name="name"
+                                                        autocomplete="off"
+                                                      />
+                                                    </div>
+                                                  </div>
+        
+                                                  <div class="col-md-3">
+                                                    <div class="form-group">
+                                                      <label >SurName </label>
+                                                      <input [(ngModel)]="RegistercoopSocieties.Applicant_surname"
+                                                        type="text"
+                                                        id="Surname"
+                                                        class="form-control"
+                                                        placeholder="Enter SurName"
+                                                        name="Surname"
+                                                        autocomplete="off"
+                                                      />
+                                                    </div>
+                                                  </div>
+        
+                                                 
+                                              </div>
+                                              <div class="row">
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label for="natureOfUnit">Gender <span class="text-danger">*</span></label>
+                                                        <select id="Rpttype"
+                                                        class="form-control"
+                                                        [(ngModel)]="RegistercoopSocieties.Applicant_Gender"
+                                                        >
+                                                        
+                                                        <option value="0">-- Select Gender --</option>
+                                                        <option value="1">Male</option>
+                                                        <option value="2">Female</option>
+                                                        <option value="3">Transgender</option>
+                                                         </select>
+                                                    </div>
+                                                </div>
+        
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                      <label>S/o, W/o, D/o, C/o</label>
+                                                      <input [(ngModel)]="RegistercoopSocieties.wellvesher"
+                                                        type="text"
+                                                        id="name"
+                                                        class="form-control"
+                                                        placeholder="Enter Name"
+                                                        name="name"
+                                                        autocomplete="off"
+                                                      />
+                                                    </div>
+                                                  </div>
+                                                  
+                                                  <div class="col-md-3">
+                                                    <div class="form-group">
+                                                      <label>UID(Aadhar No)</label>
+                                                      <input [(ngModel)]="RegistercoopSocieties.uidNum"
+                                                        id="uidNum"
+                                                        type="text"
+                                                        class="form-control"                                                         
+                                                        placeholder="Enter Aadharnumber"
+                                                        maxlength="12"
+                                                        autocomplete="off"
+                                                        NumbersOnly
+                                                        />
+                                                    </div>
+                                                  </div>
+        
+                                                  <div class="col-md-3">
+                                                    <div class="form-group">
+                                                      <label for="Adharupload"
+                                                        >Upload Aadhar
+                                                        <span style="color: red">*</span>
+                                                      </label>
+                                                      <input
+                                                        type="file" [(ngModel)]="RegistercoopSocieties.uidNum_file"
+                                                        class="form-control p-0"
+                                                        id="Adharupload"
+                                                        (change)="onAadharChange($event)"
+                                                        accept="image/*"
+                                                  
+                                                        autocomplete="off"
+                                                      />
+                                                    </div>
+                                                  </div>
+        
+                                                  
+                                              </div>
+                                              <div class="row">
+                                                <div class="col-md-3">
+                                                      
+                                                    <div class="form-group">
+                                                        <label for="'age">
+                                                          Date Of Birth
+                                                        </label>
+                                                     <input 
+                                                     type="date"
+                                                     class="form-control p-0"
+                                                      [(ngModel)]="RegistercoopSocieties.applicat_age"
+                                                      (change)="ageCalculator()"/>
+                                                      
+            
+                                                  </div>                                                
+                                                  
+                                               </div>
+                                               <div class="col-md-1">
+                                                <div class="form-group">
+                                                <label></label><br>
+                                              <label for="'age" *ngIf="display_age" style="    font-size: 20px;                                             margin: 6px;
+                                              float: right;">Age :<label style="color:green;"><b>{{showAge}}</b></label></label>
+                                                 
+                                            
+                                          </div>
+                                               </div>
+                                              </div>
+            
+            
+                                        </div>
+                                    </div>
+                                </div>    
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <div class="card-header p-2 heading-div">
+                        <h5 class="mb-0">ADDRESS OF THE APPLICANT</h5>
+                      </div>
+                      <section id="basic-form-layouts">
+                        <div class="row match-height">
+                          <div class="col-md-12">
+                            <div class="card">
+                              <div class="card-content collapse show">
+                                <div class="card-body">
+                                    <div class="form">
+                                        <div class="form-body">
+                                            <h4 class="form-section"></h4>
+                                              <div class="row">
+                                                
+          
+                                                
+          
+                                                  <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label for="natureOfUnit">State <span class="text-danger"></span></label><br>
+                                                        <label><b>Andhra pradesh</b></label>
+                                                    </div>
+                                                </div>
+          
+                                                <div class="col-md-3">
+                                                  <div class="form-group">
+                                                    <label for="divisionid"
+                                                      >District <span class="text-danger">*</span></label
+                                                    >
+                        
+                                                    <select
+                                                      id="divisionid"
+                                                      name="divisionid"
+                                                      class="form-control"
+                                                      [(ngModel)]="RegistercoopSocieties.District_id"
+                                                        (change)="districtChange()"
+                                                    >
+                                                    <option value="">-- SELECT DISTRICT --</option>
+                                                    <option
+                                                      value="{{ obj.NEW_DISTRICT_CODE }}"
+                                                      *ngFor="let obj of DistList"
+                                                    >
+                                                      {{ obj.NEW_DISTRICT_NAME }}
+                                                    </option>
+                                                    </select>
+                                                  </div>
+                                                </div>
+
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                      <label for="mandalId"
+                                                        >Mandal <span class="text-danger">*</span></label
+                                                      >
+                          
+                                                      <select
+                                                        id="mandalId"
+                                                        name="mandalId"
+                                                        class="form-control"
+                                                        [(ngModel)]="RegistercoopSocieties.mandalid"
+                                                        (change)="onMandalChange()"  
+                                                      >
+                                                      <option value="">-- SELECT MANDAL --</option>
+                                                      <option
+                                                        value="{{ obj.MANDAL_CODE }}"
+                                                        *ngFor="let obj of mandalList"
+                                                      >
+                                                        {{ obj.MANDAL_NAME }}
+                                                      </option>
+                                                      </select>
+                                                    </div>
+                                                  </div>
+                                                  <div class="col-md-3">
+                                                    <div class="form-group">
+                                                      <label for="villageId"
+                                                        >Revenue Village<span class="text-danger">*</span></label
+                                                      >
+                                                      <select
+                                                      id="mandalId"
+                                                      name="mandalId"
+                                                      class="form-control"
+                                                      [(ngModel)]="RegistercoopSocieties.villageId"
+                                                      
+                                                    >
+                                                      <option value="">-- SELECT VILLAGE --</option>
+                                                      <option
+                                                        *ngFor="let obj of mandalList"
+                                                        value="{{ obj.MANDAL_CODE }}"
+                                                      >
+                                                        {{ obj.MANDAL_NAME }}
+                                                      </option>
+                                                    </select>
+                                                      
+                          
+                                                    </div>
+                                                  </div>
+                                                
+                                              </div>
+                                              <div class="row">
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                      <label for="mobileNumber"
+                                                        >Mobile Number
+                                                        <span class="text-danger">*</span></label
+                                                      >
+                                                      <input
+                                                        type="text"
+                                                        class="form-control"
+                                                        id="mobileNumber"
+                                                        placeholder="Entermobile number"
+                                                        maxlength="10"
+                                                        autocomplete="off" NumbersOnly
+                                                        [(ngModel)]="RegistercoopSocieties.mobileno"
+                                                      />
+                                                    </div>
+                                                  </div>
+              
+                                                  <div class="col-md-3">
+                                                    <div class="form-group">
+                                                      <label for="landlinenumber"
+                                                        >Land Line No / Phone No
+                                                        <span class="text-danger"></span></label
+                                                      >
+                                                      <input
+                                                        type="text"
+                                                        class="form-control"
+                                                        id="landlinenumber"
+                                                        placeholder="Enter LandLine number"
+                                                        maxlength="12" NumbersOnly
+                                                        autocomplete="off"
+                                                        [(ngModel)]="RegistercoopSocieties.landlinenumber"
+                                                      />
+                                                    </div>
+                                                  </div>
+              
+                                                  
+              
+                                                  <div class="col-md-3">
+                                                    <div class="form-group">
+                                                      <label for="mailId"
+                                                        >E-mail <span class="text-danger">*</span></label
+                                                      >
+                                                      <input
+                                                        type="text"
+                                                        class="form-control"
+                                                        id="mailId"
+                                                        placeholder="Enter email"
+                                                        maxlength="30"
+                                                        autocomplete="off"
+                                                        [(ngModel)]="RegistercoopSocieties.email_id"
+                                                      />
+                                                    </div>
+                                                  </div>
+                                                
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                      <label>Pin Code<span class="text-danger">*</span></label
+                                                      >
+                                                      <input
+                                                        type="text" [(ngModel)]="RegistercoopSocieties.applicat_pincode"
+                                                        id="name"
+                                                        class="form-control"
+                                                        placeholder="Enter pincode"
+                                                        name="name"
+                                                        maxlength="12" NumbersOnly 
+                                                        autocomplete="off"
+                                                      />
+                                                    </div>
+                                                  </div>
+                                                
+          
+                                                <div class="col-md-4">
+                                                  <div class="form-group">
+                                                    <label for="residentialAddress"
+                                                      >Residential Address <span class="text-danger">*</span></label
+                                                    >
+                                                    <textarea
+                                                      type="text"
+                                                      class="form-control"
+                                                      id="residentialAddress"
+                                                      placeholder="Enter residential address"
+                                                      maxlength="300"
+                                                      autocomplete="off"
+                                                      [(ngModel)]="RegistercoopSocieties.residentialaddress"
+                                                    ></textarea>
+                                                  </div>
+                                                </div>
+                                              </div>
+                                              <hr>
+
+                                              <div class="row">
+                                                <div class="col-md-7">
+                                                  <div class="form-group">
+                                              <div class="form-actions text-right">
+                                                <button
+                                                  type="submit"
+                                                  class="btn btn-success"
+                                                  (click)="btnsubmit()"
+                                                >
+                                                 Submit
+                                                </button> &nbsp;  
+                                                <button
+                                            type="Next"
+                                            class="btn btn-danger"
+                                            (click)="btnPreview()"
+                                          >
+                                          Close
+                                          </button>
+                                              </div>
+                                            </div>
+                                          </div>
+          
+                                          <div class="col-md-3">
+                                            <div class="form-group">
+                                        <div class="form-actions text-right">
+                                          
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div> 
+            
+            
+                                        </div>
+                                    </div>
+                                </div>
+            
+                                  
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </section>
+
+                </div>
+                </div>
+            </div>
+        </section>
+
+        
+                  
+      
+
+
+                                    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    </div>
+  </div>
+</div>
+

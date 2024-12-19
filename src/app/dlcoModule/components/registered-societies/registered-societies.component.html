@@ -1,0 +1,491 @@
+<div class="app-content content">
+    <div class="content-overlay"></div>
+      <div class="content-wrapper">
+        <div class="content-header row">
+            <div class="content-header-left col-md-6 col-12">
+              <h3 class="content-header-title mb-0">Registered Societies</h3>
+              <div class="row breadcrumbs-top">
+                <div class="breadcrumb-wrapper col-12">
+                  <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                      <a class="custom-cursor" routerLink="/dlco">Menu</a>
+                    </li>
+                    
+                  </ol>
+                </div>
+              </div>
+            </div>
+          </div>
+    
+          <div class="content-body">
+            <section id="basic-form-layouts">
+                <div class="row match-height">
+                  <div class="col-md-12">
+                    <div class="card">
+                      <div class="card-content collapse show">
+                        <div class="card-body">
+                            <div class="form">
+                                <div class="form-body">
+                                    <h4 class="form-section heading-div">
+                                        <i class="feather icon-map-pin"></i>&nbsp;<b>Registered Societies
+                                        Form</b>
+                                      </h4>
+                                      <div class="row">
+                                      <div class="col-md-3">
+                                        <div class="form-group">
+                                          <label>Name Of The Cooperative Society :</label>
+                                          <input
+                                            type="text"
+                                            id="name" [(ngModel)]="Regdetails.name"
+                                            class="form-control"
+                                            placeholder="Enter Name of society"
+                                            name="name" alphaNumbers
+                                            autocomplete="off"
+                                          />
+                                        </div>
+                                      </div>
+    
+                                      <div class="col-md-3">
+                                        <div class="form-group">
+                                          <label> Type Of Society :</label>
+                                          <input
+                                            type="text"
+                                            id="type" [(ngModel)]="Regdetails.societytype"
+                                            class="form-control"
+                                            placeholder=" PACS" disabled
+                                            name="type"
+                                            autocomplete="off"
+                                          />
+                                        </div>
+                                      </div>
+                                      
+    
+                                      <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="natureOfUnit">Society Type : <span class="text-danger">*</span></label>
+                                            <select id="Act_details"
+                                            class="form-control"
+                                            [(ngModel)]="Regdetails.societyActs"
+                                            (change)="onActdetailsChange()">
+                                             
+                                            <option value="">-- Select Type--</option>
+                                            <option value="1">APCS Act 1964</option>
+                                            <option value="2">APMACS Act 1995 </option>
+                                            <option value="3">MSCS Act 2002 </option>
+                                             </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                      <div class="form-group">
+                                          <label for="natureOfUnit">Level of Society : <span class="text-danger">*</span></label>
+                                          <select id="Act_details"
+                                          class="form-control"
+                                          [(ngModel)]="Regdetails.societyActs"
+                                          (change)="onActdetailsChange()">
+                                           
+                                          <option value="">-- Level of Society Type--</option>
+                                          <option value="1">Primary Level </option>
+                                          <option value="2">District Level </option>
+                                          <option value="3">Functional Registrar Level </option>
+                                          <option value="4">Apex / State Level </option>
+                                           </select>
+                                      </div>
+                                  </div>
+    
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                          <label>Society Register Number :</label>
+                                          <input
+                                            type="text"
+                                            id="name" [(ngModel)]="Regdetails.societyNumber"
+                                            class="form-control"
+                                            placeholder="Register Number"
+                                            name="name" alphaNumbers
+                                            autocomplete="off"
+                                          />
+                                        </div>
+                                      </div>
+    
+                                      <div class="col-md-3">
+                                        <div class="form-group">
+                                          <label for="date"
+                                            >Registration Date : <span style="color: red">*</span></label
+                                          >
+                                          <input type="text" placeholder="DD-MM-YYYY" class="form-control"
+                                          [(ngModel)]="Registration_date_m" [maxDate]="maxDate" placement="bottom" container="" [bsConfig]="bsDatepickerConfig" bsDatepicker>
+                      
+                                          
+                                        </div>
+                                      </div>
+                                </div>
+                                <div class="card">
+                                    <div class="card-header p-2 heading-div">
+                                        <h5 class="mb-0"><b>Address Of The Society</b></h5>
+                                      </div>
+                                      <section id="basic-form-layouts">
+                                        <div class="row match-height">
+                                          <div class="col-md-12">
+                                            <div class="card">
+                                              <div class="card-content collapse show">
+                                                <div class="card-body">
+                                                    <div class="form">
+                                                        <div class="form-body">
+                                                            <h4 class="form-section"></h4>
+                                                              <div class="row">
+    
+                                                                <div class="col-md-3">
+                                                                    <div class="form-group">
+                                                                      <label for="divisionid"
+                                                                        >District <span class="text-danger">*</span></label>
+                                                                      <select
+                                                                        id="divisionid"
+                                                                        name="divisionid"
+                                                                        class="form-control"
+                                                                        [(ngModel)]="Regdetails.districtId"
+                                                                        (change)="onDivisionChange()"
+                                                                      >
+                                                                        <option value="">-- SELECT District  --</option>
+                                                                        <option
+                                                                          *ngFor="let obj of divisionList"
+                                                                          value="{{ obj.DIVISION_CODE }}"
+                                                                        >
+                                                                          {{ obj.DIVISION_NAME }}
+                                                                        </option>
+                                                                      </select>
+                                                                    </div>
+                                                                  </div>
+                                                                  <div class="col-md-3">
+                                                                    <div class="form-group">
+                                                                      <label for="mandalId"
+                                                                        >Mandal <span class="text-danger">*</span></label
+                                                                      >
+                                          
+                                                                      <select
+                                                                        id="mandalId"
+                                                                        name="mandalId"
+                                                                        class="form-control"
+                                                                        [(ngModel)]="Regdetails.mandalid"
+                                                                        (change)="onMandalChange()"                                                                     >
+                                                                        <option value="">-- SELECT MANDAL --</option>
+                                                                        <option
+                                                                          *ngFor="let obj of mandalList"
+                                                                          value="{{ obj.MANDAL_CODE }}"
+                                                                        >
+                                                                          {{ obj.MANDAL_NAME }}
+                                                                        </option>
+                                                                      </select>
+                                                                    </div>
+                                                                  </div>
+    
+                                                                  <div class="col-md-3">
+                                                                    <div class="form-group">
+                                                                      <label for="villageId"
+                                                                        >Revenue Village: <span class="text-danger">*</span></label
+                                                                      >
+                                          
+                                                                      <select
+                                                                        id="mandalId"
+                                                                        name="mandalId"
+                                                                        class="form-control"
+                                                                        [(ngModel)]="Regdetails.villageId"
+                                                                        (change)="onMandalChange()"                                                                     >
+                                                                        <option value="">-- SELECT village --</option>
+                                                                        <option
+                                                                          *ngFor="let obj of mandalList"
+                                                                          value="{{ obj.MANDAL_CODE }}"
+                                                                        >
+                                                                          {{ obj.MANDAL_NAME }}
+                                                                        </option>
+                                                                      </select>
+                                          
+                                                                    </div>
+                                                                  </div>
+    
+                                                                  <div class="col-md-3">
+                                                                    <div class="form-group">
+                                                                      <label for="residentialAddress"
+                                                                        >Residential Address <span class="text-danger">*</span></label
+                                                                      >
+                                                                      <textarea
+                                                                        type="text"
+                                                                        class="form-control"
+                                                                        id="residentialAddress"
+                                                                        placeholder="Enter residential address"
+                                                                        maxlength="100"
+                                                                        autocomplete="off" alphaNumbers
+                                                                        [(ngModel)]="Regdetails.residentialaddress"
+                                                                      ></textarea>
+                                                                    </div>
+                                                                  </div>
+                                                                
+                                                                  <div class="col-md-3">
+                                                                    <div class="form-group">
+                                                                        <label for="natureOfUnit">Category Of The Society: <span class="text-danger">*</span></label>
+                                                                        <select id="Act_details"
+                                                                        class="form-control"
+                                                                        [(ngModel)]="Regdetails.Category_society"
+                                                                        (change)="onActdetailsChange()">                                                                         
+                                                                        <option value="">-- Select Category--</option>
+                                                                        <option value="1">Aided</option>
+                                                                        <option value="2">Unaided Society </option>
+                                                                         </select>
+                                                                    </div>
+                                                                </div>
+    
+                                                                <div class="col-md-3">
+                                                                  <div class="form-group">
+                                                                    <label> Number Of Members :</label>
+                                                                    <input
+                                                                      type="text" [(ngModel)]="Regdetails.numberofmembers"
+                                                                      id="name" 
+                                                                      class="form-control"
+                                                                      placeholder=""
+                                                                      name="name" NumbersOnly
+                                                                      autocomplete="off" maxlength="4"
+                                                                    />
+                                                                  </div>
+                                                                </div>
+    
+                                                                <div class="col-md-3">
+                                                                  <div class="form-group">
+                                                                    <label>Area Of The Operation Of The Society :</label>
+                                                                    <input
+                                                                      type="text"
+                                                                      id="name" [(ngModel)]="Regdetails.aeraofsociety"
+                                                                      class="form-control"
+                                                                      placeholder="" lettersOnly
+                                                                      name="name"
+                                                                      autocomplete="off"
+                                                                    />
+                                                                  </div>
+                                                                </div>
+    
+                                                                <div class="col-md-3">
+                                                                  <div class="form-group">
+                                                                    <label>Name Of The President/Special Officer:</label>
+                                                                    <input
+                                                                      type="text"
+                                                                      id="name" [(ngModel)]="Regdetails.nameofthePresident"
+                                                                      class="form-control"
+                                                                      placeholder="" lettersOnly
+                                                                      name="name"
+                                                                      autocomplete="off"
+                                                                    />
+                                                                  </div>
+                                                                </div>
+    
+                                                                <div class="col-md-3">
+                                                                  <div class="form-group">
+                                                                    <label>Name Of The Secretary Of The Society :</label>
+                                                                    <input
+                                                                      type="text" [(ngModel)]="Regdetails.nameofthesecretaryofSociety"
+                                                                      id="name"
+                                                                      class="form-control" lettersOnly
+                                                                      placeholder=""
+                                                                      name="name"
+                                                                      autocomplete="off"
+                                                                    />
+                                                                  </div>
+                                                                </div>
+    
+                                                                <div class="col-md-3">
+                                                                  <div class="form-group">
+                                                                    <label>Custodian Of Books/Registers Of The Society :</label>
+                                                                    <input
+                                                                      type="text"
+                                                                      id="name" [(ngModel)]="Regdetails.custodianofregsociety"
+                                                                      class="form-control" lettersOnly
+                                                                      placeholder=""
+                                                                      name="name"
+                                                                      autocomplete="off"
+                                                                    />
+                                                                  </div>
+                                                                </div>
+    
+                                                                <div class="col-md-3">
+                                                                  <div class="form-group">
+                                                                    <label for="date"
+                                                                      >Date of Elections conducted : <span style="color: red">*</span></label
+                                                                    >
+                                                                    <input type="text" placeholder="DD-MM-YYYY" class="form-control"
+                              [(ngModel)]="dateof_electionconducted_m" [maxDate]="maxDate" placement="bottom" container="" [bsConfig]="bsDatepickerConfig" bsDatepicker>
+          
+                                                                    
+                                                                  </div>
+                                                                </div>
+    
+                                                                <div class="col-md-3">
+                                                                  <div class="form-group">
+                                                                      <label for="natureOfUnit">Present Management of the Society : <span class="text-danger">*</span></label>
+                                                                      <select id="Act_details"
+                                                                      class="form-control"
+                                                                      [(ngModel)]="Regdetails.Mng_society"
+                                                                      (change)="onActdetailsChange()">
+                                                                      
+                                                                      <option value="">-- Select Society--</option>
+                                                                      <option value="1">Elected Board</option>
+                                                                      <option value="2">Appointed Person in Charge</option>
+                                                                       </select>
+                                                                  </div>
+                                                              </div>
+    
+                                                              <div class="col-md-3">
+                                                                <div class="form-group">
+                                                                  <label for="date"
+                                                                    >Due Date For Elections:<span style="color: red">*</span></label
+                                                                  >
+                                                                  <input type="text" placeholder="DD-MM-YYYY" class="form-control"
+                              [(ngModel)]="ElectionsDuedate_m" [maxDate]="maxDate" placement="bottom" container="" [bsConfig]="bsDatepickerConfig" bsDatepicker>
+          
+                                                                   
+                                                                </div>
+                                                              </div>
+    
+                                                              <div class="col-md-3">
+                                                                <div class="form-group">
+                                                                    <label for="natureOfUnit">Authority to conduct audit: <span class="text-danger">*</span></label>
+                                                                    <select id="Act_details"
+                                                                    class="form-control"
+                                                                    [(ngModel)]="Regdetails.Conduct_audit"
+                                                                    (change)="onActdetailsChange()">
+                                                                     
+                                                                    <option value="">-- Select Audit--</option>
+                                                                    <option value="1">Departmental Audit</option>
+                                                                    <option value="2">Audit by Chartered Accountant</option>
+                                                                     </select>
+                                                                </div>
+                                                            </div>
+    
+                                                            <div class="col-md-3">
+                                                              <div class="form-group">
+                                                                <label> Year of completion of Audit  <span style="color: red">*</span></label>
+                                                                <select id="Act_details"
+                                                                    class="form-control"
+                                                                    [(ngModel)]="societydetails.Conduct_audit"
+                                                                    (change)="onActdetailsChange()">
+                                                                    <option value="">-- Select Year--</option>
+                                                                    <option value="2022-23"> 2022-2023</option>
+                                                                    <option value="2021-22"> 2021-2022</option>
+                                                                    <option value="2020-21"> 2020-2021</option>
+                                                                    <option value="2019-20"> 2019-2020</option>
+                                                                    <option value="2018-19"> 2018-2019</option>
+                                                                    <option value="2017-18"> 2017-2018</option>
+                                                                    <option value="2016-17"> 2016-2017</option>
+                                                                    <option value="2015-16"> 2015-2016</option>
+                                                                    <option value="2014-15"> 2014-2015</option>
+                                                                    <option value="2013-14"> 2013-2014</option>
+                                                                    <option value="2012-13"> 2012-2013</option>
+                                                                    <option value="2011-12"> 2011-2012</option>
+                                                                    <option value="2010-11"> 2010-2011</option>
+                                                                  
+                                                                     </select>
+    
+                                                              </div>
+                                                            </div>
+    
+                                                            <div class="col-md-3">
+                                                              <div class="form-group">
+                                                                <label for="date"
+                                                                  >Date of submission of  Final Audit Report :</label
+                                                                >
+                                                                <input type="text" placeholder="DD-MM-YYYY" class="form-control"
+                              [(ngModel)]="Final_Audit_date_m" [maxDate]="maxDate" placement="bottom" container="" [bsConfig]="bsDatepickerConfig" bsDatepicker>
+          
+                                                                 
+                                                              </div>
+                                                            </div>
+    
+                                                            <div class="col-md-3">
+                                                              <div class="form-group">
+                                                                <label for="date"
+                                                                  >Date of issue Audit Certificate by the Audit Officer :<span style="color: red">*</span></label
+                                                                >
+                                                                <input type="text" placeholder="DD-MM-YYYY" class="form-control"
+                              [(ngModel)]="Date_of_issue_Audit_Certificate_m" [maxDate]="maxDate" placement="bottom" container="" [bsConfig]="bsDatepickerConfig" bsDatepicker>
+          
+                                                                
+                                                              </div>
+                                                            </div>
+    
+                                                            <div class="col-md-3">
+                                                              <div class="form-group">
+                                                                <label>Number of Employees:</label>
+                                                                <input
+                                                                  type="text"
+                                                                  id="name"
+                                                                  class="form-control" NumbersOnly
+                                                                  placeholder=""
+                                                                  name="name" maxlength="3"
+                                                                  autocomplete="off"
+                                                                />
+                                                              </div>
+                                                            </div> 
+                                                                
+                                                            </div>
+                                                            <hr>
+                                                            <div class="row">
+                                                                <div class="col-md-7">
+                                                                  <div class="form-group">
+                                                              <div class="form-actions text-right">
+                                                                <button
+                                                                  type="submit"
+                                                                  class="btn btn-success"
+                                                                  (click)="btnsubmit()"
+                                                                >
+                                                                 Submit
+                                                                </button> &nbsp;  
+                                                                <button
+                                                            type="Next"
+                                                            class="btn btn-danger"
+                                                            
+                                                          >
+                                                          Close
+                                                          </button>
+                                                              </div>
+                                                            </div>
+                                                          </div>
+                          
+                                                          <div class="col-md-3">
+                                                            <div class="form-group">
+                                                        <div class="form-actions text-right">
+                                                          
+                                                        </div>
+                                                      </div>
+                                                    </div>
+                                                  </div> 
+                                                        </div>
+                                                    </div>
+                                                </div>    
+                                                </div>
+                                            </div>
+                                            </div>
+                                            <hr>
+
+                                              
+                                        </div>
+                                    </section>
+                                </div>
+    
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </section>
+    
+             
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        </div>
+      </div>
+    </div>
+    

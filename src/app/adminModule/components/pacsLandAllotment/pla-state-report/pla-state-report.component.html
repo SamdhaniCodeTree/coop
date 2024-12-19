@@ -1,0 +1,95 @@
+<div class="app-content content">
+  <div class="content-overlay"></div>
+  <div class="content-wrapper">
+    <div class="content-header row">
+      <div class="content-header-left col-md-6 col-12">
+        <h3 class="content-header-title mb-0">PACS Land Allotment Reports</h3>
+        <div class="row breadcrumbs-top">
+          <div class="breadcrumb-wrapper col-12">
+            
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="content-body">
+      <section id="basic-form-layouts">
+        <div class="row match-height">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header"></div>
+              <div class="card-content collapse show">
+                <div class="card-body">
+                  <div class="form">
+                    <div class="form-body">
+                      <h4 class="form-section">
+                        <i class="feather icon-user"></i>Land
+                        Allotment Report For MPFC
+                      </h4>
+
+                      <div class="row align-items-center">
+                        <div class="col-md-3">
+                          <div class="form-group">
+                            <label for="fromDate"
+                              >From Date :
+                              <span style="color: red">*</span></label
+                            >
+                            <input type="text" placeholder="DD-MM-YYYY" class="form-control" [maxDate]="maxDate"
+                            [(ngModel)]="fromDate" placement="bottom" container="" [bsConfig]="bsDatepickerConfig" bsDatepicker>
+                          
+                            <!-- <app-date-picker
+                              [PlaceHolder]="'Please Select From Date'"
+                              [(selectedDate)]="fromDate"
+                              [minDate]="minDate"
+                              [maxDate]="maxDate"
+                            ></app-date-picker> -->
+                          </div>
+                        </div>
+                        <div class="col-md-3">
+                          <div class="form-group">
+                            <label for="toDate"
+                              >To Date :
+                              <span style="color: red">*</span></label
+                            >
+                            <input type="text" placeholder="DD-MM-YYYY" class="form-control" [maxDate]="maxDate"
+                            [(ngModel)]="toDate" placement="bottom" container="" [bsConfig]="bsDatepickerConfig" bsDatepicker>
+                          
+                            <!-- <app-date-picker
+                              [PlaceHolder]="'Please Select To Date'"
+                              [(selectedDate)]="toDate"
+                              [minDate]="minDate"
+                              [maxDate]="maxDate"
+                            ></app-date-picker> -->
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <button
+                            type="button"
+                            class="btn btn-success btn-sm mt-3"
+                            (click)="btnLoadReport()"
+                          >
+                            <i
+                              class="fa fa-arrow-right mr-2"
+                              aria-hidden="true"
+                            ></i>
+                            GO
+                          </button>
+                        </div>
+                      </div>
+                      <app-pla-state
+                        [fromDate]="reportFromDate"
+                        [toDate]="reportToDate"
+                        [tempId]="tempId"
+                        (onDistrictChange)="onDistrictChange($event)"
+                      ></app-pla-state>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- // Basic form layout section end -->
+    </div>
+  </div>
+</div>

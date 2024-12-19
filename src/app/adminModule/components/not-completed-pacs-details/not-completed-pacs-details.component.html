@@ -1,0 +1,185 @@
+ 
+
+  <div class="row">
+    <div class="col-md-12"  *ngIf="district">
+      <label for="toDate">
+        FROM DATE :
+        <span class="text-success">
+          <b> {{ fromDate  }}</b>
+        </span>
+      </label>&nbsp; &nbsp;&nbsp; &nbsp; 
+      <label for="toDate">
+        TO DATE :
+        <span class="text-success">
+          <b> {{ toDate }}</b>
+        </span>
+      </label>&nbsp; &nbsp;&nbsp; &nbsp;
+      <label for="toDate">
+        DISTRICT :
+        <span class="text-success">
+          <b> {{ districtName | uppercase }}</b>
+        </span>
+      </label>
+    </div>
+    <div class="col-md-12"  *ngIf="division">
+      <label for="toDate">
+        FROM DATE :
+        <span class="text-success">
+          <b> {{ fromDate  }}</b>
+        </span>
+      </label>&nbsp; &nbsp;&nbsp; &nbsp; 
+      <label for="toDate">
+        TO DATE :
+        <span class="text-success">
+          <b> {{ toDate }}</b>
+        </span>
+      </label>&nbsp; &nbsp;&nbsp; &nbsp;
+      <label for="toDate">
+        DIVISION :
+        <span class="text-success">
+          <b> {{ divisionName | uppercase }}</b>
+        </span>
+      </label>
+    </div>
+    <div class="col-md-12">
+      <button
+        type="button"
+        class="btn btn-sm btn-success pull-right"
+        (click)="btnExcelDownload()"
+      >
+        <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+        DOWNLOAD EXCEL
+      </button>
+      <button    *ngIf="type=='3'"
+          type="button"
+          class="btn btn-sm btn-danger pull-right"
+          (click)="btnPDF('3')"
+        >
+          <i
+            class="fa fa-file-pdf-o mr-2"
+            aria-hidden="true"
+          ></i>
+          DOWNLOAD PDF
+        </button>
+      <button  *ngIf="type=='4'"
+          type="button"
+          class="btn btn-sm btn-danger pull-right"
+          (click)="btnPDF('4')"
+        >
+          <i
+            class="fa fa-file-pdf-o mr-2"
+            aria-hidden="true"
+          ></i>
+          DOWNLOAD PDF
+        </button>
+      <button  *ngIf="type=='5'"
+          type="button"
+          class="btn btn-sm btn-danger pull-right"
+          (click)="btnPDF('5')"
+        >
+          <i
+            class="fa fa-file-pdf-o mr-2"
+            aria-hidden="true"
+          ></i>
+          DOWNLOAD PDF
+        </button>
+      <button   *ngIf="type=='6'"
+          type="button"
+          class="btn btn-sm btn-danger pull-right"
+          (click)="btnPDF('6')"
+        >
+          <i
+            class="fa fa-file-pdf-o mr-2"
+            aria-hidden="true"
+          ></i>
+          DOWNLOAD PDF
+        </button>
+      <button *ngIf="type=='7'"
+          type="button"
+          class="btn btn-sm btn-danger pull-right"
+          (click)="btnPDF('7')"
+        >
+          <i
+            class="fa fa-file-pdf-o mr-2"
+            aria-hidden="true"
+          ></i>
+          DOWNLOAD PDF
+        </button>
+      <button  *ngIf="type=='8'"
+          type="button"
+          class="btn btn-sm btn-danger pull-right"
+          (click)="btnPDF('8')"
+        >
+          <i
+            class="fa fa-file-pdf-o mr-2"
+            aria-hidden="true"
+          ></i>
+          DOWNLOAD PDF
+        </button>
+      <button *ngIf="type=='9'"
+          type="button"
+          class="btn btn-sm btn-danger pull-right"
+          (click)="btnPDF('9')"
+        >
+          <i
+            class="fa fa-file-pdf-o mr-2"
+            aria-hidden="true"
+          ></i>
+          DOWNLOAD PDF
+        </button>
+      <button  *ngIf="type=='10'"
+          type="button"
+          class="btn btn-sm btn-danger pull-right"
+          (click)="btnPDF('10')"
+        >
+          <i
+            class="fa fa-file-pdf-o mr-2"
+            aria-hidden="true"
+          ></i>
+          DOWNLOAD PDF
+        </button>
+    </div>
+    <div
+      class="col-md-12 table-responsive"
+      [hidden]="districtLevelDetails.length < 1"
+    >
+      <table
+        class="table table-bordered"
+        datatable
+        [dtOptions]="dtOptions"
+        [dtTrigger]="dtTrigger"
+      >
+        <thead class="thead-dark">
+          
+          <tr>
+            <th>S NO</th>
+            <th *ngIf="district">DISTRICT</th>
+            <th *ngIf="division">Division</th>
+            <th>PACS NAME</th>
+            <th>DCCB NAME</th>
+            <th>CEO NAME</th>
+            <th>CEO MOBILE</th>                                    
+          </tr> 
+        </thead>
+        <tbody *ngIf="districtLevelDetails?.length > 0">
+          <tr *ngFor="let obj of districtLevelDetails; let i = index">
+            <td>{{ i + 1 }}</td>                                      
+            <td *ngIf="district">{{ obj.DISTRICT_NAME }}</td>
+            <td *ngIf="division">{{ obj.DIV_NAME }}</td>
+            <td>{{ obj.PACS_NAME }}</td>                                    
+            <td>{{ obj.NAME_OF_THE_DCCB }}</td>
+            <td>{{ obj.CEO_NAME }}</td>
+            <td>{{ obj.CEOMOBILENUMBER }}</td> 
+          </tr>
+        </tbody> 
+      </table>
+    </div>
+  
+    <div 
+      class="col-md-12 table-responsive"
+      [hidden]="districtLevelDetails?.length > 1"
+    >
+      <h6 class="text-center">No Data Available</h6>
+    </div>
+  </div>
+  

@@ -1,0 +1,108 @@
+<div class="row">
+  <div class="col-md-12">
+    <label for="toDate">
+      DISTRICT :
+      <span class="text-success">
+        <b> {{ districtName }}</b>
+      </span>
+    </label>
+  </div>
+  <div class="col-md-12">
+    <button
+      type="button"
+      class="btn btn-sm btn-success pull-right"
+      (click)="btnExcelDownload()"
+    >
+      <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+      DOWNLOAD EXCEL
+    </button>
+    <!-- <button
+          type="button"
+          class="btn btn-sm btn-danger pull-right"
+          (click)="btnPDF()"
+        >
+          <i
+            class="fa fa-file-pdf-o mr-2"
+            aria-hidden="true"
+          ></i>
+          DOWNLOAD PDF
+        </button> -->
+  </div>
+  <div
+    class="col-md-12 table-responsive"
+    [hidden]="districtLevelDetails.length < 1"
+  >
+    <table
+      class="table table-bordered"
+      datatable
+      [dtOptions]="dtOptions"
+      [dtTrigger]="dtTrigger"
+    >
+      <thead class="thead-dark">
+        <tr>
+          <th rowspan="2">S.No.</th>
+          <th rowspan="2">MANDAL <br>NAME</th>
+          <th rowspan="2">NO. OF <br>GODOWNS<br> SANCTIONED</th>
+          <th rowspan="2">NO. OF <br>SITES READY <br>FOR CONSTRUCTION</th>
+          <!-- <th rowspan="2">NO. OF <br>SITES <br>REQUIRING</th> -->
+          <th rowspan="2">
+            NO. OF <br>SITES <br>NOT SUITABLE<br> FOR CONSTRUCTION<br> AND FRESH SITES<br> TO BE
+            REALLOTTED
+          </th>
+          <th colspan="3">SITES WHERE WORK UNDER PROGRESS</th>
+        </tr>
+        <tr>
+          <th>FOUNDATION <br>STAGE</th>
+          <th>SUPER STRUCTURE<br> STAGE</th>
+          <th>FINISHING <br>STAGE</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let obj of districtLevelDetails; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>
+            <a
+              *ngIf="obj.GODOWNS_SACTIONED !== 0"
+              style="cursor: pointer; text-decoration: underline"
+              class="text-primary"
+              (click)="btnGetDetails(obj)"
+              ><b>{{ obj.MANDAL_NAME }}</b></a
+            >
+            <span *ngIf="obj.GODOWNS_SACTIONED === 0">{{
+              obj.MANDAL_NAME
+            }}</span>
+          </td>
+          <td>{{ obj.GODOWNS_SACTIONED }}</td>
+          <td>{{ obj.SITES_READY_FOR_CONS }}</td>
+          <!-- <td>{{ obj.SITES_REG_NREGA_WORKS }}</td> -->
+          <td>{{ obj.SITE_NOT_SUITABLE_FOR_CONS }}</td>
+          <td>{{ obj.FOUNDATION_STAGE }}</td>
+          <td>{{ obj.SUPER_STRUCTURE_STAGE }}</td>
+          <td>{{ obj.FINISHING_STAGE }}</td>
+        </tr>
+      </tbody>
+      <tbody *ngIf="districtLevelDetails?.length > 0">
+        <tr>
+          <td>--</td>
+          <td>
+            <b>TOTAL</b>
+          </td>
+          <td>{{ reportTotals.GODOWNS_SACTIONED }}</td>
+          <td>{{ reportTotals.SITES_READY_FOR_CONS }}</td>
+          <!-- <td>{{ reportTotals.SITES_REG_NREGA_WORKS }}</td> -->
+          <td>{{ reportTotals.SITE_NOT_SUITABLE_FOR_CONS }}</td>
+          <td>{{ reportTotals.FOUNDATION_STAGE }}</td>
+          <td>{{ reportTotals.SUPER_STRUCTURE_STAGE }}</td>
+          <td>{{ reportTotals.FINISHING_STAGE }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div
+    class="col-md-12 table-responsive"
+    [hidden]="districtLevelDetails?.length > 1"
+  >
+    <h6 class="text-center">No Data Available</h6>
+  </div>
+</div>

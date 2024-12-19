@@ -1,0 +1,259 @@
+<div class="row">
+  <div class="col-md-12">
+    <label for="toDate">
+      FROM DATE :
+      <span class="text-success">
+        <b> {{ fromDate  }}</b>
+      </span>
+    </label>&nbsp; &nbsp;&nbsp; &nbsp; 
+    <label for="toDate">
+      TO DATE :
+      <span class="text-success">
+        <b> {{ toDate }}</b>
+      </span>
+    </label>&nbsp; &nbsp;&nbsp; &nbsp;
+    <label for="toDate">
+      DISTRICT :
+      <span class="text-success">
+        <b> {{ districtName  | uppercase}}</b>
+      </span>
+    </label>
+  </div>
+  <div class="col-md-12">
+    <button
+      type="button"
+      class="btn btn-sm btn-success pull-right"
+      (click)="btnExcelDownload()"
+    >
+      <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+      DOWNLOAD EXCEL
+    </button>
+    <button
+        type="button"
+        class="btn btn-sm btn-danger pull-right"
+        (click)="btnPDF()"
+      >
+        <i
+          class="fa fa-file-pdf-o mr-2"
+          aria-hidden="true"
+        ></i>
+        DOWNLOAD PDF
+      </button>
+  </div>
+  <div
+    class="col-md-12 table-responsive tbl-fixed"
+    [hidden]="districtLevelDetails.length < 1"
+  >
+    <table
+      class="table table-bordered tbl-data"
+      datatable
+      [dtOptions]="dtOptions"
+      [dtTrigger]="dtTrigger"
+    >
+      <thead class="thead-dark">
+        <tr>
+          <th rowspan="2" style="z-index: 5;">S NO</th>
+          <th rowspan="2" style="z-index: 5;">DIVISION</th>
+          <th rowspan="2" style="z-index: 5;">NAME OF THE DCCB</th>
+          <th rowspan="2" style="z-index: 5;">TOTAL PACS</th>
+          <th colspan="2">SITE PREPARED PACS</th>
+          <th colspan="2">DELIVERY OF ALL ITEMS</th>
+          <th colspan="2">SUPPLY AND INSTALLATION <br> OF ALL HARDWARE ITEMS</th>
+          <th colspan="2">FINAL CERTIFICATE SUBMITTED <br> PACS FOR RELEASE OF PAYMENTS</th> 
+        </tr>
+        <tr>
+          <th>COMPLETED PACS</th>
+          <th>NOT COMPLETED PACS</th>
+          <th>COMPLETED PACS</th>
+          <th>NOT COMPLETED PACS</th>
+          <th>COMPLETED PACS</th>
+          <th>NOT COMPLETED PACS</th>
+          <th>COMPLETED PACS</th>
+          <th>NOT COMPLETED PACS</th> 
+        </tr>
+      </thead>
+      <tbody *ngIf="districtLevelDetails?.length > 0">
+        <tr *ngFor="let obj of districtLevelDetails; let i = index">
+          <td>{{ i + 1 }}</td> 
+          <!-- <td>{{ obj.DIV_NAME }}</td>  -->
+
+          <!-- <td>
+            <a
+              style="cursor: pointer; text-decoration: underline"
+              class="text-primary"
+              (click)="btnGetDetails(obj)"
+              >
+              <b>{{ obj.DIV_NAME }}</b>                
+              </a>
+          </td> -->
+
+          <td > 
+            <!-- class="number_align" -->
+           <a
+             *ngIf="obj.SITE_DONE != '0'"
+             style="cursor: pointer; text-decoration: underline"
+             class="text-primary"
+             (click)="btnSiteDoneDetails(obj)" 
+             ><b>{{ obj.DIV_NAME  }}</b></a
+           >
+           <span *ngIf="obj.SITE_DONE == '0'">{{
+             obj.DIV_NAME
+           }}</span>
+         </td> 
+
+
+
+
+
+          <td>{{ obj.NAME_OF_THE_DCCB }}</td>
+          <td>{{ obj.TOTAL_PACS }}</td>
+          <!-- <td>{{ obj.SITE_DONE }}</td>  -->
+          <td > 
+            <!-- class="number_align" -->
+           <a
+             *ngIf="obj.SITE_DONE != '0'"
+             style="cursor: pointer; text-decoration: underline"
+             class="text-primary"
+             (click)="btnSiteDoneDetails(obj)"
+             ><b>{{ obj.SITE_DONE  }}</b></a
+           >
+           <span *ngIf="obj.SITE_DONE == '0'">{{
+             obj.SITE_DONE
+           }}</span>
+         </td> 
+          
+
+          <td > 
+            <!-- class="number_align" -->
+           <a
+             *ngIf="obj.SITE_NOT_DONE != '0'"
+             style="cursor: pointer; text-decoration: underline"
+             class="text-primary"
+             (click)="btnSiteNotDoneDetails(obj)"
+             ><b>{{ obj.SITE_NOT_DONE  }}</b></a
+           >
+           <span *ngIf="obj.SITE_NOT_DONE == '0'">{{
+             obj.SITE_NOT_DONE
+           }}</span>
+         </td> 
+
+          <!-- <td>{{ obj.DEVICE_DONE }}</td> -->
+
+          <td > 
+            <!-- class="number_align" -->
+           <a
+             *ngIf="obj.DEVICE_DONE != '0'"
+             style="cursor: pointer; text-decoration: underline"
+             class="text-primary"
+             (click)="btnDeviceDoneDetails(obj)"
+             ><b>{{ obj.DEVICE_DONE  }}</b></a
+           >
+           <span *ngIf="obj.DEVICE_DONE == '0'">{{
+             obj.DEVICE_DONE
+           }}</span>
+         </td> 
+         
+          <td > 
+            <!-- class="number_align" -->
+           <a
+             *ngIf="obj.DEVICE_NOT_DONE != '0'"
+             style="cursor: pointer; text-decoration: underline"
+             class="text-primary"
+             (click)="btnDeviceNotDoneDetails(obj)"
+             ><b>{{ obj.DEVICE_NOT_DONE   }}</b></a
+           >
+           <span *ngIf="obj.DEVICE_NOT_DONE == '0'">{{
+             obj.DEVICE_NOT_DONE
+           }}</span>
+         </td>  
+
+          <!-- <td>{{ obj.CALIBRATION_DONE }}</td>  -->
+
+          
+          <td > 
+            <!-- class="number_align" -->
+           <a
+             *ngIf="obj.CALIBRATION_DONE != '0'"
+             style="cursor: pointer; text-decoration: underline"
+             class="text-primary"
+             (click)="btnInstallDoneDetails(obj)"
+             ><b>{{ obj.CALIBRATION_DONE  }}</b></a
+           >
+           <span *ngIf="obj.CALIBRATION_DONE == '0'">{{
+             obj.CALIBRATION_DONE
+           }}</span>
+         </td> 
+
+          <td > 
+            <!-- class="number_align" -->
+           <a
+             *ngIf="obj.CALIBRATION_NOT_DONE != '0'"
+             style="cursor: pointer; text-decoration: underline"
+             class="text-primary"
+             (click)="btnCalibNotDoneDetails(obj)"
+             ><b>{{ obj.CALIBRATION_NOT_DONE  }}</b></a
+           >
+           <span *ngIf="obj.CALIBRATION_NOT_DONE == '0'">{{
+             obj.CALIBRATION_NOT_DONE
+           }}</span>
+         </td> 
+
+          <td > 
+            <!-- class="number_align" -->
+           <a
+             *ngIf="obj.DMT_DONE != '0'"
+             style="cursor: pointer; text-decoration: underline"
+             class="text-primary"
+             (click)="btnDmtDoneDetails(obj)"
+             ><b>{{ obj.DMT_DONE  }}</b></a
+           >
+           <span *ngIf="obj.DMT_DONE == '0'">{{
+             obj.DMT_DONE
+           }}</span>
+         </td> 
+
+          <!-- <td>{{ obj.DMT_DONE }}</td>    -->
+          
+          <td > 
+            <!-- class="number_align" -->
+           <a
+             *ngIf="obj.DMT_NOT_DONE != '0'"
+             style="cursor: pointer; text-decoration: underline"
+             class="text-primary"
+             (click)="btnDmtNotDoneDetails(obj)"
+             ><b>{{ obj.DMT_NOT_DONE }}</b></a
+           >
+           <span *ngIf="obj.DMT_NOT_DONE == '0'">{{
+             obj.DMT_NOT_DONE
+           }}</span>
+         </td> 
+
+
+        </tr>
+      </tbody>
+      <tbody *ngIf="districtLevelDetails?.length > 0">
+        <tr>
+          <td>--</td>
+          <td><b>TOTAL</b></td>
+          <td>--</td>
+          <td>{{ reportTotals.total_pacs }}</td>
+          <td>{{ reportTotals.site_prepared_pacs_completed }}</td>
+          <td>{{ reportTotals.site_prepared_pacs_not_completed }}</td>
+          <td>{{ reportTotals.delivery_of_all_items_completed }}</td>
+          <td>{{ reportTotals.delivery_of_all_items_not_completed }}</td>
+          <td>{{ reportTotals.supply_and_installation_of_all_hardware_items_completed }} </td>
+          <td>{{ reportTotals.supply_and_installation_of_all_hardware_items_not_completed }}</td>
+          <td>{{ reportTotals.final_certificate_submitted_pacs_for_release_of_payments_completed }}</td>
+          <td>{{ reportTotals.final_certificate_submitted_pacs_for_release_of_payments_not_completed }}</td> 
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div 
+    class="col-md-12 table-responsive"
+    [hidden]="districtLevelDetails?.length > 1"
+  >
+    <h6 class="text-center">No Data Available</h6>
+  </div>
+</div>

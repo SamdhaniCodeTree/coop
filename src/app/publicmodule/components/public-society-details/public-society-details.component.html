@@ -1,0 +1,804 @@
+<div class="app-content content background">
+    <div class="content-overlay"></div>
+    <div class="content-wrapper">
+      <div class="content-header row">
+        <div class="content-header-left col-md-6 col-12">
+          <h3 class="content-header-title mb-0 text-white">Public Society Registration</h3>
+          <div class="row breadcrumbs-top">
+            <div class="breadcrumb-wrapper col-12">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                  <a class="custom-cursor text-white" routerLink="#">Menu</a>
+                </li>
+                <li class="breadcrumb-item active">
+                  <a
+                    class="custom-cursor text-white"
+                    routerLink="#"
+                    >Public Society Registration</a
+                  >
+                </li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+     
+    <div class="card backgrnd">
+        <!-- <div class="card-header p-2">
+          <h5 class="mb-0"> Installation of PACS Equipment.</h5>
+        </div> -->
+        <div class="card-body ">
+          <div class="row">
+            <div class="col-md-12">
+          
+		   
+<div class="card">
+    <div class="card-header p-2">
+      <h5 class="mb-0 text-info"><b>DETAILS OF CO-OPERATIVE SOCIETY</b></h5>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="form-group">
+                  <label >Type Of Society<span style="color: red">*</span></label>
+                  <select
+                    id="typeofsociety"
+                    class="form-control"
+                    [(ngModel)]="typeofsociety"
+                  >
+                    <option class="dropdown-item" disabled selected value="">-- Select Type Of Society --</option>
+                    <option value="1">Primary </option>
+                    <option value="2">Federal </option>
+                  </select>
+                </div>
+              </div> 
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label >Registration Act<span style="color: red">*</span></label>
+                  <select
+                    id="registrationact"
+                    class="form-control"
+                    [(ngModel)]="registrationact"
+                  >
+                    <option class="dropdown-item" disabled selected value="">-- Select Registration Act --</option>
+                    <option value="1">APCS Act 1964 </option>
+                    <option value="2">APCS Act 1995 </option>
+                    <option value="2">Conversion From 1964-1995 </option>
+                  </select>
+                </div>
+              </div> 
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label >Society Level/Tier (If Type of Society is Primary Society)<span style="color: red">*</span></label>
+                  <select
+                    id="societylvltier1"
+                    class="form-control"
+                    [(ngModel)]="societylvltier1"
+                  >
+                    <option class="dropdown-item" disabled selected value="">-- Select Society Level/Tier (Primary) --</option>
+                    <option value="1">State </option>
+                    <option value="2">Distict </option>
+                    <option value="2">Division </option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label >Society Level/Tier (If Type of Society is Federal Society)<span style="color: red">*</span></label>
+                  <select
+                    id="societylvltier2"
+                    class="form-control"
+                    [(ngModel)]="societylvltier2"
+                  >
+                    <option class="dropdown-item" disabled selected value="">-- Select Society Level/Tier (Federal)--</option>
+                    <option value="1">Apex </option>
+                    <option value="2">Central </option>
+                    <option value="2">Primary </option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label >Society Sub-Type<span style="color: red">*</span></label>
+                  <select
+                    id="societysubtype"
+                    class="form-control"
+                    [(ngModel)]="societysubtype"
+                  >
+                    <option class="dropdown-item" disabled selected value="">-- Select Society Sub-Type--</option>
+                    <option value="1">Credit </option>
+                    <option value="2">Non-Credit </option>
+                    <option value="2">Multi Purpose </option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label >Basic Type Of Society<span style="color: red">*</span></label>
+                  <select
+                    id="basicsociety"
+                    class="form-control"
+                    [(ngModel)]="basicsociety"
+                  >
+                    <option class="dropdown-item" disabled selected value="">-- Select Basic Type Of Society --</option>
+                    <option value="1">Credit </option>
+                    <option value="2">Non-Credit </option>
+                    <option value="2">Multi Purpose </option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label>Liability of Society <span style="color: red">*</span></label>
+                  <input type="text"
+                  class="form-control"
+                  [(ngModel)]="liabilityofsociety"
+                  placeholder="Please Enter Liability of Society"
+                  maxlength="15"
+                  autocomplete="off"           
+                  >
+                </div>
+              </div>
+
+        </div>
+    </div>
+
+    <div class="card-header p-2">
+        <h5 class="mb-0 text-info"><b>ADDRESS CUM HEADQUARTERS OF THE SOCIETY</b></h5>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="form-group">
+                <label>Pin Code <span style="color: red">*</span></label>
+                <input type="text"
+                class="form-control"
+                [(ngModel)]="pincode"
+                placeholder="Please Enter Pin Code"
+                maxlength="6"
+                autocomplete="off"  
+                NumbersOnly
+                               
+                >
+            </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="form-group">
+                <label >Country<span style="color: red">*</span></label>
+                <select
+                id="country"
+                class="form-control"
+                [(ngModel)]="country"
+                >
+                <option class="dropdown-item" disabled selected value="">-- Select Country--</option>
+                <option value="1">India </option>
+                <option value="2">pakistan</option>
+                <option value="2">usa </option>
+                </select>
+                </div>
+            </div>
+            <div class="col-md-3">
+            <div class="form-group">
+            <label for="stateId">State<span style="color: red">*</span></label>
+            <select
+            id="stateId"
+            class="form-control"
+            [(ngModel)]="stateId"
+            >
+            <option class="dropdown-item" disabled selected value="">-- Select State --</option>
+            <option value="1"> AndhraPradesh</option>
+            <option value="2"> Telangana</option>
+            </select>
+            </div>
+            </div>
+
+            <div class="col-md-3">
+            <div class="form-group">
+            <label for="districtId">District<span style="color: red">*</span></label>
+            <select
+            id="districtId"
+            class="form-control"
+            [(ngModel)]="districtId"
+            >
+            <option class="dropdown-item" disabled selected value="">-- Select District --</option>
+            <option value="1"> Amaravathi</option>
+            <option value="2"> Nri</option>
+            </select>
+            </div>
+            </div>
+
+            <div class="col-md-3">
+            <div class="form-group">
+            <label for="division">Division<span style="color: red">*</span></label>
+            <select
+            id="division"
+            class="form-control"
+            [(ngModel)]="division"
+            >
+            <option class="dropdown-item" disabled selected value="">-- Select Division --</option>
+            <option value="1"> Amaravathi</option>
+            <option value="2"> Nri</option>
+            </select>
+            </div>
+            </div> 
+          
+
+            <div class="col-md-3">
+            <div class="form-group">
+            <label for="subdivision">Sub Division<span style="color: red">*</span></label>
+            <select
+            id="subdivision"
+            class="form-control"
+            [(ngModel)]="subdivision"
+            >
+            <option class="dropdown-item" disabled selected value="">-- Select Sub Division --</option>
+            <option value="1"> Amaravathi</option>
+            <option value="2"> Nri</option>
+            </select>
+            </div>
+            </div>
+
+
+            <div class="col-md-3">
+            <div class="form-group">
+            <label for="mandalId">Mandal<span style="color: red">*</span></label>
+            <select
+            id="mandalId"
+            class="form-control"
+            [(ngModel)]="mandalId"
+            >
+            <option class="dropdown-item" disabled selected value="">-- Select mandal --</option>
+            <option value="1"> Amaravathi</option>
+            <option value="2"> Nri</option>
+            </select>
+            </div>
+            </div>
+
+            <div class="col-md-3">
+            <div class="form-group">
+            <label for="villageId">City/Town/Revenue  Village<span style="color: red">*</span></label>
+            <select
+            id="villageId"
+            class="form-control"
+            [(ngModel)]="villageId"
+            >
+            <option class="dropdown-item" disabled selected value="">-- Select Village --</option>
+            <option value="1"> Amaravathi</option>
+            <option value="2"> Nri</option>
+            </select>
+            </div>
+            </div>
+
+
+            <div class="col-md-3">
+            <div class="form-group">
+            <label>Address <span style="color: red">*</span></label>
+            <input type="text"
+            class="form-control"
+            [(ngModel)]="address"
+            placeholder="Please Enter Address"
+            maxlength="150"
+            autocomplete="off"  
+                
+            >
+            </div>
+            </div> 
+        </div> 
+    </div>
+    
+    <div class="card-header p-2">
+        <h5 class="mb-0 text-info"><b>AREA OF OPERATION OF SOCIETY</b></h5>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="form-group">
+                <label for="districtId1">District<span style="color: red">*</span></label>
+                <select
+                id="districtId1"
+                class="form-control"
+                [(ngModel)]="districtId1"
+                >
+                <option class="dropdown-item" disabled selected value="">-- Select District --</option>
+                <option value="1"> Amaravathi</option>
+                <option value="2"> Nri</option>
+                </select>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                <label for="division1">Division<span style="color: red">*</span></label>
+                <select
+                id="division1"
+                class="form-control"
+                [(ngModel)]="division1"
+                >
+                <option class="dropdown-item" disabled selected value="">-- Select Division --</option>
+                <option value="1"> Amaravathi</option>
+                <option value="2"> Nri</option>
+                </select>
+                </div>
+             </div>
+
+            <div class="col-md-3">
+                    <div class="form-group">
+                    <label for="mandalId1">Mandal<span style="color: red">*</span></label>
+                    <select
+                    id="mandalId1"
+                    class="form-control"
+                    [(ngModel)]="mandalId1"
+                    >
+                    <option class="dropdown-item" disabled selected value="">-- Select mandal --</option>
+                    <option value="1"> Amaravathi</option>
+                    <option value="2"> Nri</option>
+                    </select>
+                    </div>
+              </div>
+        
+             <div class="col-md-3">
+                    <div class="form-group">
+                    <label for="villageId1">City/Town/Revenue/Village<span style="color: red">*</span></label>
+                    <select
+                    id="villageId1"
+                    class="form-control"
+                    [(ngModel)]="villageId1"
+                    >
+                    <option class="dropdown-item" disabled selected value="">-- Select City/Town/Revenue/Village --</option>
+                    <option value="1"> Amaravathi</option>
+                    <option value="2"> Nri</option>
+                    </select>
+                    </div>
+              </div>
+             <div class="col-md-10"> 
+             </div>
+             <div class="col-md-2" align="right">
+                    <button
+                    type="button"
+                    class="btn btn-success btn-sm"
+                    style="cursor: pointer;"
+                    (click)="addRow()"
+
+                    >
+                    Add Row
+                    </button></div> <br>
+                    <div class="col-md-12" align="center">
+        <table class="table table-striped ah-table text-center" *ngIf="addnewrow" >
+            <thead  class="bg-success text-white"  >
+                    <tr>
+                        <th>District</th>
+                        <th>Division</th>
+                        <th>Mandal</th>
+                        <th>Village</th>
+                        <th>Action</th>
+                    </tr>
+            </thead>
+                <tbody>
+                    <tr *ngFor="let row of rows; let i = index;">
+                        <td>
+                        <!-- <input [(ngModel)]="rows[i].District" class="form-control" type="text" /> -->
+
+                        <select
+                        id="District"
+                        class="form-control"
+                        [(ngModel)]="rows[i].District"
+                        >
+                        <option class="dropdown-item" disabled selected value="">-- Select District --</option>
+                        <option value="1"> Amaravathi</option>
+                        <option value="2"> Nri</option>
+                        </select>
+                        </td>
+                        <td>
+                        <!-- <input [(ngModel)]="rows[i].Division" class="form-control" type="text" /> -->
+
+                        <select
+                        id="Division"
+                        class="form-control"
+                        [(ngModel)]="rows[i].Division"
+                        >
+                        <option class="dropdown-item" disabled selected value="">-- Select Division --</option>
+                        <option value="1"> Amaravathi</option>
+                        <option value="2"> Nri</option>
+                        </select>
+                        </td>
+                        <td>
+                        <!-- <input [(ngModel)]="rows[i].Mandal" class="form-control" type="text"/> -->
+                        <select
+                        id="Mandal"
+                        class="form-control"
+                        [(ngModel)]="rows[i].Mandal"
+                        >
+                        <option class="dropdown-item" disabled selected value="">-- Select Mandal --</option>
+                        <option value="1"> Amaravathi</option>
+                        <option value="2"> Nri</option>
+                        </select>
+                        </td>
+                        <td>
+                        <!-- <input [(ngModel)]="rows[i].Village" class="form-control" type="text"/> -->
+                        <select
+                        id="Village"
+                        class="form-control"
+                        [(ngModel)]="rows[i].Village"
+                        >
+                        <option class="dropdown-item" disabled selected value="">-- Select Village --</option>
+                        <option value="1"> Amaravathi</option>
+                        <option value="2"> Nri</option>
+                        </select>
+                        </td> 
+                        <td><button class="btn btn-sm btn-danger bi bi-trash"(click)="deleteRow(i)" style='cursor: pointer; '><i class="fa fa-trash"></i></button></td>
+                    </tr>
+                </tbody>
+            </table>
+            <button  
+            class="btn btn-info" *ngIf="addsubmit"
+            (click)="submit()"
+            >Submit</button>
+             </div>
+                
+        </div>
+    </div>
+
+    <div class="card-header p-2">
+        <h5 class="mb-0 text-info"><b>MEMBER DETAILS </b></h5>
+      </div>
+      <div class="card-body">
+          <div class="row">
+
+            <div class="col-md-3">
+                <div class="form-group">
+                  <label >Title<span style="color: red">*</span></label>
+                  <select
+                    id="titleId"
+                    class="form-control"
+                    [(ngModel)]="titleId"
+                  >
+                    <option class="dropdown-item" disabled selected value="">-- Select Title --</option>
+                    <option value="1">Smt </option>
+                    <option value="2">Sri </option>
+                  </select>
+                </div>
+              </div>  
+           <div class="col-md-3">
+                <div class="form-group">
+                  <label>Name <span style="color: red">*</span></label>
+                  <input type="text"
+                  class="form-control"
+                  [(ngModel)]="name"
+                  placeholder="Please Enter Name"
+                  maxlength="15"
+                  autocomplete="off"           
+                  >
+                </div>
+              </div> 
+                <div class="col-md-3">
+                <div class="form-group">
+                  <label>Surname <span style="color: red">*</span></label>
+                  <input type="text"
+                  class="form-control"
+                  [(ngModel)]="surname"
+                  placeholder="Please Enter Surname"
+                  maxlength="15"
+                  autocomplete="off"           
+                  >
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label>S/o,W/o,D/o,C/o: <span style="color: red">*</span></label>
+                  <input type="text"
+                  class="form-control"
+                  [(ngModel)]="careoff"
+                  placeholder="Please Enter Care Off"
+                  maxlength="15"
+                  autocomplete="off"           
+                  >
+  
+                 
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="genderId">Gender<span style="color: red">*</span></label>
+                  <select
+                    id="genderId"
+                    class="form-control"
+                    [(ngModel)]="genderId"
+                  >
+                    <option class="dropdown-item" disabled selected value="">-- Select Gender --</option>
+                    <option value="1">Male </option>
+                    <option value="2">Female </option>
+                  </select>
+                </div>
+             </div>
+             <div class="col-md-3">
+              <div class="form-group">
+                <label>UID(Aadhar No) <span style="color: red">*</span></label>
+                <input type="text"
+                class="form-control"
+                [(ngModel)]="aadharno"
+                placeholder="Please Enter Aadhar No"
+                maxlength="12"
+                autocomplete="off" 
+                 
+                >
+              </div>
+            </div> 
+                
+            <div class="col-md-3">
+                <div class="form-group">
+                  <label>Age <span style="color: red">*</span></label>
+                  <input type="text"
+                  class="form-control"
+                  [(ngModel)]="age"
+                  placeholder="Please Enter Age"
+                  maxlength="3"
+                  autocomplete="off" 
+                  NumbersOnly
+                             
+                  >
+                </div>
+              </div>
+             <div class="col-md-3">
+                <div class="form-group">
+                  <label for="caste">Caste<span style="color: red">*</span></label>
+                  <select
+                    id="caste"
+                    class="form-control"
+                    [(ngModel)]="caste"
+                  >
+                    <option class="dropdown-item" disabled selected value="">-- Select Caste --</option>
+                    <option value="1">Bc </option>
+                    <option value="2">Sc </option>
+
+
+                  </select>
+                </div>
+             </div>
+
+             <div class="col-md-3">
+                <div class="form-group">
+                  <label for="Maritalsts">Marital Status<span style="color: red">*</span></label>
+                  <select
+                    id="Maritalsts"
+                    class="form-control"
+                    [(ngModel)]="Maritalsts"
+                  >
+                    <option class="dropdown-item" disabled selected value="">-- Select Marital Status --</option>
+                    <option value="1">Married </option>
+                    <option value="2">Single </option>
+                    <option value="2">Widowed </option>
+                    <option value="2">Diversed </option>
+
+
+                  </select>
+                </div>
+             </div>
+
+             <div class="col-md-3">
+                <div class="form-group">
+                  <label>Occupation <span style="color: red">*</span></label>
+                  <input type="text"
+                  class="form-control"
+                  [(ngModel)]="occupation"
+                  placeholder="Please Enter Occupation"
+                  maxlength="30"
+                  autocomplete="off"           
+                  >
+                </div>
+              </div> 
+
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label>Designation,if Employee <span style="color: red">*</span></label>
+                  <input type="text"
+                  class="form-control"
+                  [(ngModel)]="designation"
+                  placeholder="Please Enter Designation"
+                  maxlength="30"
+                  autocomplete="off"           
+                  >
+                </div>
+              </div> 
+
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label>Amount of Share Captial Remitted <span style="color: red">*</span></label>
+                  <input type="text"
+                  class="form-control"
+                  [(ngModel)]="amtcaptial"
+                  placeholder="Enter Amount of Share Captial Remitted "
+                  maxlength="30"
+                  autocomplete="off"           
+                  >
+                </div>
+              </div> 
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label>Amount of Entrance Fee Remitted <span style="color: red">*</span></label>
+                  <input type="text"
+                  class="form-control"
+                  [(ngModel)]="amtentrance"
+                  placeholder="Enter Amount of Entrance Fee Remitted  "
+                  maxlength="30"
+                  autocomplete="off"           
+                  >
+                </div>
+              </div> 
+          </div>
+    </div>
+
+    <div class="card-header p-2">
+        <h5 class="mb-0 text-info"><b>ADDRESS OF MEMBER</b></h5>
+      </div>
+      <div class="card-body">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="form-group">
+                <label>Pin Code <span style="color: red">*</span></label>
+                <input type="text"
+                class="form-control"
+                [(ngModel)]="pincode2"
+                placeholder="Please Enter Pin Code"
+                maxlength="6"
+                autocomplete="off"  
+                NumbersOnly
+                                  
+                >
+            </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="form-group">
+                <label >Country<span style="color: red">*</span></label>
+                <select
+                id="country2"
+                class="form-control"
+                [(ngModel)]="country2"
+                >
+                <option class="dropdown-item" disabled selected value="">-- Select Country--</option>
+                <option value="1">India </option>
+                <option value="2">pakistan</option>
+                <option value="2">usa </option>
+                </select>
+                </div>
+            </div>
+            <div class="col-md-3">
+            <div class="form-group">
+            <label for="stateId2">State<span style="color: red">*</span></label>
+            <select
+            id="stateId2"
+            class="form-control"
+            [(ngModel)]="stateId2"
+            >
+            <option class="dropdown-item" disabled selected value="">-- Select State --</option>
+            <option value="1"> AndhraPradesh</option>
+            <option value="2"> Telangana</option>
+            </select>
+            </div>
+            </div>
+
+            <div class="col-md-3">
+            <div class="form-group">
+            <label for="districtId2">District<span style="color: red">*</span></label>
+            <select
+            id="districtId2"
+            class="form-control"
+            [(ngModel)]="districtId2"
+            >
+            <option class="dropdown-item" disabled selected value="">-- Select District --</option>
+            <option value="1"> Amaravathi</option>
+            <option value="2"> Nri</option>
+            </select>
+            </div>
+            </div>
+
+            <div class="col-md-3">
+            <div class="form-group">
+            <label for="division2">Division<span style="color: red">*</span></label>
+            <select
+            id="division2"
+            class="form-control"
+            [(ngModel)]="division2"
+            >
+            <option class="dropdown-item" disabled selected value="">-- Select Division --</option>
+            <option value="1"> Amaravathi</option>
+            <option value="2"> Nri</option>
+            </select>
+            </div>
+            </div> 
+             
+            <div class="col-md-3">
+            <div class="form-group">
+            <label for="subdivision2">Sub Division<span style="color: red">*</span></label>
+            <select
+            id="subdivision2"
+            class="form-control"
+            [(ngModel)]="subdivision2"
+            >
+            <option class="dropdown-item" disabled selected value="">-- Select Sub Division --</option>
+            <option value="1"> Amaravathi</option>
+            <option value="2"> Nri</option>
+            </select>
+            </div>
+            </div>
+
+            <div class="col-md-3">
+            <div class="form-group">
+            <label for="mandalId2">Mandal<span style="color: red">*</span></label>
+            <select
+            id="mandalId2"
+            class="form-control"
+            [(ngModel)]="mandalId2"
+            >
+            <option class="dropdown-item" disabled selected value="">-- Select mandal --</option>
+            <option value="1"> Amaravathi</option>
+            <option value="2"> Nri</option>
+            </select>
+            </div>
+            </div>
+
+            <div class="col-md-3">
+            <div class="form-group">
+            <label for="villageId2">City/Town/Revenue  Village<span style="color: red">*</span></label>
+            <select
+            id="villageId2"
+            class="form-control"
+            [(ngModel)]="villageId2"
+            >
+            <option class="dropdown-item" disabled selected value="">-- Select Village --</option>
+            <option value="1"> Amaravathi</option>
+            <option value="2"> Nri</option>
+            </select>
+            </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                <label>Hamlet/Street <span style="color: red">*</span></label>
+                <input type="text"
+                class="form-control"
+                [(ngModel)]="hamletstreet"
+                placeholder="Please Enter Hamlet/Street"
+                maxlength="150"
+                autocomplete="off"               
+                >
+            </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                <label>Door No/Flat No <span style="color: red">*</span></label>
+                <input type="text"
+                class="form-control"
+                [(ngModel)]="doorno"
+                placeholder="Please Enter Door No/Flat No"
+                maxlength="150"
+                autocomplete="off"   
+                >
+            </div>
+            </div> 
+        </div> 
+      </div>
+ 
+</div>
+<hr style=" border: 1px solid black;">
+<div class="col-md-12" align="center">
+  <button
+  type="button"
+  class="btn btn-success btn-sm" 
+  >
+  Add Member
+  </button> 
+</div> 
+          
+            </div>
+             
+           
+          
+          </div>
+        </div>
+      </div>
+      
+    </div>

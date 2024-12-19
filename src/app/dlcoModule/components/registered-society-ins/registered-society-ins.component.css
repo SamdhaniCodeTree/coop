@@ -1,0 +1,18 @@
+.heading-div{
+    background-color: darkslategrey;
+    color: white;
+    border-radius: 8px;
+    padding: 0 10px; 
+   
+    line-height: 5px; 
+    margin: 25px 0; 
+}
+.header{
+    background-color: lightblue;
+    border-radius: 8px;
+}
+.header2-div{
+    
+    background: linear-gradient( to left,#42c069,#3d60c2);
+     color: whitesmoke
+}

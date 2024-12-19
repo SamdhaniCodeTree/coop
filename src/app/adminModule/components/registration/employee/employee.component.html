@@ -1,0 +1,353 @@
+<div class="app-content content">
+    <div class="content-overlay"></div>
+    <div class="content-wrapper">
+      <div class="content-header row">
+        <div class="content-header-left col-md-6 col-12">
+          <h3 class="content-header-title mb-0">Employee Details</h3>
+          <div class="row breadcrumbs-top">
+            <div class="breadcrumb-wrapper col-12">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                  <a class="custom-cursor" routerLink="/dlco">Menu</a>
+                </li>
+                <li class="breadcrumb-item active">
+                  <a class="custom-cursor" routerLink="/dlco/Employeeregistration">Employee Details</a>
+                </li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="content-body">
+        <!-- Basic form layout section start -->
+        <section id="basic-form-layouts">
+          <div class="row match-height">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header">
+                  <div class="form-actions text-center pull-right">
+                    <!-- <button type="reset" class="btn btn-warning mr-1">
+                            <i class="feather icon-x"></i> Cancel
+                          </button> -->
+                    <button type="submit" class="btn btn-success" (click)="showsection()">
+                      <i class="fa fa-check-square-o"></i> (+)Add Employee
+                    </button>
+                  </div>
+                </div>
+                <div class="card-content collapse show">
+                  <div class="card-body">
+                    <div class="col-md-12 table-responsive">
+                      <table class="table table-bordered" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                        <thead class="thead-dark">
+  
+                          <tr>
+                            <th>S.No.</th>
+                            <th>CFMS <br>ID</th>
+                            <th>Employee <br>Full Name</th>
+                            <th>Gender</th>
+                            <th>Mobile<br> Number</th>
+                            
+                            <th>Employee <br>Status</th>
+                            <th>Remarks</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let obj of employeeList; let i = index">
+                            <td>{{ i + 1 }}</td>
+  
+                            <td>
+                              <a *ngIf="obj.CFMS_ID !== 0" style="cursor: pointer;" class="text-primary"
+                                (click)="updatedesignation(obj)"><b>{{ obj.CFMS_ID }}</b></a>
+                            </td>
+                            <td>{{ obj.EMP_NAME }}</td>
+                            <td>{{ obj.GENDER }}</td>
+                            <td>{{ obj.MOBILE_NO }}</td>
+                             
+                            <td>Active</td>
+                            <td></td>
+                          </tr>
+                        </tbody>
+  
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <div class="view-panel" *ngIf="formsection">
+          <div class="card card-body">
+            <div class="row justify-content-between align-items-center mb-2 px-2">
+              <a href="#" (click)="formsection = false" title="close window"><i class="fa fa-times-circle-o fa-2x">
+                 
+                </i></a>
+  
+  
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12">
+              <div class="col-lg-12 col-md-12 col-sm-12">
+  
+                <div class="form">
+                  <div class="form-body">
+                    <h4 class="form-section">
+                      <i class="feather icon-user"></i> Employee Registration
+                      Form
+                    </h4>
+                    <div class="row">
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label for="cfmsid">CFMS ID <span class="text-danger">*</span></label>
+  
+                          <input type="text" (keypress)="keyPressNumbers($event)" class="form-control" id="cfmsid"
+                            placeholder="Enter CFMS ID" maxlength="50" autocomplete="off" [(ngModel)]="hrmsreq.cfmsid" />
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label for="empname">Employee Full Name <span class="text-danger">*</span></label>
+  
+                          <input type="text" class="form-control" id="empname" placeholder="Enter Employee Full Name"
+                            maxlength="50" autocomplete="off" [(ngModel)]="hrmsreq.empname" />
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label for="pacId">Gender <span class="text-danger">*</span></label>
+  
+                          <select id="Gender" name="pacId" class="form-control" [(ngModel)]="hrmsreq.Gender">
+                            <option value="">-- Select Gender --</option>
+                            <option *ngFor="let obj of GenderArr" value="{{ obj.TYPE_CODE }}">
+                              {{ obj.TYPE_NAME }}
+                            </option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label for="mobileno">Mobile Number <span class="text-danger">*</span></label>
+                          <input type="text" class="form-control" (keypress)="keyPressNumbers($event)" id="mobileno"
+                            placeholder="Enter mobile number" maxlength="10" autocomplete="off"
+                            [(ngModel)]="hrmsreq.mobileno" />
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label for="alternativemobileno">Alternate Mobile Number <span
+                              class="text-danger"></span></label>
+                          <input type="text" class="form-control" (keypress)="keyPressNumbers($event)"
+                            id="alternativemobileno" placeholder="Enter Alternate Mobile Number" maxlength="10"
+                            autocomplete="off" [(ngModel)]="hrmsreq.alternativemobileno" />
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label for="emailid">eMail ID <span class="text-danger"></span></label>
+                          <input type="text" class="form-control" id="emailid" placeholder="Enter email" maxlength="30"
+                            autocomplete="off" [(ngModel)]="hrmsreq.emailid" />
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label for="Dateofbirth">Date Of Birth
+                            <span class="text-danger">*</span></label>
+  
+                          <app-date-picker [PlaceHolder]="'Date Of Birth'"  [(selectedDate)]="hrmsreq.Dateofbirth"
+                            [minDate]="minDate" [maxDate]="maxDate"></app-date-picker>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label for="dateof_joining">Date Of Join in Service <span class="text-danger">*</span></label>
+  
+                          <app-date-picker [PlaceHolder]="'Date Of Joining'" [(selectedDate)]="hrmsreq.dateof_joining"
+                            [minDate]="minDate" [maxDate]="maxDate"></app-date-picker>
+                        </div>
+                      </div>
+  
+                    </div>
+                  </div>
+  
+                  <div class="form-actions text-center">
+                    <!-- <button type="reset" class="btn btn-warning mr-1">
+                            <i class="feather icon-x"></i> Cancel
+                          </button> -->
+                    <button type="submit" class="btn btn-success" (click)="btnSubmitregistration()">
+                      <i class="fa fa-check-square-o"></i> Submit
+                    </button>
+                  </div>
+                </div>
+  
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="view-panel" *ngIf="formdesigsection">
+          <div class="card card-body">
+            <div class="row justify-content-between align-items-center mb-2 px-2">
+              <a href="#" (click)="formdesigsection = false" title="close window"><i class="fa fa-times-circle-o fa-2x">
+                  
+                </i></a>
+  
+  
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12">
+              <div class="col-lg-12 col-md-12 col-sm-12">
+  
+                <div class="form">
+                  <div class="form-body">
+                    <h4 class="form-section">
+                      <i class="feather icon-user"></i> Employee Designation
+                      Form
+                    </h4>
+                    <div class="row">
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label for="cfmsid">CFMS ID <span class="text-danger">*</span></label>
+  
+                          <input type="text" (keypress)="keyPressNumbers($event)" disabled="disabled" class="form-control" id="cfmsid"
+                            placeholder="Enter CFMS ID" maxlength="50" autocomplete="off" [(ngModel)]="hrmsreq.cfmsid" />
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label for="empname">Employee Full Name <span class="text-danger">*</span></label>
+  
+                          <input type="text" class="form-control" id="empname" disabled="disabled"placeholder="Enter Employee Full Name"
+                            maxlength="50" autocomplete="off" [(ngModel)]="hrmsreq.empname" />
+                        </div>
+                      </div>
+                       
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label for="cadre">Cadre <span class="text-danger">*</span></label>
+                          <select id="cadre" name="pacId" class="form-control" [(ngModel)]="hrmsreq.cadre">
+                            <option value="">-- Select Cadre --</option>
+                            <option *ngFor="let obj of CaderArr" value="{{ obj.TYPE_CODE }}">
+                              {{ obj.TYPE_NAME }}
+                            </option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label for="uidNum">eOffice ID
+                            <span class="text-danger"></span></label>
+                          <input type="text" class="form-control" id="uidNum" placeholder="Enter eOffice ID"
+                            maxlength="12" autocomplete="off" [(ngModel)]="hrmsreq.eofficeid" />
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label for="typeofservice">Type of Service <span class="text-danger">*</span></label>
+                          <select id="typeofservice" name="typeofservice" class="form-control" [(ngModel)]="hrmsreq.typeofservice">
+                            <option value="">-- Select Type of Service --</option>
+                            <option *ngFor="let obj of ServiceArr" value="{{ obj.TYPE_CODE }}">
+                              {{ obj.TYPE_NAME }}
+                            </option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-md-4" [hidden]="hrmsreq.cadre > 106">
+                        <div class="form-group">
+                          <label for="designation">Designation <span class="text-danger">*</span></label>
+                          <select id="designation" name="pacId" class="form-control" [(ngModel)]="hrmsreq.designation">
+                            <option value="">-- Select Designation --</option>
+                            <option *ngFor="let obj of DesignationArr" value="{{ obj.TYPE_CODE }}">
+                              {{ obj.TYPE_NAME }}
+                            </option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label for="typeofpost">Type of Post <span class="text-danger">*</span></label>
+                          <select id="typeofpost" name="typeofpost" class="form-control" [(ngModel)]="hrmsreq.typeofpost">
+                            <option value="">-- Select Type of Post --</option>
+                            <option *ngFor="let obj of PostArr" value="{{ obj.TYPE_CODE }}">
+                              {{ obj.TYPE_NAME }}
+                            </option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label for="dateof_joining">Date Of Join in Post <span class="text-danger">*</span></label>
+  
+                          <app-date-picker [PlaceHolder]="'Date Of Joining Post'" [(selectedDate)]="hrmsreq.dateof_joining"
+                            [minDate]="minDate" [maxDate]="maxDate"></app-date-picker>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label for="office">Office Type<span class="text-danger">*</span></label>
+                          <select id="office" name="office" class="form-control" [(ngModel)]="hrmsreq.officetype" (change)="onofficetypeChange()">
+                            <option value="">-- Select Office Type --</option>
+                            <option *ngFor="let obj of OfficetypeArr" value="{{ obj.TYPE_CODE }}">
+                              {{ obj.TYPE_NAME }}
+                            </option>
+                          </select>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label for="office">Office <span class="text-danger">*</span></label>
+                          <select id="office" name="office" class="form-control" [(ngModel)]="hrmsreq.office">
+                            <option value="">-- Select Office --</option>
+                            <option *ngFor="let obj of OfficeArr" value="{{ obj.TYPE_CODE }}">
+                              {{ obj.TYPE_NAME }}
+                            </option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+  
+                  <div class="form-actions text-center">
+                    <button type="submit" class="btn btn-success" (click)="btnsubmitdesignation()">
+                      <i class="fa fa-check-square-o"></i> Add Designation
+                    </button>
+                  </div>
+                </div>
+                
+              </div>
+            </div>
+            <div class="card-content collapse show">
+              <div class="card-body">
+                <div class="col-md-12 table-responsive">
+                  <table class="table table-bordered" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                    <thead class="thead-dark">
+  
+                      <tr>
+                        <th>S.No.</th>
+                        <th>Cadre</th>
+                        <th>Type Of<br> Service</th>
+                        <th>Type Of <br>Post</th>
+                        <th>Designation</th>
+                        <th>Office</th>
+                        <th>eOffice ID</th>
+                         
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let obj of employeeDesignList; let i = index">
+                        <td>{{ i + 1 }}</td>
+                        <td>{{ obj.CADRE }}</td>
+                        <td>{{ obj.TYPE_OF_SERVICE }}</td>
+                        <td>{{ obj.TYPE_OF_POST }}</td>
+                        <td>{{ obj.DESIGNATION }}</td>
+                        <td>{{ obj.OFFICE }}</td>
+                        <td>{{ obj.EOFFICE_ID }}</td>
+                         
+                      </tr>
+                    </tbody>
+  
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,242 @@
+<div class="app-content content">
+  <div class="content-overlay"></div>
+  <div class="content-wrapper">
+    <div class="content-header row">
+      <div class="content-header-left col-md-6 col-12 ">
+        <h3 class="content-header-title mb-0">APPLICANT REGISTRATION</h3>
+        <div class="row breadcrumbs-top">
+          <div class="breadcrumb-wrapper col-12">
+            <ol class="breadcrumb">
+              
+              <li class="breadcrumb-item active">
+                <a href="#">APPLICANT REGISTRATION</a>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="content-body">
+      <!-- Basic form layout section start -->
+      <section id="basic-form-layouts">
+        <div class="row match-height">
+          <div class="col-md-12">
+            <div class="col-md-2">
+            
+            </div>
+            <div class="col-md-10">
+              <div class="">
+                <div class="card">
+                
+                  <div class="card-content collapse show">
+                    <div class="card-body">
+                      <form class="form">
+                        <div class="form-body">
+                          <h4 class="form-section">
+                            <i class="feather icon-user"></i> Input Fields
+                          </h4>
+                          <div class="row">
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                 
+                              <label for="Title">Select Title <span class="text-danger">*</span></label>
+
+                              <select id="Gender"  name="Title" class="form-control" [(ngModel)]="appreq.title">
+                                <option value="" selected="" disabled="">-- Select Title--</option>
+                                <option *ngFor="let obj of Titlearry" value="{{ obj.name }}">
+                                  {{ obj.name }}
+                                </option>
+                              </select>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label for="projectinput2">Name : <span class="text-danger">*</span></label>
+                                <input maxlength="50"  autocomplete="off" [(ngModel)]="appreq.name"
+                                  type="text"
+                                  id="projectinput2"
+                                  class="form-control"
+                                  placeholder="Name"
+                                  name="Name"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label for="projectinput3">Surname:  <span class="text-danger">*</span></label>
+                                <input maxlength="50"  autocomplete="off" [(ngModel)]="appreq.surname"
+                                  type="text"
+                                  id="projectinput3"
+                                  class="form-control"
+                                  placeholder="Surname"
+                                  name="Surname"
+                                />
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label for="pacId">Address <span class="text-danger">*</span></label>
+                                <textarea rows="4" maxlength="50"  autocomplete="off" [(ngModel)]="appreq.co"
+                                type="text"
+                                id="projectinput8"
+                                class="form-control"
+                                placeholder="Address"
+                                name="Address">
+                                </textarea>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-6">
+                              <div class="form-group">                               
+                              <label for="pacId">Gender <span class="text-danger">*</span></label>
+                        <select id="Gender" name="pacId"  class="form-control" [(ngModel)]="appreq.gender">
+                          <option value="" selected="" disabled="">-- Select Gender --</option>
+                          <option *ngFor="let obj of genderarry" value="{{ obj.name }}">
+                            {{ obj.name }}
+                          </option>
+                        </select>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label for="UID">UID(Aadhar No) <span class="text-danger">*</span></label>
+                                <input  maxlength="12" autocomplete="off" [(ngModel)]="appreq.aadhar" (keypress)="keyPressNumbers($event)"
+                                  type="text" 
+                                  id="UID"
+                                  class="form-control"
+                                  placeholder="Aadhar No"
+                                  name="AadharNo"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label for="MobileNumber">Mobile Number:  <span class="text-danger">*</span></label>
+                                <input  maxlength="10" autocomplete="off" [(ngModel)]="appreq.mobileno" (keypress)="keyPressNumbers($event)"
+                                  type="text" 
+                                  id="MobileNumber"
+                                  class="form-control"
+                                  placeholder="Mobile Number"
+                                  name="ContactNumber"
+                                />
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label for="projectinput4">Email <span class="text-danger">*</span></label>
+                                <input  maxlength="30" autocomplete="off" [(ngModel)]="appreq.emailid" 
+                                  type="text"
+                                  id="projectinput4"
+                                  class="form-control"
+                                  placeholder="Email"
+                                  name="Email"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label for="projectinput3">Date Of Birth: <span class="text-danger">*</span> </label>
+                                <app-date-picker [(selectedDate)]="appreq.dateofbirth" ng-readonly=isReadonly
+                                [PlaceHolder]="
+                                  'Date Of Birth'
+                                "
+                                
+                                 
+                              ></app-date-picker>
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                               
+                            </div>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label for="projectinput3">Username(Username as Mobile No): </label>
+                                <input  maxlength="10" autocomplete="off" [(ngModel)]="appreq.mobileno"
+                                  type="text" disabled
+                                  id="projectinput3"
+                                  class="form-control"
+                                  placeholder="Username"
+                                  name="Username"
+                                />
+                              </div>
+                            </div>
+                            <div class="col-md-6">
+                              <div class="form-group">
+                                <label for="projectinput4">Password(Password as Mobile No)</label>
+                                <input maxlength="10" autocomplete="off" [(ngModel)]="appreq.mobileno"
+                                  type="password"
+                                  id="projectinput4" disabled
+                                  class="form-control"
+                                  placeholder="Password"
+                                  name="Password"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+    
+                        <div class="form-actions text-center" *ngIf="otpwindow">
+                          <button type="reset" class="btn btn-warning mr-1" (click)="btnclear()">
+                            <i class="feather icon-x"></i> Cancel
+                          </button>
+                          <button type="submit" class="btn btn-primary" (click)="btnotpsendwindow()">
+                            <i class="fa fa-check-square-o"></i> Send Otp
+                          </button>
+                        </div>
+                        <div class="form-actions text-center" *ngIf="otpenterwindow">
+                          <div class="row">
+                            <div class="col-md-2">
+                             
+                            </div>
+                            <div class="col-md-5">
+                              <div class="form-group">
+                                <label for="OTPNO">OTP:  <span class="text-danger">*</span></label>
+                                <input  maxlength="6" autocomplete="off" [(ngModel)]="appreq.OTP" (keypress)="keyPressNumbers($event)"
+                                  type="text" 
+                                  id="OTPNO"
+                                  class="form-control"
+                                  placeholder="6 digit OTP"
+                                  name="OTPNO"
+                                />
+                              </div>
+                            </div>
+                            <div class="col-md-3">
+                             
+                              </div>
+                              <div class="col-md-2">
+                             
+                              </div>
+                          </div>
+                          <button type="reset" class="btn btn-warning mr-1" (click)="btnclear()">
+                            <i class="feather icon-x"></i> Cancel
+                          </button>
+                          <button type="submit" class="btn btn-primary" (click)="btnSubmitregistration()">
+                            <i class="fa fa-check-square-o"></i> Submit
+                          </button>
+                        </div>
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-2">
+            
+            </div>
+          </div>
+          
+        </div>
+      </section>
+      
+    </div>
+  </div>
+</div>

@@ -1,0 +1,330 @@
+<div class="app-content content">
+    <div class="content-overlay"></div>
+    <div class="content-wrapper">
+      <div class="content-header row">
+        <div class="content-header-left col-md-6 col-12">
+          <h3 class="content-header-title mb-0">Employee Details</h3>
+          <div class="row breadcrumbs-top">
+            <div class="breadcrumb-wrapper col-12">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                  <a class="custom-cursor" routerLink="/dlco">Menu</a>
+                </li>
+                <li class="breadcrumb-item active">
+                  <a class="custom-cursor" routerLink="/dlco/SitePreParationDetails"> Site Preparation Details Verification</a>
+                </li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="content-body">
+        <!-- Basic form layout section start -->
+        <section id="basic-form-layouts">
+          <div class="row match-height">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header">
+                  <div class="form-actions text-center pull-right">
+                    <!-- <button type="reset" class="btn btn-warning mr-1">
+                              <i class="feather icon-x"></i> Cancel
+                            </button> 
+                    <button type="submit" class="btn btn-success" (click)="showsection()">
+                      <i class="fa fa-check-square-o"></i> (+)Add Employee
+                    </button> -->
+                  </div>
+                </div>
+                <div class="card-content collapse show">
+                  <div class="card-body">
+                    <div class="col-md-12 table-responsive">
+                      <table class="table table-bordered" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                        <thead class="thead-dark">
+  
+                          <tr>
+                            <th>S.No.</th>
+
+                            <th>Building Type</th>
+                            <th>Interior Photo</th>
+                            <th>Exterior Front Side<br> Image</th>
+                            <th>Exterior Back Side<br> Image</th>
+                            <th>Exterior Right Side<br> Image</th>
+                            <th>Exterior Left Side<br> Photo UploadImage</th>
+                            <th>Availability of <br> Power Supply</th>
+                            <th>Phase Type</th>
+                            <th>Power Phase Photo Upload</th>
+  
+                            <th>Internet Connectivity<br> Device</th>
+                            <th>Dongle/Modem Band width<br> speed</th>
+                            <th>Dongle/Modem<br> Image</th>
+                            <th>Availability<br> of Furniture </th>
+                            <th>Computer Tables Counts</th>
+                            <th>Computer Tables<br> Image</th>
+                            <th>Chairs Counts</th>
+                            <th>Chairs Image</th>
+                            <th>User Name</th>
+                            <th>Pacs Name</th>
+                            <th>Action</th>
+                            
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let obj of SitePreparationList; let i = index">
+                            <td>{{ i + 1 }}</td>                             
+                            <td>{{ obj.BUILDINGTYPE }}</td>
+                            <td>
+                                <button
+                                  type="button"
+                                  class="btn btn-link btn-sm"
+                                  *ngIf="
+                                    obj.BUILDING_INTERIORIMAGE !== null &&
+                                    obj.BUILDING_INTERIORIMAGE !== '' &&
+                                    obj.BUILDING_INTERIORIMAGE !== undefined
+                                  "
+                                  (click)="btnPhotoView(obj.BUILDING_INTERIORIMAGE)"
+                                >
+                                  View
+                                </button>
+                                <span
+                                  *ngIf="
+                                    obj.BUILDING_INTERIORIMAGE === null ||
+                                    obj.BUILDING_INTERIORIMAGE === '' ||
+                                    obj.BUILDING_INTERIORIMAGE === undefined
+                                  "
+                                  >{{ obj.BUILDING_INTERIORIMAGE }}</span
+                                >
+                              </td>
+                            
+                            <td><button
+                                type="button"
+                                class="btn btn-link"
+                                *ngIf="
+                                  obj.BUILDING_EXTERIOR_FRONTIMAGE !== null &&
+                                  obj.BUILDING_EXTERIOR_FRONTIMAGE !== '' &&
+                                  obj.BUILDING_EXTERIOR_FRONTIMAGE !== undefined
+                                "
+                                (click)="btnPhotoView(obj.BUILDING_EXTERIOR_FRONTIMAGE)"
+                              >
+                                View
+                              </button>
+                              <span
+                                *ngIf="
+                                  obj.BUILDING_EXTERIOR_FRONTIMAGE === null ||
+                                  obj.BUILDING_EXTERIOR_FRONTIMAGE === '' ||
+                                  obj.BUILDING_EXTERIOR_FRONTIMAGE === undefined
+                                ">{{ obj.BUILDING_EXTERIOR_FRONTIMAGE }}</span></td>
+                            <td><button
+                                type="button"
+                                class="btn btn-link "
+                                *ngIf="
+                                  obj.BUILDING_EXTERIOR_BACKIMAGE !== null &&
+                                  obj.BUILDING_EXTERIOR_BACKIMAGE !== '' &&
+                                  obj.BUILDING_EXTERIOR_BACKIMAGE !== undefined
+                                "
+                                (click)="btnPhotoView(obj.BUILDING_EXTERIOR_BACKIMAGE)"
+                              >
+                                View
+                              </button>
+                              <span
+                                *ngIf="
+                                  obj.BUILDING_EXTERIOR_BACKIMAGE === null ||
+                                  obj.BUILDING_EXTERIOR_BACKIMAGE === '' ||
+                                  obj.BUILDING_EXTERIOR_BACKIMAGE === undefined
+                                ">{{ obj.BUILDING_EXTERIOR_BACKIMAGE }}</span></td>
+<td><button
+    type="button"
+    class="btn btn-link"
+    *ngIf="
+      obj.BUILDING_RIGHTSIDE_IMAGE !== null &&
+      obj.BUILDING_RIGHTSIDE_IMAGE !== '' &&
+      obj.BUILDING_RIGHTSIDE_IMAGE !== undefined
+    "
+    (click)="btnPhotoView(obj.BUILDING_RIGHTSIDE_IMAGE)"
+  >
+    View
+  </button>
+  <span
+    *ngIf="
+      obj.BUILDING_RIGHTSIDE_IMAGE === null ||
+      obj.BUILDING_RIGHTSIDE_IMAGE === '' ||
+      obj.BUILDING_RIGHTSIDE_IMAGE === undefined
+    ">{{ obj.BUILDING_RIGHTSIDE_IMAGE }}</span></td>
+<td><button
+    type="button"
+    class="btn btn-link btn-sm"
+    *ngIf="
+      obj.BUILDINGLEFTSIDEIMAGE !== null &&
+      obj.BUILDINGLEFTSIDEIMAGE !== '' &&
+      obj.BUILDINGLEFTSIDEIMAGE !== undefined
+    "
+    (click)="btnPhotoView(obj.BUILDINGLEFTSIDEIMAGE)"
+  >
+    View
+  </button>
+  <span
+    *ngIf="
+      obj.BUILDINGLEFTSIDEIMAGE === null ||
+      obj.BUILDINGLEFTSIDEIMAGE === '' ||
+      obj.BUILDINGLEFTSIDEIMAGE === undefined
+    ">{{ obj.BUILDINGLEFTSIDEIMAGE }}</span></td>
+<td>{{ obj.AVAILABILITY_POWERSUPPLY    }}</td>
+<td>{{ obj.POWERPHASE                  }}</td>
+<td><button
+    type="button"
+    class="btn btn-link"
+    *ngIf="
+      obj.POWERPHASE_IMAGE !== null &&
+      obj.POWERPHASE_IMAGE !== '' &&
+      obj.POWERPHASE_IMAGE !== undefined
+    "
+    (click)="btnPhotoView(obj.POWERPHASE_IMAGE)"
+  >
+    View
+  </button>
+  <span
+    *ngIf="
+      obj.POWERPHASE_IMAGE === null ||
+      obj.POWERPHASE_IMAGE === '' ||
+      obj.POWERPHASE_IMAGE === undefined
+    ">{{ obj.POWERPHASE_IMAGE }}</span></td>
+
+<td>{{ obj.INTERNET_DEVICE             }}</td>
+<td>{{ obj.BANDWIDTH_SPEED             }}</td>
+<td><button
+    type="button"
+    class="btn btn-link"
+    *ngIf="
+      obj.INTERNET_IMAGE !== null &&
+      obj.INTERNET_IMAGE !== '' &&
+      obj.INTERNET_IMAGE !== undefined
+    "
+    (click)="btnPhotoView(obj.INTERNET_IMAGE)"
+  >
+    View
+  </button>
+  <span
+    *ngIf="
+      obj.INTERNET_IMAGE === null ||
+      obj.INTERNET_IMAGE === '' ||
+      obj.INTERNET_IMAGE === undefined
+    ">{{ obj.INTERNET_IMAGE }}</span></td>
+<td>{{ obj.AVAILABILITYOFFURNITURE     }}</td>
+<td>{{ obj.COMPUTERTABLES              }}</td>
+<td><button
+    type="button"
+    class="btn btn-link"
+    *ngIf="
+      obj.COMPUTERTABLESIMAGE !== null &&
+      obj.COMPUTERTABLESIMAGE !== '' &&
+      obj.COMPUTERTABLESIMAGE !== undefined
+    "
+    (click)="btnPhotoView(obj.COMPUTERTABLESIMAGE)"
+  >
+    View
+  </button>
+  <span
+    *ngIf="
+      obj.COMPUTERTABLESIMAGE === null ||
+      obj.COMPUTERTABLESIMAGE === '' ||
+      obj.COMPUTERTABLESIMAGE === undefined
+    ">{{ obj.COMPUTERTABLESIMAGE }}</span></td>
+    <td>{{ obj.CHAIRS                      }}</td>
+<td><button
+    type="button"
+    class="btn btn-link"
+    *ngIf="
+      obj.CHAIRSIMAGE !== null &&
+      obj.CHAIRSIMAGE !== '' &&
+      obj.CHAIRSIMAGE !== undefined
+    "
+    (click)="btnPhotoView(obj.CHAIRSIMAGE)"
+  > 
+    View 
+  </button>
+  <span
+    *ngIf="
+      obj.CHAIRSIMAGE === null ||
+      obj.CHAIRSIMAGE === '' ||
+      obj.CHAIRSIMAGE === undefined
+    ">{{ obj.CHAIRSIMAGE }}</span></td>
+<td>{{ obj.INSERTED_BY}}</td>
+
+
+<td>{{ obj.PACS_NAME}}</td>
+                              
+                            <td class="d-flex justify-content-center pb-5" >
+                                
+                                <a style="cursor: pointer; text-decoration: underline; font-size: 15px;" title="Approved Records" class="text-success btn btn-sm bg-white" (click)="Ediempdetails(obj)"><span><i
+                                    class="fa fa-check"></i>
+                                </span></a>  &nbsp; 
+                                <a style="cursor: pointer; text-decoration: underline; font-size: 15px;" title="Rejected Records" class="text-danger btn btn-sm bg-white" (click)="Rejectdetails(obj)"><span><i
+                                    class="fa fa-close"></i>
+                                </span></a>
+                            </td>
+                          </tr>
+                        </tbody>
+  
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      
+        
+       
+      </div>
+    </div>
+  </div>
+
+  <div class="popup-modal" *ngIf="showaprovedPopup" >
+    <div class="popup-content" style="min-width: 75%">
+      <div class="popup-header">
+        <h4 class="title" > Site Preparation Details Reject</h4>
+        <a
+          type="button"
+          class="close"
+            
+          style="cursor: pointer"
+        >
+          <span (click)="onClear()">×</span>
+        </a>
+      </div>
+  
+      <div class="popup-body" style="max-height:500px; overflow-y: auto;">
+        <div class="row justify-content-center align-items-center">
+ 
+         <div class="col-md-12 row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+            <label for="stockpoint"
+            >Remarks <span style="color: red">*</span></label>
+            <textarea type="text" class="form-control" [(ngModel)]="Sitepreparationaprove.Remrks"></textarea>
+         </div>
+             
+         
+        </div>
+       
+ 
+  <br>
+        <div class="row">
+          
+  
+          
+  
+         
+        </div>
+        <div class="popup-footer justify-content-center">
+          <button 
+            type="button"
+            class="btn btn-sm btn-success text-white"
+            (click)="btnSubmitDetails()"
+          >
+            SUBMIT
+          </button>
+        </div>
+      </div>
+    </div>
+  </div> 
+

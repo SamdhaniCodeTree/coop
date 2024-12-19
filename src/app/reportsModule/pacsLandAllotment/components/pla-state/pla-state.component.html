@@ -1,0 +1,155 @@
+<div class="row">
+  <div class="col-md-12">
+    <button
+      type="button"
+      class="btn btn-sm btn-success pull-right"
+      (click)="btnExcelDownload()"
+    >
+      <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+      DOWNLOAD EXCEL
+    </button>
+    <!-- <button
+      type="button"
+      class="btn btn-sm btn-danger pull-right"
+      (click)="btnPDF()"
+    >
+      <i
+        class="fa fa-file-pdf-o mr-2"
+        aria-hidden="true"
+      ></i>
+      DOWNLOAD PDF
+    </button> -->
+  </div>
+  <div
+    class="col-md-12 table-responsive"
+    [hidden]="stateLevelDetails.length < 1"
+  >
+    <table
+      class="table table-bordered"
+      datatable
+      [dtOptions]="dtOptions"
+      [dtTrigger]="dtTrigger"
+    >
+      <thead class="thead-dark">
+        <tr>
+          <th colspan="2"></th>
+          <th colspan="3">MANDALS</th>
+          <th colspan="3">RBKS</th>
+          <th colspan="4">LAND ALLOTMENT</th>
+          <th colspan="3">LAND HANDOVER</th>
+        </tr>
+        <tr>
+          <th>S.No.</th>
+          <th>DISTRICT <br>NAME</th>
+          <th>TOTAL</th>
+          <th>SUBMITTED</th>
+          <th>NOT<br> SUBMITTED</th>
+          <th>TOTAL</th>
+          <th>SUBMITTED</th>
+          <th>NOT <br>SUBMITTED</th>
+          <th>COMPLETED</th>
+          <th>Land Submitted Villages</th>
+          <th>PERC<br>ENTAGE<br> COMPLETED</th>
+          <th>NOT<br> COMPLETED</th>
+          <th>(%) <br>NOT <br>COMPLETED</th>
+          <th>COMPLETED</th>
+          <th> NOT <br>COMPLETED</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let obj of stateLevelDetails; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>
+            <a
+              style="cursor: pointer; text-decoration: underline"
+              class="text-primary"
+              (click)="btnGetDetails(obj)"
+              ><b>{{ obj.DISTRICT_NAME }}</b></a
+            >
+          </td>
+          <td>{{ obj.TOTAL_MANDALS }}</td>
+          <td>
+            {{ obj.TOTAL_SUBMIT_MANDALS }}
+          </td>
+          <td>
+            {{ obj.TOTAL_NOT_SUBMIT_MANDALS }}
+          </td>
+          <td>{{ obj.TOTAL_RBKS }}</td>
+          <td>
+            {{ obj.TOTAL_SUBMIT_RBKS }}
+          </td>
+          <td>
+            {{ obj.TOTAL_NOT_SUBMIT_RBKS }}
+          </td>
+          <td>
+            {{ obj.TOTAL_LAND_SUBMITTED }}
+          </td>
+          <td>
+            {{ obj.TOTAL_SUBMIT_VILLAGES }}
+          </td>
+          <td>{{ obj.PERCENTAGE_COMPLETED.toFixed(2) }} %</td>
+          <td>
+            {{ obj.TOTAL_LAND_NOT_SUBMITTED }}
+          </td>
+          <td>{{ obj.PERCENTAGE_NOT_COMPLETED.toFixed(2) }} %</td>
+          <td>
+            {{ obj.TOTAL_LAND_HANDOVER_SUBMIT }}
+          </td>
+          <td>
+            {{ obj.TOTAL_LAND_HANDOVER_NOT_SUBMIT }}
+          </td>
+        </tr>
+      </tbody>
+      <tbody *ngIf="stateLevelDetails?.length > 0">
+        <tr>
+          <td>--</td>
+          <td>
+            <b>TOTAL</b>
+          </td>
+          <td>
+            {{ reportTotals.TOTAL_MANDALS }}
+          </td>
+          <td>
+            {{ reportTotals.TOTAL_SUBMIT_MANDALS }}
+          </td>
+          <td>
+            {{ reportTotals.TOTAL_NOT_SUBMIT_MANDALS }}
+          </td>
+          <td>
+            {{ reportTotals.TOTAL_RBKS }}
+          </td>
+          <td>
+            {{ reportTotals.TOTAL_SUBMIT_RBKS }}
+          </td>
+          <td>
+            {{ reportTotals.TOTAL_NOT_SUBMIT_RBKS }}
+          </td>
+          <td>
+            {{ reportTotals.TOTAL_LAND_SUBMITTED }}
+          </td>
+          <td>
+            {{ reportTotals.TOTAL_SUBMIT_VILLAGES }}
+          </td>
+          <td>{{ reportTotals.PERCENTAGE_COMPLETED }} %</td>
+          <td>
+            {{ reportTotals.TOTAL_LAND_NOT_SUBMITTED }}
+          </td>
+          <td>{{ reportTotals.PERCENTAGE_NOT_COMPLETED }} %</td>
+          <td>
+            {{ reportTotals.TOTAL_LAND_HANDOVER_SUBMIT }}
+          </td>
+          <td>
+            {{ reportTotals.TOTAL_LAND_HANDOVER_NOT_SUBMIT }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div
+    class="col-md-12 table-responsive"
+    [hidden]="stateLevelDetails?.length > 1"
+  >
+    <h6 class="text-center">No Data Available</h6>
+  </div>
+</div>

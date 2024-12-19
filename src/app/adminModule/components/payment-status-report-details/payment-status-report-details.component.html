@@ -1,0 +1,96 @@
+
+  <div class="app-content content">
+    <div class="content-overlay"></div>
+    <div class="content-wrapper">
+      <div class="content-header row">
+        <div class="content-header-left col-md-6 col-12">
+          <h3 class="content-header-title mb-0">PAYMENT STATUS REPORT</h3>
+          <div class="row breadcrumbs-top">
+            <div class="breadcrumb-wrapper col-12">
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="content-body">   
+        <section id="basic-form-layouts">
+          <div class="row match-height">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header"></div>
+                <div class="card-content collapse show">
+                  <div class="card-body">
+                    <div class="form">
+                      <div class="form-body">
+                        <h4 class="form-section">
+                          <i class="feather icon-user"></i>PAYMENT STATUS REPORT
+                        </h4> 
+                        <div class="row">
+                            
+                            <div class="col-md-12 table-responsive" [hidden]="DEVICEDETAILSLIST.length < 1" *ngIf="DeviceDetails">
+                                <table class="table table-bordered" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th>S.No</th>
+                                            <th>TRANSACTION ID</th>
+                                            <th>TRANSACTION<br> DATE</th>
+                                            <th>PACS COUNT</th>
+                                            <th>REQUESTED<br> AMOUNT</th>
+                                            <th>TRANSACTION<br> STATUS</th>
+                                            <th>LAST PAYMENT<br> DATE</th>
+                                            <th>TOTAL PAID<br> AMOUNT</th>
+                                            <th>BALANCE<br> AMOUNT</th>
+                                            <th>PAYMENT<br> FILE DEPT</th>  
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let obj of DEVICEDETAILSLIST; let i = index" >
+                                            <td style="font-size: 14px;"><b>{{ i + 1 }}</b></td> 
+                                            <!-- <td style="font-size: 14px;"><b>{{ obj.TRANSACTION_ID }}</b></td> -->
+
+                                            <td>
+                                              <!-- <a *ngIf="obj.PACS_STATUS === 0"
+                                                style="cursor: pointer; text-decoration: underline"
+                                                class="text-primary"
+                                                (click)="btnGetDetails(obj)"
+                                                ><b>{{ obj.TRANSACTION_ID }}</b></a
+                                              > -->
+                                              <span *ngIf="obj.PACS_STATUS!= 0">{{ obj.TRANSACTION_ID }}</span>
+                                            </td>
+                                            <td style="font-size: 14px;"><b>{{ obj.TRANSACTION_DATE }}</b></td>
+                                            <td style="font-size: 14px;"><b>{{ obj.PACS_COUNT }}</b></td>
+                                            <td style="font-size: 14px;"><b>{{ obj.REQUESTED_AMOUNT }}</b></td>
+                                            <td style="font-size: 14px;"><b>{{ obj.TRANSACTION_STATUS_MSG }}</b></td>
+                                            <td style="font-size: 14px;"><b>{{ obj.LAST_PAYMENT_DATE }}</b></td>
+                                            <td style="font-size: 14px;"><b>{{ obj.TOTAL_PAID_AMOUNT }}</b></td>
+                                            <td style="font-size: 14px;"><b>{{ obj.BALANCE_AMOUNT }}</b></td>  
+                                            <td style="font-size: 14px;"><b>
+                                              <span *ngIf="obj.DEPT_APPROVED_FILE_PATH == null">-</span> <a *ngIf="obj.DEPT_APPROVED_FILE_PATH != null"
+                                              style="cursor: pointer; text-decoration: underline; font-size: 15px;"
+                                              title="Payment File View" class="text-success btn btn-sm bg-white"
+                                              (click)="btnPdfView(obj.DEPT_APPROVED_FILE_PATH)"><span><i class="fa fa-file-pdf-o"></i>
+                                              </span></a></b></td>  
+                                        </tr>
+                                    </tbody> 
+                                </table>  
+                            </div> 
+                            
+                          </div> 
+
+                          </div>
+                      </div>
+
+
+                      
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div> 
+        </section>
+        <!-- // Basic form layout section end -->
+      </div>
+    </div>
+  </div>
+  
+

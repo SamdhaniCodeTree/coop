@@ -1,0 +1,48 @@
+<div class="app-content content">
+    <div class="content-overlay"></div>
+    <div class="content-wrapper">
+      <div class="content-header row">
+        <div class="content-header-left col-md-6 col-12">
+          <h3 class="content-header-title mb-0">HARDWARE PAYMENT TOTAL REPORT </h3>
+          
+        </div>
+      </div>
+      <div class="content-body">
+        <section id="basic-form-layouts">
+          <div class="row match-height">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header"></div>
+                <div class="card-content collapse show">
+                  <div class="card-body">
+                    <div class="form">
+                      <div class="form-body">
+                          
+                        <div class="col-md-12" align="right" style="margin-top: -38px;">
+                          <button
+                            type="button"
+                            class="btn btn-primary btn-sm"
+                            (click)="btnBack()"
+                          >
+                            BACK
+                          </button>
+                        </div>
+                       <app-hardware-payments-totalnoof-pacs-details                
+                       [(type)]="type" 
+                       [(statusId)]="statusId"                        
+                       [(fromDate)]="fromDate"                        
+                       [(toDate)]="toDate"                        
+                       (onPacsChange)="onPacsChange($event)" 
+                        > 
+                        </app-hardware-payments-totalnoof-pacs-details> 
+                      </div>
+                    </div>
+                  </div>  
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>

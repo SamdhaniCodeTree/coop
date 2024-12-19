@@ -1,0 +1,354 @@
+<div class="app-content content background">
+    <div class="content-overlay"></div>
+    <div class="content-wrapper">
+      <div class="content-header row">
+        <div class="content-header-left col-md-6 col-12">
+          <h3 class="content-header-title mb-0 text-white">Installation of PACS Equipment.</h3>
+          <div class="row breadcrumbs-top">
+            <div class="breadcrumb-wrapper col-12">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                  <a class="custom-cursor text-white" routerLink="/ceo">Menu</a>
+                </li>
+                <li class="breadcrumb-item active">
+                  <a
+                    class="custom-cursor text-white"
+                    routerLink="/ceo/Calibration"
+                    >Installation of PACS Equipment</a
+                  >
+                </li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+     
+    <div class="card backgrnd">
+        <!-- <div class="card-header p-2">
+          <h5 class="mb-0"> Installation of PACS Equipment.</h5>
+        </div> -->
+        <div class="card-body ">
+          <div class="row">
+            <div class="col-md-12">
+          
+                <div class="card">
+                    <div class="card-header p-2">
+                      <h5 class="mb-0">APPLICANT DETAILS</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                              <div class="col-md-3">
+                                <div class="form-group">
+                                  <label >Title<span style="color: red">*</span></label>
+                                  <select
+                                    id="titleId"
+                                    class="form-control"
+                                    [(ngModel)]="applicationDetails.titleId"
+                                  >
+                                    <option class="dropdown-item" disabled selected value="">-- Select Title --</option>
+                                    <option value="1">Smt </option>
+                                    <option value="2">Sri </option>
+                                  </select>
+                                </div>
+                              </div>  
+                           <div class="col-md-3">
+                                <div class="form-group">
+                                  <label>Name <span style="color: red">*</span></label>
+                                  <input type="text"
+                                  class="form-control"
+                                  [(ngModel)]="applicationDetails.name"
+                                  placeholder="Please Enter Name"
+                                  maxlength="50"
+                                  autocomplete="off" 
+                                  onkeypress="return event.charCode >= 65 && event.charCode <= 90 || event.charCode >= 97 && event.charCode <= 122 || event.charCode == 32"         
+                                  >
+                                </div>
+                              </div> 
+                                <div class="col-md-3">
+                                <div class="form-group">
+                                  <label>Surname <span style="color: red">*</span></label>
+                                  <input type="text"
+                                  class="form-control"
+                                  [(ngModel)]="applicationDetails.surname"
+                                  placeholder="Please Enter Surname"
+                                  maxlength="15"
+                                  autocomplete="off" 
+                                  onkeypress="return event.charCode >= 65 && event.charCode <= 90 || event.charCode >= 97 && event.charCode <= 122 || event.charCode == 32"          
+                                  >
+                                </div>
+                              </div>
+                              <div class="col-md-3">
+                                <div class="form-group">
+                                  <label>S/o,W/o,D/o,C/o: <span style="color: red">*</span></label>
+                                  <input type="text"
+                                  class="form-control"
+                                  [(ngModel)]="applicationDetails.careoff"
+                                  placeholder="Please Enter Care Off"
+                                  maxlength="15"
+                                  autocomplete="off"   
+                                  onkeypress="return event.charCode >= 65 && event.charCode <= 90 || event.charCode >= 97 && event.charCode <= 122 || event.charCode == 32"        
+                                  >
+                  
+                                 
+                                </div>
+                              </div>  
+                        </div>
+                          <div class="row">
+                             <div class="col-md-3">
+                                <div class="form-group">
+                                  <label for="genderId">Gender<span style="color: red">*</span></label>
+                                  <select
+                                    id="genderId"
+                                    class="form-control"
+                                    [(ngModel)]="applicationDetails.genderId"
+                                  >
+                                    <option class="dropdown-item" disabled selected value="">-- Select Gender --</option>
+                                    <option value="1">Male </option>
+                                    <option value="2">Female </option>
+                                  </select>
+                                </div>
+                             </div>
+                             <div class="col-md-3">
+                              <div class="form-group">
+                                <label>UID(Aadhar No) <span style="color: red">*</span></label>
+                                <input type="text"
+                                class="form-control"
+                                [(ngModel)]="applicationDetails.aadharno"
+                                placeholder="Please Enter Aadhar No"
+                                maxlength="12"
+                                autocomplete="off"
+                                NumbersOnly
+                                  
+                                 
+                                >
+                              </div>
+                            </div>
+                  
+                            <div class="col-md-3">
+                              <div class="form-group">
+                                <label 
+                                  >Upload Aadhar <span style="color: red;font-size: small;">* (JPEG and  less than 2MB) </span>
+                                </label>
+                                <input
+                                  type="file"  [(ngModel)]="applicationDetails.uploadaadhar"
+                                  class="form-control p-0"
+                                  id="uploadaadhar"
+                                  accept="image/*"
+                                  autocomplete="off"
+                                />
+                              </div>
+                            </div>  
+                  
+                            <div class="col-md-2">
+                              <div class="form-group">
+                                <label for="dateofbirth"
+                                  >DATE OF BIRTH <span style="color: red">*</span></label
+                                >
+                                <input
+                                 type="date" 
+                                 id="dateofbirth" 
+                                 [(ngModel)]="applicationDetails.dateofbirth" 
+                                (input)="onAgeChange($event.target.dateofbirth)"
+                                />
+                              </div>
+                            </div>
+                            <div class="col-md-1">
+                              <div class="form-group" style="margin-top: 35%;text-align:left;" *ngIf="age">
+                                
+                                <span class="text-success" >
+                                  <b>Age : {{ showAge }}</b>
+                                </span>
+                              </div>
+                            </div>
+                           
+                        </div>  
+                    </div>
+                        <div class="card-header p-2">
+                        <h5 class="mb-0">ADDRESS OF THE APPLICANT</h5>
+                      </div>
+                  <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3">
+                          <div class="form-group">
+                            <label>Pin Code <span style="color: red">*</span></label>
+                            <input type="text"
+                            class="form-control"
+                            [(ngModel)]="applicationDetails.pincode"
+                            placeholder="Please Enter PinCode"
+                            maxlength="6"
+                            autocomplete="off"   
+                            NumbersOnly
+                                     
+                            >
+                          </div>
+                        </div>
+                  
+                        <div class="col-md-3">
+                          <div class="form-group">
+                            <label for="countryId">Country<span style="color: red">*</span></label>
+                            <select
+                              id="countryId"
+                              class="form-control"
+                              [(ngModel)]="applicationDetails.countryId"
+                            >
+                              <option class="dropdown-item" disabled selected value="">-- Select Country --</option>
+                              <option value="1"> India</option>
+                              <option value="2"> Usa</option>
+                            </select>
+                          </div>
+                        </div>
+                  
+                        <div class="col-md-3">
+                          <div class="form-group">
+                            <label for="stateId">State<span style="color: red">*</span></label>
+                            <select
+                              id="stateId"
+                              class="form-control"
+                              [(ngModel)]="applicationDetails.stateId"
+                            >
+                              <option class="dropdown-item" disabled selected value="">-- Select State --</option>
+                              <option value="1"> AndhraPradesh</option>
+                              <option value="2"> Telangana</option>
+                            </select>
+                          </div>
+                        </div>
+                  
+                        <div class="col-md-3">
+                          <div class="form-group">
+                            <label for="districtId">District<span style="color: red">*</span></label>
+                            <select
+                              id="districtId"
+                              class="form-control"
+                              [(ngModel)]="applicationDetails.districtId"
+                            >
+                              <option class="dropdown-item" disabled selected value="">-- Select District --</option>
+                              <option value="1"> Amaravathi</option>
+                              <option value="2"> Nri</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="card-body">
+                        <div class="row">
+                          <div class="col-md-3">
+                            <div class="form-group">
+                              <label for="mandalId">Mandal<span style="color: red">*</span></label>
+                              <select
+                                id="mandalId"
+                                class="form-control"
+                                [(ngModel)]="applicationDetails.mandalId"
+                              >
+                                <option class="dropdown-item" disabled selected value="">-- Select mandal --</option>
+                                <option value="1"> Amaravathi</option>
+                                <option value="2"> Nri</option>
+                              </select>
+                            </div>
+                          </div>
+                  
+                          <div class="col-md-3">
+                            <div class="form-group">
+                              <label for="villageId">City/Town/Revenue  Village<span style="color: red">*</span></label>
+                              <select
+                                id="villageId"
+                                class="form-control"
+                                [(ngModel)]="applicationDetails.villageId"
+                              >
+                                <option class="dropdown-item" disabled selected value="">-- Select Village --</option>
+                                <option value="1"> Amaravathi</option>
+                                <option value="2"> Nri</option>
+                              </select>
+                            </div>
+                          </div>
+                  
+                          <div class="col-md-3">
+                            <div class="form-group">
+                              <label>Address of the Applicant <span style="color: red">*</span></label>
+                              <input type="text"
+                              class="form-control"
+                              [(ngModel)]="applicationDetails.addapplicant"
+                              placeholder="Please Enter Address of the Applicant "
+                              maxlength="150"
+                              autocomplete="off"     
+                              >
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-header p-2">
+                  <h5 class="mb-0">CONTACT DETAILS OF THE APPLICANT</h5>
+                  </div>
+                  <div class="card-body">
+                      <div class="row">
+                        <div class="col-md-3">
+                          <div class="form-group">
+                            <label>Mobile Number<span style="color: red">*</span></label>
+                            <input type="text"
+                            class="form-control"
+                            [(ngModel)]="applicationDetails.mobileno"
+                            placeholder="Please Enter Mobile Number"
+                            maxlength="10"
+                            autocomplete="off" 
+                            NumbersOnly
+                                       
+                            >
+                          </div>
+                        </div>
+                  
+                        <div class="col-md-3">
+                          <div class="form-group">
+                            <label>Land Line No<span style="color: red">*</span></label>
+                            <input type="text"
+                            class="form-control"
+                            [(ngModel)]="applicationDetails.landlineno"    
+                            placeholder="Please Enter Land Line Number"
+                            maxlength="10"
+                            autocomplete="off" 
+                            NumbersOnly
+                                      
+                            >
+                          </div>
+                        </div>
+                  
+                        <div class="col-md-3">
+                          <div class="form-group">
+                            <label>E-Mail<span style="color: red">*</span></label>
+                            <input type="text"
+                            class="form-control"
+                            [(ngModel)]="applicationDetails.email"
+                            placeholder="Please Enter E-Mail Address"
+                            maxlength="30"
+                            autocomplete="off"        
+                            >
+                          </div>
+                        </div>
+                  
+                       
+                      </div>
+                  </div> 
+                  </div>
+                  <hr style=" border: 1px solid black;">
+                  <div class="col-md-12" align="center">
+                    <button
+                    type="button"
+                    class="btn btn-success btn-sm"
+                    (click)="btnSubmit()"
+                    >
+                    SUBMIT
+                    </button> 
+                  </div> 
+                  
+                  
+                  
+		  
+          
+            </div>
+             
+           
+          
+          </div>
+        </div>
+      </div>
+      
+    </div>

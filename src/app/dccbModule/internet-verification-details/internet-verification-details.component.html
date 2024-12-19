@@ -1,0 +1,139 @@
+
+ 
+  <div class="app-content content">
+    <div class="content-overlay"></div>
+    <div class="content-wrapper">
+      <div class="content-header row">
+        <div class="content-header-left col-md-6 col-12">
+          <h3 class="content-header-title mb-0">Computerisation PACS Internet Module</h3>
+          <div class="row breadcrumbs-top">
+            <div class="breadcrumb-wrapper col-12">
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="content-body">   
+        <section id="basic-form-layouts">
+          <div class="row match-height">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header"></div>
+                <div class="card-content collapse show">
+                  <div class="card-body">
+                    <div class="form">
+                       
+                      <div class="form-body">
+                        <h4 class="form-section">
+                          <i class="feather icon-user"></i>Computerisation PACS Internet Module
+                        </h4> 
+                        
+                        <div class="row">
+                            <div class="col-md-12">
+                                <button type="button" class="btn btn-sm btn-success pull-right" (click)="btnExcelDownload()">
+                                    <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+                                    DOWNLOAD EXCEL
+                                </button>
+                                
+                            </div>
+                            <div>
+                              <table>
+                                <thead>
+                                  <tr>
+                                    <th>
+                                      <input
+                                        type="checkbox"
+                                        id="selectAll"
+                                        (change)="selectAlltest($event)"
+                                      />
+                                    </th>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Position</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr *ngFor="let employee of employees">
+                                    <td>
+                                      <input type="checkbox" [(ngModel)]="employee.selected" />
+                                    </td>
+                                    <td>{{ employee.id }}</td>
+                                    <td>{{ employee.name }}</td>
+                                    <td>{{ employee.position }}</td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                                <table>
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th>S.No</th>
+                                            <th>DISTRICT NAME</th>
+                                            <th>MANDAL NAME</th>
+                                            <th>PACS NAME</th>
+                                            <th>PACS CODE</th>
+                                            <th>DEVICE NAME</th>
+                                            <th>MAKER</th>
+                                            <th>SERIAL NUMBER</th>
+                                            <th>MANUFACTURE DATA</th>
+                                            <th>
+                                              <input type="checkbox" (change)="selectAll($event)" title="Select Check Box"
+                                             >
+                                               </th>
+                                             
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr *ngFor="let obj of InternetList; let k = index;" >
+                                            <td style="font-size: 14px;"><b>{{ k + 1 }}</b></td>                                              
+                                            <td style="font-size: 14px;"><b>{{ obj.DISTRICT_NAME }}</b></td> 
+                                            <td style="font-size: 14px;"><b>{{ obj.MANDAL_NAME }}</b></td> 
+                                            <td style="font-size: 14px;"><b>{{ obj.PACS_NAME }}</b></td>
+                                            <td style="font-size: 14px;"><b>{{ obj.PACS_CODE }}</b></td>
+                                            <td style="font-size: 14px;"><b>{{ obj.DEVICE_NAME }}</b></td>
+                                            <td style="font-size: 14px;"><b>{{ obj.COMPONENT_NAME }}</b></td>
+                                            <td style="font-size: 14px;"><b>{{ obj.CL_SERIAL_NUMBER }}</b></td>
+                                            <td style="font-size: 14px;"><b>{{ obj.CL_MANUFACTURE_DATA }}</b></td>
+                                            <td >
+                                              <input type="checkbox" [(ngModel)]="obj.selected" >
+        <strong>State:</strong> {{ obj.selected }}
+                                            </td>
+                                           
+                                         
+                                               
+                                        </tr>
+                                    </tbody> 
+                                </table>  
+                            </div> 
+                             
+
+                             
+                          </div> 
+
+                          
+                         
+
+
+
+
+                          </div>
+                      </div>
+
+
+                       
+
+                       
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div> 
+        </section>
+        <!-- // Basic form layout section end -->
+
+
+      </div>
+    </div>
+  </div>
+  
+  
+

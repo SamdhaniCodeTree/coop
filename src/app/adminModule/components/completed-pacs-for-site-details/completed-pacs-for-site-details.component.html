@@ -1,0 +1,283 @@
+  <div class="form-body"  *ngIf="userhide">
+    <h4 class="form-section">
+      <i class="feather icon-user"></i> {{userName}}  
+    </h4> 
+  </div> 
+  
+<div class="row"> 
+    <div class="col-md-12" *ngIf="district">
+      <label for="toDate">
+        FROM DATE :
+        <span class="text-success">
+          <b> {{ fromDate  }}</b>
+        </span>
+      </label>&nbsp; &nbsp;&nbsp; &nbsp; 
+      <label for="toDate">
+        TO DATE :
+        <span class="text-success">
+          <b> {{ toDate }}</b>
+        </span>
+      </label>&nbsp; &nbsp;&nbsp; &nbsp;
+        <label for="toDate">
+            DISTRICT :
+            <span class="text-success">
+                <b> {{ districtName | uppercase }}</b>
+            </span>
+        </label>
+    </div>
+    <div class="col-md-12" *ngIf="division">
+      <label for="toDate">
+        FROM DATE :
+        <span class="text-success">
+          <b> {{ fromDate  }}</b>
+        </span>
+      </label>&nbsp; &nbsp;&nbsp; &nbsp; 
+      <label for="toDate">
+        TO DATE :
+        <span class="text-success">
+          <b> {{ toDate }}</b>
+        </span>
+      </label>&nbsp; &nbsp;&nbsp; &nbsp;
+        <label for="toDate">
+            DIVISION :
+            <span class="text-success">
+                <b> {{ divisionName | uppercase }}</b>
+            </span>
+        </label>
+    </div>
+    <div class="col-md-12">
+        <button type="button" class="btn btn-sm btn-success pull-right" (click)="btnExcelDownload()">
+            <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+            DOWNLOAD EXCEL
+        </button>
+        <button  *ngIf="type == '11'"
+          type="button"
+          class="btn btn-sm btn-danger pull-right"
+          (click)="btnPDF('11')"
+        >
+          <i
+            class="fa fa-file-pdf-o mr-2"
+            aria-hidden="true"
+          ></i>
+          DOWNLOAD PDF
+        </button>
+
+        <button  *ngIf="type == '14'"
+          type="button"
+          class="btn btn-sm btn-danger pull-right"
+          (click)="btnPDF('14')"
+        >
+          <i
+            class="fa fa-file-pdf-o mr-2"
+            aria-hidden="true"
+          ></i>
+          DOWNLOAD PDF
+        </button>
+        <button  *ngIf="type == '20'"
+        type="button"
+        class="btn btn-sm btn-danger pull-right"
+        (click)="btnPDF('20')"
+      >
+        <i
+          class="fa fa-file-pdf-o mr-2"
+          aria-hidden="true"
+        ></i>
+        DOWNLOAD PDF
+      </button>
+    </div>
+    <div class="col-md-12 table-responsive tbl-fixed" [hidden]="districtLevelDetails.length < 1">
+        <table class="table table-bordered tbl-data" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+            <thead class="thead-dark">
+
+                <tr>
+                    <th rowspan="2" style="z-index: 5;">S NO</th>
+                    <th rowspan="2" style="z-index: 5;">NAME OF THE DISTRICT</th>
+                    <th rowspan="2" style="z-index: 5;">NAME OF THE DCCB</th>
+                    <th rowspan="2" style="z-index: 5;">NAME OF THE PACS</th>
+                    <th rowspan="2">GOOGLE COORDINATES</th>
+                    <th rowspan="2">BUILDING TYPE</th>
+                    <th colspan="5">BUILDING IMAGES</th>
+                    <th rowspan="2">FURNITURE AVAILABILITY </th>
+                    <th colspan="2">FURNITURE AVAILABILITY IMAGES</th>
+                    <th rowspan="2">POWER SUPPLY AVAILABILITY </th>
+                    <th colspan="3">POWER SUPPLY AVAILABILITY IMAGES</th>
+                    <th rowspan="2">INTERNET CONNECTIVITY</th>
+                    <th rowspan="2">ELECTRIFICATION IS DONE <br>AS PER THE GUIDELINES <br>
+                        (CERTIFICATE ISSUED BY <br>THE SELLER IS UPLOADED)
+                    </th>
+
+                    <!-- <th  *ngIf="type == '20'">STATUS</th> -->
+                </tr>
+                <tr>
+                    <th>INTERIOR IMAGE</th>
+                    <th>EXTERIOR FRONT IMAGE</th>
+                    <th>EXTERIOR BACK IMAGE</th>
+                    <th>RIGHT SIDE IMAGE</th>
+                    <th>LEFT SIDE IMAGE</th>
+                    
+                    <th>COMPUTER TABLES IMAGE</th>
+                    <th>CHAIRS IMAGE</th>
+                    
+                    <th>POWERPHASE IMAGE</th>
+                    <th>EARTHING IMAGE</th>
+                    <th>MCB IMAGE</th>
+
+
+                </tr>
+            </thead>
+            <tbody *ngIf="districtLevelDetails?.length > 0">
+                <tr *ngFor="let obj of districtLevelDetails; let i = index">
+                    <td>{{ i + 1 }}</td>
+                    <td>{{ obj.DISTRICT_NAME }}</td>
+                    <td>{{ obj.NAME_OF_THE_DCCB }}</td>
+                    <td>{{ obj.PACS_NAME }}</td>
+                    <td>{{ obj.GOOGLE_COORDINATES }}</td>
+                    <td>{{ obj.BUILDING }}</td>
+                    <td>
+                         
+
+                        <button 
+                        type="button"
+                         *ngIf="obj.BUILDING_INTERIORIMAGE != null"
+                          class="btn btn-link btn-sm" 
+                          (click)="btnPhotoView(obj.BUILDING_INTERIORIMAGE)" style="font-size: 12px;">  
+                            View
+                        </button>
+                        <span *ngIf="obj.BUILDING_INTERIORIMAGE == null">NA </span> 
+                    </td> 
+                    <td>
+                         
+
+                        <button 
+                        type="button"
+                         *ngIf="obj.BUILDING_EXTERIOR_FRONTIMAGE != null"
+                          class="btn btn-link btn-sm" 
+                          (click)="btnPhotoView(obj.BUILDING_EXTERIOR_FRONTIMAGE)" style="font-size: 12px;">  
+                            View
+                        </button>
+                        <span *ngIf="obj.BUILDING_EXTERIOR_FRONTIMAGE == null">NA </span> 
+                    </td> 
+                    <td>
+                         
+
+                        <button 
+                        type="button"
+                         *ngIf="obj.BUILDING_EXTERIOR_BACKIMAGE != null"
+                          class="btn btn-link btn-sm" 
+                          (click)="btnPhotoView(obj.BUILDING_EXTERIOR_BACKIMAGE)" style="font-size: 12px;">  
+                            View
+                        </button>
+                        <span *ngIf="obj.BUILDING_EXTERIOR_BACKIMAGE == null">NA </span> 
+                    </td> 
+                    <td>
+                         
+
+                        <button 
+                        type="button"
+                         *ngIf="obj.BUILDING_RIGHTSIDE_IMAGE != null"
+                          class="btn btn-link btn-sm" 
+                          (click)="btnPhotoView(obj.BUILDING_RIGHTSIDE_IMAGE)" style="font-size: 12px;">  
+                            View
+                        </button>
+                        <span *ngIf="obj.BUILDING_RIGHTSIDE_IMAGE == null">NA </span> 
+                    </td> 
+                    <td>
+                         
+
+                        <button 
+                        type="button"
+                         *ngIf="obj.BUILDINGLEFTSIDEIMAGE != null"
+                          class="btn btn-link btn-sm" 
+                          (click)="btnPhotoView(obj.BUILDINGLEFTSIDEIMAGE)" style="font-size: 12px;">  
+                            View
+                        </button>
+                        <span *ngIf="obj.BUILDINGLEFTSIDEIMAGE == null">NA </span> 
+                    </td> 
+                    <td>{{ obj.FURNITURE }}</td>
+                    <td>
+                         
+
+                        <button 
+                        type="button"
+                         *ngIf="obj.COMPUTERTABLESIMAGE != null"
+                          class="btn btn-link btn-sm" 
+                          (click)="btnPhotoView(obj.COMPUTERTABLESIMAGE)" style="font-size: 12px;">  
+                            View
+                        </button>
+                        <span *ngIf="obj.COMPUTERTABLESIMAGE == null">NA </span> 
+                    </td> 
+                    <td>
+                         
+
+                        <button 
+                        type="button"
+                         *ngIf="obj.CHAIRSIMAGE != null"
+                          class="btn btn-link btn-sm" 
+                          (click)="btnPhotoView(obj.CHAIRSIMAGE)" style="font-size: 12px;">  
+                            View
+                        </button>
+                        <span *ngIf="obj.CHAIRSIMAGE == null">NA </span> 
+                    </td> 
+                    <td>{{ obj.POWER_SUPLLY }}</td>
+                    <td>
+                         
+
+                        <button 
+                        type="button"
+                         *ngIf="obj.POWERPHASE_IMAGE != null"
+                          class="btn btn-link btn-sm" 
+                          (click)="btnPhotoView(obj.POWERPHASE_IMAGE)" style="font-size: 12px;">  
+                            View
+                        </button>
+                        <span *ngIf="obj.POWERPHASE_IMAGE == null">NA </span> 
+                    </td> 
+                    <td>
+                         
+
+                        <button 
+                        type="button"
+                         *ngIf="obj.EARTHING_IMAGE != null"
+                          class="btn btn-link btn-sm" 
+                          (click)="btnPhotoView(obj.EARTHING_IMAGE)" style="font-size: 12px;">  
+                            View
+                        </button>
+                        <span *ngIf="obj.EARTHING_IMAGE == null">NA </span> 
+                    </td> 
+                    <td>
+                         
+
+                        <button 
+                        type="button"
+                         *ngIf="obj.MCB_IMAGE != null"
+                          class="btn btn-link btn-sm" 
+                          (click)="btnPhotoView(obj.MCB_IMAGE)" style="font-size: 12px;">  
+                            View
+                        </button>
+                        <span *ngIf="obj.MCB_IMAGE == null">NA </span> 
+                    </td> 
+                    <td>{{ obj.INTERNET_CONNECTIVITY }}</td>
+                    <!-- <td>{{ obj.PDF_VIEW }}</td>  -->
+
+                    <td>
+                         
+
+                        <button 
+                        type="button"
+                         *ngIf="obj.PDF_VIEW != 'NA'"
+                          class="btn btn-link btn-sm" 
+                          (click)="btnPhotoView(obj.PDF_VIEW)" style="font-size: 12px;">  
+                            View
+                        </button>
+                        <span *ngIf="obj.PDF_VIEW == 'NA'">NA </span> 
+                    </td> 
+
+                    <!-- <td *ngIf="type == '20'">{{ obj.STATUS }}</td> -->
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- <div class="col-md-12 table-responsive" [hidden]="districtLevelDetails?.length > 1">
+        <h6 class="text-center">No Data Available</h6>
+    </div> -->
+</div>

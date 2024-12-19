@@ -1,0 +1,405 @@
+<div class="app-content content background">
+    <div class="content-overlay"></div>
+    <div class="content-wrapper">
+      <div class="content-header row">
+        <div class="content-header-left col-md-6 col-12">
+          <h3 class="content-header-title mb-0 text-white">CO-OPERATIVE SOCIETY REGISTRATION</h3>
+          <div class="row breadcrumbs-top">
+            <div class="breadcrumb-wrapper col-12">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                  <a class="custom-cursor text-white" routerLink="/ceo">Menu</a>
+                </li>
+                <li class="breadcrumb-item active">
+                  <a
+                    class="custom-cursor text-white"
+                    routerLink="/Public/publiccoopsocieties"
+                    >CO-OPERATIVE SOCIETY REGISTRATION</a
+                  >
+                </li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+     
+    <div class="card backgrnd">
+        <!-- <div class="card-header p-2">
+          <h5 class="mb-0"> Installation of PACS Equipment.</h5>
+        </div> -->
+        <div class="card-body ">
+          <div class="row">
+            <div class="col-md-12">
+          
+                <div class="card">
+                    <div class="card-header p-2">
+                      <h5 class="mb-0">CO-OPERATIVE SOCIETY REGISTRATION</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                  <label > Act<span style="color: red">*</span></label>
+                                  <select
+                                    id="act"
+                                    class="form-control"
+                                    [(ngModel)]="cooperativeSocietyDetails.act"
+                                  >
+                                    <option class="dropdown-item" disabled selected value="">-- Select Act --</option>
+                                    <option value="1">1964 </option>
+                                    <option value="2">1995 </option>
+                                  </select>
+                                </div>
+                             </div> 
+                      
+                            <div class="col-md-3">
+                            <div class="form-group">
+                              <label>Name of the Cooperative Society<span style="color: red">*</span></label>
+                              <input type="text"
+                              class="form-control"
+                              [(ngModel)]="cooperativeSocietyDetails.nameofcooperative"
+                              placeholder="Please Enter Name of the Cooperative"
+                              maxlength="50"
+                              autocomplete="off"           
+                              >
+                            </div>
+                             </div>
+                
+                             <div class="col-md-3">
+                                <div class="form-group">
+                                  <label >Type Of Society<span style="color: red">*</span></label>
+                                  <select
+                                    id="society"
+                                    class="form-control"
+                                    [(ngModel)]="cooperativeSocietyDetails.society"
+                                  >
+                                    <option class="dropdown-item" disabled selected value="">-- Select Society --</option>
+                                    <option value="1">1964 </option>
+                                    <option value="2">1997 </option>
+                                  </select>
+                                </div>
+                             </div>
+                
+                             <div class="col-md-3">
+                                <div class="form-group">
+                                  <label>Registered Number <span style="color: red">*</span></label>
+                                  <input type="text"
+                                  class="form-control"
+                                  [(ngModel)]="cooperativeSocietyDetails.registeredno"
+                                  placeholder="Please Enter Registered Number"
+                                  maxlength="15"
+                                  autocomplete="off"    
+                                  NumbersOnly
+                                         
+                                  >
+                                </div>
+                             </div>
+                
+                                
+                
+                              <div class="col-md-3">
+                                <div class="form-group">
+                                  <label for="dteofregister"
+                                    >Date of Registration <span style="color: red">*</span></label
+                                  >
+                                  <input type="text" placeholder="DD-MM-YYYY" class="form-control" [minDate]="minDate"
+                                  [(ngModel)]="dteofregistern" [maxDate]="maxDate"  placement="bottom" container="" [bsConfig]="bsDatepickerConfig" bsDatepicker>
+                          
+                                   
+                                </div>
+                              </div>
+                    
+                        </div>
+                    </div>
+                
+                    <div class="card-header p-2">
+                      <h5 class="mb-0">Address of the society</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                
+                          
+                          <div class="col-md-3">
+                            <div class="form-group">
+                            <label for="districtId">District<span style="color: red">*</span></label>
+                            <select
+                            id="districtcode"
+                            class="form-control"
+                            [(ngModel)]="cooperativeSocietyDetails.districtcode"
+                            >
+                            <option class="dropdown-item" disabled selected value="">-- Select District --</option>
+                            <option value="1"> Amaravathi</option>
+                            <option value="2"> Nri</option>
+                            </select>
+                            </div>
+                            </div>
+                
+                            <div class="col-md-3">
+                              <div class="form-group">
+                              <label for="mandalId">Mandal<span style="color: red">*</span></label>
+                              <select
+                              id="mandalId"
+                              class="form-control"
+                              [(ngModel)]="cooperativeSocietyDetails.mandalId"
+                              >
+                              <option class="dropdown-item" disabled selected value="">-- Select mandal --</option>
+                              <option value="1"> Amaravathi</option>
+                              <option value="2"> Nri</option>
+                              </select>
+                              </div>
+                              </div>
+                
+                              <div class="col-md-3">
+                                <div class="form-group">
+                                  <label>Village <span style="color: red">*</span></label>
+                                  <input type="text"
+                                  class="form-control"
+                                  [(ngModel)]="cooperativeSocietyDetails.village"
+                                  placeholder="Please Enter Village"
+                                  maxlength="15"
+                                  autocomplete="off"           
+                                  >
+                                </div>
+                                 </div>
+                        </div>
+                      </div>
+                
+                
+                                 <div class="card-header p-2">
+                                  <h5 class="mb-0 text-info"><b>AREA OF OPERATION DETAILS</b></h5>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                
+                                 <div class="col-md-3">
+                                  <div class="form-group">
+                                  <label for="mandalId">Area of the operation<span style="color: red">*</span></label>
+                                  <select
+                                  id="areaofoperation"
+                                  class="form-control"
+                                  [(ngModel)]="cooperativeSocietyDetails.areaofoperation"
+                                  >
+                                  <option class="dropdown-item" disabled selected value="">-- Select mandal --</option>
+                                  <option value="1"> Amaravathi</option>
+                                  <option value="2"> Nri</option>
+                                  </select>
+                                  </div>
+                                  </div>
+                
+                                  <div class="col-md-3">
+                                    <div class="form-group">
+                                    <label for="mandalId"> Aided or Unaided<span style="color: red">*</span></label>
+                                    <select
+                                    id="aidedorunaided"
+                                    class="form-control"
+                                    [(ngModel)]="cooperativeSocietyDetails.aidedorunaided"
+                                    >
+                                    <option class="dropdown-item" disabled selected value="">-- Select mandal --</option>
+                                    <option value="1"> Aided</option>
+                                    <option value="2"> Unaided</option>
+                                    </select>
+                                    </div>
+                                   </div>
+                
+                                   <div class="col-md-3">
+                                    <div class="form-group">
+                                      <label>Number of members <span style="color: red">*</span></label>
+                                      <input type="text"
+                                      class="form-control"
+                                      [(ngModel)]="cooperativeSocietyDetails.noofmembers"
+                                      placeholder="Please Enter Number of members "
+                                      maxlength="5"
+                                      autocomplete="off"   
+                                      NumbersOnly
+                                            
+                                      >
+                                    </div>
+                                  </div>
+                
+                                  <div class="col-md-3">
+                                    <div class="form-group">
+                                      <label>Share Capital <span style="color: red">*</span></label>
+                                      <input type="text"
+                                      class="form-control"
+                                      [(ngModel)]="cooperativeSocietyDetails.sharecaptial"
+                                      placeholder="Please Enter Share Capital "
+                                      maxlength="10"
+                                      autocomplete="off"   
+                                      NumbersOnly
+                                              
+                                      >
+                                    </div>
+                                  </div>
+                
+                                  <div class="col-md-3">
+                                    <div class="form-group">
+                                    <label for="management">Management <span style="color: red">*</span></label>
+                                    <select
+                                    id="management"
+                                    class="form-control"
+                                    [(ngModel)]="cooperativeSocietyDetails.management"
+                                    >
+                                    <option class="dropdown-item" disabled selected value="">-- Select Management --</option>
+                                    <option value="1"> Elected</option>
+                                    <option value="2"> Special Officer</option>
+                                    <option value="3"> PIC</option>
+                                    <option value="4"> Adhoc</option>
+                                    </select>
+                                    </div>
+                                   </div>
+                
+                                   <div class="col-md-3">
+                                    <div class="form-group">
+                                      <label>Name of the Secretary/ CEO <span style="color: red">*</span></label>
+                                      <input type="text"
+                                      class="form-control"
+                                      [(ngModel)]="cooperativeSocietyDetails.nameofsecretry"
+                                      placeholder="Please Enter Name of the Secretary/ CEO "
+                                      maxlength="50"
+                                      autocomplete="off"   
+                                            
+                                      >
+                                    </div>
+                                  </div>
+                            
+                                  <div class="col-md-3">
+                                    <div class="form-group">
+                                      <label>Number of  Employees <span style="color: red">*</span></label>
+                                      <input type="text"
+                                      class="form-control"
+                                      [(ngModel)]="cooperativeSocietyDetails.noofemployees"
+                                      placeholder="Please Enter Number of Employees "
+                                      maxlength="5"
+                                      autocomplete="off"   
+                                      NumbersOnly
+                                             
+                                      >
+                                    </div>
+                                  </div>
+                
+                
+                                  <div class="col-md-3">
+                                    <div class="form-group">
+                                      <label for="electionsconducted"
+                                        >Date of last Elections conducted <span style="color: red">*</span></label
+                                      >
+                                      <input type="text" placeholder="DD-MM-YYYY" class="form-control" [minDate]="minDate"
+                                      [(ngModel)]="electionsconducted" [maxDate]="maxDate"  placement="bottom" container="" [bsConfig]="bsDatepickerConfig" bsDatepicker>
+                              
+                                       
+                                    </div>
+                                  </div>
+                
+                                  <div class="col-md-3">
+                                    <div class="form-group">
+                                      <label for="duedateelections"
+                                        >Due date for Elections for MC <span style="color: red">*</span></label
+                                      >
+                                      <input type="text" placeholder="DD-MM-YYYY" class="form-control" [minDate]="minDate"
+                                      [(ngModel)]="duedateelections" [maxDate]="maxDate"  placement="bottom" container="" [bsConfig]="bsDatepickerConfig" bsDatepicker>
+                              
+                                     
+                                    </div>
+                                  </div>
+                
+                                  <div class="col-md-3">
+                                    <div class="form-group">
+                                      <label>Name of the President/ Special Officer/ PIC Chair person/ Adhoc Chair person <span style="color: red">*</span></label>
+                                      <input type="text"
+                                      class="form-control"
+                                      [(ngModel)]="cooperativeSocietyDetails.nameofpresident"
+                                      placeholder="Please Enter Name of the President/ Special Officer/ PIC Chair person/ Adhoc Chair person  "
+                                      maxlength="50"
+                                      autocomplete="off"   
+                                           
+                                      >
+                                    </div>
+                                  </div>
+                
+                                  <div class="col-md-3">
+                                    <div class="form-group">
+                                    <label for="designation">Designation<span style="color: red">*</span></label>
+                                    <select
+                                    id="designation"
+                                    class="form-control"  
+                                    [(ngModel)]="cooperativeSocietyDetails.designation"
+                                    >
+                                    <option class="dropdown-item" disabled selected value="">-- Select Designation --</option>
+                                    <option value="1"> Department Auditor</option>
+                                    <option value="2"> Chartered Accountant</option>
+                                   
+                                    </select>
+                                    </div>
+                                   </div>
+                
+                                  <div class="col-md-3">
+                                    <div class="form-group">
+                                    <label for="auditedby">Audited By <span style="color: red">*</span></label>
+                                    <select
+                                    id="auditedby"
+                                    class="form-control"  
+                                    [(ngModel)]="cooperativeSocietyDetails.auditedby"
+                                    >
+                                    <option class="dropdown-item" disabled selected value="">-- Select Audited By --</option>
+                                    <option value="1"> Department Auditor</option>
+                                    <option value="2"> Chartered Accountant</option>
+                                   
+                                    </select>
+                                    </div>
+                                   </div>
+                
+                                   <div class="col-md-3">
+                                    <div class="form-group">
+                                    <label for="auditcompleted">Audit completed Upto the year<span style="color: red">*</span></label>
+                                    <select
+                                    id="auditcompleted"
+                                    class="form-control"  
+                                    [(ngModel)]="cooperativeSocietyDetails.auditcompleted"
+                                    >
+                                    <option class="dropdown-item" disabled selected value="">-- Select Audit completed Upto the year --</option>
+                                    <option value="1"> 2015-2016</option>
+                                    <option value="2"> 2016-2017</option>
+                                   
+                                    </select>
+                                    </div>
+                                   </div>
+                
+                                   <div class="col-md-3">
+                                    <div class="form-group">
+                                    <label for="profitloss">Profit / Loss<span style="color: red">*</span></label>
+                                    <select
+                                    id="profitloss"
+                                    class="form-control"  
+                                    [(ngModel)]="cooperativeSocietyDetails.profitloss"
+                                    >
+                                    <option class="dropdown-item" disabled selected value="">-- Select Profit / Loss --</option>
+                                    <option value="1"> Profit</option>
+                                    <option value="2"> Loss</option>
+                                   
+                                    </select>
+                                    </div>
+                                   </div>
+                        </div>
+                    </div>
+                </div>
+                <hr style=" border: 1px solid black;">
+                <div class="col-md-12" align="center">
+                  <button
+                  type="button"
+                  class="btn btn-success btn-sm"
+                  (click)="btnSubmit()"
+                  >
+                  SUBMIT
+                  </button> 
+                </div>
+          
+            </div>
+             
+           
+          
+          </div>
+        </div>
+      </div>
+      
+    </div>

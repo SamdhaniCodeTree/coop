@@ -1,0 +1,1021 @@
+<div class="app-content content">
+  <div class="content-overlay"></div>
+  <div class="content-wrapper">
+    <div class="content-header row">
+      <div class="content-header-left col-md-6 col-12">
+        <h3 class="content-header-title mb-0">DMT DETAILS</h3>
+        <div class="row breadcrumbs-top">
+          <!-- <div class="breadcrumb-wrapper col-12">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item">
+                <a class="custom-cursor" routerLink="/dlco">Menu</a>
+              </li>
+              <li class="breadcrumb-item active">
+                <a class="custom-cursor" routerLink="/dlco/SitePreParationDetails"> Calibration Details Verification</a>
+              </li>
+            </ol>
+          </div> -->
+        </div>
+      </div>
+    </div>
+   
+    <div class="content-body">
+
+     
+      <!-- Basic form layout section start -->
+      <section id="basic-form-layouts"  style="padding: 0px 0 !important;">
+        <div class="row match-height">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <div class="form-actions text-center pull-right">
+                  <!-- <button type="reset" class="btn btn-warning mr-1">
+                            <i class="feather icon-x"></i> Cancel
+                          </button> 
+                  <button type="submit" class="btn btn-success" (click)="showsection()">
+                    <i class="fa fa-check-square-o"></i> (+)Add Employee
+                  </button> -->
+                </div>
+              </div>
+
+              <div class="row" >
+                <!-- PENDING -->
+                 <div class="col-md-1"></div>
+                <div class="col mb-4">
+                     
+                  <div
+                    class="stats-card box1 Indent-pending"
+                    (click)="btnDashboardDetails('1')"
+                    [ngClass]="reportType === '1' ? 'active' : ''"
+                  >   
+                
+              
+                    <div class="card-body">
+                      <div class="justify-content-between d-flex">
+                        <div class="stats-text">
+                          <p><small><b>PENDING</b></small></p>
+                          <h5 class="font-weight-bold mb-0" *ngIf="CalibrationCounts.PENDING_COUNT!=null" style="text-align: center;" >
+                            {{CalibrationCounts.PENDING_COUNT}}
+                          </h5><h5 *ngIf="CalibrationCounts.PENDING_COUNT==null">0</h5>
+                        </div>
+                        <div class="circle">
+                          <i class="fas fa-hourglass-half"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                </div>
+              
+                <!-- APPROVED -->
+                <div class="col mb-4">
+                  <div
+                    class="stats-card box2 Indent-success"
+                    (click)="btnDashboardDetails('2')"
+                    [ngClass]="reportType === '2' ? 'active' : ''"
+                  >
+                    
+              
+                    <div class="card-body">
+                      <div class="d-flex justify-content-between">
+                        <div class="stats-text">
+                          <p>
+                            <small><b>APPROVED</b></small>
+                          </p>
+                          <h5 class="font-weight-bold mb-0" *ngIf="CalibrationCounts.APPROVED_COUNT!=null" style="text-align: center;">
+                            {{CalibrationCounts.APPROVED_COUNT}}
+                          </h5><h5 *ngIf="CalibrationCounts.APPROVED_COUNT==null">0</h5>
+                        </div>
+                        <div class="circle">
+                          <i class="fas fa-check-double"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              
+                <!-- REJECTED -->
+                <div class="col mb-4">
+                  <div
+                    class="stats-card box3 Indent-Reject"
+                    (click)="btnDashboardDetails('3')"
+                    [ngClass]="reportType === '3' ? 'active' : ''"
+                  >
+                    
+              
+                    <div class="card-body">
+                      <div class="d-flex justify-content-between">
+                        <div class="stats-text">
+                          <p><small><b>REJECT</b></small></p>
+                          <h5 class="font-weight-bold mb-0" style="text-align: center;">
+                            {{CalibrationCounts.REJECTED_COUNT}}
+                          </h5><h5 *ngIf="CalibrationCounts.REJECTED_COUNT==null">0</h5>
+                        </div>
+                        <div class="circle">
+                          <i class="fas fa-icicles fa-times fa-3x"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>   
+                  
+                </div>
+              
+               <div class="col-md-1"></div>
+              </div>
+              
+              <div class="card-content collapse show" >
+                <div class="card-body">
+                   <p class="Status">{{DetailsView}}</p> 
+                  <div class="col-md-12 table-responsive">
+                  
+                    <table class="table table-bordered">
+                      <thead class="thead-dark">
+
+                        <tr>
+                          <th rowspan="2">S.No.</th>
+
+                          <th rowspan="2">DISTRICT NAME</th>
+                          <th rowspan="2">DIVISION NAME</th>
+                          <th rowspan="2">PACs NAME</th>
+                          <th rowspan="2">INSPECTION DATE</th>
+                          <th colspan="5">MONITOR</th>
+                          <th colspan="4">CPU</th>
+                          <th colspan="4">MOUSE</th>
+                          <th colspan="4">KEY BOARD</th>
+                          <th colspan="4">UPS-2KVA</th>
+                          <th colspan="5">UPS-BATTERY 1</th>
+                          <th colspan="5">UPS-BATTERY 2</th> 
+                          <th colspan="5">MULTI-FUNCTIONAL DEVICE (MFD)</th>
+                          <th colspan="5">VPN DEVICE</th>
+                          <th colspan="5">WEBCAM</th>
+                          <th colspan="5">INTERNET CONNECTIVITY</th>
+                          <th colspan="5">BIOMETRIC SCANNER</th>
+                          <th colspan="5">TAB</th>
+                          <th colspan="5">BLUETOOTH THERMAL PRINTER</th>
+                          <th colspan="5">BARCODE SCANNER</th>
+                          <th colspan="5">POS DEVICE - HAND HELD</th>
+                          <th colspan="5">PASSBOOK PRINTER</th>
+                          <th rowspan="2"> SITE PREPARATION DOC</th>
+                          <th rowspan="2">CEO NAME</th>
+                          <th rowspan="2">CEO CALIBARTION DOC</th>
+                          <th rowspan="2">SUPERVISOR NAME</th>
+                          <th rowspan="2">SUPERVISOR DOC</th>
+                          <th rowspan="2" *ngIf="dmtdochide">DMT DOC</th>
+                          <th rowspan="2" *ngIf="actionStatus">ACTION</th>
+
+                        </tr>
+                        <tr>
+                          
+
+                          <th>AVAILABILITY</th>                            
+                          <th>MAKER</th>
+                          <th>SERVICE NO</th>
+                          <th>MANUFACTURED DATE</th>
+                          <th>IMAGE</th>
+
+                          <th>MAKER</th>
+                          <th>SERVICE NO</th>
+                          <th>MANUFACTURED DATE</th>
+                          <th>IMAGE</th>
+
+                          <th>MAKER</th>
+                          <th>SERVICE NO</th>
+                          <th>MANUFACTURED DATE</th>
+                          <th>IMAGE</th>
+
+                          <th>MAKER</th>
+                          <th>SERVICE NO</th>
+                          <th>MANUFACTURED DATE</th>
+                          <th>IMAGE</th>
+
+                          <th>MAKER</th>
+                          <th>SERVICE NO</th>
+                          <th>MANUFACTURED DATE</th>
+                          <th>IMAGE</th>
+                         
+                          <th>AVAILABILITY</th> 
+                          <th>MAKER</th>
+                          <th>SERVICE NO</th>
+                          <th>MANUFACTURED DATE</th>
+                          <th>IMAGE</th>
+
+                          <th>AVAILABILITY</th> 
+                          <th>MAKER</th>
+                          <th>SERVICE NO</th>
+                          <th>MANUFACTURED DATE</th>
+                          <th>IMAGE</th>
+
+                          <th>AVAILABILITY</th> 
+                          <th>MAKER</th>
+                          <th>SERVICE NO</th>
+                          <th>MANUFACTURED DATE</th>
+                          <th>IMAGE</th>
+
+                          <th>AVAILABILITY</th> 
+                          <th>MAKER</th>
+                          <th>SERVICE NO</th>
+                          <th>MANUFACTURED DATE</th>
+                          <th>IMAGE</th>
+
+                          <th>AVAILABILITY</th> 
+                          <th>MAKER</th>
+                          <th>SERVICE NO</th>
+                          <th>MANUFACTURED DATE</th>
+                          <th>IMAGE</th>
+
+                          <th>AVAILABILITY</th> 
+                          <th>MAKER</th>
+                          <th>SERVICE NO</th>
+                          <th>MANUFACTURED DATE</th>
+                          <th>IMAGE</th>
+
+                          <th>AVAILABILITY</th> 
+                          <th>MAKER</th>
+                          <th>SERVICE NO</th>
+                          <th>MANUFACTURED DATE</th>
+                          <th>IMAGE</th>
+
+                          <th>AVAILABILITY</th> 
+                          <th>MAKER</th>
+                          <th>SERVICE NO</th>
+                          <th>MANUFACTURED DATE</th>
+                          <th>IMAGE</th>
+
+                          <th>AVAILABILITY</th> 
+                          <th>MAKER</th>
+                          <th>SERVICE NO</th>
+                          <th>MANUFACTURED DATE</th>
+                          <th>IMAGE</th>
+
+                          <th>AVAILABILITY</th> 
+                          <th>MAKER</th>
+                          <th>SERVICE NO</th>
+                          <th>MANUFACTURED DATE</th>
+                          <th>IMAGE</th>
+                          <th>AVAILABILITY</th> 
+                          <th>MAKER</th>
+                          <th>SERVICE NO</th>
+                          <th>MANUFACTURED DATE</th>
+                          <th>IMAGE</th>
+                          <th>AVAILABILITY</th> 
+                          <th>MAKER</th>
+                          <th>SERVICE NO</th>
+                          <th>MANUFACTURED DATE</th>
+                          <th>IMAGE</th>
+
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let obj of CalibrationDisList; let i = index">
+                          <td>{{ i + 1 }}</td>                             
+                          <td>{{ obj.DISTRICT_NAME}}</td>
+                          <td>{{ obj.DIVISION_NAME}}</td>
+                          <td>{{ obj.PACS_NAME}}</td>
+                          <td>{{ obj.INSPECTIONDATE}}</td>
+                          <td>{{ obj.ISDESKTOP_AVAILABLE}}</td>
+                          <td>{{ obj.DESKTOPMAKER}}</td>
+                          <td>{{ obj.DESKTOP_SERIALNO}}</td>
+                          <td>{{ obj.DESKTOP_MAN_DATE}}</td>
+                          <td>
+                              <button
+                                type="button"
+                                class="btn btn-link btn-sm"
+                                *ngIf="
+                                  obj.DESKTO_PPHO_UPL !== null &&
+                                  obj.DESKTO_PPHO_UPL !== '' &&
+                                  obj.DESKTO_PPHO_UPL !== undefined
+                                "
+                                (click)="btnPhotoView(obj.DESKTO_PPHO_UPL)"
+                              >
+                                View
+                              </button>
+                              <span
+                                *ngIf="
+                                  obj.DESKTO_PPHO_UPL === null ||
+                                  obj.DESKTO_PPHO_UPL === '' ||
+                                  obj.DESKTO_PPHO_UPL === undefined
+                                "
+                                >{{ obj.DESKTO_PPHO_UPL }}</span
+                              >
+                            </td>
+
+                            <td>{{ obj.CPUMAKER}}</td>
+                            <td>{{ obj.CPU_SNO}}</td>
+                            <td>{{ obj.CPU_MAN_DATE}}</td>
+
+                            <td>
+                              <button
+                                type="button"
+                                class="btn btn-link btn-sm"
+                                *ngIf="
+                                  obj.CPU_PHO_UPL !== null &&
+                                  obj.CPU_PHO_UPL !== '' &&
+                                  obj.CPU_PHO_UPL !== undefined
+                                "
+                                (click)="btnPhotoView(obj.CPU_PHO_UPL)"
+                              >
+                                View
+                              </button>
+                              <span
+                                *ngIf="
+                                  obj.CPU_PHO_UPL === null ||
+                                  obj.CPU_PHO_UPL === '' ||
+                                  obj.CPU_PHO_UPL === undefined
+                                "
+                                >{{ obj.CPU_PHO_UPL }}</span
+                              >
+                            </td>
+
+
+                            <td>{{ obj.MOUSEMAKER}}</td>
+                            <td>{{ obj.MOUSE_SNO}}</td>
+                            <td>{{ obj.MOUSE_MAN_DATE}}</td>
+
+                            <td>
+                              <button
+                                type="button"
+                                class="btn btn-link btn-sm"
+                                *ngIf="
+                                  obj.MOUSE_PHO_UPL !== null &&
+                                  obj.MOUSE_PHO_UPL !== '' &&
+                                  obj.MOUSE_PHO_UPL !== undefined
+                                "
+                                (click)="btnPhotoView(obj.MOUSE_PHO_UPL)"
+                              >
+                                View
+                              </button>
+                              <span
+                                *ngIf="
+                                  obj.MOUSE_PHO_UPL === null ||
+                                  obj.MOUSE_PHO_UPL === '' ||
+                                  obj.MOUSE_PHO_UPL === undefined
+                                "
+                                >{{ obj.MOUSE_PHO_UPL }}</span
+                              >
+                            </td>
+                            <td>{{ obj.KEYBOARDMAKER}}</td>
+                            <td>{{ obj.KEYBOARD_SNO}}</td>
+                            <td>{{ obj.KEYBOARD_MAN_DATE}}</td>
+                            <td>
+                              <button
+                                type="button"
+                                class="btn btn-link btn-sm"
+                                *ngIf="
+                                  obj.KEYBOARD_PHO_UPLOAD !== null &&
+                                  obj.KEYBOARD_PHO_UPLOAD !== '' &&
+                                  obj.KEYBOARD_PHO_UPLOAD !== undefined
+                                "
+                                (click)="btnPhotoView(obj.KEYBOARD_PHO_UPLOAD)"
+                              >
+                                View
+                              </button>
+                              <span
+                                *ngIf="
+                                  obj.KEYBOARD_PHO_UPLOAD === null ||
+                                  obj.KEYBOARD_PHO_UPLOAD === '' ||
+                                  obj.KEYBOARD_PHO_UPLOAD === undefined
+                                "
+                                >{{ obj.KEYBOARD_PHO_UPLOAD }}</span
+                              >
+                            </td>
+
+                            <td>{{ obj.UPSMAKER}}</td>
+                            <td>{{ obj.UPS_SNO}}</td>
+                            <td>{{ obj.UPS_MAN_DATE}}</td>
+                            <td>
+                              <button
+                                type="button"
+                                class="btn btn-link btn-sm"
+                                *ngIf="
+                                  obj.UPSMAKER_PHO_UPL !== null &&
+                                  obj.UPSMAKER_PHO_UPL !== '' &&
+                                  obj.UPSMAKER_PHO_UPL !== undefined
+                                "
+                                (click)="btnPhotoView(obj.UPSMAKER_PHO_UPL)"
+                              >
+                                View
+                              </button>
+                              <span
+                                *ngIf="
+                                  obj.UPSMAKER_PHO_UPL === null ||
+                                  obj.UPSMAKER_PHO_UPL === '' ||
+                                  obj.UPSMAKER_PHO_UPL === undefined
+                                "
+                                >{{ obj.UPSMAKER_PHO_UPL }}</span
+                              >
+                            </td>
+
+
+                            <td>{{ obj.IS_UPS1KVA}}</td>
+                            <td>{{ obj.UPS1KVA_MAKER}}</td>
+                            <td>{{ obj.UPS1KVA_SNO}}</td>
+                            <td>{{ obj.UPS1KVA_MAN_DATE}}</td>
+                            <td >
+                              <button
+                                type="button"
+                                class="btn btn-link btn-sm"
+                                *ngIf="
+                                  obj.UPS1KVA_IMAGE !== null &&
+                                  obj.UPS1KVA_IMAGE !== '' &&
+                                  obj.UPS1KVA_IMAGE !== undefined
+                                "
+                                (click)="btnPhotoView(obj.UPS1KVA_IMAGE)"
+                              >
+                                View
+                              </button>
+                              <span
+                                *ngIf="
+                                  obj.UPS1KVA_IMAGE === null ||
+                                  obj.UPS1KVA_IMAGE === '' ||
+                                  obj.UPS1KVA_IMAGE === undefined
+                                "
+                                >{{ obj.UPS1KVA_IMAGE }}</span
+                              >
+                            </td>
+
+
+                            <td>{{ obj.IS_BATTERY}}</td>
+                            <td>{{ obj.BATTERY_MAKER }}</td>
+                            <td>{{ obj.BATTERY_SNO}}</td>
+                            <td>{{ obj.BATTERYKVA_MAN_DATE}}</td>
+                            <td>
+                              <button
+                                type="button"
+                                class="btn btn-link btn-sm"
+                                *ngIf="
+                                  obj.BATTERY_IMAGE !== null &&
+                                  obj.BATTERY_IMAGE !== '' &&
+                                  obj.BATTERY_IMAGE !== undefined
+                                "
+                                (click)="btnPhotoView(obj.BATTERY_IMAGE)"
+                              >
+                                View
+                              </button>
+                              <span
+                                *ngIf="
+                                  obj.BATTERY_IMAGE === null ||
+                                  obj.BATTERY_IMAGE === '' ||
+                                  obj.BATTERY_IMAGE === undefined
+                                "
+                                >{{ obj.BATTERY_IMAGE }}</span
+                              >
+                            </td>
+
+                            <td>{{ obj.IS_24PIN80COLMAT_PRI}}</td>
+                            <td>{{ obj.MATRIX_PRI_MAKER}}</td>
+                            <td>{{ obj.MATRIX_PRIN_SNO}}</td>
+                            <td>{{ obj.MATRIX_PRIN_MAN_DATE}}</td>
+                            <td>
+                              <button
+                                type="button"
+                                class="btn btn-link btn-sm"
+                                *ngIf="
+                                  obj.MATRIX_PRIN_IMAGE !== null &&
+                                  obj.MATRIX_PRIN_IMAGE !== '' &&
+                                  obj.MATRIX_PRIN_IMAGE !== undefined
+                                "
+                                (click)="btnPhotoView(obj.MATRIX_PRIN_IMAGE)"
+                              >
+                                View
+                              </button>
+                              <span
+                                *ngIf="
+                                  obj.MATRIX_PRIN_IMAGE === null ||
+                                  obj.MATRIX_PRIN_IMAGE === '' ||
+                                  obj.MATRIX_PRIN_IMAGE === undefined
+                                "
+                                >{{ obj.MATRIX_PRIN_IMAGE }}</span
+                              >
+                            </td>
+
+
+
+                            <td>{{ obj.IS_SCANER}}</td>
+                           
+                            <td>{{ obj.MATRIX_SCANERMAKER}}</td>
+                            <td>{{ obj.MATRIX_SCANER_SNO}}</td>
+                            <td>{{ obj.MATRIX_SCANER_MAN_DATE }}</td>
+                            <td>
+                              <button
+                                type="button"
+                                class="btn btn-link btn-sm"
+                                *ngIf="
+                                  obj.MATRIX_SCANERIMAGE !== null &&
+                                  obj.MATRIX_SCANERIMAGE !== '' &&
+                                  obj.MATRIX_SCANERIMAGE !== undefined
+                                "
+                                (click)="btnPhotoView(obj.MATRIX_SCANERIMAGE)"
+                              >
+                                View
+                              </button>
+                              <span
+                                *ngIf="
+                                  obj.MATRIX_SCANERIMAGE === null ||
+                                  obj.MATRIX_SCANERIMAGE === '' ||
+                                  obj.MATRIX_SCANERIMAGE === undefined
+                                "
+                                >{{ obj.MATRIX_SCANERIMAGE }}</span
+                              >
+                            </td>
+
+
+                            <td>{{ obj.IS_WEBCAM}}</td>
+                           
+                            <td>{{ obj.MATRIX_WEBCAM_MAKER}}</td>
+                            <td>{{ obj.MATRIX_WEBCAM_SNO}}</td>
+                            <td>{{ obj.WEBCAM_MAN_DATE }}</td>
+                            <td>
+                              <button
+                                type="button"
+                                class="btn btn-link btn-sm"
+                                *ngIf="
+                                  obj.WEBCAM_IMGAGE !== null &&
+                                  obj.WEBCAM_IMGAGE !== '' &&
+                                  obj.WEBCAM_IMGAGE !== undefined
+                                "
+                                (click)="btnPhotoView(obj.WEBCAM_IMGAGE)"
+                              >
+                                View
+                              </button>
+                              <span
+                                *ngIf="
+                                  obj.WEBCAM_IMGAGE === null ||
+                                  obj.WEBCAM_IMGAGE === '' ||
+                                  obj.WEBCAM_IMGAGE === undefined
+                                "
+                                >{{ obj.WEBCAM_IMGAGE }}</span
+                              >
+                            </td>
+
+
+                           
+
+
+
+                            <td>{{ obj.INTERNET_DEVICE}}</td>
+                           
+                            <td>{{ obj.INTERNET_DEV_MAKER}}</td>
+                            <td>{{ obj.INTERNET_DEV_SNO}}</td>
+                            <td>{{ obj.INTERNET_DEV_MAN_DATE }}</td>
+                            <td>
+                              <button
+                                type="button"
+                                class="btn btn-link btn-sm"
+                                *ngIf="
+                                  obj.DONGLEORMODEMIMAGE !== null &&
+                                  obj.DONGLEORMODEMIMAGE !== '' &&
+                                  obj.DONGLEORMODEMIMAGE !== undefined
+                                "
+                                (click)="btnPhotoView(obj.DONGLEORMODEMIMAGE)"
+                              >
+                                View
+                              </button>
+                              <span
+                                *ngIf="
+                                  obj.DONGLEORMODEMIMAGE === null ||
+                                  obj.DONGLEORMODEMIMAGE === '' ||
+                                  obj.DONGLEORMODEMIMAGE === undefined
+                                "
+                                >{{ obj.DONGLEORMODEMIMAGE }}</span
+                              >
+                            </td>
+
+                            <td>{{ obj.IS_BIO_SCANNER}}</td>                             
+                            <td>{{ obj.BIO_METRIC_SCA_MAKER}}</td>
+                            <td>{{ obj.BIO_METRIC_SCA_SNO}}</td>
+                            <td>{{ obj.BIO_METRIC_SCA_MAN_DATE }}</td>
+                            <td>
+                              <button
+                                type="button"
+                                class="btn btn-link btn-sm"
+                                *ngIf="
+                                  obj.BIO_METRIC_SCA_IMAGE !== null &&
+                                  obj.BIO_METRIC_SCA_IMAGE !== '' &&
+                                  obj.BIO_METRIC_SCA_IMAGE !== undefined
+                                "
+                                (click)="btnPhotoView(obj.BIO_METRIC_SCA_IMAGE)"
+                              >
+                                View
+                              </button>
+                              <span
+                                *ngIf="
+                                  obj.BIO_METRIC_SCA_IMAGE === null ||
+                                  obj.BIO_METRIC_SCA_IMAGE === '' ||
+                                  obj.BIO_METRIC_SCA_IMAGE === undefined
+                                "
+                                >{{ obj.BIO_METRIC_SCA_IMAGE }}</span
+                              >
+                            </td>
+
+
+
+                            <td>{{ obj.IS_TABLET}}</td>                             
+                            <td>{{ obj.TABLET_MAKER}}</td>
+                            <td>{{ obj.TABLET_SNO}}</td>
+                            <td>{{ obj.TABLET_DATE }}</td>
+                            <td>
+                              <button
+                                type="button"
+                                class="btn btn-link btn-sm"
+                                *ngIf="
+                                  obj.TABLET_IMAGE !== null &&
+                                  obj.TABLET_IMAGE !== '' &&
+                                  obj.TABLET_IMAGE !== undefined
+                                "
+                                (click)="btnPhotoView(obj.TABLET_IMAGE)"
+                              >
+                                View
+                              </button>
+                              <span
+                                *ngIf="
+                                  obj.TABLET_IMAGE === null ||
+                                  obj.TABLET_IMAGE === '' ||
+                                  obj.TABLET_IMAGE === undefined
+                                "
+                                >{{ obj.TABLET_IMAGE }}</span
+                              >
+                            </td>
+                            
+                            <td>{{ obj.IS_BLUE_THERMAL_PRIN}}</td>                             
+                            <td>{{ obj.BLUE_THERMAL_PRIN_MAKER}}</td>
+                            <td>{{ obj.BLUE_THERMAL_PRIN_SNO}}</td>
+                            <td>{{ obj.BLUE_THERMAL_PRIN_DATE }}</td>
+                            <td>
+                              <button
+                                type="button"
+                                class="btn btn-link btn-sm"
+                                *ngIf="
+                                  obj.BLUE_THERMAL_PRIN_IMG !== null &&
+                                  obj.BLUE_THERMAL_PRIN_IMG !== '' &&
+                                  obj.BLUE_THERMAL_PRIN_IMG !== undefined
+                                "
+                                (click)="btnPhotoView(obj.BLUE_THERMAL_PRIN_IMG)"
+                              >
+                                View
+                              </button>
+                              <span
+                                *ngIf="
+                                  obj.BLUE_THERMAL_PRIN_IMG === null ||
+                                  obj.BLUE_THERMAL_PRIN_IMG === '' ||
+                                  obj.BLUE_THERMAL_PRIN_IMG === undefined
+                                "
+                                >{{ obj.BLUE_THERMAL_PRIN_IMG }}</span
+                              >
+                            </td>
+
+                            <td>{{ obj.IS_BARCODESCA}}</td>                             
+                            <td>{{ obj.BARCODE_SCA_MAKER}}</td>
+                            <td>{{ obj.BARCODE_SCA_SNO}}</td>
+                            <td>{{ obj.BARCODE_SCA_DATE }}</td>
+                            <td>
+                              <button
+                                type="button"
+                                class="btn btn-link btn-sm"
+                                *ngIf="
+                                  obj.BARCODE_SCA_IMAGE !== null &&
+                                  obj.BARCODE_SCA_IMAGE !== '' &&
+                                  obj.BARCODE_SCA_IMAGE !== undefined
+                                "
+                                (click)="btnPhotoView(obj.BARCODE_SCA_IMAGE)"
+                              >
+                                View
+                              </button>
+                              <span
+                                *ngIf="
+                                  obj.BARCODE_SCA_IMAGE === null ||
+                                  obj.BARCODE_SCA_IMAGE === '' ||
+                                  obj.BARCODE_SCA_IMAGE === undefined
+                                "
+                                >{{ obj.BARCODE_SCA_IMAGE }}</span
+                              >
+                            </td>
+
+                            <td>{{ obj.IS_POSDEV}}</td>                             
+                            <td>{{ obj.POS_DEV_MAKER}}</td>
+                            <td>{{ obj.POS_DEV_SNO}}</td>
+                            <td>{{ obj.POS_DEV_DATE }}</td>
+                            <td>
+                              <button
+                                type="button"
+                                class="btn btn-link btn-sm"
+                                *ngIf="
+                                  obj.POS_DEV_IMAGE !== null &&
+                                  obj.POS_DEV_IMAGE !== '' &&
+                                  obj.POS_DEV_IMAGE !== undefined
+                                "
+                                (click)="btnPhotoView(obj.POS_DEV_IMAGE)"
+                              >
+                                View
+                              </button>
+                              <span
+                                *ngIf="
+                                  obj.POS_DEV_IMAGE === null ||
+                                  obj.POS_DEV_IMAGE === '' ||
+                                  obj.POS_DEV_IMAGE === undefined
+                                "
+                                >{{ obj.POS_DEV_IMAGE }}</span
+                              >
+                            </td>
+
+                            <td>{{ obj.IS_PASSBOOK_PRIN}}</td>                             
+                            <td>{{ obj.PB_PRIN_MAKER}}</td>
+                            <td>{{ obj.PB_PRIN_SNO}}</td>
+                            <td>{{ obj.PB_PRIN_DATE }}</td>
+                            <td>
+                              <button
+                                type="button"
+                                class="btn btn-link btn-sm"
+                                *ngIf="
+                                  obj.PB_PRIN_IMAGE !== null &&
+                                  obj.PB_PRIN_IMAGE !== '' &&
+                                  obj.PB_PRIN_IMAGE !== undefined
+                                "
+                                (click)="btnPhotoView(obj.PB_PRIN_IMAGE)"
+                              >
+                                View
+                              </button>
+                              <span
+                                *ngIf="
+                                  obj.PB_PRIN_IMAGE === null ||
+                                  obj.PB_PRIN_IMAGE === '' ||
+                                  obj.PB_PRIN_IMAGE === undefined
+                                "
+                                >{{ obj.PB_PRIN_IMAGE }}</span
+                              >
+                            </td>
+
+                           
+                            <!-- <td>{{ obj.IS_ELE_WEIGHTSCALE}}</td>
+                            <td>{{ obj.ELE_WEIGHT_SCALEMAKER}}</td>
+                            <td>{{ obj.ELE_WEIGHT_SCALE_SNO}}</td>
+                            <td>{{ obj.ELE_WEIGHT_MAN_DATE}}</td>
+                            
+                            <td>
+                              <button
+                                type="button"
+                                class="btn btn-link btn-sm"
+                                *ngIf="
+                                  obj.ELE_WEIGHT_IMAGE !== null &&
+                                  obj.ELE_WEIGHT_IMAGE !== '' &&
+                                  obj.ELE_WEIGHT_IMAGE !== undefined
+                                "
+                                (click)="btnPhotoView(obj.ELE_WEIGHT_IMAGE)"
+                              >
+                                View
+                              </button>
+                              <span
+                                *ngIf="
+                                  obj.ELE_WEIGHT_IMAGE === null ||
+                                  obj.ELE_WEIGHT_IMAGE === '' ||
+                                  obj.ELE_WEIGHT_IMAGE === undefined
+                                "
+                                >{{ obj.ELE_WEIGHT_IMAGE }}</span
+                              >
+                            </td> -->
+                            <td>
+                              <button
+                                type="button"
+                                class="btn btn-link btn-sm"
+                                *ngIf="
+                                  obj.SITE_DOC !== null &&
+                                  obj.SITE_DOC !== '' &&
+                                  obj.SITE_DOC !== undefined
+                                "
+                                (click)="btnPDFView1(obj.SITE_DOC)"
+                              >
+                                View
+                              </button>
+                              <span
+                                *ngIf="
+                                  obj.SITE_DOC === null ||
+                                  obj.SITE_DOC === '' ||
+                                  obj.SITE_DOC === undefined
+                                "
+                                >N/A</span
+                              >
+                            </td>
+ 
+<td>{{ obj.CEO_NAME}}</td>
+<td>
+<button
+  type="button"
+  class="btn btn-link btn-sm"
+  *ngIf="
+    obj.CALI_DOC !== null &&
+    obj.CALI_DOC !== '' &&
+    obj.CALI_DOC !== undefined
+  "
+  (click)="btnPDFView(obj.CALI_DOC)"
+>
+  View
+</button>
+<span
+  *ngIf="
+    obj.CALI_DOC === null ||
+    obj.CALI_DOC === '' ||
+    obj.CALI_DOC === undefined
+  "
+  >N/A</span
+>
+</td>  
+<td>{{ obj.SUPERVISOR_NAME}}</td>
+<td>
+<button
+  type="button"
+  class="btn btn-link btn-sm"
+  *ngIf="
+    obj.SUPERVISOR_DOC !== null &&
+    obj.SUPERVISOR_DOC !== '' &&
+    obj.SUPERVISOR_DOC !== undefined
+  "
+  (click)="btnPDFView1(obj.SUPERVISOR_DOC)"
+>
+  View
+</button>
+<span
+  *ngIf="
+    obj.SUPERVISOR_DOC === null ||
+    obj.SUPERVISOR_DOC === '' ||
+    obj.SUPERVISOR_DOC === undefined
+  "
+  >N/A</span
+>
+</td>
+<td  *ngIf="dmtdochide">
+<button
+  type="button"
+  class="btn btn-link btn-sm"
+  *ngIf="
+    obj.DMT_DOC !== null &&
+    obj.DMT_DOC !== '' &&
+    obj.DMT_DOC !== undefined
+  "
+  (click)="btnPDFView1(obj.DMT_DOC)"
+>
+  View
+</button>
+<span
+  *ngIf="
+    obj.DMT_DOC === null ||
+    obj.DMT_DOC === '' ||
+    obj.DMT_DOC === undefined
+  "
+  >N/A</span
+>
+</td>
+
+
+
+
+<!-- <td>{{ obj.PACS_NAME}}</td> -->
+                            
+
+                          <td class="d-flex justify-content-center pb-5" *ngIf="actionStatus" >
+                              
+                              <a style="cursor: pointer; text-decoration: underline; font-size: 15px;" title="Approved Records" class="text-success btn btn-sm bg-white" (click)="Approveddetails(obj)"><span><i
+                                  class="fa fa-check"></i>
+                              </span></a>  &nbsp; 
+                              <a style="cursor: pointer; text-decoration: underline; font-size: 15px;" title="Rejected Records" class="text-danger btn btn-sm bg-white" (click)="Rejectdetails(obj)"><span><i
+                                  class="fa fa-close"></i>
+                              </span></a>
+                          </td>
+                          
+                        </tr>
+                      </tbody>
+
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    
+      
+     
+    </div>
+  </div>
+</div>
+
+<div class="popup-modal" *ngIf="showaprovedPopup" >
+  <div class="popup-content" style="min-width: 75%">
+    <div class="popup-header">
+      <h4 class="title" > Site Preparation Details Reject</h4>
+      <a
+        type="button"
+        class="close"
+          
+        style="cursor: pointer"
+      >
+        <span (click)="onClear()">×</span>
+      </a>
+    </div>
+
+    <div class="popup-body" style="max-height:500px; overflow-y: auto;">
+      <div class="row justify-content-center align-items-center">
+
+       <div class="col-md-12 row">
+          <div class="col-md-2"></div>
+          <div class="col-md-8">
+          <label for="stockpoint"
+          >Remarks <span style="color: red">*</span></label>
+          <textarea type="text" class="form-control" [(ngModel)]="Remrks"></textarea>
+       </div>
+           
+       
+      </div>
+     
+
+<br>
+      <div class="row">
+        
+
+        
+
+       
+      </div>
+      <div class="popup-footer justify-content-center">
+        <button 
+          type="button"
+          class="btn btn-sm btn-success text-white"
+          (click)="btnSubmitDetails()"
+        >
+          SUBMIT
+        </button>
+      </div>
+    </div>
+  </div>
+</div> 
+</div>  
+
+
+<div class="popup-modal" *ngIf="showapprovedPopup" >
+  <div class="popup-content" style="min-width: 75%">
+    <div class="popup-header">
+      <h4 class="title" > Site Preparation Details</h4>
+      <a
+        type="button"
+        class="close"
+          
+        style="cursor: pointer"
+      >
+        <span (click)="onClear1()">×</span>
+      </a>
+    </div>
+
+    <div class="popup-body" style="max-height:500px; overflow-y: auto;">
+      <div class="row justify-content-center align-items-center">
+
+
+        <div class="col-md-12 row" >
+          <div class="col-md-2"><button
+            type="button"
+            class="btn btn-info btn-sm"
+            (click)="btnPDF()"
+          >
+            Download PDF File
+          </button> </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="giftAndDeedPhotoUpload"
+                >PDF file Upload <span style="color: red">*</span>
+              </label>
+              <input
+                type="file"
+                class="form-control p-0"
+                id="giftAndDeedPhotoUpload"
+                (change)="onpdffileChange($event)"
+                accept="pdf/*"
+                autocomplete="off"
+              />
+            </div>
+          </div>
+
+        
+           
+       
+      </div>
+     
+
+<br>
+      <div class="row">
+        
+
+        
+
+       
+      </div>
+      <div class="popup-footer justify-content-center">
+        <button 
+          type="button"
+          class="btn btn-sm btn-success text-white"
+          (click)="Certificateupload()"
+        >
+          SUBMIT
+        </button>
+      </div>
+    </div>
+  </div>
+</div> 
+</div>

@@ -1,0 +1,529 @@
+
+<div class="app-content content">
+    <div class="content-overlay"></div>
+    <div class="content-wrapper">
+      <div class="content-header row">
+        <div class="content-header-left col-md-6 col-12">
+          <h3 class="content-header-title mb-0">Site Inspection Status</h3>
+          <div class="row breadcrumbs-top">
+            <div class="breadcrumb-wrapper col-12">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                  <a class="custom-cursor" routerLink="/dllic">Menu</a>
+                </li>
+                <li class="breadcrumb-item active">
+                  <a class="custom-cursor" routerLink="/dllic/VillageStatus"
+                    >Site Inspection Status</a
+                  >
+                </li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="content-body">
+        <!-- Basic form layout section start -->
+         
+          <div class="row match-height">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header"></div>
+                <div class="card-content collapse show">
+                  <div class="card-body">
+                    <div class="form">
+                      <div class="form-body">
+                        <h4 class="form-section">
+                          <i class="feather icon-user"></i> Site Inspection Status
+                        </h4>
+                        <div class="row">
+                            <div class="col-md-4">
+                              <div class="form-group">
+                                <label for="divisionId"
+                                  >Division <span class="text-danger">*</span></label
+                                >
+                          
+                                <select
+                                  id="divisionId"
+                                  name="divisionId"
+                                  class="form-control"
+                                  [(ngModel)]="siteInspectionReq.divisionId"
+                                  (change)="loadDivisionChange()"
+                                >
+                                  <option value="">-- SELECT DIVISION --</option>
+                                  <option
+                                    *ngFor="let obj of divisionList"
+                                    value="{{ obj.DIVISION_CODE }}"
+                                  >
+                                    {{ obj.DIVISION_NAME }}
+                                  </option>
+                                </select>
+                              </div>
+                            </div>
+                            <div class="col-md-4">
+                              <div class="form-group">
+                                <label for="mandalId">Mandal <span class="text-danger">*</span></label>
+                          
+                                <select
+                                  id="mandalId"
+                                  name="mandalId"
+                                  class="form-control"
+                                  [(ngModel)]="siteInspectionReq.mandalId"
+                                  (change)="onMandalChange()"
+                                >
+                                  <option value="">-- SELECT MANDAL --</option>
+                                  <option *ngFor="let obj of mandalList" value="{{ obj.MANDAL_CODE }}">
+                                    {{ obj.MANDAL_NAME }}
+                                  </option>
+                                </select>
+                              </div>
+                            </div>
+                          
+                            <div class="col-md-4">
+                              <div class="form-group">
+                                <label for="pacsId">PACS <span class="text-danger">*</span></label>
+                          
+                                <select
+                                  id="pacsId"
+                                  name="pacsId"
+                                  class="form-control"
+                                  [(ngModel)]="siteInspectionReq.pacsId"
+                                  (change)="onPACChange()"
+                                >
+                                  <option value="">-- SELECT PAC --</option>
+                                  <option *ngFor="let obj of pacsList" value="{{ obj.PACS_CODE }}">
+                                    {{ obj.PACS_NAME }}
+                                  </option>
+                                </select>
+                              </div>
+                            </div>
+                            <div class="col-md-4">
+                              <div class="form-group">
+                                <label for="villageId">Village <span class="text-danger">*</span></label>
+                          
+                                <select
+                                  id="villageId"
+                                  name="villageId"
+                                  class="form-control"
+                                  [(ngModel)]="siteInspectionReq.villageId"
+                                  (change)="onVillageChange()"
+                                >
+                                  <option value="">-- SELECT VILLAGE --</option>
+                                  <option *ngFor="let obj of villageList" value="{{ obj.VILLAGE_CODE }}">
+                                    {{ obj.VILLAGE_NAME }}
+                                  </option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                          
+                          <div >
+                            <br>
+                            <br>
+                            <br>
+                            <div
+                            class="col-md-12 table-responsive"
+                            [hidden]="villageLevelDetails.length < 1"
+                          >
+                            <table
+                            class="table table-bordered"
+                             
+                            >
+                              <thead class="thead-dark">
+                                
+                                <tr>
+                                  <th>S.No.</th>
+                                  <th>PACS NAME</th>
+                                  <th>VILLAGE NAME</th>
+                                  <th>RBK NAME</th>
+                                  <th>INSPECTION STATUS</th>
+                                  <th>FOUNDATION STATUS</th>
+                                  <th>STRUCTURE STATUS</th>
+                                  <th>FINISHING STATUS</th>
+                                  <th>HANDING OVER CERTIFICATE</th>
+                                  <th>HANDOVER DOCUMENT SIGNED COPY UPLOAD</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr *ngFor="let obj of villageLevelDetails; let i = index">
+                                  <td>{{ i + 1 }}</td>
+                                 
+                                  <td>{{ obj.PACS_NAME }}</td>
+                                  <td>{{ obj.VILLAGE_NAME }}</td>
+                                  <td>{{ obj.RBK_NAME }}</td>
+                                  <td>
+                                    <a
+                                      *ngIf="obj.INSPECTION_CODE !== 0"
+                                      style="cursor: pointer; text-decoration: underline"
+                                      class="text-primary"
+                                      (click)="detaillevelinspection(obj)"
+                                      ><b>{{ obj.INSPECTION }}</b></a
+                                    >
+                                    <span *ngIf="obj.INSPECTION_CODE === 0">{{
+                                      obj.INSPECTION
+                                    }}</span>
+                                  </td>
+                                  <td>
+                                    <a
+                                    
+                                    *ngIf="obj.INSPECTION_CODE !== 0"
+                                      style="cursor: pointer; text-decoration: underline"
+                                      class="text-primary"
+                                      (click)="detaillevelfoundation(obj)"
+                                      ><b>{{ obj.FOUNDATION }}</b></a
+                                    >
+                                    
+                                  </td>
+                                  <td>
+                                    <a
+                                      *ngIf="obj.STRUCTURE_CODE !== 0"
+                                      style="cursor: pointer; text-decoration: underline"
+                                      class="text-primary"
+                                      (click)="detaillevelstructure(obj)"
+                                      ><b>{{ obj.STRUCTURE }}</b></a
+                                    >
+                                    <span *ngIf="obj.STRUCTURE_CODE === 0">{{
+                                      obj.STRUCTURE
+                                    }}</span>
+                                  </td>
+                                  <td>
+                                    <a
+                                      *ngIf="obj.FINISHING_CODE !== 0"
+                                      style="cursor: pointer; text-decoration: underline"
+                                      class="text-primary"
+                                      (click)="detaillevelfinishingstructure(obj)"
+                                      ><b>{{ obj.FINISHING }}</b></a
+                                    >
+                                    <span *ngIf="obj.FINISHING_CODE === 0">{{
+                                      obj.FINISHING
+                                    }}</span>
+                                  </td>
+                                  <td><a *ngIf="obj.FINISHING==='COMPLETED' "
+                                     
+                                    style="cursor: pointer; text-decoration: underline"
+                                    class="text-primary"
+                                    (click)="handovercertificate(obj)"
+                                    ><b>Certificate</b></a
+                                  >
+                                  <span *ngIf="obj.FINISHING!=='COMPLETED'" >N/A</span></td>
+
+                                  <td>
+                                    <a *ngIf="obj.FINISHING==='COMPLETED' && obj.FILE_PATH==='0'"
+                                     
+                                    style="cursor: pointer; text-decoration: underline"
+                                    class="btn btn-success"
+                                    (click)="uploadcertificate(obj)"
+                                    ><b>Upload</b></a
+                                  >
+                                  <a *ngIf="obj.FINISHING==='COMPLETED' && obj.FILE_PATH!=='0'"
+                                     
+                                  style="cursor: pointer; text-decoration: underline"
+                                  class="btn btn-info"
+                                  (click)="btnPdfView(obj.FILE_PATH)"
+                                  ><b>View</b></a>
+                                 
+                                </tr>
+                              </tbody>
+                               
+                            </table>
+                          </div>
+                          
+                         
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+       
+      </div>
+    </div>
+  </div>
+
+  <div class="popup-modal" *ngIf="possessionHandOverPopUp">
+    <div class="popup-content">
+      <div class="popup-header">
+        <h4 class="title"> HAND OVER DETAILS CERTIFICATE</h4>
+        <a
+          type="button"
+          class="close"
+          (click)="possessionHandOverPopUp = false"
+          style="cursor: pointer"
+        >
+          <span>×</span>
+        </a>
+      </div>
+  
+      <div class="popup-body">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-md-12 row">
+            
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="measurements">
+                  Measurements <span style="color: red">*</span>
+                </label>
+                <input
+                  id="measurements"
+                  type="text"
+                  class="form-control"
+                  [(ngModel)]="LandAllocateData.measurements"
+                  placeholder="Please Enter Measurements"
+                  maxlength="30"
+                  autocomplete="off"
+                />
+              </div>
+
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="aera">
+                  Aera
+                  <span style="color: red">*</span>
+                </label>
+                <input
+                  id="aera"
+                  type="text"
+                  class="form-control"
+                  [(ngModel)]="LandAllocateData.aera"
+                  placeholder="Please Enter Land Aera"
+                  maxlength="5"
+                  NumbersOnly
+                  [allowDecimals]="false"
+                  [allowSign]="false"
+                  autocomplete="off"
+                />
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="Shutters ">
+                  Shutters 
+                  <span style="color: red">*</span>
+                </label>
+                <input
+                  id="Shutters "
+                  type="text"
+                  class="form-control"
+                  [(ngModel)]="LandAllocateData.Shutters "
+                  placeholder="Please Enter Shutters"
+                  maxlength="5"
+                  autocomplete="off"
+                />
+              </div>
+              </div>
+              <div class="col-md-6">
+              <div class="form-group">
+                <label for="MSDoors">
+                  M.S Doors 
+                  <span style="color: red">*</span>
+                </label>
+                <input
+                  id="MSDoors"
+                  type="text"
+                  class="form-control"
+                  [(ngModel)]="LandAllocateData.MSDoors"
+                  placeholder="Please Enter Possession Handover By Designation"
+                  maxlength="5"
+                  autocomplete="off"
+                />
+              </div>
+              </div>
+              <div class="col-md-6">
+              <div class="form-group">
+                <label for="agreementNo ">
+                  Agreement Numbers 
+                  <span style="color: red">*</span>
+                </label>
+                <input
+                  id="agreementNo"
+                  type="text"
+                  class="form-control"
+                  [(ngModel)]="LandAllocateData.agreementNo"
+                  placeholder="Please Enter Possession Handover By Designation"
+                  maxlength="30"
+                  autocomplete="off"
+                />
+              </div>
+              </div>
+              <div class="col-md-6">
+              <div class="form-group">
+                <label for="inspectiondate">
+                  Date
+                  <span style="color: red">*</span>
+                </label>
+                <input type="text" placeholder="DD-MM-YYYY" class="form-control"
+                [(ngModel)]="inspectiondate" [maxDate]="maxDate" placement="left" container="" [bsConfig]="bsDatepickerConfig" bsDatepicker>
+
+              </div>
+              </div>
+              <div class="col-md-6">
+              <div class="form-group">
+                <label for="handOverByName">
+                  Possession Handover By Name <span style="color: red">*</span>
+                </label>
+                <input
+                  id="handOverByName"
+                  type="text"
+                  class="form-control"
+                  [(ngModel)]="LandAllocateData.handOverByName"
+                  placeholder="Please Enter Possession Handover By Name"
+                  maxlength="30"
+                  autocomplete="off"
+                />
+              </div>
+</div>
+<div class="col-md-6">
+              <div class="form-group">
+                <label for="handOverByDesig">
+                  Possession Handover By Designation
+                  <span style="color: red">*</span>
+                </label>
+                <input
+                  id="handOverByDesig"
+                  type="text"
+                  class="form-control"
+                  [(ngModel)]="LandAllocateData.handOverByDesig"
+                  placeholder="Please Enter Possession Handover By Designation"
+                  maxlength="20"
+                  autocomplete="off"
+                />
+              </div>
+              </div>
+              
+              <div class="col-md-6">
+              <div class="form-group">
+                <label for="takenOverByName">
+                   Name <span style="color: red">*</span>
+                </label>
+                <input
+                  id="takenOverByName"
+                  type="text"
+                  class="form-control"
+                  [(ngModel)]="LandAllocateData.takenOverByName"
+                  placeholder="Please Enter   By Name"
+                  maxlength="30"
+                  autocomplete="off"
+                />
+              </div>
+              </div>
+              <div class="col-md-6">
+              <div class="form-group">
+                <label for="takenOverByDesig">
+                    Designation
+                  <span style="color: red">*</span>
+                </label>
+                <input
+                  id="takenOverByDesig"
+                  type="text"
+                  class="form-control"
+                  [(ngModel)]="LandAllocateData.takenOverByDesig"
+                  placeholder="Please Enter   By Designation"
+                  maxlength="20"
+                  autocomplete="off"
+                />
+              </div>
+              </div>
+
+
+
+              <div class="form-group center">
+                <button
+            type="button"
+            class="btn btn-outline-success btn-sm btn-rounded"
+            (click)="btnPDFDownload()"
+          >
+            UPDATE
+          </button>
+          <button
+            type="button"
+            class="btn btn-outline-danger btn-sm btn-rounded"
+            (click)="possessionHandOverPopUp = false"
+          >
+            Close
+          </button>
+              </div>
+             
+            
+          </div>
+        </div>
+      </div>   
+    </div>
+  </div>
+
+  <div class="popup-modal" *ngIf="UploadHandOverPopUp">
+    <div class="popup-content">
+      <div class="popup-header">
+        <h4 class="title"> HAND OVER DETAILS CERTIFICATE UPLOAD</h4>
+        <a
+          type="button"
+          class="close"
+          (click)="UploadHandOverPopUp = false"
+          style="cursor: pointer"
+        >
+          <span>×</span>
+        </a>
+      </div>
+  
+      <div class="popup-body">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-md-12">
+            
+             
+              <div class="form-group">
+                <label for="measurements">
+                  HAND OVER CERTIFICATE <span style="color: red">*</span>
+                </label>
+                <input
+              type="file"
+              class="form-control p-0"
+              id="handovercertificateupload"
+              (change)="onAllotmentOrderChange($event)"
+              accept="application/pdf"
+              autocomplete="off"
+            />
+              </div>
+
+             
+ 
+           
+              <!-- <div class="form-group">
+                <label for="positionTakenDate">
+                  Possession Taken Date <span style="color: red">*</span>
+                </label>
+                <input type="text" placeholder="DD-MM-YYYY" class="form-control"
+                                  [(ngModel)]="positionTakenDate" [maxDate]="maxDate" placement="bottom" container="" [bsConfig]="bsDatepickerConfig" bsDatepicker>
+                 
+              </div>
+            </div> -->
+             
+              
+              
+
+
+
+              <div class="form-group center">
+                <button
+            type="button"
+            class="btn btn-outline-success btn-sm btn-rounded"
+            (click)="btnsubmit()"
+          >
+            UPDATE
+          </button>
+          <button
+            type="button"
+            class="btn btn-outline-danger btn-sm btn-rounded"
+            (click)="possessionHandOverPopUp = false"
+          >
+            Close
+          </button>
+              </div>
+             
+            
+          </div>
+        </div>
+      </div>   
+    </div>
+  </div>
+  
+

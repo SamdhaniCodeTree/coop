@@ -1,0 +1,59 @@
+<div class="col-md-12">
+    <button type="button" class="btn btn-sm btn-success pull-right" (click)="btnExcelDownload()">
+      <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+      DOWNLOAD EXCEL
+    </button>
+
+   
+   <label for="fromDate">
+    From Date :
+    <span class="text-success">
+      <b> {{ fromDate }}</b>
+    </span>
+  </label>&nbsp;&nbsp;&nbsp;
+  <label for="toDate">
+    To Date :
+    <span class="text-success">
+      <b> {{ toDate }}</b>
+    </span>
+  </label>&nbsp;&nbsp;&nbsp;
+  <label *ngIf="disthide">DISTRICT NAME : <b class="text-success">&nbsp; {{districtName}}</b> </label> 
+   <label *ngIf="dccbhide">DCCB NAME : <b class="text-success">&nbsp; {{dccbName}}</b> </label> 
+  </div>
+  <div class="col-md-12 table-responsive tbl-fixed">
+
+    <table class="table table-bordered tbl-data" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+      <thead class="thead-dark">
+
+        <tr>
+            <th>S.NO</th>
+            <th>TRANSACTION ID</th>
+            <th>TRANSACTION<br> DATE</th>
+            <th>NAME OF THE PACS</th>
+            <th>NAME OF <br>THE DISTRICT</th>
+            <th>NAME OF THE DCCB</th>
+            <th>AMOUNT (IN RS.)</th>	
+            <th>CEO <br>APPROVED</th>
+            <th>VENDOR <br>REQUESTED</th>
+            <th>NODAL<br>AGENCY <br>RECOMMENDED</th>
+            <th>COOP.<br> DEPARTMENT<br> PAID </th>
+        </tr> 
+      </thead>
+      <tbody>
+        <tr *ngFor="let obj of stateLevelDetails; let i = index">
+          <td>{{ i + 1 }}</td> 
+          <td>{{ obj.TRANS_ID }}</td>
+          <td>{{ obj.TRANS_DT }}</td>          
+          <td>{{ obj.PACS_NAME }}</td>
+          <td>{{ obj.DISTRICT_NAME }}</td> 
+          <td>{{ obj.DCCB_NAME_AS_PER_BY_LAWS }}</td> 
+          <td>{{ obj.AMOUNT }}</td> 
+          <td>{{ obj.CEO_APPROVED }}</td> 
+          <td>{{ obj.VENDOR_REQUESTED }}</td> 
+          <td>{{ obj.NODAL_AGENCY_RECOMMENDED }}</td> 
+          <td>{{ obj.COOP_DEPARTMENT_PAID }}</td> 
+        </tr> 
+      </tbody> 
+    </table>
+  </div> 
+

@@ -1,0 +1,179 @@
+<div class="app-content content">
+    <div class="content-overlay"></div>
+    <div class="content-wrapper">
+        <div class="content-header row">
+            <div class="content-header-left col-md-6 col-12">
+                <h3 class="content-header-title mb-0">Technicial Manager Reports</h3>
+                <div class="row breadcrumbs-top">
+                    <div class="breadcrumb-wrapper col-12">
+  
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="content-body">
+            <section id="basic-form-layouts">
+                <div class="row match-height">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header"></div>
+                            <div class="card-content collapse show">
+                                <div class="card-body">
+                                    <div class="form">
+                                        <div class="form-body">
+                                            <h4 class="form-section">
+                                                <i class="feather icon-user"></i>Technicial Manager Reports
+                                            </h4>
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <div class="form-group">
+                                                        <label for="dccbid"> SELECT DCCB NAME <span style="color: red">*</span></label>
+                                                        <select id="dccbid" class="form-control" [(ngModel)]="dccbid">
+                                                            <option disabled selected value="undefined">-- SELECT DCCB NAME --</option>
+                                                            <option value="{{ obj.DCCB_CODE }}" *ngFor="let obj of DCCBLIST">
+                                                                {{ obj.AFFILITED_DCCB_NAME }}
+                                                            </option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <div class="form-group" style="margin-top: 25px;">
+                                                        <button type="submit" class="btn btn-primary" (click)="GetDetails()">GO</button>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-1"></div>
+                                                <div class="col-md-2">
+                                                  
+                                                    <label for="Counttot" style="margin-top: 30px;margin-left: 59px;">ENTER PERCENTAGE : <span style="color: red">*</span></label>
+                                                  
+                                                </div>
+                                                <div class="col-md-2" style="margin-top: 25px;">
+                                                    <div class="form-group">
+                                                        <!-- <label for="Counttot">ENTER PERCENTAGE<span style="color: red">*</span></label> -->
+                                                        <input type="text" class="form-control" id="Counttot" [(ngModel)]="values"
+                                                            (ngModelChange)="updateTableValues()" placeholder="ENTER PERCENTAGE"
+                                                            maxlength="50" autocomplete="off" (keypress)="validateInput($event)">
+                                                    </div>
+                                                </div>
+                                                <!-- <div class="col-md-1">
+                                                    <div class="form-group" style="margin-top: 25px;">
+                                                        <button type="submit" class="btn btn-primary" (click)="GetValues()">GET</button>
+                                                    </div>
+                                                </div> -->
+  
+  
+  
+                                            </div>
+  
+                                            <div class="row">
+                                                <div class="col-md-12 table-responsive" [hidden]="DEVICEDETAILSLIST.length < 1">
+                                                    <table class="table table-bordered" datatable [dtOptions]="dtOptions"
+                                                        [dtTrigger]="dtTrigger">
+                                                        <thead class="thead-dark">
+                                                            <tr>
+                                                                <th>S.No</th>
+                                                                <th>PACS NAME</th>
+                                                                <th>CEO CERTIFICATE</th>
+                                                                <th>GST TOTAL AMOUNT</th>
+                                                                <th>PRCENTAGE %</th>
+                                                                <th>COUNT TOTAL</th>
+                                                                <th>REMAINING GST AMOUNT</th>
+                                                                <th>
+                                                                    <input type="checkbox" (change)="selectAll($event)"
+                                                                        [checked]="allSelected">
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr *ngFor="let obj of DEVICEDETAILSLIST; let i = index">
+                                                                <td>{{ i + 1 }}</td>
+                                                                <td>{{ obj.PACS_NAME }}</td>
+                                                                <td>
+                                                                    <button type="button" *ngIf="obj.CLIB_FILE_PATH != null"
+                                                                        class="btn btn-link btn-sm" (click)="btnPdfView(obj.CLIB_FILE_PATH)"
+                                                                        style="font-size: 12px;">
+                                                                        View
+                                                                    </button>
+                                                                    <span *ngIf="obj.CLIB_FILE_PATH == null">NA </span>
+                                                                </td>
+                                                                <td>{{ obj.TOTAL_GST_AMOUNT }}</td>
+  
+                                                                <td>
+                                                                    <div class="col-md-12">
+                                                                        <div class="form-group">
+                                                                            <!-- <label for="Count">COUNT <span style="color: red">*</span></label> -->
+                                                                            <input type="text" class="form-control text-success" id="Count"
+                                                                                [(ngModel)]="obj.Count" placeholder="ENTER PERCENTAGE"
+                                                                                maxlength="50" autocomplete="off"  disabled
+                                                                                (keypress)="validateInput($event)"
+                                                                                (ngModelChange)="onCountTotal(obj)">
+                                                                        </div>
+                                                                    </div>
+  
+                                                                </td>
+  
+                                                                <td>
+                                                                    <div class="col-md-12">
+                                                                        <div class="form-group">
+                                                                            <!-- <label for="Counttot" class="text-success">{{obj.Counttot}}</label> -->
+                                                                            <input type="text" class="form-control text-success" id="Counttot"
+                                                                                [(ngModel)]="obj.Counttot" maxlength="50" autocomplete="off" disabled
+                                                                                (keypress)="decimalFilter($event)">
+                                                                        </div>
+                                                                    </div>
+  
+                                                                </td>
+                                                                <td>
+                                                                    <div class="col-md-12">
+                                                                        <div class="form-group">
+                                                                            <!-- <label for="RemainingCount" class="text-success">{{obj.RemainingCount}}</label> -->
+                                                                            <input type="text" class="form-control text-success" id="Counttot"
+                                                                                [(ngModel)]="obj.RemainingCount" maxlength="50" disabled
+                                                                                autocomplete="off" (keypress)="decimalFilter($event)">
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+  
+                                                                <td>
+                                                                    <input type="checkbox" [(ngModel)]="obj.selected"
+                                                                        name="selected-{{ i }}" (change)="updateSubmitVisibility()">
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+  
+                                                    </table>
+                                                    <!-- <div class="row">
+                                                        <div class="col-md-5"></div>
+                                                        <div class="col-md-2">
+                                                            <h5>SELECTED COUNT : <span class="text-success">{{ selectedCount |
+                                                                    number:'2.0-2':'en-IN'}} </span></h5>
+                                                        </div>
+                                                        <div class="col-md-3">
+                                                            <h5>TOTAL AMOUNT :                                                             
+                                                               <span class="text-success">₹{{ formatIndianNumber(totalSum) }} </span>
+                                                                  </h5>
+                                                        </div>
+                                                        <div class="col-md-2"></div>
+                                                    </div> -->
+  
+                                                </div>
+                                                <div class="row col-md-12" *ngIf="isSubmitVisible">
+                                                    <div class="col-md-6"></div>
+                                                    <div class="col-md-3">
+                                                        <button type="submit" class="btn btn-success" (click)="btnSubmit()">Submit</button>
+                                                    </div>
+  
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- // Basic form layout section end -->
+        </div>
+     </div>
+  </div>

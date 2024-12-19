@@ -1,0 +1,891 @@
+<div class="app-content content background">
+  <div class="content-overlay"></div>
+  <div class="content-wrapper">
+    <div class="content-header row">
+      <div class="content-header-left col-md-6 col-12">
+        <h3 class="content-header-title mb-0 text-white">DEVICE RECEIVED STATUS</h3>
+        <div class="row breadcrumbs-top">
+          <div class="breadcrumb-wrapper col-12">
+            <!-- <ol class="breadcrumb">
+              <li class="breadcrumb-item">
+                <a class="custom-cursor text-white" routerLink="/ceo">Menu</a>
+              </li>
+              <li class="breadcrumb-item active">
+                <a
+                  class="custom-cursor text-white"
+                  routerLink="/ceo/CalibrationDeviceDetails"
+                  >Device Received Status</a
+                >
+              </li>
+            </ol> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  
+   
+  <div class="card backgrnd">
+      <!-- <div class="card-header p-2">
+        <h5 class="mb-0"> Installation of PACS Equipment.</h5>
+      </div> -->
+      <div class="card-body ">
+        <div class="row">
+          <div class="col-md-12">
+        
+        
+          </div>
+
+          <div class="col-md-12 row">
+
+            <div class="col-md-3">
+              <div class="form-group">
+                <label for="deviceId">SELECT DISTRICT  <span style="color: red">*</span></label>
+                <select                 
+                    id="Districtcode"
+                    class="form-control"
+                    [(ngModel)]="DeviceDetails.Districtcode" 
+                    (change)="DistChange(DeviceDetails.Districtcode)"
+                     > 
+                     <option value="">-- SELECT DISTRICT --</option>
+                    <option
+                      value="{{ obj.DISTRICT_CODE }}"
+                      *ngFor="let obj of DistrictlistData" >
+                      {{ obj.DISTRICT_NAME }}
+                    </option>
+                  </select>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label for="deviceId">SELECT MANDAL  <span style="color: red">*</span></label>
+                <select                 
+                    id="Mandalcode"
+                    class="form-control"
+                    [(ngModel)]="DeviceDetails.Mandalcode" 
+                    (change)="MandalChange(DeviceDetails.Mandalcode)"
+                     > 
+                     <option value="">-- SELECT MANDAL --</option>
+                    <option
+                      value="{{ obj.MANDAL_CODE }}"
+                      *ngFor="let obj of MandallistData">
+                      {{ obj.MANDAL_NAME }}
+                    </option>
+                  </select>
+              </div>
+            </div>
+            
+          </div>
+
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="deviceId">SELECT PACS  <span style="color: red">*</span></label>
+              <select                 
+                  id="PACS_CODE"
+                  class="form-control"
+                  [(ngModel)]="DeviceDetails.PACS_CODE" 
+                  (change)="PacsChange(DeviceDetails.PACS_CODE)"
+                   > 
+                   <option value="">-- SELECT PACS --</option>
+                  <option
+                    value="{{ obj.PACS_CODE }}"
+                    *ngFor="let obj of pacslistData" >
+                    {{ obj.PACS_NAME }}
+                  </option>
+                </select>
+            </div>
+          </div>
+
+         <div class="col-md-3">
+            <div class="form-group">
+              <label for="deviceId">SELECT DEVICE  <span style="color: red">*</span></label>
+              <select
+                id="deviceId"
+                class="form-control"
+                [(ngModel)]="DeviceDetails.deviceId"
+                (change)="deviceChange(DeviceDetails.deviceId)"
+              >
+                <option value="">-- SELECT DEVICE --</option>
+                <option
+                  value="{{ obj.DEVICE_ID }}"
+                  *ngFor="let obj of DeviceList"
+                >
+                  {{ obj.DEVICE_NAME }}
+                </option>
+              </select>
+            </div>
+          </div> 
+
+            <div class="col-md-3" *ngIf="internetshowhide"  >
+              <div class="form-group">
+                <label> IS INTERNET CONNECTIVITY PROVIDED BY THE VENDOR <span class="text-danger h6">*</span></label>
+                <div class="ah-radio-buttons">
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input
+                      class="custom-control-input"
+                      type="radio"
+                      name="IsinternetConnection"
+                      id="IsinternetConnection1"
+                      value="1"
+                      [(ngModel)]="DeviceDetails.IsinternetConnection" 
+                      autocomplete="off"
+                      (change)="oninternetchange()"
+                    />
+                    <!-- -->
+                    <!-- (change)="rbtnvalue(1)" -->
+                    <label class="custom-control-label" for="IsinternetConnection1">
+                     yes
+                    </label>
+                  </div>
+      
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input
+                      class="custom-control-input"
+                      type="radio"
+                      name="IsinternetConnection"
+                      id="IsinternetConnection2"
+                      value="2"
+                      [(ngModel)]="DeviceDetails.IsinternetConnection" 
+                      autocomplete="off"
+                      (change)="oninternetchange()"
+
+                    />
+                    <!-- [(ngModel)]="SitePreparation.BuildingType" -->
+                    <!-- (change)="rbtnvalue(11)" -->
+                    <label class="custom-control-label" for="IsinternetConnection2"> 
+                      No <br>
+                      <label><span *ngIf="showtext" class="text-danger">PACS CEO Confirmed that the<br>Internet connectivity is not required</span></label>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div> 
+
+            <div class="col-md-3" *ngIf="internetdtsshow">
+              <div class="form-group">
+                <label for="inspectionDate"
+                  >RECEIVED DATE<span class="text-danger">*</span>
+                </label>
+                <input type="text"class="form-control bg-white" 
+                [(ngModel)]="inspectionDate" 
+                  placeholder="DD-MM-YYYY"  [minDate]="minDate" [maxDate]="maxDate" readonly  placement="bottom" container="" (ngModelChange)="onDateChange($event)" [bsConfig]="bsDatepickerConfig" bsDatepicker>
+              </div>
+            </div>
+
+            <div class="col-md-3"  *ngIf="internetdtsshow">
+              <div class="form-group">
+                <label for="inspectionDate"
+                  >SERIAL NUMBER <span class="text-danger">*</span>
+                </label>
+                <input type="text" placeholder="Enter Serial Number" class="form-control"  
+                [(ngModel)]="DeviceDetails.SerialNo"   >
+          
+              </div>
+            </div>
+            <div class="col-md-3" *ngIf="internetdtsshow">
+              <div class="form-group">
+                <label for="inspectionDate"
+                  >DELIVERY NOTE NUMBER <span class="text-danger">*</span>
+                </label>
+                <input type="text"  placeholder="Enter Delivery Note Number" class="form-control"  
+                [(ngModel)]="DeviceDetails.Acknowledgment"   >
+          
+              </div>
+            </div>
+
+            <div class="col-md-3" *ngIf="internetdtsshow">
+              <div class="form-group">
+                <label for="inspectionDate"
+                  >MAKER NAME <span class="text-danger">*</span>
+                </label>
+                <input type="text" placeholder="Enter Maker Name" class="form-control text-success bg-white"  [disabled]="show" 
+                [(ngModel)]="DeviceDetails.componentname"   >
+          
+              </div>
+            </div>
+
+            <div class="col-md-3" *ngIf="internetdtsshow">
+              <div class="form-group">
+                <label for="inspectionDate"
+                  >MODEL DETAILS <span class="text-danger">*</span>
+                </label>
+                <input type="text" placeholder="Enter Model Details" class="form-control text-success bg-white"  [disabled]="show"  
+                [(ngModel)]="DeviceDetails.modeldetails"   >
+          
+              </div>
+            </div> 
+
+            <div class="col-md-3"  *ngIf="internetdtsshow1" >
+              <div class="form-group">
+                <label for="internetprovname"
+                  >INTERNET SERVICE PROVIDER NAME
+                  <span class="text-danger">*</span>
+                </label>
+                <input type="text" placeholder="Enter Internet Service Provider Name" [(ngModel)]="DeviceDetails.internetprovname" class="form-control"  
+                 >
+                
+          
+              </div>
+            </div>
+
+
+            <div class="col-md-3" *ngIf="internetdtsshow1">
+              <div class="form-group">
+                <label for="internetSpeed"
+                  >INTERNET SPEED
+                  <span class="text-danger">*</span>
+                </label>
+                <input type="text" placeholder="Enter Internet Speed" [(ngModel)]="DeviceDetails.internetSpeed" class="form-control"  
+                  >
+                   
+              </div>
+            </div>
+
+           <div class="col-md-3" *ngIf="internetdtsshow1">
+              <div class="form-group">
+                <label for="installDate"
+                  >DATE OF INSTALLATION<span class="text-danger">*</span>
+                </label>
+                <input type="text"class="form-control bg-white" 
+               
+                  placeholder="DD-MM-YYYY"   [minDate]="minDate" [maxDate]="maxDate" readonly  placement="bottom" container="" [(ngModel)]="installDate" [bsConfig]="bsDatepickerConfig" bsDatepicker>
+              </div> 
+            </div>
+
+
+            <div class="col-md-3" *ngIf="internetdtsshow1">
+              <div class="form-group">
+                <label> WHETHER THE FIRST MONTH'S CHARGES HAVE BEEN PAID BY THE VENDOR <span class="text-danger h6">*</span></label>
+                <div class="ah-radio-buttons">
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input
+                      class="custom-control-input"
+                      type="radio"
+                      name="vendorcharges"
+                      id="vendorcharges1"
+                      value="1"
+                      [(ngModel)]="DeviceDetails.vendorcharges" 
+                      autocomplete="off"
+                     
+                    />
+                    <!-- -->
+                    <!-- (change)="rbtnvalue(1)" -->
+                    <label class="custom-control-label" for="vendorcharges1">
+                     yes
+                    </label>
+                  </div>
+      
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input
+                      class="custom-control-input"
+                      type="radio"
+                      name="vendorcharges"
+                      id="vendorcharges2"
+                      value="2"
+                      [(ngModel)]="DeviceDetails.vendorcharges" 
+                      autocomplete="off"
+                    
+
+                    />
+                    <!-- [(ngModel)]="SitePreparation.BuildingType" -->
+                    <!-- (change)="rbtnvalue(11)" -->
+                    <label class="custom-control-label" for="vendorcharges2"> 
+                      No
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div> 
+
+            <div class="col-md-3" *ngIf="internetdtsshow">
+              <div class="form-group">
+                <!-- <label for="giftAndDeedPhotoUpload"
+                  >DEVICE IMAGE UPLOAD <span style="color: red">*</span>
+                </label> -->
+                <label for="newfelxi"
+                > DEVICE IMAGE UPLOAD <span style="color: red; font-size: 11px;">* (MAX 250KB JPEG ONLY) </span></label>
+
+                <input
+                  type="file"
+                  class="form-control p-0"
+                  id="giftAndDeedPhotoUpload"
+                  (change)="onTitledevicePhotoChange($event)"
+                  accept="image/jpeg"
+                  autocomplete="off"
+                />
+              </div>
+              
+            </div>
+
+            <div class="col-md-3" *ngIf="internetdtsshow">
+              <div class="form-group">
+                <!-- <label for="giftAndDeedPhotoUpload"
+                  >DEVICE IMAGE UPLOAD <span style="color: red">*</span>
+                </label> -->
+                <label for="newfelxi"
+                >SERIAL NUMBER IMAGE UPLOAD <span style="color: red; font-size: 11px;">* (MAX 250KB JPEG ONLY) </span></label>
+
+                <input
+                  type="file"
+                  class="form-control p-0"
+                  id="servicePhotoUpload"
+                  (change)="onTitleServicenodevicePhotoChange($event)"
+                  accept="image/jpeg"
+                  autocomplete="off"
+                />
+              </div>
+              
+            </div>
+
+            <div class="col-md-3" *ngIf="internetdtsshow">
+              <div class="form-group">
+                  <label for="fileupdforpdf">TAX INVOICE <span style="color: red; font-size: 11px;">* (MAX 3MB PDF ONLY) </span>
+                  </label>
+                  <input type="file" class="form-control p-0" id="invoicepdf"   [(ngModel)]="DeviceDetails.invoicepdf" 
+                      (change)="onpdffileChangeinvoice($event)" accept="pdf/*" autocomplete="off" />
+              </div>
+          </div>
+
+          <div class="col-md-3" *ngIf="internetdtsshow">
+            <div class="form-group">
+                <label for="fileupdforpdf">DELIVERY CHALLAN<span style="color: red; font-size: 11px;">* (MAX 3MB PDF ONLY) </span>
+                </label>
+                <input type="file" class="form-control p-0" id="challanpdf"   [(ngModel)]="DeviceDetails.challanpdf" 
+                    (change)="onpdffileChangeChallan($event)" accept="pdf/*" autocomplete="off" />
+            </div>
+        </div>
+        <div class="col-md-3" *ngIf="internetdtsshow">
+          <div class="form-group">
+            <label for="inspectionDate"
+              >DELIVERY NOTE DATE<span class="text-danger">*</span>
+            </label>
+            <input type="text"class="form-control bg-white" 
+            [(ngModel)]="DeliveryNoteDate" 
+              placeholder="DD-MM-YYYY"  [minDate]="minDate" (ngModelChange)="onDateChange($event)" [maxDate]="maxDate" readonly  placement="bottom" container="" [bsConfig]="bsDatepickerConfig" bsDatepicker>
+          </div>
+        </div>
+        <div class="col-md-3" *ngIf="internetdtsshow">
+          <div class="form-group">
+            <label for="inspectionDate"
+              >TAX INVOICE NUMBER <span class="text-danger">*</span>
+            </label>
+            <input type="text" placeholder="Enter Tax Invoice Number" class="form-control"  
+            [(ngModel)]="DeviceDetails.TaxinvoiceNumber"   >
+      
+          </div>
+        </div>
+
+            <div class="col-md-1" *ngIf="btnsubmitstatus">
+              <div class="form-group">
+                  <button style="margin-top: 26px !important;"
+                  type="button"
+                  class="btn btn-success btn-sm"
+                  (click)="btnCalibration()"
+                >
+                  SUBMIT
+                </button>
+              </div>
+              
+            </div>
+         
+  
+          
+            
+          <div class="col-md-12 row table-responsive" align="center">
+            <div class="card-content collapse show">
+              <div class="card-body" >
+                <p class="Status text-success" style="padding: 10px !important"><b>DEVICE DETAILS SUBMITTED LIST</b></p>
+                <div class="col-md-12">
+                 
+                  <table class="table table-bordered table-margin">
+                    <thead class="thead-dark">
+
+                      <tr>
+                        <th >S NO</th>
+                        <th >PACS NAME</th>
+                        <th >DEVICE NAME</th>
+                        <th >RECEIVED DATE</th>                          
+                        <th >SERIAL NUMBER</th>
+                        <th >DELIVERY NOTE NUMBER</th>
+                        <th >COMPONENT NAME</th>
+                        <th >MODEL DETAILS</th>
+                        <th >DEVICE IMAGE</th>
+                        <th >SERIAL NO IMAGE</th>
+                        <th >TAX INVOICE</th>
+                        <th >DELIVERY CHALLAN</th>
+                        <th >ACTION</th>
+                         
+                        
+
+                      </tr>
+                       
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let obj of DeviceDetailsList; let i = index">
+                        <td>{{ i + 1 }}</td> 
+                        <td>{{ obj.PACS_NAME}}</td>                            
+                        <td>{{ obj.DEVICE_NAME}}</td>
+                        <td>{{ obj.RECEIVED_DATE}}</td>
+                        <td>{{ obj.SERIAL_NUMBER}}</td>
+                        <td>{{ obj.ACK_NO}}</td>
+                        <td>{{ obj.COMPONENT_NAME}}</td>
+                        <td>{{ obj.MODEL_DETAILS}}</td>
+                       <td>
+                            <button
+                              type="button"
+                              class="btn btn-link btn-sm"
+                              *ngIf="
+                                obj.DEVICE_IMAGE !== null &&
+                                obj.DEVICE_IMAGE !== '' &&
+                                obj.DEVICE_IMAGE !== undefined
+                              "
+                              (click)="btnPhotoView(obj.DEVICE_IMAGE)"
+                            >
+                              View
+                            </button>
+                            <span
+                              *ngIf="
+                                obj.DESKTO_PPHO_UPL === null ||
+                                obj.DESKTO_PPHO_UPL === '' ||
+                                obj.DESKTO_PPHO_UPL === undefined
+                              "
+                              >{{ obj.DESKTO_PPHO_UPL }}</span
+                            >
+                          </td>
+
+                          <td>
+                            <button
+                              type="button"
+                              class="btn btn-link btn-sm"
+                              *ngIf="
+                                obj.SLNO_IMAGE !== null &&
+                                obj.SLNO_IMAGE !== '' &&
+                                obj.SLNO_IMAGE !== undefined
+                              "
+                              (click)="btnPhotoView(obj.SLNO_IMAGE)"
+                            >
+                              View
+                            </button>
+                            <span
+                              *ngIf="
+                                obj.DESKTO_PPHO_UPL === null ||
+                                obj.DESKTO_PPHO_UPL === '' ||
+                                obj.DESKTO_PPHO_UPL === undefined
+                              "
+                              >{{ obj.DESKTO_PPHO_UPL }}</span
+                            >
+                          </td>
+
+                          <td>
+                            <button
+                              type="button"
+                              class="btn btn-link btn-sm"
+                              *ngIf="
+                                obj.TAX_INVOICE !== null &&
+                                obj.TAX_INVOICE !== '' &&
+                                obj.TAX_INVOICE !== undefined
+                              "
+                              (click)="btnPDFView(obj.TAX_INVOICE)"
+                            >
+                              VIEW
+                            </button>
+                            <span
+                              *ngIf="
+                                obj.TAX_INVOICE === null ||
+                                obj.TAX_INVOICE === '' ||
+                                obj.TAX_INVOICE === undefined
+                              "
+                              >NA</span
+                            >
+                          </td>
+
+                          <td>
+                            <button
+                              type="button"
+                              class="btn btn-link btn-sm"
+                              *ngIf="
+                                obj.DELIVERY_CHALLAN !== null &&
+                                obj.DELIVERY_CHALLAN !== '' &&
+                                obj.DELIVERY_CHALLAN !== undefined
+                              "
+                              (click)="btnPDFView(obj.DELIVERY_CHALLAN)"
+                            >
+                              VIEW
+                            </button>
+                            <span
+                              *ngIf="
+                                obj.DELIVERY_CHALLAN === null ||
+                                obj.DELIVERY_CHALLAN === '' ||
+                                obj.DELIVERY_CHALLAN === undefined
+                              "
+                              >NA</span
+                            >
+                          </td>
+
+                          <td>
+                            <button
+                              type="button" class="btn btn-info"                              
+                               
+                              (click)="btnViewEdit(obj)"
+                            ><i class="fas fa-edit" style="color: white;"></i></button>
+                          </td>
+                        
+                      </tr>
+                    </tbody>
+
+                  </table>
+                </div>
+              </div>
+            </div>
+             
+          </div>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+
+
+
+
+  <div class="popup-modal" *ngIf="DeviceReceivedPopUp">
+    <div class="popup-content">
+      <div class="popup-header">
+        <h4 class="title">EDIT / UPDATE DEVICE RECEIVED DETAILS</h4>
+        <a
+          type="button"
+          class="close"
+          (click)="DeviceReceivedPopUp = false"
+          style="cursor: pointer"
+        >
+          <span>×</span>
+        </a>
+      </div>
+  
+      <div class="popup-body">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-md-12 row">
+
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="handOverByName">
+                  PACS NAME :
+                </label>
+                <br>
+                <label class="textcolor">{{EditDeviceDetails.Packname}}</label>
+                <!-- <input
+                  id="handOverByName"
+                  type="text"
+                  class="form-control"
+                   
+                  placeholder="Please Enter Possession Handover By Name"
+                  maxlength="30"
+                  autocomplete="off" lettersOnly
+                /> -->
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="handOverByName">
+                  DEVICE NAME :
+                </label>
+                <br>
+                <label class="textcolor">{{EditDeviceDetails.Device_name}}</label>
+                <!-- <input
+                  id="handOverByName"
+                  type="text"
+                  class="form-control"
+                   
+                  placeholder="Please Enter Possession Handover By Name"
+                  maxlength="30"
+                  autocomplete="off" lettersOnly
+                /> -->
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="handOverByName">
+                  RECEIVED DATE :
+                </label>
+                <input type="text"class="form-control" 
+                [(ngModel)]="Edit_inspectionDate" 
+                  placeholder="DD-MM-YYYY"  [minDate]="minDate" [maxDate]="maxDate"  placement="bottom" container="" [bsConfig]="bsDatepickerConfig" bsDatepicker>
+
+                
+                
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="handOverByName">
+                  SERIAL NUMBER :
+                </label>
+                <input
+                  id="handOverByName"
+                  type="text"
+                  class="form-control"
+                   [(ngModel)]="EditDeviceDetails.SerialNo"
+                  placeholder="Please Enter Serial Number"
+                  maxlength="30"
+                  autocomplete="off"
+                />
+                 
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="handOverByName">
+                  DELIVERY NOTE NUMBER : 
+                </label>
+                <input
+                  id="handOverByName"
+                  type="text"
+                  class="form-control"
+                   [(ngModel)]="EditDeviceDetails.Acknowledgment"
+                  placeholder="Please Enter Delivery Note Number"
+                  maxlength="30"
+                  autocomplete="off"/>
+                
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="handOverByName">
+                  MAKER NAME : 
+                </label>
+                <input
+                id="handOverByName"
+                type="text"
+                class="form-control"  
+                 [(ngModel)]="EditDeviceDetails.componentname"
+                placeholder="Please Enter Possession Handover By Name"
+                maxlength="30"
+                autocomplete="off" lettersOnly
+              />
+                
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="handOverByName">
+                  MODEL DETAILS : 
+                </label>
+                <input
+                id="handOverByName"
+                type="text"
+                class="form-control"
+                 [(ngModel)]="EditDeviceDetails.modeldetails"
+                placeholder="Please Enter Model Details"
+                maxlength="30"
+                autocomplete="off"/>
+               
+              </div>
+            </div>
+
+            <div class="col-md-4" *ngIf="internetcntvty">
+              <!-- *ngIf="EditDeviceDetails.deviceId === '111'" -->
+              <div class="form-group">
+                <label for="internetprovname"
+                  >INTERNET SERVICE PROVIDER NAME
+                  <span class="text-danger">*</span>
+                </label>
+                <input type="text" placeholder="Enter Internet Service Provider Name" [(ngModel)]="EditDeviceDetails.internetprovname" class="form-control"  
+                 >
+                
+          
+              </div>
+            </div>
+
+
+            <div class="col-md-4"  *ngIf="internetcntvty">
+              <!-- *ngIf="EditDeviceDetails.deviceId === '111'" -->
+              <div class="form-group">
+                <label for="internetSpeed"
+                  >INTERNET SPEED
+                  <span class="text-danger">*</span>
+                </label>
+                <input type="text" placeholder="Enter Internet Speed" [(ngModel)]="EditDeviceDetails.internetSpeed" class="form-control"  
+                  >
+                   
+              </div>
+            </div>
+
+           <div class="col-md-4" *ngIf="internetcntvty">
+            <!-- *ngIf="EditDeviceDetails.deviceId === '111'" -->
+              <div class="form-group">
+                <label for="installDate"
+                  >DATE OF INSTALLATION<span class="text-danger">*</span>
+                </label>
+                <input type="text"class="form-control" 
+               
+                  placeholder="DD-MM-YYYY"  [minDate]="minDate" [maxDate]="maxDate"  placement="bottom" container="" [(ngModel)]="installDate" [bsConfig]="bsDatepickerConfig" bsDatepicker>
+              </div> 
+            </div>
+
+
+            <div class="col-md-4" *ngIf="internetcntvty">
+              <!-- *ngIf="EditDeviceDetails.deviceId === '111'" -->
+              <div class="form-group">
+                <label> WHETHER THE FIRST MONTH'S CHARGES HAVE BEEN PAID BY THE VENDOR <span class="text-danger h6">*</span></label>
+                <div class="ah-radio-buttons">
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input
+                      class="custom-control-input"
+                      type="radio"
+                      name="vendorcharges"
+                      id="vendorcharges1"
+                      value="1"
+                      [(ngModel)]="EditDeviceDetails.vendorcharges" 
+                      autocomplete="off"
+                     
+                    />
+                    <!-- -->
+                    <!-- (change)="rbtnvalue(1)" -->
+                    <label class="custom-control-label" for="vendorcharges1">
+                     yes
+                    </label>
+                  </div>
+      
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input
+                      class="custom-control-input"
+                      type="radio"
+                      name="vendorcharges"
+                      id="vendorcharges2"
+                      value="2"
+                      [(ngModel)]="EditDeviceDetails.vendorcharges" 
+                      autocomplete="off"
+                    
+
+                    />
+                    <!-- [(ngModel)]="SitePreparation.BuildingType" -->
+                    <!-- (change)="rbtnvalue(11)" -->
+                    <label class="custom-control-label" for="vendorcharges2"> 
+                      No
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+
+
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="handOverByName">
+                  DEVICE IMAGE UPLOAD  
+                </label>
+                <input
+                  type="file"
+                  class="form-control p-0"
+                  id="giftAndDeedPhotoUpload"
+                  (change)="onTitledevicePhotoChangeEdit($event)"
+                  accept="image/jpeg"
+                  autocomplete="off"
+                />
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="handOverByName">
+                 SERIAL NO IMAGE UPLOAD  
+                </label>
+                <input
+                  type="file"
+                  class="form-control p-0"
+                  id="DeedPhotoUpload"
+                  (change)="onTitleServicenoPhotoChangeEdit($event)"
+                  accept="image/jpeg"
+                  autocomplete="off"
+                />
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="handOverByName">
+                  TAX INVOICE <span style="color: red">*</span>
+                </label>
+                <input
+                  type="file"
+                  class="form-control p-0"
+                  id="taxinvoicepdf"
+                  (change)="onpdffiletaxinvoiceChangeEdit($event)"
+                  accept="application/pdf"
+                  autocomplete="off"
+                />
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="handOverByName">
+                  DELIVERY CHALLAN <span style="color: red">*</span>
+                </label>
+                <input
+                  type="file"
+                  class="form-control p-0"
+                  id="onpdffileChangeChallan"
+                  (change)="onpdffiledeliverychallanChangeEdit($event)"
+                  accept="application/pdf"
+                  autocomplete="off"
+                />
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="handOverByName">
+                  DELIVERY NOTE DATE :
+                </label>
+                <input type="text"class="form-control" 
+                [(ngModel)]="Edit_DeliveryNote_date" 
+                  placeholder="DD-MM-YYYY"  [minDate]="minDate" [maxDate]="maxDate"  placement="bottom" container="" [bsConfig]="bsDatepickerConfig" bsDatepicker>
+
+                
+                
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <!-- *ngIf="EditDeviceDetails.deviceId === '111'" -->
+              <div class="form-group">
+                <label for="internetSpeed"
+                  >Tax Invoice Number
+                  <span class="text-danger">*</span>
+                </label>
+                <input type="text" placeholder="Enter Tax Invoice Number" [(ngModel)]="EditDeviceDetails.TaxinvoiceNumber" class="form-control"  
+                  >
+                   
+              </div>
+            </div>
+
+              
+             
+               
+             <div class="col-md-12">
+              <div class="form-group center" style="text-align: center;">
+                <button
+            type="button"
+            class="btn btn-outline-success btn-sm btn-rounded"
+            (click)="btnupdate()"
+          >
+            UPDATE
+          </button>
+          <button
+            type="button"
+            class="btn btn-outline-danger btn-sm btn-rounded"
+            (click)="DeviceReceivedPopUp = false"
+          >
+            Close
+          </button>
+              </div>
+             </div>
+             
+            
+          </div>
+        </div>
+      </div>   
+    </div>
+  </div>

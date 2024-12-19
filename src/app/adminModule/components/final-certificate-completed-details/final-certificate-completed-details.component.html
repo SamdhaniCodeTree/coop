@@ -1,0 +1,112 @@
+<div class="row">
+    <div class="col-md-12" *ngIf="district">
+        <label for="toDate">
+            FROM DATE :
+            <span class="text-success">
+              <b> {{ fromDate  }}</b>
+            </span>
+          </label>&nbsp; &nbsp;&nbsp; &nbsp; 
+          <label for="toDate">
+            TO DATE :
+            <span class="text-success">
+              <b> {{ toDate }}</b>
+            </span>
+          </label>&nbsp; &nbsp;&nbsp; &nbsp;
+        <label for="toDate">
+            DISTRICT :
+            <span class="text-success">
+                <b> {{ districtName | uppercase }}</b>
+            </span>
+        </label>
+    </div>
+    <div class="col-md-12" *ngIf="division">
+        <label for="toDate">
+            FROM DATE :
+            <span class="text-success">
+              <b> {{ fromDate  }}</b>
+            </span>
+          </label>&nbsp; &nbsp;&nbsp; &nbsp; 
+          <label for="toDate">
+            TO DATE :
+            <span class="text-success">
+              <b> {{ toDate }}</b>
+            </span>
+          </label>&nbsp; &nbsp;&nbsp; &nbsp;
+        <label for="toDate">
+            DIVISION :
+            <span class="text-success">
+                <b> {{ divisionName | uppercase }}</b>
+            </span>
+        </label>
+    </div>
+    <div class="col-md-12">
+        <button type="button" class="btn btn-sm btn-success pull-right" (click)="btnExcelDownload()">
+            <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+            DOWNLOAD EXCEL
+        </button>
+        <button  *ngIf="type == '12'"
+          type="button"
+          class="btn btn-sm btn-danger pull-right"
+          (click)="btnPDF('12')"
+        >
+          <i
+            class="fa fa-file-pdf-o mr-2"
+            aria-hidden="true"
+          ></i>
+          DOWNLOAD PDF
+        </button>
+
+        <button  *ngIf="type == '15'"
+        type="button"
+        class="btn btn-sm btn-danger pull-right"
+        (click)="btnPDF('15')"
+      >
+        <i
+          class="fa fa-file-pdf-o mr-2"
+          aria-hidden="true"
+        ></i>
+        DOWNLOAD PDF
+      </button>
+    </div>
+    <div class="col-md-12 table-responsive tbl-fixed" [hidden]="districtLevelDetails.length < 1">
+        <table class="table table-bordered tbl-data" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+            <thead class="thead-dark">
+
+                <tr>
+                    <th>S NO</th>
+                    <th>NAME OF THE DISTRICT</th>
+                    <th>NAME OF THE DCCB</th>
+                    <th>PACS CODE</th>  
+                    <th>PACS NAME</th>
+                    <th>NABARD ID</th>
+                    <th>CEO DOCUMENT</th> 
+                </tr> 
+            </thead>
+             <tbody *ngIf="districtLevelDetails?.length > 0">
+                <tr *ngFor="let obj of districtLevelDetails; let i = index">
+                    <td>{{ i + 1 }}</td>
+                    <td>{{ obj.DISTRICT_NAME }}</td>
+                    <td>{{ obj.DCCB_NAME_AS_PER_BY_LAWS }}</td>
+                    <td>{{ obj.PACS_CODE }}</td> 
+                    <td>{{ obj.PACS_NAME }}</td>  
+                    <td>{{ obj.NABARD_ID }}</td>  
+                    <!-- <td>{{ obj.SUPERVISOR_PATH }}</td>   --> 
+                    <td>
+                        <button 
+                            type="button"
+                            *ngIf="obj.SUPERVISOR_PATH != '-'"
+                            class="btn btn-link btn-sm" 
+                            (click)="btnPDFView(obj.SUPERVISOR_PATH)" style="font-size: 12px;">  
+                            View
+                        </button>
+                        <span *ngIf="obj.SUPERVISOR_PATH == '-'">NA </span> 
+                    </td>  
+                </tr>
+            </tbody>  
+        </table>
+    </div>
+
+    <!-- <div class="col-md-12 table-responsive" [hidden]="districtLevelDetails?.length > 1">
+        <h6 class="text-center">No Data Available</h6>
+    </div> -->
+</div>

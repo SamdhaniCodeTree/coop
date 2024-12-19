@@ -1,0 +1,57 @@
+<div class="app-content content">
+  <div class="content-overlay"></div>
+  <div class="content-wrapper">
+    <div class="content-header row">
+      <div class="content-header-left col-md-6 col-12">
+        <h3 class="content-header-title mb-0">MPFC Land Inspection Reports</h3>
+        <div class="row breadcrumbs-top">
+          <div class="breadcrumb-wrapper col-12">
+             
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="content-body">
+      <section id="basic-form-layouts">
+        <div class="row match-height">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header"></div>
+              <div class="card-content collapse show">
+                <div class="card-body">
+                  <div class="form">
+                    <div class="form-body">
+                      <h4 class="form-section">
+                        <i class="feather icon-user"></i>Mandal Level Land
+                        Inspection Report For MPFC
+                      </h4>
+                      <div class="row align-items-center">
+                        <div class="col-md-12" align="right">
+                          <button
+                            type="button"
+                            class="btn btn-primary btn-sm"
+                            (click)="btnBack()"
+                          >
+                            BACK
+                          </button>
+                        </div>
+                      </div>
+                      <app-mli-mandal
+                        [districtId]="districtId"
+                        [districtName]="districtName"
+                        [mandalId]="mandalId"
+                        [mandalName]="mandalName"
+                      ></app-mli-mandal>
+                      
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- // Basic form layout section end -->
+    </div>
+  </div>
+</div>

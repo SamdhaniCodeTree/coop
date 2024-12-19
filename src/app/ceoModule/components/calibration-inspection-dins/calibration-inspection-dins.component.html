@@ -1,0 +1,233 @@
+<div class="app-content content background">
+    <div class="content-overlay"></div>
+    <div class="content-wrapper">
+      <div class="content-header row">
+        <div class="content-header-left col-md-6 col-12">
+          <h3 class="content-header-title mb-0 text-white">Calibration Details</h3>
+          <div class="row breadcrumbs-top">
+            <div class="breadcrumb-wrapper col-12">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                  <a class="custom-cursor text-white" routerLink="/ceo">Menu</a>
+                </li>
+                <li class="breadcrumb-item active">
+                  <a
+                    class="custom-cursor text-white"
+                    routerLink="/ceo/CalibrationDeviceDetails"
+                    >Calibration Details</a
+                  >
+                </li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+     
+    <div class="card backgrnd">
+        <!-- <div class="card-header p-2">
+          <h5 class="mb-0"> Installation of PACS Equipment.</h5>
+        </div> -->
+        <div class="card-body ">
+          <div class="row">
+            <div class="col-md-12">
+          
+          
+            </div>
+           <div class="col-md-3">
+              <div class="form-group">
+                <label for="deviceId">SELECT DEVICE  <span style="color: red">*</span></label>
+                <select
+                  id="deviceId"
+                  class="form-control"
+                  [(ngModel)]="DeviceDetails.deviceId"
+                  (change)="deviceChange(DeviceDetails.deviceId)"
+                >
+                  <option value="">-- SELECT DEVICE --</option>
+                  <option
+                    value="{{ obj.DEVICE_ID }}"
+                    *ngFor="let obj of DeviceList"
+                  >
+                    {{ obj.DEVICE_NAME }}
+                  </option>
+                </select>
+              </div>
+            </div>
+             
+            <div class="col-md-3">
+                <div class="form-group">
+                  <label for="inspectionDate"
+                    >INSPECTION DATE<span class="text-danger">*</span>
+                  </label>
+                  <input type="text" placeholder="DD-MM-YYYY" class="form-control" [minDate]="minDate"
+                  [(ngModel)]="inspectionDate " [maxDate]="maxDate"  placement="bottom" container="" [bsConfig]="bsDatepickerConfig" bsDatepicker>
+            
+                </div>
+              </div>
+           
+          
+
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="inspectionDate"
+                    >SERIAL NUMBER <span class="text-danger">*</span>
+                  </label>
+                  <input type="text" placeholder="Enter Serial Number" class="form-control"  
+                  [(ngModel)]="DeviceDetails.SerialNo"   >
+            
+                </div>
+              </div>
+
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="inspeDate"
+                    >DEVICE MAKER <span class="text-danger">*</span>
+                  </label>
+                  <input type="text" placeholder="Enter Device Maker" class="form-control"  
+                  [(ngModel)]="DeviceDetails.DeviceMaker">
+            
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="inspectionDate"
+                    >MANUFACTURE DATE<span class="text-danger">*</span>
+                  </label>
+                  <input type="text" placeholder="DD-MM-YYYY" class="form-control" [minDate]="minDate"
+                  [(ngModel)]="manufacture_date " [maxDate]="maxDate"  placement="bottom" container="" [bsConfig]="bsDatepickerConfig" bsDatepicker>
+            
+                </div>
+              </div>
+
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="inspectionDate"
+                    >DEVICE MODEL NUMBER <span class="text-danger">*</span>
+                  </label>
+                  <input type="text" placeholder="Enter Model Number" class="form-control"  
+                  [(ngModel)]="DeviceDetails.Modelnumber"   >
+            
+                </div>
+              </div>
+              
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="giftAndDeedPhotoUpload"
+                    >DEVICE IMAGE UPLOAD <span style="color: red">*</span>
+                  </label>
+                  <input
+                    type="file"
+                    class="form-control p-0"
+                    id="giftAndDeedPhotoUpload"
+                    (change)="onTitledevicePhotoChange($event)"
+                    accept="image/*"
+                    autocomplete="off"
+                  />
+                </div>
+                
+              </div>
+
+              <div class="col-md-1">
+                <div class="form-group">
+                    <button style="margin-top: 26px !important;"
+                    type="button"
+                    class="btn btn-success btn-sm"
+                    (click)="btnCalibration()"
+                  >
+                    SUBMIT
+                  </button>
+                </div>
+                
+              </div>
+
+              <div class="col-md-2" *ngIf="downloadCert">
+                <div class="form-group">
+                    <button style="margin-top: 26px !important;"
+                    type="button"
+                    class="btn btn-success btn-sm"
+                    (click)="btndownloadCalibration()"
+                  >
+                   DOWNLOAD CERTIFICATE 
+                  </button>
+                </div>
+                
+              </div>
+           
+    
+            
+      
+            <div class="col-md-12" align="center">
+              <div class="card-content collapse show">
+                <div class="card-body" >
+                   
+                  <div class="col-md-12 table-responsive">
+                    <p class="Status bg-success text-white" style="padding: 10px !important"><b>DEVICE DETAILS SUBMITTED LIST</b></p>
+                    <table class="table table-bordered table-margin">
+                      <thead class="thead-dark">
+
+                        <tr>
+                          <th >S NO</th>
+                          <th >PACS NAME</th>
+                          <th >DEVICE NAME</th>
+                          <th >DEVICE MAKER</th>
+                                                    
+                          <th >SERIAL NUMBER</th>
+                          <th >INSPECTION DATE</th>
+                          <th >MFG DATE</th>
+
+                          <th >DEVICE IMAGE</th>
+                           
+                          
+
+                        </tr>
+                         
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let obj of DeviceDetailsList; let i = index">
+                          <td>{{ i + 1 }}</td> 
+                          <td>{{ obj.PACS_NAME}}</td>                            
+                          <td>{{ obj.DEVICE_NAME}}</td>
+                          <td>{{ obj.DEVICE_MAKER}}</td>
+                          <td>{{ obj.SERIAL_NO}}</td>
+                          <td>{{ obj.MFG_DATE}}</td>
+                          <td>{{ obj.INSPECTION_DATE}}</td>
+                         <td>
+                              <button
+                                type="button"
+                                class="btn btn-link btn-sm"
+                                *ngIf="
+                                  obj.DEVICE_IMAGE !== null &&
+                                  obj.DEVICE_IMAGE !== '' &&
+                                  obj.DEVICE_IMAGE !== undefined
+                                "
+                                (click)="btnPhotoView(obj.DEVICE_IMAGE)"
+                              >
+                                View
+                              </button>
+                              <span
+                                *ngIf="
+                                  obj.DESKTO_PPHO_UPL === null ||
+                                  obj.DESKTO_PPHO_UPL === '' ||
+                                  obj.DESKTO_PPHO_UPL === undefined
+                                "
+                                >{{ obj.DESKTO_PPHO_UPL }}</span
+                              >
+                            </td>
+
+                           
+                          
+                        </tr>
+                      </tbody>
+
+                    </table>
+                  </div>
+                </div>
+              </div>
+               
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+

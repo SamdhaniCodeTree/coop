@@ -1,0 +1,163 @@
+<div class="app-content content">
+  <div class="content-overlay"></div>
+  <div class="content-wrapper">
+    <div class="content-header row">
+      <div class="content-header-left col-md-6 col-12">
+        <h3 class="content-header-title mb-0">CEO List</h3>
+        <div class="row breadcrumbs-top">
+          <div class="breadcrumb-wrapper col-12">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item">
+                <a class="custom-cursor" routerLink="/dlco">Menu</a>
+              </li>
+              <li class="breadcrumb-item active">
+                <a class="custom-cursor" routerLink="/dlco/ceoList">CEO List</a>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="content-body">
+      <!-- Basic form layout section start -->
+      <section id="basic-form-layouts">
+        <div class="row match-height">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <!--<h4 class="card-title" id="basic-layout-form">Input Fields</h4>
+                 <a class="heading-elements-toggle"
+                  ><i class="fa fa-ellipsis-v font-medium-3"></i
+                ></a>
+                <div class="heading-elements">
+                  <ul class="list-inline mb-0">
+                    <li>
+                      <a data-action="collapse"
+                        ><i class="feather icon-minus"></i
+                      ></a>
+                    </li>
+                    <li>
+                      <a data-action="reload"
+                        ><i class="feather icon-rotate-cw"></i
+                      ></a>
+                    </li>
+                    <li>
+                      <a data-action="expand"
+                        ><i class="feather icon-maximize"></i
+                      ></a>
+                    </li>
+                    <li>
+                      <a data-action="close"><i class="feather icon-x"></i></a>
+                    </li>
+                  </ul>
+                </div> -->
+              </div>
+              <div class="card-content collapse show">
+                <div class="card-body">
+                  <div class="form">
+                    <div class="form-body">
+                      <h4 class="form-section">
+                        <i class="feather icon-user"></i> CEO List
+                      </h4>
+                      <div class="row">
+                        <div
+                          class="col-md-12 table-responsive"
+                          [hidden]="ceoList.length < 1"
+                        >
+                          <h3 class="text-center">CEO-PAC MAPPING</h3>
+                          <table
+                            class="table table-bordered"
+                            datatable
+                            [dtOptions]="dtOptions"
+                            [dtTrigger]="dtTrigger"
+                          >
+                            <thead class="thead-dark">
+                              <tr>
+                                <th>S.No.</th>
+                                <th>Mandal</th>
+                                <th>PAC</th>
+                                <th>Name</th>
+                                <th>Mobile Number</th>
+                                <th>Login Username</th>
+                                <th>Active Status</th>
+                                <th>Default Password Status</th>
+                                <th>Resend Password</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr *ngFor="let obj of ceoList; let i = index">
+                                <td>{{ i + 1 }}</td>
+                                <td>{{ obj.MANDAL_NAME }}</td>
+                                <td>{{ obj.PACS_NAME }}</td>
+                                <td>{{ obj.NAME }}</td>
+                                <td>{{ obj.MOBILE_NO }}</td>
+                                <td>{{ obj.USERNAME }}</td>
+                                <td>
+                                  <span
+                                    *ngIf="obj.ACTIVE_STATUS === '1'"
+                                    class="text-success"
+                                    >Active</span
+                                  >
+                                  <span
+                                    *ngIf="obj.ACTIVE_STATUS !== '1'"
+                                    class="text-danger"
+                                    >Disabled</span
+                                  >
+                                </td>
+                                <td>
+                                  <span
+                                    *ngIf=" obj.IS_PASSWORD_UPD == 1 || obj.PASSWORD_EXP_STATUS == 0"
+                                    class="text-success"
+                                    >Not Expired</span
+                                  >
+                                  <span
+                                    *ngIf=" obj.IS_PASSWORD_UPD == 0 && obj.PASSWORD_EXP_STATUS == 1"
+                                    class="text-danger"
+                                    >Expired</span
+                                  >
+                                </td>
+                                <td>
+                                  <button
+                                    type="button"
+                                    *ngIf="
+                                      obj.IS_PASSWORD_UPD == 0 &&
+                                      obj.PASSWORD_EXP_STATUS == 1
+                                    "
+                                    class="btn btn-sm btn-success"
+                                    (click)="btnResend(obj);"
+                                  >
+                                    Resend
+                                  </button>
+                                  <span
+                                    *ngIf="
+                                      obj.IS_PASSWORD_UPD == 1 ||
+                                      obj.PASSWORD_EXP_STATUS == 0
+                                    "
+                                    class="text-danger"
+                                    >--</span
+                                  >
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+
+                        <div
+                          class="col-md-12 table-responsive"
+                          *ngIf="ceoList.length < 1"
+                        >
+                          <h6 class="text-center">No Data Available</h6>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- // Basic form layout section end -->
+    </div>
+  </div>
+</div>

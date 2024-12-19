@@ -1,0 +1,108 @@
+.total-size {
+    /* font-size: 14px; */
+    color: white;
+    font-weight: bold;
+}
+
+.alien-center {
+    padding-bottom: 60px;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.number-right {
+    text-align: right;
+}
+
+tr.reportnumber th {
+
+    padding: 1px 0px;
+}
+
+.tbl-container{
+    max-width: fit-content;
+    max-height: fit-content;
+}
+.tbl-fixed{
+ height: fit-content;
+ overflow-y: scroll;
+ overflow-x: scroll;
+ max-height: 80vh;
+}
+
+.tbl-data{
+    min-width: max-content;
+    
+}
+.tbl-data thead{
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    -webkit-box-shadow: 0px 0px 15px -4px rgba(71, 114, 254, 0.3);
+    -moz-box-shadow: 0px 0px 15px -4px rgba(71, 114, 254, 0.3);
+    box-shadow: 0px 0px 15px -4px rgba(71, 114, 254, 0.3);
+    /* background-color: #07828b; */
+    color: #fff;
+    border: 2px solid #fff !important;
+}
+
+   .tbl-data thead th:first-child{
+    /* background-color: #07828b; */
+    position: sticky;
+    left: -15px;
+    z-index: 4;
+   }
+   .tbl-data td:first-child{
+   position: sticky;
+   left: -15px;
+   z-index: 2;
+   }
+
+   .tbl-data th:nth-child(2){
+    position: sticky;
+    left: 54px;
+    z-index: 4;
+   /* background-color: #07828b;  */
+   }
+   .tbl-data td:nth-child(2){
+    position: sticky;
+    left: 54px;
+    z-index: 2;
+    width: 150px;
+   }
+   .tbl-data th:nth-child(3){
+    position: sticky;
+    left: 184px;
+    z-index: 4;
+   /* background-color: #07828b;  */
+   }
+   .tbl-data td:nth-child(3){
+    position: sticky;
+    left: 184px;
+    z-index: 2;
+   }
+   .tbl-data th:nth-child(4){
+    position: sticky;
+    left: 345px;
+    z-index: 4;
+   /* background-color: #07828b;  */
+   }
+   .tbl-data td:nth-child(4){
+    position: sticky;
+    left: 345px;
+    z-index: 2;
+   }
+   
+   
+   .tbl-data thead th,
+.tbl-data thead td {
+  /* padding: 10px 18px; */
+  border-bottom: 1px solid #e0e0e0 !important;
+}
+.tbl-data tfoot th,
+.tbl-data tfoot td {
+  padding: 10px 18px 6px 18px;
+  border-top: 1px solid #e0e0e0;
+}

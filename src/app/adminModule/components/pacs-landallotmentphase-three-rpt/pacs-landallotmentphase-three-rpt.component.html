@@ -1,0 +1,728 @@
+<div class="app-content content">
+    <div class="content-overlay"></div>
+    <div class="content-wrapper">
+      <div class="content-header row">
+        <div class="content-header-left col-md-6 col-12">
+          <h3 class="content-header-title mb-0">PACS Land Allotment Report Phase - III</h3>
+          <div class="row breadcrumbs-top">
+            <div class="breadcrumb-wrapper col-12">
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="content-body" *ngIf="District_div">
+        <section id="basic-form-layouts">
+          <div class="row match-height">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header"></div>
+                <div class="card-content collapse show">
+                  <div class="card-body">
+                    <div class="form">
+                      <div class="form-body">
+                        <h4 class="form-section">
+                          <i class="feather icon-user"></i>Land
+                          Allotment Report For MPFC Phase - III
+                        </h4>
+  
+                        <div class="row align-items-center">
+                            
+                          <div class="col-md-3">
+                            <div class="form-group">
+                              <label for="fromDate"
+                                >From Date :
+                                <span style="color: red">*</span></label
+                              >
+                              <br>
+                              
+                              <input type="text" placeholder="DD-MM-YYYY" class="form-control"
+                              [(ngModel)]="fromDate" [maxDate]="maxDate" placement="bottom" container="" [bsConfig]="bsDatepickerConfig" bsDatepicker>
+                              <app-date-picker *ngIf="datedisable"
+                                [PlaceHolder]="'Please Select From Date'"
+                                [(selectedDate)]="fromDate"
+                                [minDate]="minDate"
+                                [maxDate]="maxDate"
+                              ></app-date-picker>
+                            </div>
+                          </div>
+                          <div class="col-md-3">
+                            <div class="form-group">
+                              <label for="toDate"
+                                >To Date :
+                                <span style="color: red">*</span></label
+                              >
+                              <br>
+                             
+                              <input type="text" placeholder="DD-MM-YYYY" class="form-control" [dateCustomClasses]="dateCustomClasses"
+                              [(ngModel)]="toDate" [maxDate]="maxDate" placement="bottom" container="" [bsConfig]="bsDatepickerConfig" bsDatepicker>
+                              <app-date-picker *ngIf="datedisable"
+                                [PlaceHolder]="'Please Select To Date'"
+                                [(selectedDate)]="toDate"
+                                [minDate]="minDate"
+                                [maxDate]="maxDate"
+                              ></app-date-picker>
+                            </div>
+                          </div>
+                          <div class="col-md-6">
+                            <button
+                              type="button"
+                              class="btn btn-success btn-sm mt-3"
+                              (click)="btnLoadReport()"
+                            >
+                              <i
+                                class="fa fa-arrow-right mr-2"
+                                aria-hidden="true"
+                              ></i>
+                              GO
+                            </button>
+                          </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-12">
+                              <button
+                                type="button"
+                                class="btn btn-sm btn-success pull-right"
+                                (click)="btnDistrictExlDownload()"
+                              >
+                                <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+                                DOWNLOAD EXCEL
+                              </button>
+                              <!-- <button
+                                type="button"
+                                class="btn btn-sm btn-danger pull-right"
+                                (click)="btnPDF()"
+                              >
+                                <i
+                                  class="fa fa-file-pdf-o mr-2"
+                                  aria-hidden="true"
+                                ></i>
+                                DOWNLOAD PDF
+                              </button> -->
+                            </div>
+                            <!-- <div
+                              class="col-md-12 table-responsive"
+                              [hidden]="stateLevelDetails.length < 1"
+                            > -->
+                              <table
+                                class="table table-bordered"
+                                datatable
+                                [dtOptions]="dtOptions"
+                                [dtTrigger]="dtTrigger"
+                              >
+                                <thead class="thead-dark">
+                                  <tr>
+                                    <th colspan="2"></th>
+                                    <th colspan="3">MANDALS</th>
+                                    <th colspan="3">RBKS</th>
+                                    <th colspan="4">LAND ALLOTMENT</th>
+                                    <th colspan="2">LAND HANDOVER</th>
+                                  </tr>
+                                  <tr>
+                                    <th>S.No.</th>
+                                    <th [appSort]="stateLevelDetails" data-order="desc" data-name="DISTRICT_NAME"><i class="fa fa-sort"></i>&nbsp;DISTRICT <br>NAME</th>
+                                    <th [appSort]="stateLevelDetails" data-order="desc" data-name="TOTAL_MANDALS"><i class="fa fa-sort"></i>&nbsp;TOTAL</th>
+                                    <th [appSort]="stateLevelDetails" data-order="desc" data-name="TOTAL_SUBMIT_MANDALS"><i class="fa fa-sort"></i>&nbsp;SUBMITTED</th>
+                                    <th [appSort]="stateLevelDetails" data-order="desc" data-name="TOTAL_NOT_SUBMIT_MANDALS"><i class="fa fa-sort"></i>&nbsp;NOT<br> SUBMITTED</th>
+                                    <th [appSort]="stateLevelDetails" data-order="desc" data-name="TOTAL_RBKS"><i class="fa fa-sort"></i>&nbsp;TOTAL</th>
+                                    <th [appSort]="stateLevelDetails" data-order="desc" data-name="TOTAL_SUBMIT_RBKS"><i class="fa fa-sort"></i>&nbsp;SUBMITTED</th>
+                                    <th [appSort]="stateLevelDetails" data-order="desc" data-name="TOTAL_NOT_SUBMIT_RBKS"><i class="fa fa-sort"></i>&nbsp;NOT <br>SUBMITTED</th>
+                                    <th [appSort]="stateLevelDetails" data-order="desc" data-name="TOTAL_LAND_SUBMITTED"><i class="fa fa-sort"></i>&nbsp;COMPLETED</th>
+                                    <th [appSort]="stateLevelDetails" data-order="desc" data-name="PERCENTAGE_COMPLETED"><i class="fa fa-sort"></i>&nbsp;PERCENTAGE(%)<br> COMPLETED</th>
+                                    <th [appSort]="stateLevelDetails" data-order="desc" data-name="TOTAL_LAND_NOT_SUBMITTED"><i class="fa fa-sort"></i>&nbsp;NOT<br> COMPLETED</th>
+                                    <th [appSort]="stateLevelDetails" data-order="desc" data-name="PERCENTAGE_NOT_COMPLETED"><i class="fa fa-sort"></i>&nbsp;PERCENTAGE(%) <br>NOT <br>COMPLETED</th>
+                                    <th [appSort]="stateLevelDetails" data-order="desc" data-name="TOTAL_LAND_HANDOVER_SUBMIT"><i class="fa fa-sort"></i>&nbsp;COMPLETED</th>
+                                    <th [appSort]="stateLevelDetails" data-order="desc" data-name="TOTAL_LAND_HANDOVER_NOT_SUBMIT"><i class="fa fa-sort"></i>&nbsp; NOT <br>COMPLETED</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr *ngFor="let obj of stateLevelDetails; let i = index">
+                                    <td>{{ i + 1 }}</td>
+                                    <td>
+                                      <a
+                                        style="cursor: pointer; text-decoration: underline"
+                                        class="text-primary"
+                                        (click)="btnGetDetails(obj)"
+                                        ><b>{{ obj.DISTRICT_NAME }}</b></a
+                                      >
+                                    </td>
+                                    <td>{{ obj.TOTAL_MANDALS }}</td>
+                                    <td>
+                                      {{ obj.TOTAL_SUBMIT_MANDALS }}
+                                    </td>
+                                    <td>
+                                      {{ obj.TOTAL_NOT_SUBMIT_MANDALS }}
+                                    </td>
+                                    <td>{{ obj.TOTAL_RBKS }}</td>
+                                    <td>
+                                      {{ obj.TOTAL_SUBMIT_RBKS }}
+                                    </td>
+                                    <td>
+                                      {{ obj.TOTAL_NOT_SUBMIT_RBKS }}
+                                    </td>
+                                    <td>
+                                      {{ obj.TOTAL_LAND_SUBMITTED }}
+                                    </td>
+                                    <td>{{ obj.PERCENTAGE_COMPLETED.toFixed(2) }} %</td>
+                                    <td>
+                                      {{ obj.TOTAL_LAND_NOT_SUBMITTED }}
+                                    </td>
+                                    <td>{{ obj.PERCENTAGE_NOT_COMPLETED.toFixed(2) }} %</td>
+                                    <td>
+                                      {{ obj.TOTAL_LAND_HANDOVER_SUBMIT }}
+                                    </td>
+                                    <td>
+                                      {{ obj.TOTAL_LAND_HANDOVER_NOT_SUBMIT }}
+                                    </td>
+                                  </tr>
+                                </tbody>
+                                <tbody *ngIf="stateLevelDetails?.length > 0">
+                                  <tr>
+                                    <td>--</td>
+                                    <td>
+                                      <b>TOTAL</b>
+                                    </td>
+                                    <td>
+                                      {{ reportTotals.TOTAL_MANDALS }}
+                                    </td>
+                                    <td>
+                                      {{ reportTotals.TOTAL_SUBMIT_MANDALS }}
+                                    </td>
+                                    <td>
+                                      {{ reportTotals.TOTAL_NOT_SUBMIT_MANDALS }}
+                                    </td>
+                                    <td>
+                                      {{ reportTotals.TOTAL_RBKS }}
+                                    </td>
+                                    <td>
+                                      {{ reportTotals.TOTAL_SUBMIT_RBKS }}
+                                    </td>
+                                    <td>
+                                      {{ reportTotals.TOTAL_NOT_SUBMIT_RBKS }}
+                                    </td>
+                                    <td>
+                                      {{ reportTotals.TOTAL_LAND_SUBMITTED }}
+                                    </td>
+                                    <td>{{ reportTotals.PERCENTAGE_COMPLETED }} %</td>
+                                    <td>
+                                      {{ reportTotals.TOTAL_LAND_NOT_SUBMITTED }}
+                                    </td>
+                                    <td>{{ reportTotals.PERCENTAGE_NOT_COMPLETED }} %</td>
+                                    <td>
+                                      {{ reportTotals.TOTAL_LAND_HANDOVER_SUBMIT }}
+                                    </td>
+                                    <td>
+                                      {{ reportTotals.TOTAL_LAND_HANDOVER_NOT_SUBMIT }}
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            <!-- </div> -->
+                          
+                            <!-- <div
+                              class="col-md-12 table-responsive" *ngIf="hide"
+                              [hidden]="stateLevelDetails?.length > 1"
+                            >
+                              <h6 class="text-center">No Data Available</h6>
+                            </div> -->
+                          </div>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- // Basic form layout section end -->
+      </div>
+
+      <div class="row" *ngIf="Mandal_div">
+        <div class="col-md-12 row">
+            <div class="col-md-3">
+                <label for="toDate">
+                    From Date :
+                    <span class="text-success">
+                      <b> {{ FromDateformat }}</b>
+                    </span>
+                  </label>
+                  
+            </div>
+            <div class="col-md-3">
+                <label for="toDate">
+                    To Date :
+                    <span class="text-success">
+                      <b> {{ ToDateformat }}</b>
+                    </span>
+                  </label>
+            </div>
+<div class="col-md-3">
+    <label for="toDate">
+        DISTRICT :
+        <span class="text-success">
+          <b> {{ districtName }}</b>
+        </span>
+      </label>
+</div>
+<div class="col-md-3">
+    <button
+            type="button"
+            class="btn btn-sm btn-info pull-right"
+            (click)="btnback()"
+          >Back</button>
+</div>
+         
+        </div>
+        <div class="col-md-12">
+          <button
+            type="button"
+            class="btn btn-sm btn-success pull-right"
+            (click)="btnExcelDownloadMandal()"
+          >
+            <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+            DOWNLOAD EXCEL
+          </button>
+          <!-- <button
+              type="button"
+              class="btn btn-sm btn-danger pull-right"
+              (click)="btnPDF()"
+            >
+              <i
+                class="fa fa-file-pdf-o mr-2"
+                aria-hidden="true"
+              ></i>
+              DOWNLOAD PDF
+            </button> -->
+        </div>
+        <div
+          class="col-md-12 table-responsive"
+          [hidden]="districtLevelDetails.length < 1"
+        >
+          <table
+            class="table table-bordered"
+            datatable
+            [dtOptions]="dtOptions"
+            [dtTrigger]="dtTrigger"
+          >
+            <thead class="thead-dark">
+              
+              <tr>
+                <th>S.No.</th>
+                <th [appSort]="districtLevelDetails" data-order="desc" data-name="MANDAL_NAME"><i class="fa fa-sort"></i>&nbsp;MANDAL NAME</th>
+                <th [appSort]="districtLevelDetails" data-order="desc" data-name="TOTAL_RBKS"><i class="fa fa-sort"></i>&nbsp;RBKS</th>
+                <th [appSort]="districtLevelDetails" data-order="desc" data-name="TOTAL_SUBMIT_RBKS"><i class="fa fa-sort"></i>&nbsp;SUBMITTED <br>RBKS</th>
+                <th [appSort]="districtLevelDetails" data-order="desc" data-name="TOTAL_NOT_SUBMIT_RBKS"><i class="fa fa-sort"></i>&nbsp;NOT<br> SUBMITTED <br>RBKS</th>
+                <th [appSort]="districtLevelDetails" data-order="desc" data-name="TOTAL_LAND_SUBMITTED"><i class="fa fa-sort"></i>&nbsp;LAND <br>ALLOTMENT<br> COMPLETED</th>
+                <th [appSort]="districtLevelDetails" data-order="desc" data-name="PERCENTAGE_COMPLETED"><i class="fa fa-sort"></i>&nbsp;PERCENTAGE<br> COMPLETED</th>
+                <th [appSort]="districtLevelDetails" data-order="desc" data-name="TOTAL_LAND_NOT_SUBMITTED"><i class="fa fa-sort"></i>&nbsp;LAND <br>ALLOTMENT <br>NOT COMPLETED</th>
+                <th [appSort]="districtLevelDetails" data-order="desc" data-name="PERCENTAGE_NOT_COMPLETED"><i class="fa fa-sort"></i>&nbsp;PERCENTAGE<br> NOT<br> COMPLETED</th>
+                <th [appSort]="districtLevelDetails" data-order="desc" data-name="TOTAL_LAND_HANDOVER_SUBMIT"><i class="fa fa-sort"></i>&nbsp;LAND <br>HANDOVER<br> COMPLETED</th>
+                <th [appSort]="districtLevelDetails" data-order="desc" data-name="TOTAL_LAND_HANDOVER_NOT_SUBMIT"><i class="fa fa-sort"></i>&nbsp;LAND<br> HANDOVER <br>NOT COMPLETED</th>
+              </tr>
+            </thead>
+            <tbody *ngIf="districtLevelDetails?.length > 0">
+              <tr *ngFor="let obj of districtLevelDetails; let i = index">
+                <td>{{ i + 1 }}</td>
+                <td>
+                  <a
+                    *ngIf="obj.TOTAL_SUBMIT_RBKS !== 0"
+                    style="cursor: pointer; text-decoration: underline"
+                    class="text-primary"
+                    (click)="btnGetDetails_rbks(obj)"
+                    ><b>{{ obj.MANDAL_NAME }}</b></a
+                  >
+                  <span *ngIf="obj.TOTAL_SUBMIT_RBKS === 0">{{
+                    obj.MANDAL_NAME
+                  }}</span>
+                </td>
+                <td>{{ obj.TOTAL_RBKS }}</td>
+                <td>
+                  {{ obj.TOTAL_SUBMIT_RBKS }}
+                </td>
+                <td>
+                  {{ obj.TOTAL_NOT_SUBMIT_RBKS }}
+                </td>
+                <td>
+                  {{ obj.TOTAL_LAND_SUBMITTED }}
+                </td>
+                <td>{{ obj.PERCENTAGE_COMPLETED }} %</td>
+                <td>
+                  {{ obj.TOTAL_LAND_NOT_SUBMITTED }}
+                </td>
+                <td>{{ obj.PERCENTAGE_NOT_COMPLETED }} %</td>
+                <td>
+                  {{ obj.TOTAL_LAND_HANDOVER_SUBMIT }}
+                </td>
+                <td>
+                  {{ obj.TOTAL_LAND_HANDOVER_NOT_SUBMIT }}
+                </td>
+              </tr>
+            </tbody>
+            <tbody *ngIf="districtLevelDetails?.length > 0">
+              <tr>
+                <td>--</td>
+                <td>
+                  <b>TOTAL</b>
+                </td>
+                <td>
+                  {{ reportTotalsMandals.TOTAL_RBKS }}
+                </td>
+                <td>
+                  {{ reportTotalsMandals.TOTAL_SUBMIT_RBKS }}
+                </td>
+                <td>
+                  {{ reportTotalsMandals.TOTAL_NOT_SUBMIT_RBKS }}
+                </td>
+                <td>
+                  {{ reportTotalsMandals.TOTAL_LAND_SUBMITTED }}
+                </td>
+                <td>{{ reportTotalsMandals.PERCENTAGE_COMPLETED }} %</td>
+                <td>
+                  {{ reportTotalsMandals.TOTAL_LAND_NOT_SUBMITTED }}
+                </td>
+                <td>{{ reportTotalsMandals.PERCENTAGE_NOT_COMPLETED }} %</td>
+                <td>
+                  {{ reportTotalsMandals.TOTAL_LAND_HANDOVER_SUBMIT }}
+                </td>
+                <td>
+                  {{ reportTotalsMandals.TOTAL_LAND_HANDOVER_NOT_SUBMIT }}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      
+        <!-- <div
+          class="col-md-12 table-responsive"
+          [hidden]="districtLevelDetails?.length > 1"
+        >
+          <h6 class="text-center">No Data Available</h6>
+        </div> -->
+      </div>
+
+      <div class="row" *ngIf="Rbk_div">
+        <div class="col-md-2">
+          <label for="toDate">
+              From Date :
+              <span class="text-success">
+                <b> {{ FromDateformat }}</b>
+              </span>
+            </label>
+      </div>
+      <div class="col-md-2">
+          <label for="toDate">
+              To Date :
+              <span class="text-success">
+                <b> {{ ToDateformat }}</b>
+              </span>
+            </label>
+      </div>
+        <div class="col-md-3">
+          <label for="toDate">
+            DISTRICT :
+            <span class="text-success">
+              <b> {{ districtName }}</b>
+            </span>
+          </label>
+        </div>
+        <div class="col-md-3">
+          <label for="toDate">
+            MANDAL :
+            <span class="text-success">
+              <b> {{ mandalName }}</b>
+            </span>
+          </label>
+        </div>
+        <div class="col-md-2">
+          <button
+                  type="button"
+                  class="btn btn-sm btn-info pull-right"
+                  (click)="btnrbk_back()"
+                >Back</button>
+      </div>
+
+        <div class="col-md-12">
+          <button
+            type="button"
+            class="btn btn-sm btn-success pull-right"
+            (click)="btnExcelDownload()"
+          >
+            <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+            DOWNLOAD EXCEL
+          </button>
+          <!-- <button
+                type="button"
+                class="btn btn-sm btn-danger pull-right"
+                (click)="btnPDF()"
+              >
+                <i
+                  class="fa fa-file-pdf-o mr-2"
+                  aria-hidden="true"
+                ></i>
+                DOWNLOAD PDF
+              </button> -->
+        </div>
+        <div
+          class="col-md-12 table-responsive"
+          [hidden]="mandalLevelDetails.length < 1"
+        >
+          <table
+            class="table table-bordered"
+            datatable
+            [dtOptions]="dtOptions"
+            [dtTrigger]="dtTrigger"
+          >
+            <thead class="thead-dark">
+              <tr>
+                <th>S.No.</th>
+                <!-- <th>DIVISION<br> NAME</th> -->
+                <th [appSort]="mandalLevelDetails" data-order="desc" data-name="VILLAGE_NAME"><i class="fa fa-sort"></i>&nbsp;VILLAGE<br> NAME</th>
+                <th [appSort]="mandalLevelDetails" data-order="desc" data-name="PUBLIC_OWN_LAND"><i class="fa fa-sort"></i>&nbsp;PUBLIC/<br>OWN LAND</th>
+                <th [appSort]="mandalLevelDetails" data-order="desc" data-name="SURVEY_NUMBER"><i class="fa fa-sort"></i>&nbsp;SURVEY NO</th>
+                <th [appSort]="mandalLevelDetails" data-order="desc" data-name="AREA"><i class="fa fa-sort"></i>&nbsp;AREA</th>
+                <th [appSort]="mandalLevelDetails" data-order="desc" data-name="LAND_ALLOTMENT_STATUS"><i class="fa fa-sort"></i>&nbsp;LAND <br>ALOTMENT<br> STATUS</th>
+                <th [appSort]="mandalLevelDetails" data-order="desc" data-name="LATITUDE"><i class="fa fa-sort"></i>&nbsp;LATITUDE</th>
+                <th [appSort]="mandalLevelDetails" data-order="desc" data-name="LONGITUDE"><i class="fa fa-sort"></i>&nbsp;LONGITUDE</th>
+                
+                <th>NORTH<br> BOUNDARY</th>
+                <th>SOUTH<br> BOUNDARY</th>
+                <th>EAST <br>BOUNDARY</th>
+                <th>WEST <br>BOUNDARY</th>
+                <th>LAND<br> PHOTO</th>
+                <th>HANDOVER <br>VILLAGE<br> NAME</th>
+                <th>ALLOTMENT<br> ORDER</th>
+                <th>TITLE<br> LEAD</th>
+                <th [appSort]="mandalLevelDetails" data-order="desc" data-name="LAND_TAKEN_BY_NAME"><i class="fa fa-sort"></i>&nbsp;LAND TAKEN <br>BY NAME</th>
+                <th [appSort]="mandalLevelDetails" data-order="desc" data-name="LAND_TAKEN_BY_MOB_NO"><i class="fa fa-sort"></i>&nbsp;LAND TAKEN<br> BY MOBILE NO</th>
+                <th [appSort]="mandalLevelDetails" data-order="desc" data-name="LAND_TAKEN_BY_DISIGNATION"><i class="fa fa-sort"></i>&nbsp;LAND TAKEN <br>BY DESIGNATION</th>
+                <th [appSort]="mandalLevelDetails" data-order="desc" data-name="LAND_HANDOVER_BY_NAME"><i class="fa fa-sort"></i>&nbsp;LAND HANDOVER <br>BY NAME</th>
+                <th [appSort]="mandalLevelDetails" data-order="desc" data-name="LAND_HANDOVER_BY_MOB_NO"><i class="fa fa-sort"></i>&nbsp;LAND HANDOVER <br>BY MOBILE NO</th>
+                <th [appSort]="mandalLevelDetails" data-order="desc" data-name="LAND_HANDOVER_BY_DISIGNATION"><i class="fa fa-sort"></i>&nbsp;LAND HANDOVER<br> BY DESIGNATION</th>
+                <th [appSort]="mandalLevelDetails" data-order="desc" data-name="TOTAL_LAND_HANDOVER_NOT_SUBMIT"><i class="fa fa-sort"></i>&nbsp;POSSESSION <br>CERTIFICATE</th>
+
+              </tr>
+            </thead>
+            <tbody *ngIf="mandalLevelDetails?.length > 0">
+              <tr *ngFor="let obj of mandalLevelDetails; let i = index">
+                <td>{{ i + 1 }}</td>
+                <!-- <td>{{ obj.DIVISION_NAME }}</td> -->
+                <td>
+                  <b>{{ obj.VILLAGE_NAME }}</b>
+                </td>
+                <td>{{ obj.PUBLIC_OWN_LAND }}</td>
+                <td>{{ obj.SURVEY_NUMBER }}</td>
+                <td>{{ obj.AREA }}</td>
+                <td>{{ obj.LAND_ALLOTMENT_STATUS }}</td>
+                <td>{{ obj.LATITUDE }}</td>
+                <td>{{ obj.LONGITUDE }}</td>
+                <td>
+                  <button
+                    type="button"
+                    class="btn btn-link btn-sm"
+                    *ngIf="
+                      obj.NORTH_IMG !== null &&
+                      obj.NORTH_IMG !== '' &&
+                      obj.NORTH_IMG !== undefined
+                    "
+                    (click)="btnPhotoView(obj.NORTH_IMG)"
+                  >
+                    {{ obj.NORTH_BOUNDARY }}
+                  </button>
+                  <span
+                    *ngIf="
+                      obj.NORTH_IMG === null ||
+                      obj.NORTH_IMG === '' ||
+                      obj.NORTH_IMG === undefined
+                    "
+                    >{{ obj.NORTH_BOUNDARY }}</span
+                  >
+                </td>
+                
+                <td>
+                  <button
+                    type="button"
+                    class="btn btn-link btn-sm"
+                    *ngIf="
+                      obj.SOUTH_IMG !== null &&
+                      obj.SOUTH_IMG !== '' &&
+                      obj.SOUTH_IMG !== undefined
+                    "
+                    (click)="btnPhotoView(obj.SOUTH_IMG)"
+                  >
+                    {{ obj.SOUTH_BOUNDARY }}
+                  </button>
+                  <span
+                    *ngIf="
+                      obj.SOUTH_IMG === null ||
+                      obj.SOUTH_IMG === '' ||
+                      obj.SOUTH_IMG === undefined
+                    "
+                    >{{ obj.SOUTH_BOUNDARY }}</span
+                  >
+                </td>
+                <td>
+                  <button
+                    type="button"
+                    class="btn btn-link btn-sm"
+                    *ngIf="
+                      obj.EAST_IMG !== null &&
+                      obj.EAST_IMG !== '' &&
+                      obj.EAST_IMG !== undefined
+                    "
+                    (click)="btnPhotoView(obj.EAST_IMG)"
+                  >
+                    {{ obj.EAST_BOUNDARY }}
+                  </button>
+                  <span
+                    *ngIf="
+                      obj.EAST_IMG === null ||
+                      obj.EAST_IMG === '' ||
+                      obj.EAST_IMG === undefined
+                    "
+                    >{{ obj.EAST_BOUNDARY }}</span
+                  >
+                </td>
+                <td>
+                  <button
+                    type="button"
+                    class="btn btn-link btn-sm"
+                    *ngIf="
+                      obj.WEST_IMG !== null &&
+                      obj.WEST_IMG !== '' &&
+                      obj.WEST_IMG !== undefined
+                    "
+                    (click)="btnPhotoView(obj.WEST_IMG)"
+                  >
+                    {{ obj.WEST_BOUNDARY }}
+                  </button>
+                  <span
+                    *ngIf="
+                      obj.WEST_IMG === null ||
+                      obj.WEST_IMG === '' ||
+                      obj.WEST_IMG === undefined
+                    "
+                    >{{ obj.WEST_BOUNDARY }}</span
+                  >
+                </td>
+                <td>
+                  <button
+                    type="button"
+                    class="btn btn-link btn-sm"
+                    *ngIf="
+                      obj.LAND_ENTIRE_IMG !== null &&
+                      obj.LAND_ENTIRE_IMG !== '' &&
+                      obj.LAND_ENTIRE_IMG !== undefined
+                    "
+                    (click)="btnPhotoView(obj.LAND_ENTIRE_IMG)"
+                  >
+                    VIEW
+                  </button>
+                  <span
+                    *ngIf="
+                      obj.LAND_ENTIRE_IMG === null ||
+                      obj.LAND_ENTIRE_IMG === '' ||
+                      obj.LAND_ENTIRE_IMG === undefined
+                    "
+                    >NA</span
+                  >
+                </td>
+                <td>{{ obj.HANDOVER_VILLAGE_NAME }}</td>
+                <td>
+                  <button
+                    type="button"
+                    class="btn btn-link btn-sm"
+                    *ngIf="
+                      obj.ALLOTMENT_ORDER_APDDCF !== null &&
+                      obj.ALLOTMENT_ORDER_APDDCF !== '' &&
+                      obj.ALLOTMENT_ORDER_APDDCF !== undefined
+                    "
+                    (click)="btnPdfView(obj.ALLOTMENT_ORDER_APDDCF)"
+                  >
+                    VIEW
+                  </button>
+                  <span
+                    *ngIf="
+                      obj.ALLOTMENT_ORDER_APDDCF === null ||
+                      obj.ALLOTMENT_ORDER_APDDCF === '' ||
+                      obj.ALLOTMENT_ORDER_APDDCF === undefined
+                    "
+                    >NA</span
+                  >
+                </td> 
+                <td>
+                  <button
+                    type="button"
+                    class="btn btn-link btn-sm"
+                    *ngIf="
+                      obj.TITLE_DEED !== null &&
+                      obj.TITLE_DEED !== '' &&
+                      obj.TITLE_DEED !== undefined
+                    "
+                    (click)="btnPdfView(obj.TITLE_DEED)"
+                  >
+                    VIEW
+                  </button>
+                  <span
+                    *ngIf="
+                      obj.TITLE_DEED === null ||
+                      obj.TITLE_DEED === '' ||
+                      obj.TITLE_DEED === undefined
+                    "
+                    >NA</span
+                  >
+                </td>
+                <td>{{ obj.LAND_TAKEN_BY_NAME }}</td>
+                <td>{{ obj.LAND_TAKEN_BY_MOB_NO }}</td>
+                <td>{{ obj.LAND_TAKEN_BY_DISIGNATION }}</td>
+                <td>{{ obj.LAND_HANDOVER_BY_NAME }}</td>
+                <td>{{ obj.LAND_HANDOVER_BY_MOB_NO }}</td>
+                <td>{{ obj.LAND_HANDOVER_BY_DISIGNATION }}</td>
+                <td>
+                  <button
+                    type="button"
+                    class="btn btn-link btn-sm"
+                    *ngIf="
+                      obj.ATT_POSITION_STATEMENT_PDF !== null &&
+                      obj.ATT_POSITION_STATEMENT_PDF !== '' &&
+                      obj.ATT_POSITION_STATEMENT_PDF !== undefined
+                    "
+                    (click)="btnPdfView(obj.ATT_POSITION_STATEMENT_PDF)"
+                  >
+                    VIEW
+                  </button>
+                  <span
+                    *ngIf="
+                      obj.ATT_POSITION_STATEMENT_PDF === null ||
+                      obj.ATT_POSITION_STATEMENT_PDF === '' ||
+                      obj.ATT_POSITION_STATEMENT_PDF === undefined
+                    "
+                    >NA</span
+                  >
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      
+        <!-- <div
+          class="col-md-12 table-responsive"
+          [hidden]="mandalLevelDetails?.length > 1"
+        >
+          <h6 class="text-center">No Data Available</h6>
+        </div>
+      </div> -->
+      
+
+
+
+
+    </div>
+  </div>
+  
+  
+
+
+
+

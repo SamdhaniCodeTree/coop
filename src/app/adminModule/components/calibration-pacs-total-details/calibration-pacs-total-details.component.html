@@ -1,0 +1,111 @@
+   <div class="col-md-12" style="margin-top: -34px !important;">
+    <button type="button" class="btn btn-sm btn-success pull-right" (click)="btnExcelDownload()">
+      <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+      DOWNLOAD EXCEL     
+    </button>
+    <button
+    type="button"
+    class="btn btn-sm btn-danger pull-right"
+    (click)="btnPDF()" 
+  >
+    <i
+      class="fa fa-file-pdf-o mr-2"
+      aria-hidden="true"
+    ></i>
+    DOWNLOAD PDF
+  </button>
+    
+  </div>
+  <div class="col-md-12 table-responsive">
+
+    <table class="table table-bordered" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+      <thead class="thead-dark">
+
+        <tr>
+          <th rowspan="2">S NO</th>
+          <th rowspan="2">PARTICULARS</th> 
+          <th colspan="2">SELLER</th>
+          <th colspan="2">NODAL AGENCY</th>
+          <th colspan="2">CC & RCS OFFICE</th> 
+        </tr>
+
+        <tr>
+          <th>NO. OF PACS</th>
+          <th>AMOUNT</th>                                  
+          <th>NO. OF PACS</th>
+          <th>AMOUNT</th>                                  
+          <th>NO. OF PACS</th>
+          <th>AMOUNT</th>                                  
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let obj of stateLevelDetails; let i = index">
+          <td>{{ i + 1 }}</td> 
+          <td>{{ obj.PARTICULARS }}</td>
+
+          <!-- <td>
+
+            <a *ngIf="obj.SELLER_NO_OF_PACS != '0'" style="cursor: pointer; text-decoration: underline" class="text-primary"
+              (click)="btnSitedoneDetails(obj)"><b>{{ obj.SELLER_NO_OF_PACS }}</b></a>
+            <span *ngIf="obj.SELLER_NO_OF_PACS == '0'">{{
+              obj.SELLER_NO_OF_PACS
+              }}</span>
+          </td> -->
+
+          <td>
+            <ng-container *ngIf="i === 0 || i === 2 || i === 3 || i === 5; else hyperlinkTemplate">
+              <span>{{ obj.SELLER_NO_OF_PACS }}</span> <!-- No hyperlink for the first row -->
+            </ng-container>
+            <ng-template #hyperlinkTemplate>
+              <a *ngIf="obj.SELLER_NO_OF_PACS != '0'" 
+                 style="cursor: pointer; text-decoration: underline" 
+                 class="text-primary" 
+                 (click)="btnSellerDetails(obj)">
+                <b>{{ obj.SELLER_NO_OF_PACS }}</b>
+              </a>
+              <span *ngIf="obj.SELLER_NO_OF_PACS == '0'">{{ obj.SELLER_NO_OF_PACS }}</span>
+            </ng-template>
+          </td>
+          
+          <!-- <td>{{ obj.SELLER_NO_OF_PACS }}</td> -->
+          <td>{{ obj.SELLER_AMOUNT }}</td>
+          <!-- <td>{{ obj.NODAL_AGENCY_NO_OF_PACS }}</td> -->
+
+          <td>
+            <ng-container *ngIf="i === 0 || i === 2 || i === 3 || i === 5; else hyperlinkTemplate1">
+              <span>{{ obj.NODAL_AGENCY_NO_OF_PACS }}</span>  
+            </ng-container>
+            <ng-template #hyperlinkTemplate1>
+              <a *ngIf="obj.NODAL_AGENCY_NO_OF_PACS != '0'" 
+                 style="cursor: pointer; text-decoration: underline" 
+                 class="text-primary" 
+                 (click)="btnNodalAgencyDetails(obj)">
+                <b>{{ obj.NODAL_AGENCY_NO_OF_PACS }}</b>
+              </a>
+              <span *ngIf="obj.NODAL_AGENCY_NO_OF_PACS == '0'">{{ obj.NODAL_AGENCY_NO_OF_PACS }}</span>
+            </ng-template>
+          </td> 
+
+          <td>{{ obj.NODAL_AGENCY_AMOUNT }}</td>
+          <!-- <td>{{ obj.CC_RCS_OFFICE_NO_OF_PACS }}</td> -->
+
+          <td>
+            <ng-container *ngIf="i === 0 || i === 2 || i === 3 || i === 5; else hyperlinkTemplate2">
+              <span>{{ obj.CC_RCS_OFFICE_NO_OF_PACS }}</span>  
+            </ng-container>
+            <ng-template #hyperlinkTemplate2>
+              <a *ngIf="obj.CC_RCS_OFFICE_NO_OF_PACS != '0'" 
+                 style="cursor: pointer; text-decoration: underline" 
+                 class="text-primary" 
+                 (click)="btnccrcsDetails(obj)">
+                <b>{{ obj.CC_RCS_OFFICE_NO_OF_PACS }}</b>
+              </a>
+              <span *ngIf="obj.CC_RCS_OFFICE_NO_OF_PACS == '0'">{{ obj.CC_RCS_OFFICE_NO_OF_PACS }}</span>
+            </ng-template>
+          </td> 
+
+          <td>{{ obj.CC_RCS_OFFICE_AMOUNT }}</td> 
+        </tr> 
+      </tbody> 
+    </table>
+  </div> 

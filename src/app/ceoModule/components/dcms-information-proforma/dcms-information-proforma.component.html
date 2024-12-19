@@ -1,0 +1,1412 @@
+<div class="app-content content background">
+  <div class="content-overlay"></div>
+  <div class="content-wrapper">
+    <!--  <div class="content-header row">
+      
+       <div class="row breadcrumbs-top">
+          <div class="breadcrumb-wrapper col-12">
+             <ol class="breadcrumb">
+             <li class="breadcrumb-item">
+                <a class="custom-cursor text-white" routerLink="/ceo">Menu</a>
+              </li>
+              <li class="breadcrumb-item active">
+                <a 
+                  class="custom-cursor text-white"
+                  routerLink="/ceo/dcmsInformationProforma"
+                  >DCMS INFORMATION PROFORMA</a
+                >
+              </li>
+            </ol> 
+          </div>
+        </div> 
+     
+    </div>-->
+    <div class="content-header-left col-md-6 col-12">
+      <h3 class="content-header-title mb-0 text-white" >DCMS INFORMATION PROFORMA</h3>
+    </div>
+    <div class="content-body " style="margin-top: -50px;">
+      <!-- Basic form layout section start -->
+      <section id="basic-form-layouts">
+        <div class="row match-height">
+          <div class="col-md-12">
+            <div class="card backgrnd">
+              <div class="card-header"> 
+                
+                <!--  <h4 class="card-title" id="basic-layout-form">Input Fields</h4>
+                <a class="heading-elements-toggle"
+                  ><i class="fa fa-ellipsis-v font-medium-3"></i
+                ></a>
+                <div class="heading-elements">
+                  <ul class="list-inline mb-0">
+                    <li>
+                      <a data-action="collapse"
+                        ><i class="feather icon-minus"></i
+                      ></a>
+                    </li>
+                    <li>
+                      <a data-action="reload"
+                        ><i class="feather icon-rotate-cw"></i
+                      ></a>
+                    </li>
+                    <li>
+                      <a data-action="expand"
+                        ><i class="feather icon-maximize"></i
+                      ></a>
+                    </li>
+                    <li>
+                      <a data-action="close"><i class="feather icon-x"></i></a>
+                    </li>
+                  </ul>
+                </div> -->
+              </div>
+              <div class="card-content collapse show">
+                <div class="card-body">
+                  <div class="form"  *ngIf="dcmsDetails === ''">
+                    <div class="form-body">
+                      <h4 class="form-section">
+                        <i class="fa fa-paperclip"></i> DCMS Basic Information
+                      </h4>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="nameOfDCMS"
+                              >Name of the District Cooperative Marketing
+                              Society<span class="text-danger">*</span>
+                            </label>
+                            <input
+                              type="text"
+                              id="nameOfDCMS"
+                              class="form-control"
+                              placeholder="Enter name of DCMS"
+                              name="nameOfDCMS"
+                              [(ngModel)]="dcmsReq.nameOfDCMS"
+                              maxlength="50"
+                              autocomplete="off"
+                            />
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="addressOfDCMS"
+                              >Address of District Cooperative Marketing
+                              Society<span class="text-danger">*</span>
+                            </label>
+                            <input
+                              type="text"
+                              id="addressOfDCMS"
+                              class="form-control"
+                              placeholder="Enter address of DCMS"
+                              name="addressOfDCMS"
+                              [(ngModel)]="dcmsReq.addressOfDCMS"
+                              maxlength="50"
+                              autocomplete="off"
+                            />
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="areaOfOperation"
+                              >Area of operation<span class="text-danger"
+                                >*</span
+                              >
+                            </label>
+                            <input
+                              type="text"
+                              id="areaOfOperation"
+                              class="form-control"
+                              placeholder="Enter name area of operation"
+                              name="areaOfOperation"
+                              [(ngModel)]="dcmsReq.areaOfOperation"
+                              maxlength="50"
+                              autocomplete="off"
+                            />
+                          </div>
+                        </div>
+
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="noOfBranches">
+                              Number of Branches <span class="text-danger">*</span>
+                            </label>
+                            <input
+                              type="text"
+                              id="noOfBranches"
+                              class="form-control"
+                              placeholder="Enter no of branches"
+                              name="noOfBranches"
+                              [(ngModel)]="dcmsReq.noOfBranches"
+                              maxlength="5"
+                              autocomplete="off"
+                            />
+                          </div>
+                        </div>
+
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="dateOfRegistrationOfAct"
+                              >Date of Registration under APCS Act 1964.<span
+                                class="text-danger"
+                                >*</span
+                              >
+                            </label>
+                            <app-date-picker
+                              [PlaceHolder]="
+                                'Select date of registration under APCS act 1964'
+                              "
+                              [(selectedDate)]="dcmsReq.dateOfRegistrationOfAct"
+                              [maxDate]="maxDate"
+                            ></app-date-picker>
+                          </div>
+                        </div>
+
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="regNoOfSociety"
+                              >Registration Number of the Society<span
+                                class="text-danger"
+                                >*</span
+                              >
+                            </label>
+                            <input
+                              type="text"
+                              id="regNoOfSociety"
+                              class="form-control"
+                              placeholder="Enter registration no of society"
+                              name="regNoOfSociety"
+                              [(ngModel)]="dcmsReq.regNoOfSociety"
+                              maxlength="50"
+                              autocomplete="off"
+                            />
+                          </div>
+                        </div>
+                      </div>
+
+                      <h4 class="form-section">
+                        <i class="feather icon-user"></i> Members
+                      </h4>
+
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="totalMembers"
+                              >Total Members <span class="text-danger">*</span>
+                            </label>
+                            <input
+                              type="text"
+                              id="totalMembers"
+                              class="form-control"
+                              placeholder="Enter total members"
+                              name="totalMembers"
+                              [(ngModel)]="dcmsReq.totalMembers"
+                              maxlength="5"
+                              autocomplete="off"
+                            />
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="noOfClassAMembers"
+                              >Number of A Class Members<span
+                                class="text-danger"
+                                >*</span
+                              >
+                            </label>
+                            <input
+                              type="text"
+                              id="noOfClassAMembers"
+                              class="form-control"
+                              placeholder="Enter no of A class members"
+                              name="noOfClassAMembers"
+                              [(ngModel)]="dcmsReq.noOfClassAMembers"
+                              maxlength="5"
+                              autocomplete="off"
+                            />
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="noOfClassBMembers"
+                              >Number of B Class Members<span
+                                class="text-danger"
+                                >*</span
+                              >
+                            </label>
+                            <input
+                              type="text"
+                              id="noOfClassBMembers"
+                              class="form-control"
+                              placeholder="Enter no of B class members"
+                              name="noOfClassBMembers"
+                              [(ngModel)]="dcmsReq.noOfClassBMembers"
+                              maxlength="5"
+                              autocomplete="off"
+                            />
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="categoryOfSociety"
+                              >Category of the society<span class="text-danger"
+                                >*</span
+                              >
+                            </label>
+                            <select
+                              id="categoryOfSociety"
+                              class="form-control"
+                              [(ngModel)]="dcmsReq.categoryOfSociety"
+                            >
+                              <option value="">-- SELECT CATEGORY --</option>
+                              <option value="Aided">Aided</option>
+                              <option value="Unaided">Unaided</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+
+                      <h4 class="form-section">
+                        <i class="feather icon-user"></i> Management
+                      </h4>
+
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="shareCapitalOfMembers"
+                              >Share Capital of the Members
+                              <span class="text-danger">*</span>
+                            </label>
+                            <input
+                              type="text"
+                              id="shareCapitalOfMembers"
+                              class="form-control"
+                              placeholder="Enter share capital of the members"
+                              name="shareCapitalOfMembers"
+                              [(ngModel)]="dcmsReq.shareCapitalOfMembers"
+                              maxlength="5"
+                              autocomplete="off"
+                            />
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="shareCapitalOfGovt"
+                              >Share Capital of the Government
+                              <span class="text-danger">*</span>
+                            </label>
+                            <input
+                              type="text"
+                              id="shareCapitalOfGovt"
+                              class="form-control"
+                              placeholder="Enter share capital of the government"
+                              name="shareCapitalOfGovt"
+                              [(ngModel)]="dcmsReq.shareCapitalOfGovt"
+                              maxlength="5"
+                              autocomplete="off"
+                            />
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="dateOfElectionsLastConducted"
+                              >Date of Elections last conducted
+                              <span class="text-danger">*</span>
+                            </label>
+                            <app-date-picker
+                              [PlaceHolder]="
+                                'Select date of elections last conducted'
+                              "
+                              [(selectedDate)]="
+                                dcmsReq.dateOfElectionsLastConducted
+                              "
+                              [maxDate]="maxDate"
+                            ></app-date-picker>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="dueDateForElections"
+                              >Due date for Elections
+                              <span class="text-danger">*</span>
+                            </label>
+                            <app-date-picker
+                              [PlaceHolder]="'Select due date for elections'"
+                              [(selectedDate)]="dcmsReq.dueDateForElections"
+                              [maxDate]="maxDate"
+                            ></app-date-picker>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="presentManagementOfSociety"
+                              >Present Management of the Society<span
+                                class="text-danger"
+                                >*</span
+                              >
+                            </label>
+                            <select
+                              id="presentManagementOfSociety"
+                              class="form-control"
+                              [(ngModel)]="dcmsReq.presentManagementOfSociety"
+                            >
+                              <option value="">
+                                -- SELECT PRESENT MANAGEMENT --
+                              </option>
+                              <option value="Elected Board">
+                                Elected Board
+                              </option>
+                              <option value="Appointed Person in Charge">
+                                Appointed Person in Charge
+                              </option>
+                            </select>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="nameOfPresidentOrChairman"
+                              >Name of the President / PIC Chairman Society<span
+                                class="text-danger"
+                                >*</span
+                              >
+                            </label>
+                            <input
+                              type="text"
+                              id="nameOfPresidentOrChairman"
+                              class="form-control"
+                              placeholder="Enter president/chairman name"
+                              name="nameOfPresidentOrChairman"
+                              [(ngModel)]="dcmsReq.nameOfPresidentOrChairman"
+                              maxlength="50"
+                              autocomplete="off"
+                            />
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="nameOfBusinessManager"
+                              >Name of the Business Manager<span
+                                class="text-danger"
+                                >*</span
+                              >
+                            </label>
+                            <input
+                              type="text"
+                              id="nameOfBusinessManager"
+                              class="form-control"
+                              placeholder="Enter business manager name"
+                              name="nameOfBusinessManager"
+                              [(ngModel)]="dcmsReq.nameOfBusinessManager"
+                              maxlength="50"
+                              autocomplete="off"
+                            />
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="noOfEmployees"
+                              >Number of Employees
+                              <span class="text-danger">*</span>
+                            </label>
+                            <input
+                              type="text"
+                              id="noOfEmployees"
+                              class="form-control"
+                              placeholder="Enter no of employees"
+                              name="noOfEmployees"
+                              [(ngModel)]="dcmsReq.noOfEmployees"
+                              maxlength="5"
+                              autocomplete="off"
+                            />
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="approvedStrengthAsPerBylaw"
+                              >Approved Cadre Strength as per Byelaw<span
+                                class="text-danger"
+                                >*</span
+                              >
+                            </label>
+                            <input
+                              type="text"
+                              id="approvedStrengthAsPerBylaw"
+                              class="form-control"
+                              placeholder="Enter approved cadre strength as per byelaw"
+                              name="approvedStrengthAsPerBylaw"
+                              [(ngModel)]="dcmsReq.approvedStrengthAsPerBylaw"
+                              maxlength="5"
+                              autocomplete="off"
+                            />
+                          </div>
+                        </div>
+                      </div>
+
+
+                      <h4 class="form-section">
+                        <i class="feather icon-user"></i> Workers Strength
+                      </h4>
+
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="workingStrengthPermanent"
+                              >Permanent Workers Strength
+                              <span class="text-danger">*</span>
+                            </label>
+                            <input
+                              type="text"
+                              id="workingStrengthPermanent"
+                              class="form-control"
+                              placeholder="Enter permanent workers strength"
+                              name="workingStrengthPermanent"
+                              [(ngModel)]="dcmsReq.workingStrengthPermanent"
+                              maxlength="5"
+                              autocomplete="off"
+                            />
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="workingStrengthContract"
+                              >Contract basis Workers Strength
+                              <span class="text-danger">*</span>
+                            </label>
+                            <input
+                              type="text"
+                              id="workingStrengthContract"
+                              class="form-control"
+                              placeholder="Enter contract basis workers strength"
+                              name="workingStrengthContract"
+                              [(ngModel)]="dcmsReq.workingStrengthContract"
+                              maxlength="5"
+                              autocomplete="off"
+                            />
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="workingStrengthOther"
+                              >Other Workers Strength
+                              <span class="text-danger">*</span>
+                            </label>
+                            <input
+                              type="text"
+                              id="workingStrengthOther"
+                              class="form-control"
+                              placeholder="Enter other workers strength"
+                              name="workingStrengthOther"
+                              [(ngModel)]="dcmsReq.workingStrengthOther"
+                              maxlength="5"
+                              autocomplete="off"
+                            />
+                          </div>
+                        </div>
+                      </div>
+
+
+                      <h4 class="form-section">
+                        <i class="feather icon-user"></i> Godowns Strength
+                      </h4>
+
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="noOfOwnGOdowns"
+                              >Working Godowns
+                              <span class="text-danger">*</span>
+                            </label>
+                            <input
+                              type="text"
+                              id="noOfOwnGOdowns"
+                              class="form-control"
+                              placeholder="Enter no of working Godowns"
+                              name="noOfOwnGOdowns"
+                              [(ngModel)]="dcmsReq.noOfOwnGOdowns"
+                              maxlength="5"
+                              autocomplete="off"
+                            />
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="noOfDilapidatedGOdowns"
+                              >Dilapidated Godowns
+                              <span class="text-danger">*</span>
+                            </label>
+                            <input
+                              type="text"
+                              id="noOfDilapidatedGOdowns"
+                              class="form-control"
+                              placeholder="Enter no of dilapidated Godowns"
+                              name="noOfDilapidatedGOdowns"
+                              [(ngModel)]="dcmsReq.noOfDilapidatedGOdowns"
+                              maxlength="5"
+                              autocomplete="off"
+                            />
+                          </div>
+                        </div>
+                      </div>
+
+                      <h4 class="form-section">
+                        <i class="feather icon-user"></i> Business of Fertilizers Taken Up
+                      </h4>
+
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="businessOfFertilizersTakenUpQuantity"
+                              >Quantity in MTs
+                              <span class="text-danger">*</span>
+                            </label>
+                            <input
+                              type="text"
+                              id="businessOfFertilizersTakenUpQuantity"
+                              class="form-control"
+                              placeholder="Enter business of fertilizers taken up quantity in MTs"
+                              name="businessOfFertilizersTakenUpQuantity"
+                              [(ngModel)]="dcmsReq.businessOfFertilizersTakenUpQuantity"
+                              maxlength="5"
+                              autocomplete="off"
+                            />
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="businessOfFertilizersTakenUpValue"
+                              >Value in  Lakhs
+                              <span class="text-danger">*</span>
+                            </label>
+                            <input
+                              type="text"
+                              id="businessOfFertilizersTakenUpValue"
+                              class="form-control"
+                              placeholder="Enter business of fertilizers taken up value in lakhs"
+                              name="businessOfFertilizersTakenUpValue"
+                              [(ngModel)]="dcmsReq.businessOfFertilizersTakenUpValue"
+                              maxlength="5"
+                              autocomplete="off"
+                            />
+                          </div>
+                        </div>
+                      </div>
+
+                      <h4 class="form-section">
+                        <i class="feather icon-user"></i> Paddy Procurement
+                      </h4>
+
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="paddyProcurementQuantity"
+                              >Quantity in MTs
+                              <span class="text-danger">*</span>
+                            </label>
+                            <input
+                              type="text"
+                              id="paddyProcurementQuantity"
+                              class="form-control"
+                              placeholder="Enter paddy procurement quantity in MTs"
+                              name="paddyProcurementQuantity"
+                              [(ngModel)]="dcmsReq.paddyProcurementQuantity"
+                              maxlength="5"
+                              autocomplete="off"
+                            />
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="paddyProcurementNoOfFarmersBenefited"
+                              >Number of Farmers benefited
+                              <span class="text-danger">*</span>
+                            </label>
+                            <input
+                              type="text"
+                              id="paddyProcurementNoOfFarmersBenefited"
+                              class="form-control"
+                              placeholder="Enter paddy procurement no of farmers benefited"
+                              name="paddyProcurementNoOfFarmersBenefited"
+                              [(ngModel)]="dcmsReq.paddyProcurementNoOfFarmersBenefited"
+                              maxlength="6"
+                              autocomplete="off"
+                            />
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="paddyProcurementCommissionEarned"
+                              >Commission Earned Rs. in Lakhs
+                              <span class="text-danger">*</span>
+                            </label>
+                            <input
+                              type="text"
+                              id="paddyProcurementCommissionEarned"
+                              class="form-control"
+                              placeholder="Enter paddy procurement commission earned in lakhs"
+                              name="paddyProcurementCommissionEarned"
+                              [(ngModel)]="dcmsReq.paddyProcurementCommissionEarned"
+                              maxlength="5"
+                              autocomplete="off"
+                            />
+                          </div>
+                        </div>
+                      </div>
+
+                      <h4 class="form-section">
+                        <i class="feather icon-user"></i> Other Procurements
+                      </h4>
+
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="otherProcurementsQuantity"
+                              >Quantity in MTs
+                              <span class="text-danger">*</span>
+                            </label>
+                            <input
+                              type="text"
+                              id="otherProcurementsQuantity"
+                              class="form-control"
+                              placeholder="Enter other procurement quantity in MTs"
+                              name="otherProcurementsQuantity"
+                              [(ngModel)]="dcmsReq.otherProcurementsQuantity"
+                              maxlength="5"
+                              autocomplete="off"
+                            />
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="otherProcurementsNoOfFarmersBenefited"
+                              >Number of Farmers benefited
+                              <span class="text-danger">*</span>
+                            </label>
+                            <input
+                              type="text"
+                              id="otherProcurementsNoOfFarmersBenefited"
+                              class="form-control"
+                              placeholder="Enter other procurement no of farmers benefited"
+                              name="otherProcurementsNoOfFarmersBenefited"
+                              [(ngModel)]="dcmsReq.otherProcurementsNoOfFarmersBenefited"
+                              maxlength="6"
+                              autocomplete="off"
+                            />
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="otherProcurementsCommissionEarned"
+                              >Commission Earned Rs. in Lakhs
+                              <span class="text-danger">*</span>
+                            </label>
+                            <input
+                              type="text"
+                              id="otherProcurementsCommissionEarned"
+                              class="form-control"
+                              placeholder="Enter other procurement commission earned in lakhs"
+                              name="otherProcurementsCommissionEarned"
+                              [(ngModel)]="dcmsReq.otherProcurementsCommissionEarned"
+                              maxlength="5"
+                              autocomplete="off"
+                            />
+                          </div>
+                        </div>
+                      </div>
+
+                      <h4 class="form-section">
+                        <i class="feather icon-user"></i> Business Details
+                      </h4>
+
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="detailsOfFixedAssetsWithMarketValues"
+                              >Details of Fixed Assets with Government Market values
+                              <span class="text-danger">*</span>
+                            </label>
+                            <input
+                              type="text"
+                              id="detailsOfFixedAssetsWithMarketValues"
+                              class="form-control"
+                              placeholder="Enter details of fixed assets with govertment market values"
+                              name="detailsOfFixedAssetsWithMarketValues"
+                              [(ngModel)]="dcmsReq.detailsOfFixedAssetsWithMarketValues"
+                              maxlength="100"
+                              autocomplete="off"
+                            />
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="detailsOfDisposableAssetsDuringYear"
+                              >Details of Disposal of  Assets During the year
+                              <span class="text-danger">*</span>
+                            </label>
+                            <input
+                              type="text"
+                              id="detailsOfDisposableAssetsDuringYear"
+                              class="form-control"
+                              placeholder="Enter details of disposal of assets during the year"
+                              name="detailsOfDisposableAssetsDuringYear"
+                              [(ngModel)]="dcmsReq.detailsOfDisposableAssetsDuringYear"
+                              maxlength="100"
+                              autocomplete="off"
+                            />
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="dateOfIssueOfFinalAuditReport"
+                              >Date of issue  of Final  Audit Report
+                              <span class="text-danger">*</span>
+                            </label>
+                            <app-date-picker
+                              [PlaceHolder]="
+                                'Select date of issue of audit report'
+                              "
+                              [(selectedDate)]="dcmsReq.dateOfIssueOfFinalAuditReport"
+                              [maxDate]="maxDate"
+                            ></app-date-picker>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="workingCapitalForYear"
+                              >Working Capital  For the Year
+                              <span class="text-danger">*</span>
+                            </label>
+                            <input
+                              type="text"
+                              id="workingCapitalForYear"
+                              class="form-control"
+                              placeholder="Enter working capital for year"
+                              name="workingCapitalForYear"
+                              [(ngModel)]="dcmsReq.workingCapitalForYear"
+                              maxlength="8"
+                              autocomplete="off"
+                            />
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="businessTurnOver"
+                              >Business Turnover
+                              <span class="text-danger">*</span>
+                            </label>
+                            <input
+                              type="text"
+                              id="businessTurnOver"
+                              class="form-control"
+                              placeholder="Enter business turnover"
+                              name="businessTurnOver"
+                              [(ngModel)]="dcmsReq.businessTurnOver"
+                              maxlength="8"
+                              autocomplete="off"
+                            />
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="grossProfit"
+                              >Gross profit
+                              <span class="text-danger">*</span>
+                            </label>
+                            <input
+                              type="text"
+                              id="grossProfit"
+                              class="form-control"
+                              placeholder="Enter gross profit"
+                              name="grossProfit"
+                              [(ngModel)]="dcmsReq.grossProfit"
+                              maxlength="8"
+                              autocomplete="off"
+                            />
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="netProfit"
+                              >Net profit
+                              <span class="text-danger">*</span>
+                            </label>
+                            <input
+                              type="text"
+                              id="netProfit"
+                              class="form-control"
+                              placeholder="Enter net profit"
+                              name="netProfit"
+                              [(ngModel)]="dcmsReq.netProfit"
+                              maxlength="8"
+                              autocomplete="off"
+                            />
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="loss"
+                              >Loss
+                              <span class="text-danger">*</span>
+                            </label>
+                            <input
+                              type="text"
+                              id="loss"
+                              class="form-control"
+                              placeholder="Enter Loss"
+                              name="loss"
+                              [(ngModel)]="dcmsReq.loss"
+                              maxlength="8"
+                              autocomplete="off"
+                            />
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="accumulatedLoss"
+                              >Accumulated Loss
+                              <span class="text-danger">*</span>
+                            </label>
+                            <input
+                              type="text"
+                              id="accumulatedLoss"
+                              class="form-control"
+                              placeholder="Enter accumulated loss"
+                              name="accumulatedLoss"
+                              [(ngModel)]="dcmsReq.accumulatedLoss"
+                              maxlength="8"
+                              autocomplete="off"
+                            />
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="auditCompletedUptoFinancialYear"
+                              >Audit Completed up to the Financial Year
+                              <span class="text-danger">*</span>
+                            </label>
+                            <input
+                              type="text"
+                              id="auditCompletedUptoFinancialYear"
+                              class="form-control"
+                              placeholder="Enter audit completed upto the financial"
+                              name="auditCompletedUptoFinancialYear"
+                              [(ngModel)]="dcmsReq.auditCompletedUptoFinancialYear"
+                              maxlength="4"
+                              autocomplete="off"
+                            />
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="rectificationOfAuditDefectsOfThePreviousYears"
+                              >Rectification of Audit Defects of the previous years
+                              <span class="text-danger">*</span>
+                            </label>
+
+                            <select
+                              id="rectificationOfAuditDefectsOfThePreviousYears"
+                              class="form-control"
+                              [(ngModel)]="dcmsReq.rectificationOfAuditDefectsOfThePreviousYears"
+                            >
+                              <option value="">-- SELECT RECTIFICATION OF AUDIT DEFECTS OF THE PREVIOUS YEARS --</option>
+                              <option value="Yes">Yes</option>
+                              <option value="No">No</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+
+
+                    </div>
+
+                    <div class="form-actions text-center">
+                      <button
+                        type="submit"
+                        class="btn btn-primary"
+                        (click)="btnSubmit()"
+                      >
+                        <i class="fa fa-check-square-o"></i> Submit
+                      </button>
+                    </div>
+                  </div>
+
+                  <div class="form" *ngIf="dcmsDetails !== ''">
+                    <div class="form-body">
+                      <h4 class="form-section">
+                        <i class="fa fa-paperclip"></i> DCMS Basic Information
+                      </h4>
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="nameOfDCMS"
+                              >Name of the District Cooperative Marketing
+                              Society<span class="text-danger">*</span>
+                            </label>
+                           <h5 class="text-success"> {{dcmsDetails.NAME_OF_DCMS}}</h5>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="addressOfDCMS"
+                              >Address of District Cooperative Marketing
+                              Society<span class="text-danger">*</span>
+                            </label>
+                            <h5 class="text-success"> {{dcmsDetails.ADRESS_OF_DCMS}}</h5>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="areaOfOperation"
+                              >Area of operation<span class="text-danger"
+                                >*</span
+                              >
+                            </label>
+                            <h5 class="text-success"> {{dcmsDetails.AREA_OF_OPERATION}}</h5>
+                          </div>
+                        </div>
+
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="noOfBranches">
+                              Number of Branches <span class="text-danger">*</span>
+                            </label>
+                            <h5 class="text-success"> {{dcmsDetails.NUMBER_OF_BRANCHES}}</h5>
+                          </div>
+                        </div>
+
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="dateOfRegistrationOfAct"
+                              >Date of Registration under APCS Act 1964.<span
+                                class="text-danger"
+                                >*</span
+                              >
+                            </label>
+                            <h5 class="text-success"> {{dcmsDetails.DATE_OF_REGIS_APCS_ACT_1964}}</h5>
+                          </div>
+                        </div>
+
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="regNoOfSociety"
+                              >Registration Number of the Society<span
+                                class="text-danger"
+                                >*</span
+                              >
+                            </label>
+                            <h5 class="text-success"> {{dcmsDetails.REGIS_NUMBER_SOCIETY}}</h5>
+                          </div>
+                        </div>
+                      </div>
+
+                      <h4 class="form-section">
+                        <i class="feather icon-user"></i> Members
+                      </h4>
+
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="totalMembers"
+                              >Total Members <span class="text-danger">*</span>
+                            </label>
+                            <h5 class="text-success"> {{dcmsDetails.TOTAL_MEMBERS}}</h5>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="noOfClassAMembers"
+                              >Number of A Class Members<span
+                                class="text-danger"
+                                >*</span
+                              >
+                            </label>
+                            <h5 class="text-success"> {{dcmsDetails.NUMBER_OF_A_CLASS_MEMBERS}}</h5>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="noOfClassBMembers"
+                              >Number of B Class Members<span
+                                class="text-danger"
+                                >*</span
+                              >
+                            </label>
+                            <h5 class="text-success"> {{dcmsDetails.NUMBER_OF_B_CLASS_MEMBERS}}</h5>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="categoryOfSociety"
+                              >Category of the society<span class="text-danger"
+                                >*</span
+                              >
+                            </label>
+                            <h5 class="text-success"> {{dcmsDetails.CATEGORY_OF_THE_SOCIETY}}</h5>
+                          </div>
+                        </div>
+                      </div>
+
+                      <h4 class="form-section">
+                        <i class="feather icon-user"></i> Management
+                      </h4>
+
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="shareCapitalOfMembers"
+                              >Share Capital of the Members
+                              <span class="text-danger">*</span>
+                            </label>
+                            <h5 class="text-success"> {{dcmsDetails.SHARE_CAPITAL_OF_THE_MEMBERS}}</h5>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="shareCapitalOfGovt"
+                              >Share Capital of the Government
+                              <span class="text-danger">*</span>
+                            </label>
+                            <h5 class="text-success"> {{dcmsDetails.SHARE_CAPITAL_OF_THE_GOVT}}</h5>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="dateOfElectionsLastConducted"
+                              >Date of Elections last conducted
+                              <span class="text-danger">*</span>
+                            </label>
+                            <h5 class="text-success"> {{dcmsDetails.DATE_OF_ELECT_LAST_CONDUCTED}}</h5>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="dueDateForElections"
+                              >Due date for Elections
+                              <span class="text-danger">*</span>
+                            </label>
+                            <h5 class="text-success"> {{dcmsDetails.DUE_DATE_FOR_ELECTIONS}}</h5>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="presentManagementOfSociety"
+                              >Present Management of the Society<span
+                                class="text-danger"
+                                >*</span
+                              >
+                            </label>
+                            <h5 class="text-success"> {{dcmsDetails.PRESENTMANAGEMENT_OFTHE_SOCI}}</h5>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="nameOfPresidentOrChairman"
+                              >Name of the President / PIC Chairman Society<span
+                                class="text-danger"
+                                >*</span
+                              >
+                            </label>
+                            <h5 class="text-success"> {{dcmsDetails.NAME_PRESIDENT_PICCHAIRMAN}}</h5>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="nameOfBusinessManager"
+                              >Name of the Business Manager<span
+                                class="text-danger"
+                                >*</span
+                              >
+                            </label>
+                            <h5 class="text-success"> {{dcmsDetails.NAME_OF_THE_BUSINESS_MANAGER}}</h5>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="noOfEmployees"
+                              >Number of Employees
+                              <span class="text-danger">*</span>
+                            </label>
+                            <h5 class="text-success"> {{dcmsDetails.NUMBER_OF_EMPLOYEES}}</h5>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="approvedStrengthAsPerBylaw"
+                              >Approved Cadre Strength as per Byelaw<span
+                                class="text-danger"
+                                >*</span
+                              >
+                            </label>
+                            <h5 class="text-success"> {{dcmsDetails.APPV_CADRE_SRETH_ASPER_BYELAW}}</h5>
+                          </div>
+                        </div>
+                      </div>
+
+
+                      <h4 class="form-section">
+                        <i class="feather icon-user"></i> Workers Strength
+                      </h4>
+
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="workingStrengthPermanent"
+                              >Permanent Workers Strength
+                              <span class="text-danger">*</span>
+                            </label>
+                            <h5 class="text-success"> {{dcmsDetails.WORKING_STRENGTH_PERMANENT}}</h5>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="workingStrengthContract"
+                              >Contract basis Workers Strength
+                              <span class="text-danger">*</span>
+                            </label>
+                            <h5 class="text-success"> {{dcmsDetails.WORKING_STRENGT_CONTRACT}}</h5>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="workingStrengthOther"
+                              >Other Workers Strength
+                              <span class="text-danger">*</span>
+                            </label>
+                            <h5 class="text-success"> {{dcmsDetails.WORKING_STRENGTH_OTHERS}}</h5>
+                          </div>
+                        </div>
+                      </div>
+
+
+                      <h4 class="form-section">
+                        <i class="feather icon-user"></i> Godowns Strength
+                      </h4>
+
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="noOfOwnGOdowns"
+                              >Working Godowns
+                              <span class="text-danger">*</span>
+                            </label>
+                            <h5 class="text-success"> {{dcmsDetails.NUMBER_WORKINGGODOWNS}}</h5>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="noOfDilapidatedGOdowns"
+                              >Dilapidated Godowns
+                              <span class="text-danger">*</span>
+                            </label>
+                            <h5 class="text-success"> {{dcmsDetails.NUMBER_DILAPIDATEDGODOWNA}}</h5>
+                          </div>
+                        </div>
+                      </div>
+
+                      <h4 class="form-section">
+                        <i class="feather icon-user"></i> Business of Fertilizers Taken Up
+                      </h4>
+
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="BusinessOfFertilizersTakenUpQuantity"
+                              >Quantity in MTs
+                              <span class="text-danger">*</span>
+                            </label>
+                            <h5 class="text-success"> {{dcmsDetails.BUSIN_OF_FERTLZR_QTY_MTS}}</h5>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="BusinessOfFertilizersTakenUpValue"
+                              >Value in  Lakhs
+                              <span class="text-danger">*</span>
+                            </label>
+                            <h5 class="text-success"> {{dcmsDetails.BUSIN_OF_FERTLZR_VALUE}}</h5>
+                          </div>
+                        </div>
+                      </div>
+
+                      <h4 class="form-section">
+                        <i class="feather icon-user"></i> Paddy Procurement
+                      </h4>
+
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="paddyProcurementQuantity"
+                              >Quantity in MTs
+                              <span class="text-danger">*</span>
+                            </label>
+                            <h5 class="text-success"> {{dcmsDetails.PADDY_PROCUREMENT_QTY_MTS}}</h5>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="paddyProcurementNoOfFarmersBenefited"
+                              >Number of Farmers benefited
+                              <span class="text-danger">*</span>
+                            </label>
+                            <h5 class="text-success"> {{dcmsDetails.PADDY_PROCRMNT_NO_FMR_BEN}}</h5>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="paddyProcurementCommissionEarned"
+                              >Commission Earned Rs. in Lakhs
+                              <span class="text-danger">*</span>
+                            </label>
+                            <h5 class="text-success"> {{dcmsDetails.PADDY_PROCRMNT_COMMI_EARN}}</h5>
+                          </div>
+                        </div>
+                      </div>
+
+                      <h4 class="form-section">
+                        <i class="feather icon-user"></i> Other Procurements
+                      </h4>
+
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="otherProcurementsQuantity"
+                              >Quantity in MTs
+                              <span class="text-danger">*</span>
+                            </label>
+                            <h5 class="text-success"> {{dcmsDetails.OTHER_PROCUREMENTS_QTY_MTS}}</h5>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="otherProcurementsNoOfFarmersBenefited"
+                              >Number of Farmers benefited
+                              <span class="text-danger">*</span>
+                            </label>
+                            <h5 class="text-success"> {{dcmsDetails.OTHER_PROCRMNT_NO_FMR_BEN }}</h5>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="otherProcurementsCommissionEarned"
+                              >Commission Earned Rs. in Lakhs
+                              <span class="text-danger">*</span>
+                            </label>
+                            <h5 class="text-success"> {{dcmsDetails.OTHER_PROCRMNT_COMMI_EARN}}</h5>
+                          </div>
+                        </div>
+                      </div>
+
+                      <h4 class="form-section">
+                        <i class="feather icon-user"></i> Business Details
+                      </h4>
+
+                      <div class="row">
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="detailsOfFixedAssetsWithMarketValues"
+                              >Details of Fixed Assets with Government Market values
+                              <span class="text-danger">*</span>
+                            </label>
+                            <h5 class="text-success"> {{dcmsDetails.DETS_FIXASSTS_GOVT_MARKETVAL}}</h5>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="detailsOfDisposableAssetsDuringYear"
+                              >Details of Disposal of  Assets During the year
+                              <span class="text-danger">*</span>
+                            </label>
+                            <h5 class="text-success"> {{dcmsDetails.DETS_OF_DISPOSAL_ASSETS_YEAR}}</h5>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="dateOfIssueOfFinalAuditReport"
+                              >Date of issue  of Final  Audit Report
+                              <span class="text-danger">*</span>
+                            </label>
+                            <h5 class="text-success"> {{dcmsDetails.DATEOFISSUE_FINAL_AUDIT_REPT}}</h5>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="workingCapitalForYear"
+                              >Working Capital  For the Year
+                              <span class="text-danger">*</span>
+                            </label>
+                            <h5 class="text-success"> {{dcmsDetails.WORKING_CAPITAL_FORTHE_YEAR}}</h5>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="businessTurnOver"
+                              >Business Turnover
+                              <span class="text-danger">*</span>
+                            </label>
+                            <h5 class="text-success"> {{dcmsDetails.BUSINESS_TURNOVER}}</h5>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="grossProfit"
+                              >Gross profit
+                              <span class="text-danger">*</span>
+                            </label>
+                            <h5 class="text-success"> {{dcmsDetails.GROSS_PROFIT}}</h5>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="netProfit"
+                              >Net profit
+                              <span class="text-danger">*</span>
+                            </label>
+                            <h5 class="text-success"> {{dcmsDetails.NET_PROFIT}}</h5>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="loss"
+                              >Loss
+                              <span class="text-danger">*</span>
+                            </label>
+                            <h5 class="text-success"> {{dcmsDetails.LOSS}}</h5>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="accumulatedLoss"
+                              >Accumulated Loss
+                              <span class="text-danger">*</span>
+                            </label>
+                            <h5 class="text-success"> {{dcmsDetails.ACCUMULATED_LOSS}}</h5>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="auditCompletedUptoFinancialYear"
+                              >Audit Completed up to the Financial Year
+                              <span class="text-danger">*</span>
+                            </label>
+                            <h5 class="text-success"> {{dcmsDetails.AUDITCOMPL_UPTOTHE_FINIALYEAR}}</h5>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="form-group">
+                            <label for="rectificationOfAuditDefectsOfThePreviousYears"
+                              >Rectification of Audit Defects of the previous years
+                              <span class="text-danger">*</span>
+                            </label>
+                            <h5 class="text-success"> {{dcmsDetails.RECT_AUDIT_DEFCT_THE_PREVYEAR}}</h5>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- // Basic form layout section end -->
+    </div>
+  </div>
+</div>

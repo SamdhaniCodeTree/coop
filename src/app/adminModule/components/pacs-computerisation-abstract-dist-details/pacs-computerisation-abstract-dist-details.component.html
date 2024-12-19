@@ -1,0 +1,264 @@
+<div class="row" style="margin-top: -30px!important;">
+  <div class="col-md-12">
+    <button type="button" class="btn btn-sm btn-success pull-right" (click)="btnExcelDownload()">
+      <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+      DOWNLOAD EXCEL
+    </button>
+    <button
+      type="button"
+      class="btn btn-sm btn-danger pull-right"
+      (click)="btnPDF()"
+    >
+      <i
+        class="fa fa-file-pdf-o mr-2"
+        aria-hidden="true"
+      ></i>
+      DOWNLOAD PDF
+    </button>
+  </div>
+  <div class="col-md-12 table-responsive tbl-fixed">
+
+    <table class="table table-bordered tbl-data"   datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+      <thead class="thead-dark">
+
+        <tr>
+          <th rowspan="2" style="z-index: 5;">S NO</th>
+          <th rowspan="2" style="z-index: 5;">NAME OF <br>THE DISTRICT</th>
+          <th rowspan="2" style="z-index: 5;">NO OF DCCBS</th>
+          <th rowspan="2" style="z-index: 5;">TOTAL<br> PACS</th>
+          <th colspan="2">SITE PREPARED<br> PACS</th>
+          <th colspan="2">DELIVERY OF<br> ALL ITEMS</th>
+          <th colspan="2">SUPPLY AND INSTALLATION <br> OF ALL HARDWARE ITEMS</th>
+          <th colspan="2">FINAL CERTIFICATE SUBMITTED <br> PACS FOR RELEASE OF PAYMENTS</th>
+        </tr>
+
+        <tr>
+          <th>COMPLETED </th>
+          <th>NOT COMPLETED </th>
+          <th>COMPLETED </th>
+          <th>NOT COMPLETED </th>
+          <th>COMPLETED </th>
+          <th>NOT COMPLETED </th>
+          <th>COMPLETED </th>
+          <th>NOT COMPLETED </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let obj of stateLevelDetails; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>
+            <a style="cursor: pointer; text-decoration: underline" class="text-primary" (click)="btnGetDetails(obj)">
+              <b>{{ obj.DISTRICT_NAME }}</b>
+            </a>
+          </td>
+          <td>{{ obj.NAME_OF_THE_DCCB }}</td>
+          <td>{{ obj.TOTAL_PACS }}</td>
+
+          <td>
+
+            <a *ngIf="obj.SITE_DONE != '0'" style="cursor: pointer; text-decoration: underline" class="text-primary"
+              (click)="btnSitedoneDetails(obj)"><b>{{ obj.SITE_DONE }}</b></a>
+            <span *ngIf="obj.SITE_DONE == '0'">{{
+              obj.SITE_DONE
+              }}</span>
+          </td>
+
+
+
+
+
+          <td>
+            <!-- class="number_align" -->
+            <a *ngIf="obj.SITE_NOT_DONE != '0'" style="cursor: pointer; text-decoration: underline" class="text-primary"
+              (click)="btnSitenotdoneDetails(obj)"><b>{{ obj.SITE_NOT_DONE }}</b></a>
+            <span *ngIf="obj.SITE_NOT_DONE == '0'">{{
+              obj.SITE_NOT_DONE
+              }}</span>
+          </td>
+          <td>
+            <!-- class="number_align" -->
+            <a *ngIf="obj.DEVICE_DONE != '0'" style="cursor: pointer; text-decoration: underline" class="text-primary"
+              (click)="btnDevicedoneDetails(obj)"><b>{{ obj.DEVICE_DONE }}</b></a>
+            <span *ngIf="obj.DEVICE_DONE == '0'">{{
+              obj.DEVICE_DONE
+              }}</span>
+          </td>
+          <!-- <td>{{ obj.DEVICE_DONE }}</td>  -->
+          <td>
+            <!-- class="number_align" -->
+            <a *ngIf="obj.DEVICE_NOT_DONE != '0'" style="cursor: pointer; text-decoration: underline"
+              class="text-primary" (click)="btndevicenotdoneDetails(obj)"><b>{{ obj.DEVICE_NOT_DONE }}</b></a>
+            <span *ngIf="obj.DEVICE_NOT_DONE == '0'">{{
+              obj.DEVICE_NOT_DONE
+              }}</span>
+          </td>
+
+
+
+
+
+          <!-- <td>{{ obj.CALIBRATION_DONE }}</td> -->
+
+          <td>
+            <!-- class="number_align" -->
+            <a *ngIf="obj.CALIBRATION_DONE != '0'" style="cursor: pointer; text-decoration: underline"
+              class="text-primary" (click)="btnInstalldoneDetails(obj)"><b>{{ obj.CALIBRATION_DONE }}</b></a>
+            <span *ngIf="obj.CALIBRATION_DONE == '0'">{{
+              obj.CALIBRATION_DONE
+              }}</span>
+          </td>
+
+
+
+          <td>
+            <!-- class="number_align" -->
+            <a *ngIf="obj.CALIBRATION_NOT_DONE != '0'" style="cursor: pointer; text-decoration: underline"
+              class="text-primary" (click)="btnCalibnotdoneDetails(obj)"><b>{{ obj.CALIBRATION_NOT_DONE }}</b></a>
+            <span *ngIf="obj.CALIBRATION_NOT_DONE == '0'">{{
+              obj.CALIBRATION_NOT_DONE
+              }}</span>
+          </td>
+          <td>
+            <!-- class="number_align" -->
+            <a *ngIf="obj.DMT_DONE != '0'" style="cursor: pointer; text-decoration: underline"
+              class="text-primary" (click)="btnDMTdoneDetails(obj)"><b>{{ obj.DMT_DONE }}</b></a>
+            <span *ngIf="obj.DMT_DONE == '0'">{{
+              obj.DMT_DONE
+              }}</span>
+          </td>
+
+          <!-- <td>{{ obj.DMT_DONE }}</td> -->
+          <td>
+            <!-- class="number_align" -->
+            <a *ngIf="obj.DMT_NOT_DONE != '0'" style="cursor: pointer; text-decoration: underline" class="text-primary"
+              (click)="btnDMTnotdoneDetails(obj)"><b>{{ obj.DMT_NOT_DONE }}</b></a>
+            <span *ngIf="obj.DMT_NOT_DONE == '0'">{{
+              obj.DMT_NOT_DONE
+              }}</span>
+          </td>
+
+
+        </tr>
+      </tbody>
+      <tbody *ngIf="stateLevelDetails?.length > 0" >
+        <tr class="total">
+          <td >--</td>
+          <td>
+            <b>TOTAL</b>
+          </td>
+          <td>{{reportTotals.no_of_dccbs}}</td>
+          <td>{{ reportTotals.total_pacs }}</td>
+          <!-- <td>{{ reportTotals.SITE_DONE }}</td> -->
+          <td> 
+            <a *ngIf="reportTotals.SITE_DONE != '0'" style="cursor: pointer; text-decoration: underline" class="text-primary"
+              (click)="btnSiteDoneDownload('30','1')"><b>{{ reportTotals.site_prepared_pacs_completed }}</b></a>
+            <span *ngIf="reportTotals.SITE_DONE == '0'">{{
+              reportTotals.site_prepared_pacs_completed
+              }}</span> 
+          </td>
+          <!-- <td>{{ reportTotals.SITE_NOT_DONE }}</td> -->
+
+          <td> 
+            <a *ngIf="reportTotals.SITE_NOT_DONE != '0'" style="cursor: pointer; text-decoration: underline" class="text-primary"
+              (click)="btnSiteDoneDownload('30','2')"><b>{{ reportTotals.site_prepared_pacs_not_completed }}</b></a>
+            <span *ngIf="reportTotals.SITE_NOT_DONE == '0'">{{
+              reportTotals.site_prepared_pacs_not_completed
+              }}</span> 
+          </td>
+
+          <!-- <td>{{ reportTotals.DEVICE_DONE }}</td> -->
+
+          <td> 
+            <a *ngIf="reportTotals.DEVICE_DONE != '0'" style="cursor: pointer; text-decoration: underline" class="text-primary"
+              (click)="btnSiteDoneDownload('31','1')"><b>{{ reportTotals.delivery_of_all_items_completed }}</b></a>
+            <span *ngIf="reportTotals.DEVICE_DONE == '0'">{{
+              reportTotals.delivery_of_all_items_completed
+              }}</span> 
+          </td>
+
+          <!-- <td>{{ reportTotals.DEVICE_NOT_DONE }}</td> -->
+
+          <td> 
+            <a *ngIf="reportTotals.DEVICE_NOT_DONE != '0'" style="cursor: pointer; text-decoration: underline" class="text-primary"
+              (click)="btnSiteDoneDownload('31','2')"><b>{{ reportTotals.delivery_of_all_items_not_completed }}</b></a>
+            <span *ngIf="reportTotals.DEVICE_NOT_DONE == '0'">{{
+              reportTotals.delivery_of_all_items_not_completed
+              }}</span> 
+          </td>
+
+          <!-- <td>{{ reportTotals.CALIBRATION_DONE }}</td> -->
+
+          <td> 
+            <a *ngIf="reportTotals.CALIBRATION_DONE != '0'" style="cursor: pointer; text-decoration: underline" class="text-primary"
+              (click)="btnSiteDoneDownload('32','1')"><b>{{ reportTotals.supply_and_installation_of_all_hardware_items_completed }}</b></a>
+            <span *ngIf="reportTotals.CALIBRATION_DONE == '0'">{{
+              reportTotals.supply_and_installation_of_all_hardware_items_completed
+              }}</span> 
+          </td>
+
+          <!-- <td>{{ reportTotals.CALIBRATION_NOT_DONE }}</td> -->
+
+          <td> 
+            <a *ngIf="reportTotals.CALIBRATION_NOT_DONE != '0'" style="cursor: pointer; text-decoration: underline" class="text-primary"
+              (click)="btnSiteDoneDownload('32','2')"><b>{{ reportTotals.supply_and_installation_of_all_hardware_items_not_completed }}</b></a>
+            <span *ngIf="reportTotals.CALIBRATION_NOT_DONE == '0'">{{
+              reportTotals.supply_and_installation_of_all_hardware_items_not_completed
+              }}</span> 
+          </td>
+
+          <!-- <td>{{ reportTotals.DMT_DONE }}</td> -->
+
+          <td> 
+            <a *ngIf="reportTotals.DMT_DONE != '0'" style="cursor: pointer; text-decoration: underline" class="text-primary"
+              (click)="btnSiteDoneDownload('33','1')"><b>{{ reportTotals.final_certificate_submitted_pacs_for_release_of_payments_completed }}</b></a>
+            <span *ngIf="reportTotals.DMT_DONE == '0'">{{
+              reportTotals.final_certificate_submitted_pacs_for_release_of_payments_completed
+              }}</span> 
+          </td>
+
+          <!-- <td>{{ reportTotals.DMT_NOT_DONE }} </td> -->
+
+          <td> 
+            <a *ngIf="reportTotals.DMT_NOT_DONE != '0'" style="cursor: pointer; text-decoration: underline" class="text-primary"
+              (click)="btnSiteDoneDownload('33','2')"><b>{{ reportTotals.final_certificate_submitted_pacs_for_release_of_payments_not_completed }}</b></a>
+            <span *ngIf="reportTotals.DMT_NOT_DONE == '0'">{{
+              reportTotals.final_certificate_submitted_pacs_for_release_of_payments_not_completed
+              }}</span> 
+          </td>
+
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="col-md-12 table-responsive" [hidden]="stateLevelDetails?.length > 1">
+    <h6 class="text-center">No Data Available</h6>
+  </div>
+</div>
+<script>
+
+  var el = document.querySelector('[data-module="sticky-table"]');
+  
+  var scrollPosition = document.documentElement.scrollTop || document.body.scrollTop;
+  
+  var thead = el.querySelector('thead');
+  
+  var offset = el.getBoundingClientRect();
+  
+  
+  // Make sure you throttle/debounce this
+  window.addEventListener('scroll', function (event) {
+    var rect = el.getBoundingClientRect();
+    
+    scrollPosition = document.documentElement.scrollTop || document.body.scrollTop;
+    
+    if(rect.top < thead.offsetHeight) {
+      thead.style.width = rect.width + 'px';
+      thead.classList.add('thead--is-fixed');
+    }
+    else {
+      thead.classList.remove('thead--is-fixed');
+    }
+  });
+  
+    </script>

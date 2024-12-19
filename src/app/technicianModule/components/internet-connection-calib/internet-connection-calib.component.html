@@ -1,0 +1,793 @@
+<div class="app-content content background">
+  <div class="content-overlay"></div>
+  <div class="content-wrapper">
+    <div class="content-header row">
+      <div class="content-header-left col-md-6 col-12">
+        <h3 class="content-header-title mb-0 text-white">INTERNET CONNECTION DETAILS</h3>
+        <div class="row breadcrumbs-top">
+          <div class="breadcrumb-wrapper col-12">
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="card backgrnd">
+      <div class="card-body ">
+        <div class="row">
+
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="deviceId">SELECT DISTRICT <span style="color: red">*</span></label>
+              <select id="Districtcode" class="form-control" [(ngModel)]="DeviceDetails.Districtcode"
+                (change)="DistChange(DeviceDetails.Districtcode)">
+                <option value="">-- SELECT DISTRICT --</option>
+                <option value="{{ obj.DISTRICT_CODE }}" *ngFor="let obj of DistrictlistData">
+                  {{ obj.DISTRICT_NAME }}
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="deviceId">SELECT MANDAL <span style="color: red">*</span></label>
+              <select id="Mandalcode" class="form-control" [(ngModel)]="DeviceDetails.Mandalcode"
+                (change)="MandalChange(DeviceDetails.Mandalcode)">
+                <option value="">-- SELECT MANDAL --</option>
+                <option value="{{ obj.MANDAL_CODE }}" *ngFor="let obj of MandallistData">
+                  {{ obj.MANDAL_NAME }}
+                </option>
+              </select>
+            </div>
+          </div>
+
+
+
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="deviceId">SELECT PACS <span style="color: red">*</span></label>
+              <select id="PACS_CODE" class="form-control" [(ngModel)]="DeviceDetails.PACS_CODE"
+                (change)="PacsChange(DeviceDetails.PACS_CODE)">
+                <option value="">-- SELECT PACS --</option>
+                <option value="{{ obj.PACS_CODE }}" *ngFor="let obj of pacslistData">
+                  {{ obj.PACS_NAME }}
+                </option>
+              </select>
+            </div>
+          </div>
+
+          
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="ManufactureDate"> MANUFACTURE DATE<span style="color: red">*</span></label>
+              <input type="text" placeholder="DD-MM-YYYY" readonly class="form-control bg-white"
+                [minDate]="minDate" [(ngModel)]="ManufactureDate" [maxDate]="maxDate" placement="bottom" container=""
+                [bsConfig]="bsDatepickerConfig" bsDatepicker
+                (ngModelChange)="onmanufacturedatechange()"
+                >
+
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="inspectionDate">RECEIVED DATE<span class="text-danger">*</span>
+              </label>
+              <input type="text" class="form-control bg-white" [(ngModel)]="inspectionDate" placeholder="DD-MM-YYYY"
+                [minDate]="minDate1" [maxDate]="maxDate" readonly placement="bottom" container=""
+                (ngModelChange)="onReceivedDateChange()" [bsConfig]="bsDatepickerConfig" bsDatepicker                 
+                >
+            </div>
+          </div> 
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="DeliveryNoteDate">DELIVERY NOTE DATE<span class="text-danger">*</span>
+              </label>
+              <input type="text" class="form-control bg-white" [(ngModel)]="DeliveryNoteDate" placeholder="DD-MM-YYYY"
+                [minDate]="minDate2" [maxDate]="maxDate" readonly placement="bottom" container=""
+                [bsConfig]="bsDatepickerConfig" bsDatepicker  (ngModelChange)="ondeliveryDateChange()">
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="Acknowledgment">DELIVERY NOTE NUMBER <span class="text-danger">*</span>
+              </label>
+              <input type="text" placeholder="Enter Delivery Note Number" class="form-control"
+                [(ngModel)]="DeviceDetails.Acknowledgment" maxlength="20" 
+                (input)="onDeliveryNumberChange()"
+                >
+                <!-- onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode >= 48 && event.charCode <= 57)" -->
+
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="installDate"> INSTALLATION DATE<span class="text-danger">*</span>
+              </label>
+              <input type="text" class="form-control bg-white" [(ngModel)]="installDate" readonly
+                placeholder="DD-MM-YYYY"  [minDate]="minDate3" [maxDate]="maxDate"
+                placement="bottom" container="" [bsConfig]="bsDatepickerConfig" bsDatepicker>
+            </div>
+          </div>
+         
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="componentname">MAKER NAME <span class="text-danger">*</span>
+              </label>
+              <input type="text" placeholder="Enter Maker Name" class="form-control bg-white"
+                  [(ngModel)]="DeviceDetails.componentname"
+                  onkeypress="return (event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122) || (event.charCode == 32)"
+                  (input)="onMakerChange()"
+                  >
+
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="modeldetails">MODEL DETAILS <span class="text-danger">*</span></label>
+              <input type="text" placeholder="Enter Model Details" class="form-control bg-white"
+                 [(ngModel)]="DeviceDetails.modeldetails"
+                 (input)="onModelChange()"
+                 >
+
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="SerialNo">SERIAL NUMBER <span class="text-danger">*</span>
+              </label>
+              <input type="text" placeholder="Enter Serial Number" class="form-control"
+                [(ngModel)]="DeviceDetails.SerialNo"
+                (input)="onSerialChange()"
+                >
+
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="internetprovname">INTERNET SERVICE PROVIDER NAME
+                <span class="text-danger">*</span>
+              </label>
+              <input type="text" placeholder="Enter Internet Service Provider Name"
+                [(ngModel)]="DeviceDetails.internetprovname" class="form-control"
+                (input)="onProviderChange()"
+                >
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <br>
+            <div class="form-group">
+              <label for="internetSpeed">INTERNET SPEED
+                <span class="text-danger">*</span>
+              </label>
+              <input type="text" placeholder="Enter Internet Speed" [(ngModel)]="DeviceDetails.internetSpeed"
+              (input)="oninterChange()" class="form-control">
+
+            </div>
+          </div>
+          <div class="col-md-3">
+            <br>
+            <div class="form-group">
+              <label for="TaxinvoiceNumber">TAX INVOICE NUMBER <span class="text-danger">*</span>
+              </label>
+              <input type="text" placeholder="Enter Tax Invoice Number" class="form-control"
+                [(ngModel)]="DeviceDetails.TaxinvoiceNumber"  (input)="ontaxinvoiceChange()"  >
+
+            </div>
+          </div> 
+
+          <div class="col-md-3">
+            <br>
+            <div class="form-group">
+              <label for="DeviceImage"> DEVICE IMAGE UPLOAD <span style="color: red; font-size: 11px;">* (MAX 250KB JPEG
+                  ONLY) </span></label>
+
+              <input type="file" class="form-control p-0" id="giftAndDeedPhotoUpload"
+                (change)="onTitledevicePhotoChange($event)" accept="image/jpeg" autocomplete="off" />
+            </div>
+
+          </div>
+
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="ServicenodeviceImage">SERIAL NUMBER IMAGE UPLOAD <span style="color: red; font-size: 11px;">* (MAX 250KB
+                  JPEG ONLY) </span></label>
+
+              <input type="file" class="form-control p-0" id="servicePhotoUpload"
+                (change)="onTitleServicenodevicePhotoChange($event)" accept="image/jpeg" autocomplete="off" />
+            </div>
+
+          </div>
+
+
+
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="pdffileUpd">INSTALLATION DOCUMENT UPLOAD<span style="color: red; font-size: 10px;">* (MAX 3MB
+                  PDF ONLY)</span>
+              </label>
+              <input type="file" class="form-control p-0" id="pdffileUpd" accept="pdf/*" autocomplete="off"
+                (change)="onpdffileChange($event)" />
+            </div>
+          </div>
+          <div class="col-md-3">
+            <br>
+            <div class="form-group">
+              <label for="invoicepdf">TAX INVOICE <span style="color: red; font-size: 11px;">* (MAX 3MB PDF ONLY)
+                </span>
+              </label>
+              <input type="file" class="form-control p-0" id="invoicepdf" [(ngModel)]="DeviceDetails.invoicepdf"
+                (change)="onpdffileChangeinvoice($event)" accept="pdf/*" autocomplete="off" />
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <br>
+            <div class="form-group">
+              <label for="challanpdf">DELIVERY CHALLAN<span style="color: red; font-size: 11px;">* (MAX 3MB PDF ONLY)
+                </span>
+              </label>
+              <input type="file" class="form-control p-0" id="challanpdf" [(ngModel)]="DeviceDetails.challanpdf"
+                (change)="onpdffileChangeChallan($event)" accept="pdf/*" autocomplete="off" />
+            </div>
+          </div>
+         
+          <!-- <div class="col-md-3">
+            <br>
+            <div class="form-group">
+              <label for="CoverId">IS COVER RECEIVED <span style="color: red">*</span></label>
+              <select id="CoverId" class="form-control" [(ngModel)]="DeviceDetails.CoverId">
+
+                <option disabled selected value="">-- SELECT IS COVER RECEIVED --</option>
+                <option value="1"> YES </option>
+                <option value="0"> NO </option>
+
+              </select>
+            </div>
+          </div> -->
+
+          <div class="col-md-3">
+            
+            <div class="form-group">
+              <label> WHETHER THE FIRST MONTH'S CHARGES HAVE BEEN PAID BY THE VENDOR <span class="text-danger h6">*</span></label>
+              <div class="ah-radio-buttons">
+                <div class="custom-control custom-radio custom-control-inline">
+                  <input
+                    class="custom-control-input"
+                    type="radio"
+                    name="vendorcharges"
+                    id="vendorcharges1"
+                    value="1"
+                    [(ngModel)]="DeviceDetails.vendorcharges" 
+                    autocomplete="off"
+                   
+                  />
+                  <!-- -->
+                  <!-- (change)="rbtnvalue(1)" -->
+                  <label class="custom-control-label" for="vendorcharges1">
+                   yes
+                  </label>
+                </div>
+    
+                <div class="custom-control custom-radio custom-control-inline">
+                  <input
+                    class="custom-control-input"
+                    type="radio"
+                    name="vendorcharges"
+                    id="vendorcharges2"
+                    value="2"
+                    [(ngModel)]="DeviceDetails.vendorcharges" 
+                    autocomplete="off"
+                  
+
+                  />
+                  <!-- [(ngModel)]="SitePreparation.BuildingType" -->
+                  <!-- (change)="rbtnvalue(11)" -->
+                  <label class="custom-control-label" for="vendorcharges2"> 
+                    No
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-5"></div>
+          <div class="col-md-5" *ngIf="btnsubmitstatus">
+            <div class="form-group">
+              <button style="margin-top: 26px !important;" type="button" class="btn btn-success btn-sm"
+                (click)="btnCalibration()">
+                SUBMIT
+              </button>
+            </div>
+
+          </div>
+          <div class="col-md-5"></div>
+
+
+
+
+          
+        </div> 
+        <div class="row col-md-12"></div>
+        <p class="Status bg-success text-white" align="center" style="padding: 10px !important; border-radius: 100px"><b>DEVICE DETAILS SUBMITTED LIST</b></p>
+        <div class="row"> 
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="districtid">SELECT DISTRICT <span style="color: red">*</span></label>
+              <select id="districtid" class="form-control" [(ngModel)]="districtid"
+                (change)="DistrictsChange(districtid)">
+                <option disabled selected value="undefined">-- SELECT DISTRICT --</option>
+                <option value="{{ obj.DISTRICT_ID }}" *ngFor="let obj of DICTRICTLIST">
+                  {{ obj.DISTRICT_NAME }}
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="mandalid">SELECT MANDAL <span style="color: red">*</span></label>
+              <select id="mandalid" class="form-control" [(ngModel)]="mandalid"
+                (change)="MandalsChange(mandalid)">
+                <option disabled selected value="undefined">-- SELECT MANDAL --</option>
+                <option value="{{ obj.MANDAL_ID }}" *ngFor="let obj of MANDALLIST">
+                  {{ obj.MANDAL_NAME }}
+                </option>
+              </select>
+            </div>
+          </div> 
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="pacsid">SELECT PACS <span style="color: red">*</span></label>
+              <select id="pacsid" class="form-control" [(ngModel)]="pacsid"
+               >
+               <!-- (change)="PacChange(pacsid)" -->
+                <option disabled selected value="undefined">-- SELECT PACS --</option>
+                <option value="{{ obj.PACS_ID }}" *ngFor="let obj of PACSLIST">
+                  {{ obj.PACS_NAME }}
+                </option>
+              </select>
+            </div>
+          </div>
+
+          <div class="col-md-3">
+            <div class="form-group">
+              <label for="typeCode">SELECT TYPE <span style="color: red">*</span></label>
+              <select id="typeCode" class="form-control" [(ngModel)]="typeCode"
+                (change)="TYPEChange(typeCode)">
+                <option disabled selected value="undefined">-- SELECT PACS --</option>
+                <option value="0">PENDING</option>
+                <option value="1">APPROVED</option>
+                <option value="2">REJECTED</option>
+                <!-- <option value="{{ obj.STATUS }}" *ngFor="let obj of TYPELIST">
+                  {{ obj.PACS_NAME }}
+                </option> -->
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-12 row table-responsive" align="center">  
+          <div class="card-content collapse show">
+            <div class="card-body"> 
+              <div class="col-md-12">
+      
+                <table class="table table-bordered table-margin">
+                  <thead class="thead-dark">
+      
+                    <tr>
+                      <th>S NO</th>
+                      <th>PACS NAME</th>
+                      <th>DEVICE NAME</th>
+                      <th>RECEIVED DATE</th>
+                      <th>SERIAL NUMBER</th>
+                      <th>DELIVERY NOTE NUMBER</th>
+                      <th>MAKER NAME</th>
+                      <th>MODEL DETAILS</th>
+                      <th>DEVICE IMAGE</th>
+                      <th>SERIAL NO IMAGE</th>
+                      <th>TAX INVOICE</th>
+                      <th>DELIVERY CHALLAN</th>
+                      <th>STATUS</th>
+                      <th>EDIT</th>
+      
+      
+      
+      
+                    </tr>
+      
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let obj of DeviceDetailsList; let i = index">
+                      <td>{{ i + 1 }}</td>
+                      <td>{{ obj.PACS_NAME}}</td>
+                      <td>{{ obj.DEVICE_NAME}}</td>
+                      <td>{{ obj.RECEIVED_DATE}}</td>
+                      <td>{{ obj.SERIAL_NUMBER}}</td>
+                      <td>{{ obj.ACK_NO}}</td>
+                      <td>{{ obj.COMPONENT_NAME}}</td>
+                      <td>{{ obj.MODEL_DETAILS}}</td>
+                      <td>
+                        <button type="button" class="btn btn-link btn-sm" *ngIf="
+                              obj.IMAGE !== null &&
+                              obj.IMAGE !== '' &&
+                              obj.IMAGE !== undefined
+                            " (click)="btnPhotoView(obj.IMAGE)">
+                          View
+                        </button>
+                        <span *ngIf="
+                              obj.IMAGE === null ||
+                              obj.IMAGE === '' ||
+                              obj.IMAGE === undefined
+                            ">{{ obj.IMAGE }}</span>
+                      </td>
+      
+                      <td>
+                        <button type="button" class="btn btn-link btn-sm" *ngIf="
+                              obj.SLNO_IMAGE !== null &&
+                              obj.SLNO_IMAGE !== '' &&
+                              obj.SLNO_IMAGE !== undefined
+                            " (click)="btnPhotoView(obj.SLNO_IMAGE)">
+                          View
+                        </button>
+                        <span *ngIf="
+                              obj.DESKTO_PPHO_UPL === null ||
+                              obj.DESKTO_PPHO_UPL === '' ||
+                              obj.DESKTO_PPHO_UPL === undefined
+                            ">{{ obj.DESKTO_PPHO_UPL }}</span>
+                      </td>
+      
+                      <td>
+                        <button type="button" class="btn btn-link btn-sm" *ngIf="
+                              obj.TAX_INVOICE !== null &&
+                              obj.TAX_INVOICE !== '' &&
+                              obj.TAX_INVOICE !== undefined
+                            " (click)="btnPDFView(obj.TAX_INVOICE)">
+                          VIEW
+                        </button>
+                        <span *ngIf="
+                              obj.TAX_INVOICE === null ||
+                              obj.TAX_INVOICE === '' ||
+                              obj.TAX_INVOICE === undefined
+                            ">NA</span>
+                      </td>
+      
+                      <td>
+                        <button type="button" class="btn btn-link btn-sm" *ngIf="
+                              obj.DELIVERY_CHALLAN !== null &&
+                              obj.DELIVERY_CHALLAN !== '' &&
+                              obj.DELIVERY_CHALLAN !== undefined
+                            " (click)="btnPDFView(obj.DELIVERY_CHALLAN)">
+                          VIEW
+                        </button>
+                        <span *ngIf="
+                              obj.DELIVERY_CHALLAN === null ||
+                              obj.DELIVERY_CHALLAN === '' ||
+                              obj.DELIVERY_CHALLAN === undefined
+                            ">NA</span>
+                      </td>
+      
+                      <td class="text-danger">{{ obj.STATUS_LABEL}}</td>
+      
+                      <td>
+                        <button type="button" class="btn btn-info" (click)="btnViewEdit(obj)"><i class="fas fa-edit"
+                            style="color: white;"></i></button>
+                      </td>
+      
+                    </tr>
+                  </tbody>
+      
+                </table>
+              </div>
+            </div>
+          </div>
+      
+        </div> 
+      </div>
+    </div>
+
+  </div> 
+
+  <div class="popup-modal" *ngIf="DeviceReceivedPopUp">
+    <div class="popup-content">
+      <div class="popup-header">
+        <h4 class="title">EDIT / UPDATE INTERNET DETAILS</h4>
+        <a type="button" class="close" (click)="DeviceReceivedPopUp = false" style="cursor: pointer">
+          <span>×</span>
+        </a>
+      </div>
+
+      <div class="popup-body" style="width: 1200px; height:500px">
+        <div class="row justify-content-center align-items-center">
+          <div class="col-md-12 row">
+
+            <div class="col-md-3">
+              <div class="form-group">
+                <label for="handOverByName">
+                  DISTRICT NAME :
+                </label>
+                <br>
+                <label class="text-success">{{EditDeviceDetails.DistrictName}}</label>                
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label for="handOverByName">
+                  MANDAL NAME :
+                </label>
+                <br>
+                <label class="text-success">{{EditDeviceDetails.MandalName}}</label>                
+              </div>
+            </div>
+
+            <div class="col-md-3">
+              <div class="form-group">
+                <label for="handOverByName">
+                  PACS NAME :
+                </label>
+                <br>
+                <label class="text-success">{{EditDeviceDetails.Packname}}</label>
+                <!-- <input
+                  id="handOverByName"
+                  type="text"
+                  class="form-control"
+                   
+                  placeholder="Please Enter Possession Handover By Name"
+                  maxlength="30"
+                  autocomplete="off" lettersOnly
+                /> -->
+              </div>
+            </div>
+
+            <!-- <div class="col-md-4">
+              <div class="form-group">
+                <label for="handOverByName">
+                  DEVICE NAME :
+                </label>
+                <br>
+                <label class="textcolor">{{EditDeviceDetails.Device_name}}</label>
+                
+              </div>
+            </div> -->
+           
+           <div class="col-md-3">
+              <div class="form-group">
+                <label for="Edit_manufacturedate">
+                  MANUFACTURE DATE :
+                </label>
+                <input type="text" class="form-control" [(ngModel)]="Edit_manufacturedate" placeholder="DD-MM-YYYY"
+                  [minDate]="minDate" [maxDate]="maxDate" placement="bottom" container=""
+                  [bsConfig]="bsDatepickerConfig" bsDatepicker> 
+              </div>
+            </div>
+           
+           
+            <div class="col-md-3">
+              <div class="form-group">
+                <label for="Edit_inspectionDate">
+                  RECEIVED DATE :
+                </label>
+                <input type="text" class="form-control" [(ngModel)]="Edit_inspectionDate" placeholder="DD-MM-YYYY"
+                  [minDate]="minDate" [maxDate]="maxDate" placement="bottom" container=""
+                  [bsConfig]="bsDatepickerConfig" bsDatepicker> 
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label for="Edit_deliverynotedate">
+                  DELIVERY NOTE DATE :
+                </label>
+                <input type="text" class="form-control" [(ngModel)]="Edit_deliverynotedate" placeholder="DD-MM-YYYY"
+                  [minDate]="minDate" [maxDate]="maxDate" placement="bottom" container=""
+                  [bsConfig]="bsDatepickerConfig" bsDatepicker> 
+              </div>
+            </div>
+
+            <div class="col-md-3">
+              <div class="form-group">
+                <label for="handOverByName">
+                  DELIVERY NOTE NUMBER :
+                </label>
+                <input id="handOverByName" type="text" class="form-control"
+                  [(ngModel)]="EditDeviceDetails.Acknowledgment" placeholder="Please Enter Delivery Note Number"
+                  maxlength="30" autocomplete="off" />
+
+              </div>
+            </div>
+
+               <div class="col-md-3">              
+                <div class="form-group">
+                  <label for="Edit_installDate">INSTALLATION DATE<span class="text-danger">*</span>
+                  </label>
+                  <input type="text" class="form-control" placeholder="DD-MM-YYYY" [minDate]="minDate" [maxDate]="maxDate"
+                    placement="bottom" container="" [(ngModel)]="Edit_installDate" [bsConfig]="bsDatepickerConfig"
+                    bsDatepicker>
+                </div>
+              </div>
+
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="componentname">
+                    MAKER NAME :
+                  </label>
+                  <input id="componentname" type="text" class="form-control"
+                    [(ngModel)]="EditDeviceDetails.componentname" placeholder="Please Enter Maker Name"
+                    maxlength="30" autocomplete="off" lettersOnly />
+                </div>
+              </div>
+
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label for="modeldetails">
+                    MODEL DETAILS :
+                  </label>
+                  <input id="modeldetails" type="text" class="form-control" [(ngModel)]="EditDeviceDetails.modeldetails"
+                    placeholder="Please Enter Model Details" maxlength="30" autocomplete="off" />
+  
+                </div>
+              </div>
+
+            <div class="col-md-3">
+              <div class="form-group">
+                <label for="SerialNo">
+                  SERIAL NUMBER :
+                </label>
+                <input id="SerialNo" type="text" class="form-control" [(ngModel)]="EditDeviceDetails.SerialNo"
+                  placeholder="Please Enter Serial Number" maxlength="30" autocomplete="off" />
+
+              </div>
+            </div> 
+            
+
+            <div class="col-md-3">            
+              <div class="form-group">
+                <label for="internetprovname">INTERNET SERVICE PROVIDER NAME
+                  <span class="text-danger">*</span>
+                </label>
+                <input type="text" placeholder="Enter Internet Service Provider Name"
+                  [(ngModel)]="EditDeviceDetails.internetprovname" class="form-control">
+
+
+              </div>
+            </div>
+
+
+            <div class="col-md-3"> 
+              <div class="form-group">
+                <label for="internetSpeed">INTERNET SPEED
+                  <span class="text-danger">*</span>
+                </label>
+                <input type="text" placeholder="Enter Internet Speed" [(ngModel)]="EditDeviceDetails.internetSpeed"
+                  class="form-control">
+
+              </div>
+            </div>    
+
+            <div class="col-md-3">              
+              <div class="form-group">
+                <label for="TaxinvoiceNumber">Tax Invoice Number
+                  <span class="text-danger">*</span>
+                </label>
+                <input type="text" placeholder="Enter Tax Invoice Number"
+                  [(ngModel)]="EditDeviceDetails.TaxinvoiceNumber" class="form-control">
+
+              </div>
+            </div>
+
+            <div class="col-md-3">
+              <div class="form-group">
+                <label for="Update_DeviceImage">
+                  DEVICE IMAGE UPLOAD
+                </label>
+                <input type="file" class="form-control p-0" id="deviceimageupd"
+                  (change)="onDeviceImageChangeEdit($event)" accept="image/jpeg" autocomplete="off" />
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label for="ServicenodeviceImage">
+                  SERIAL NO IMAGE UPLOAD
+                </label>
+                <input type="file" class="form-control p-0" id="ServicenodeviceImage"
+                  (change)="onserialnoimageChangeEdit($event)" accept="image/jpeg" autocomplete="off" />
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label for="handOverByName">
+                  INSTALLATION DOCUMENT UPLOAD
+                </label>
+                <input type="file" class="form-control p-0" id="DeedPhotoUpload"
+                  (change)="oninstalldocupdChangeEdit($event)" accept="application/pdf" autocomplete="off" />
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="form-group">
+                <label for="update_invoicepdf">
+                  TAX INVOICE <span style="color: red">*</span>
+                </label>
+                <input type="file" class="form-control p-0" id="update_invoicepdf"
+                  (change)="ontaxinvoiceChangeEdit($event)" accept="application/pdf" autocomplete="off" />
+              </div>
+            </div>  
+
+            <div class="col-md-3">
+              <div class="form-group">
+                <label for="onpdffileChangeChallan">
+                  DELIVERY CHALLAN <span style="color: red">*</span>
+                </label>
+                <input type="file" class="form-control p-0" id="onpdffileChangeChallan"
+                  (change)="ondeliverychallanChangeEdit($event)" accept="application/pdf" autocomplete="off" />
+              </div>
+            </div>
+
+            <div class="col-md-3">              
+              <div class="form-group">
+                <label> WHETHER THE FIRST MONTH'S CHARGES HAVE BEEN PAID BY THE VENDOR <span
+                    class="text-danger h6">*</span></label>
+                <div class="ah-radio-buttons">
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input class="custom-control-input" type="radio" name="vendorcharges" id="vendorcharges1" value="1"
+                      [(ngModel)]="EditDeviceDetails.vendorcharges" autocomplete="off" />                    
+                    <label class="custom-control-label" for="vendorcharges1">
+                      yes
+                    </label>
+                  </div>
+
+                  <div class="custom-control custom-radio custom-control-inline">
+                    <input class="custom-control-input" type="radio" name="vendorcharges" id="vendorcharges2" value="2"
+                      [(ngModel)]="EditDeviceDetails.vendorcharges" autocomplete="off" />                   
+                    <label class="custom-control-label" for="vendorcharges2">
+                      No
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+
+
+           
+
+           
+
+
+
+
+            <div class="col-md-12">
+              <div class="form-group center" style="text-align: center;">
+                <button type="button" class="btn btn-outline-success btn-sm btn-rounded" (click)="btnupdate()">
+                  UPDATE
+                </button>
+                <button type="button" class="btn btn-outline-danger btn-sm btn-rounded"
+                  (click)="DeviceReceivedPopUp = false">
+                  Close
+                </button>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+       
+    </div>
+      
+  </div>
+
+
+  <!-- <div class="form-group">
+    <label for="text">Formatted Text:</label> -->
+    <!-- Using pre tag to preserve line breaks -->
+    <!-- <pre>{{ getTransformedText() }}</pre> -->
+  
+    <!-- OR Using ngStyle to preserve line breaks -->
+    <!-- <div [ngStyle]="{'white-space': 'pre-wrap'}">
+      {{ getTransformedText() }}
+    </div>
+  </div> -->

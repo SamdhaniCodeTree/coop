@@ -1,0 +1,172 @@
+ 
+                        
+                        <div class="row" style="margin-top: -34px !important;">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                  <label for="fromDate"
+                                    >From Date :
+                                    <span style="color: red">*</span></label
+                                  >
+                                  <input type="text" placeholder="DD-MM-YYYY" class="form-control bg-white" readonly [maxDate]="maxDate"
+                                  [(ngModel)]="fromDate" placement="bottom" container="" [bsConfig]="bsDatepickerConfig" bsDatepicker>
+                                
+                                  
+                                </div>
+                              </div>
+                              <div class="col-md-3">
+                                <div class="form-group">
+                                  <label for="toDate"
+                                    >To Date :
+                                    <span style="color: red">*</span></label
+                                  >
+                                  <input type="text" placeholder="DD-MM-YYYY" class="form-control bg-white" readonly [maxDate]="maxDate"
+                                  [(ngModel)]="toDate" placement="bottom" container="" [bsConfig]="bsDatepickerConfig" bsDatepicker>
+                                
+                                   
+                                </div>
+                              </div>
+                              <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="typeid"> SELECT TYPE <span style="color: red">*</span></label>
+                                    <select id="typeid" class="form-control" [(ngModel)]="typeid"
+                                        >  
+                                        <!-- (change)="deviceChange(typeid)" -->
+                                        <option disabled selected value="undefined">-- SELECT TYPE --</option>
+                                        <option value="1"> DISTRICTS </option>
+                                        <option value="2"> DCCBS </option> 
+                                    </select>
+                                </div>
+                              <!-- <div class="col-md-3">
+                                <button
+                                  type="button"
+                                  class="btn btn-success btn-sm mt-3"
+                                  (click)="btnReportLoading()"
+                                >
+                                  <i
+                                    class="fa fa-arrow-right mr-2"
+                                    aria-hidden="true"
+                                  ></i>
+                                  GO
+                                </button>
+                              </div> -->
+
+                            
+
+
+                          </div> 
+                          <div class="col-md-3">
+                            <div class="form-group"> 
+                                <button type="submit" class="btn btn-primary" style="margin-top: 26px;" (click)="GetDetails()">
+                                  GO
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-md-6"></div>
+
+                         
+                        </div>
+
+                          <div class="col-md-12" style="margin-top: -22px !important;">
+                            <button type="button" class="btn btn-sm btn-success pull-right" (click)="btnExcelDownload()">
+                              <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+                              DOWNLOAD EXCEL
+                            </button>
+                            <button
+                              type="button"
+                              class="btn btn-sm btn-danger pull-right"
+                              (click)="btnPDF()"
+                            >
+                              <i
+                                class="fa fa-file-pdf-o mr-2"
+                                aria-hidden="true"
+                              ></i>
+                              DOWNLOAD PDF
+                            </button>
+                          </div>
+                          <div class="col-md-12 table-responsive tbl-fixed">
+                        
+                            <table class="table table-bordered tbl-data" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
+                              <thead class="thead-dark">
+                        
+                                <tr>
+                                  <th rowspan="2">S NO</th>
+                                  <th [style.display]="districthide ? 'table-cell' : 'none'"  rowspan="2" style="z-index: 99;">NAME OF THE DISTRICT</th>
+                                  <th [style.display]="dccbshide ? 'table-cell' : 'none'"  rowspan="2" style="z-index: 99;">NAME OF THE DCCBS</th> 
+                                  <th rowspan="2" style="z-index: 99;">TOTAL PACS</th>  
+                                  <th colspan="2">CALIBRATION</th>
+                                  <th colspan="2">CEO</th>
+                                  <th colspan="2">VENDOR</th>
+                                  <th colspan="2">NODAL AGENCY</th>
+                                  <th colspan="2">DEPARTMENT</th>     
+                                </tr>
+                        
+                                <tr>
+                                  <th>SUBMITTED </th>
+                                  <th>NOT SUBMITTED</th>
+                                  <th>APPROVED</th>
+                                  <th>NOT APPROVED</th>
+                                  <th>PAYMENT<br>REQUESTED</th>
+                                  <th>PAYMENT<br> NOT REQUESTED</th>
+                                  <th>PAYMENT<br> RECOMMENDED</th>
+                                  <th>PAYMENT<br> NOT RECOMMENDED</th>
+                                  <th>PAID</th>
+                                  <th>NOT PAID</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr *ngFor="let obj of stateLevelDetails; let i = index">
+                                  <td>{{ i + 1 }}</td>
+                                  <!-- <td>
+                                    <a style="cursor: pointer; text-decoration: underline" class="text-primary" (click)="btnGetDetails(obj)">
+                                      <b>{{ obj.DISTRICT_NAME }}</b>
+                                    </a>
+                                  </td> -->
+                                  <td [style.display]="districthide ? 'table-cell' : 'none'">{{ obj.DISTRICT_NAME }}</td>
+                                  <td [style.display]="dccbshide ? 'table-cell' : 'none'">{{ obj.NAME_OF_THE_DCCB }}</td>
+                                  <td>{{ obj.TOTAL_PACS }}</td>
+                                  <!-- <td>{{ obj.CALIBRATION_DONE }}</td> -->
+
+                                  <td>
+
+                                    <a *ngIf="obj.CALIBRATION_DONE != '0'" style="cursor: pointer; text-decoration: underline" class="text-primary"
+                                      (click)="btnCalibdoneDetails(obj)"><b>{{ obj.CALIBRATION_DONE }}</b></a>
+                                    <span *ngIf="obj.CALIBRATION_DONE == '0'">{{
+                                      obj.CALIBRATION_DONE
+                                      }}</span>
+                                  </td>
+
+
+                                  <td>{{ obj.CALIBRATION_NOT_DONE }}</td>
+                                  <td>{{ obj.CEO_APPROVED }}</td>
+                                  <td>{{ obj.CEO_NOT_APPROVED }}</td>
+                                  <td>{{ obj.HARDWARE_REQUESTED }}</td>
+                                  <td>{{ obj.HARDWARE_NOT_REQUESTED }}</td>
+                                  <td>{{ obj.DGM_PAYMENT_REQUESTED }}</td>
+                                  <td>{{ obj.DGM_PAYMENT_NOT_REQUESTED }}</td>
+                                  <td>{{ obj.DEPT_PAYMENT_PAID }}</td>
+                                  <td>{{ obj.DEPT_PAYMENT_NOT_PAID }}</td>  
+                                </tr>
+                              </tbody>
+                              <tbody *ngIf="stateLevelDetails?.length > 0">
+                                <tr class="total">
+                                  <td>--</td>
+                                  <td>
+                                    <b>TOTAL</b>
+                                  </td>
+                                  <td>{{reportTotals.TOTAL_PACS}}</td>
+                                  <td>{{ reportTotals.CALIBRATION_DONE }}</td>
+                                  <td>{{ reportTotals.CALIBRATION_NOT_DONE }}</td>
+                                  <td>{{ reportTotals.CEO_APPROVED }}</td>
+                                  <td>{{ reportTotals.CEO_NOT_APPROVED }}</td>
+                                  <td>{{ reportTotals.HARDWARE_REQUESTED }}</td>
+                                  <td>{{ reportTotals.HARDWARE_NOT_REQUESTED }}</td>
+                                  <td>{{ reportTotals.DGM_PAYMENT_REQUESTED }}</td>
+                                  <td>{{ reportTotals.DGM_PAYMENT_NOT_REQUESTED }}</td>
+                                  <td>{{ reportTotals.DEPT_PAYMENT_PAID }} </td>
+                                  <td>{{ reportTotals.DEPT_PAYMENT_NOT_PAID }} </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        
+                         

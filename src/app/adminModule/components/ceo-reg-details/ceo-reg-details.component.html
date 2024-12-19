@@ -1,0 +1,125 @@
+
+
+
+  
+<div class="app-content content">
+    <div class="content-overlay"></div>
+    <div class="content-wrapper">
+      <div class="content-header row">
+        <div class="content-header-left col-md-6 col-12">
+          <h3 class="content-header-title mb-0">CEO Registration Reports</h3>
+          <div class="row breadcrumbs-top">
+            <div class="breadcrumb-wrapper col-12">
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="content-body">
+        <section id="basic-form-layouts">
+          <div class="row match-height">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header"></div>
+                <div class="card-content collapse show">
+                  <div class="card-body">
+                    <div class="form">
+                      <div class="form-body">
+                        <h4 class="form-section">
+                          <i class="feather icon-user"></i>CEO Registration Report  
+                        </h4>
+  
+                        <div class="row">
+                            <div class="col-md-12">
+                              <!-- <button
+                                type="button"
+                                class="btn btn-sm btn-success pull-right"
+                                (click)="btnExcelDownload()"
+                              >
+                                <i class="fa fa-file-excel-o mr-2" aria-hidden="true"></i>
+                                DOWNLOAD EXCEL
+                              </button> -->
+                              <!-- <button
+                                type="button"
+                                class="btn btn-sm btn-danger pull-right"
+                                (click)="btnPDF()"
+                              >
+                                <i
+                                  class="fa fa-file-pdf-o mr-2"
+                                  aria-hidden="true"
+                                ></i>
+                                DOWNLOAD PDF
+                              </button> -->
+                            </div>
+                            <div
+                              class="col-md-12 table-responsive"
+                              [hidden]="RegCeoLevelDetails.length < 1"
+                            >
+                              <table
+                                class="table table-bordered"
+                                datatable
+                                [dtOptions]="dtOptions"
+                                [dtTrigger]="dtTrigger"
+                              >
+                                <thead class="thead-dark">
+                                   
+                                  <tr>
+                                    <th>S.No.</th>
+                                    <th>Name</th>
+                                    <th>Mobile Number</th>
+                                    <th>PAck Name</th>
+                                    <th>Mandal Name</th>
+                                    <th>CEO Id</th>
+                                    <th>E - mailId</th>
+                                    <th>Address</th>
+                                    
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr *ngFor="let obj of RegCeoLevelDetails; let i = index">
+                                    <td>{{ i + 1 }}</td>
+                                   
+                                    <td>{{ obj.NAME }}</td>
+                                    <td>
+                                      {{ obj.MOBILE_NO }}
+                                    </td>
+                                    <td>
+                                      {{ obj.PACS_NAME }}
+                                    </td>
+                                    <td>{{ obj.MANDAL_NAME }}</td>
+                                    <td>
+                                      {{ obj.UNIQUE_ID }}
+                                    </td>
+                                    <td>
+                                      {{ obj.MAIL_ID }}
+                                    </td>
+                                    <td>
+                                      {{ obj.RESIDENTIAL_ADDRESS }}
+                                    </td>
+                                    
+                                  </tr>
+                                </tbody>
+                                
+                              </table>
+                            </div>
+                          
+                            <div
+                              class="col-md-12 table-responsive"
+                              [hidden]="RegCeoLevelDetails?.length > 0"
+                            >
+                              <h6 class="text-center">No Data Available</h6>
+                            </div>
+                          </div>
+                        
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+         
+      </div>
+    </div>
+  </div>
